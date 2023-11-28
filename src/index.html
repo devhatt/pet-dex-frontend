@@ -4,34 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <link href="./styles/style.scss" rel="stylesheet" />
+    <title>Pet Hat</title>
+
+    <link href="/index.scss" rel="stylesheet" />
+
+    <!-- Counter -->
+    <script src="/components/counter" defer></script>
+    <link href="/components/counter/index.scss" rel="stylesheet" />
+
+    <script src="main.js" defer></script>
   </head>
   <body>
-    <div id="app">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="./images/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a
-          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-          target="_blank"
-        >
-          <img
-            src="./images/javascript.svg"
-            class="logo vanilla"
-            alt="JavaScript logo"
-          />
-        </a>
-        <a href="./pages/lance.html"> ROLE </a>
-        <h1>Hello Vite!</h1>
-        <div class="card">
-          <button id="counter" type="button"></button>
-        </div>
-        <p class="read-the-docs">Click on the Vite logo to learn more</p>
-      </div>
-    </div>
-    <script src="./scripts/counter.js"></script>
-    <script src="./scripts/main.js" defer></script>
+    <button data-counter-init type="button"></button>
   </body>
 </html>
