@@ -2,20 +2,30 @@
   "name": "pet-dex-frontend",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "test": "vitest",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "cz-format-extension": "^1.5.1",
     "eslint": "^8.54.0",
+    "husky": "^8.0.0",
+    "jsdom": "^23.0.1",
+    "lint-staged": "^15.1.0",
     "prettier": "^3.1.0",
     "reset-css": "^5.0.2",
     "sass": "^1.69.5",
     "stylelint": "^15.11.0",
     "stylelint-config-sass-guidelines": "^10.0.0",
     "stylelint-order": "^6.0.3",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vitest": "^0.34.6"
   },
   "dependencies": {
     "eslint": "^8.54.0",
