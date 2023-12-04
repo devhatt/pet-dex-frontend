@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a new bug report to help us improve Octopost
+about: Create a new bug report to help us improve Petdex
 title: ''
 labels: ''
 assignees: ''

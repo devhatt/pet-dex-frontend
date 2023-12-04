@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest a feature to be added to Octopost
+about: Suggest a feature to be added to Petdex
 title: ''
 labels: ''
 assignees: ''
