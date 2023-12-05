@@ -12,22 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const storage = new Storage(storageName, { name: null });
 
   const loginComponent = new Login();
-  loginComponent.events.login.add((data) => storage.setValue(data));
+  loginComponent.listen('login', (data) => storage.setValue(data));
 
   const loggedComponent = new Logged();
-  loggedComponent.events.logout.add(() => storage.reset());
+  loggedComponent.listen('logout', () => storage.reset());
 
   storage.events.onChange.add((value) => {
     const isLogged = value.name != null;
 
-    if (isLogged) {
-      loggedComponent.setName(value.name);
-      $container.append(...loggedComponent.elements);
-      loginComponent.elements.forEach((element) => element.remove());
-    } else {
-      $container.append(...loginComponent.elements);
-      loggedComponent.elements.forEach((element) => element.remove());
-    }
+    loggedComponent.setName(value.name);
+    loggedComponent.toggleMount($container, isLogged);
+    loginComponent.toggleMount($container, !isLogged);
   });
   storage.setValue(storage.getValue()); // just to trigger update
 });

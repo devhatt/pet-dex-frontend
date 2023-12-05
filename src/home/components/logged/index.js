@@ -1,12 +1,12 @@
 import Button from '../../../components/button';
-import createElements from '../../../utils/create-elements';
-import extractElements from '../../../utils/extract-elements';
+import Component from '../../../components/component';
 import html from './index.html?raw';
 import './index.scss';
 
+const events = ['logout'];
+
 export default function Logged() {
-  this.elements = createElements(html);
-  this.selected = extractElements(this.elements);
+  Component.call(this, { html, events });
 
   this.button = new Button();
   this.button.setText('Logout');
@@ -15,13 +15,9 @@ export default function Logged() {
     .addEventListener('click', (event) => this.logout());
 
   this.elements.push(...this.button.elements);
-
-  this.events = {
-    logout: new Set(),
-  };
 }
 
-Logged.prototype = Object.assign(Logged.prototype, {
+Logged.prototype = Object.assign(Logged.prototype, Component.prototype, {
   getName() {
     return this.selected.get('name').textContent;
   },
@@ -31,6 +27,6 @@ Logged.prototype = Object.assign(Logged.prototype, {
   },
 
   logout() {
-    this.events.logout.forEach((callback) => callback());
+    this.emit('logout');
   },
 });

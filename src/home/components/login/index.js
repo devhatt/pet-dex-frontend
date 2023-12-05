@@ -1,13 +1,13 @@
 import Button from '../../../components/button';
+import Component from '../../../components/component';
 import Input from '../../../components/input';
-import createElements from '../../../utils/create-elements';
-import extractElements from '../../../utils/extract-elements';
 import html from './index.html?raw';
 import './index.scss';
 
+const events = ['login'];
+
 export default function Login() {
-  this.elements = createElements(html);
-  this.selected = extractElements(this.elements);
+  Component.call(this, { html, events });
 
   this.input = new Input();
   this.input.setLabel('Username');
@@ -21,14 +21,12 @@ export default function Login() {
 
   const $form = this.selected.get('form');
   $form.addEventListener('submit', (event) => this.submit());
-  $form.append(...this.input.elements, ...this.button.elements);
 
-  this.events = {
-    login: new Set(),
-  };
+  this.input.mount($form);
+  this.button.mount($form);
 }
 
-Login.prototype = Object.assign(Login.prototype, {
+Login.prototype = Object.assign(Login.prototype, Component.prototype, {
   getData() {
     return {
       name: this.input.getValue(),
@@ -40,7 +38,7 @@ Login.prototype = Object.assign(Login.prototype, {
     const valid = $form.reportValidity();
     if (!valid) return;
 
-    this.events.login.forEach((callback) => callback(this.getData()));
+    this.emit('login', this.getData());
     $form.reset();
   },
 });

@@ -1,22 +1,18 @@
-import createElements from '../../utils/create-elements';
-import extractElements from '../../utils/extract-elements';
+import Component from '../component';
 import html from './index.html?raw';
 import './index.scss';
 
+const events = ['click'];
+
 export default function Button() {
-  this.elements = createElements(html);
-  this.selected = extractElements(this.elements);
+  Component.call(this, { html, events });
 
   this.selected
     .get('button')
     .addEventListener('click', (event) => this.click());
-
-  this.events = {
-    click: new Set(),
-  };
 }
 
-Button.prototype = Object.assign(Button.prototype, {
+Button.prototype = Object.assign(Button.prototype, Component.prototype, {
   getText() {
     return this.selected.get('button').textContent;
   },
@@ -26,6 +22,6 @@ Button.prototype = Object.assign(Button.prototype, {
   },
 
   click() {
-    this.events.click.forEach((callback) => callback());
+    this.emit('click');
   },
 });
