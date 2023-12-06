@@ -7,6 +7,8 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
+    root: resolve(__dirname, ''),
+    include: ['src/**/*.spec.js'],
   },
   build: {
     outDir: resolve(__dirname, 'dist'),
