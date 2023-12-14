@@ -9,8 +9,8 @@
 [![Jest](https://img.shields.io/badge/Jest-red?logo=jest&logoColor=white)](https://jestjs.io/)
 [![GitHub Contributors](https://img.shields.io/github/contributors/devhatt/pet-dex-frontend)](https://github.com/devhatt/pet-dex-frontend/contributors)
 [![GitHub Stars](https://img.shields.io/github/stars/devhatt/pet-dex-frontend.svg?style=social&label=Star&maxAge=2592000)](https://github.com/devhatt/pet-dex-frontend/stargazers/)
-[![Discord Server](https://img.shields.io/discord/308323056592486420?color=7289DA&label=Discord&logo=discord&logoColor=white)](https://discord.gg/9f5BZ7yD)
-[![Twitter Follow](https://img.shields.io/twitter/follow/alecell_?style=social)](https://twitter.com/alecell_)
+[![Discord Server](https://img.shields.io/discord/308323056592486420?color=7289DA&label=Discord&logo=discord&logoColor=white)](http://discord.gg/3gsMAEumEd)
+[![Twitter Follow](https://img.shields.io/twitter/follow/alecell_?style=social)](https://twitter.com/DevHatt)
 --
 
 Bem-vindo ao PetDex, este documento README irá guiá-lo através das informações básicas sobre o projeto, seu propósito e como contribuir de forma eficaz.
@@ -48,7 +48,7 @@ Recebemos contribuições da comunidade para tornar o PetDex ainda melhor!
 
 ## **Cargos**
 
-Em nosso [servidor do discord](https://discord.com/invite/K2ghxhP6ek), temos várias opções de cargos, que você poderá adquirir participando do servidor e subindo de level, contribuindo com o projeto.
+Em nosso [servidor do discord](http://discord.gg/3gsMAEumEd), temos várias opções de cargos, que você poderá adquirir participando do servidor e subindo de level, contribuindo com o projeto.
 
 **Distribuição dos cargos**
 
@@ -66,6 +66,6 @@ O PetDex segue um Código de Conduta para garantir um ambiente respeitoso e incl
 
 ## **Contato**
 
-Se tiver alguma dúvida ou precisar de ajuda, fique à vontade para entrar em contato com nossa equipe em nosso [Discord](https://discord.com/invite/K2ghxhP6ek).
+Se tiver alguma dúvida ou precisar de ajuda, fique à vontade para entrar em contato com nossa equipe em nosso [Discord](http://discord.gg/3gsMAEumEd).
 
 Obrigado pelo seu interesse no PetDex! Esperamos suas contribuições e esperamos que você aproveite o aplicativo tanto quanto nós gostamos de construí-lo.
