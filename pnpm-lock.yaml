@@ -8,6 +8,9 @@ dependencies:
   eslint:
     specifier: ^8.54.0
     version: 8.54.0
+  pet-dex-utilities:
+    specifier: ^1.0.1
+    version: 1.0.1
   prettier:
     specifier: ^3.1.0
     version: 3.1.0
@@ -2443,6 +2446,10 @@ packages:
   /pathval@1.1.1:
     resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
     dev: true
+
+  /pet-dex-utilities@1.0.1:
+    resolution: {integrity: sha512-AfTZX9WQHWLjcPkVwQGgYpWObmLsraK63KkMVzpp/lYXT/iLiwpHNCiQUh6LC8z8xjJNdL7QeD5J3oSSEhNJFA==}
+    dev: false
 
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
