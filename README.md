@@ -25,9 +25,10 @@ O PetDex é um projeto mobile/desktop com o objetivo de facilitar a adoção de 
 Para começar no PetDex, siga estes passos:
 
 1. Clonar o repositório: **`git clone https://github.com/devhatt/pet-dex-frontend.git`**
-2. Instalar as dependências: **`pnpm install`**
-3. Iniciar o aplicativo: **`pnpm dev`**
-4. Instalar as extensões:
+2. Entrar na pasta do projeto: **`cd pet-dex-frontend`**
+3. Instalar as dependências: **`pnpm install`**
+4. Iniciar o aplicativo: **`pnpm dev`**
+5. Instalar as extensões:
 
 - **`ESLint`**
 - **`Stylelint`**
