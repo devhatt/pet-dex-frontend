@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import './index.scss';
 
 function renderCards(qty, $container) {
-  for (let i = 0; i < qty; i++) {
+  for (let i = 0; i < qty; i += 1) {
     const card = new Card();
     card.mount($container);
     card.setTitle(`Card ${i}`);

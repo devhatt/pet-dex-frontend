@@ -4,6 +4,10 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: resolve(__dirname, 'src'),
+  assetsInclude: ['**/*.html'],
+  define: {
+    __isBrowser__: true,
+  },
   test: {
     environment: 'jsdom',
     globals: true,

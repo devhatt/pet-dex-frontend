@@ -1,8 +1,12 @@
 {
   "extends": ["airbnb-base"],
   "plugins": ["prettier"],
+  "env": {
+    "browser": true
+  },
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "no-console": "warn"
+    "no-console": "warn",
+    "object-curly-newline": "off"
   }
 }
