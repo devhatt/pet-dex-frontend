@@ -1,6 +1,6 @@
-import Component from '../component.js';
+import { Component } from 'pet-dex-utilities';
 import html from './index.html?raw';
-import './index.scss';	
+import './index.scss';
 
 const events = ['purchase'];
 
@@ -12,7 +12,7 @@ export default function Card() {
     if (!this.enable) return;
     this.purchase();
     console.log('purchase padrao do componente');
-  })
+  });
 }
 
 Card.prototype = Object.assign(Card.prototype, Component.prototype, {

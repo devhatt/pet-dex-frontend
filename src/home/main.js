@@ -1,4 +1,4 @@
-import extractElements from '../utils/extract-elements';
+import { extractElements } from 'pet-dex-utilities';
 import Card from '../components/Card';
 import './index.scss';
 
