@@ -1,8 +1,15 @@
 import { Component } from 'pet-dex-utilities';
-import html from './index.html?raw';
 import './index.scss';
 
 const events = ['purchase'];
+
+const html = `
+  <div class="card-container">
+    <img class="card-container__image" data-select="card-image" src="" alt="">
+    <strong class="card-container__title" data-select="card-title"></strong>
+    <button class="card-container__button" data-select="card-button" type="button">Comprar</button>
+  </div>
+`;
 
 export default function Card() {
   Component.call(this, { html, events });
