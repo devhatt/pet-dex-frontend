@@ -1,0 +1,18 @@
+@use '../../styles/colors.scss' as colors;
+
+.button {
+  appearance: none;
+  border-radius: 1.4rem;
+  background-color: colors.$blue-500;
+  color: #fff;
+  border: none;
+  padding: 1.6rem;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+}

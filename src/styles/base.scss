@@ -1,10 +1,7 @@
 @use 'reset-css/sass/_reset.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans:wght@500&display=swap');
 
 html,
 body {
   font-size: 62.5%;
-}
-
-main {
-  font-size: 1.6rem;
 }

@@ -1,0 +1,10 @@
+@use '../../../styles/breakpoints.scss' as breakpoints;
+
+.side-menu {
+  display: none;
+  width: 22rem;
+
+  @include breakpoints.desktop {
+    display: block;
+  }
+}

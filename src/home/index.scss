@@ -1,6 +1,71 @@
-@use '../styles/base.scss';
+@use 'sass:math';
+@use '../styles/base.scss' as base;
+@use '../styles/colors.scss' as colors;
+@use '../styles/breakpoints.scss' as breakpoints;
 
-.home-main-container {
-  display: flex;
-  gap: 1rem;
+$navigation-block-size: 8.1rem;
+$navigation-block-size-desktop: 8.8rem;
+
+$side-menu-inline-size: 31.3rem;
+
+.home {
+  background-color: colors.$app-color;
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+
+    height: $navigation-block-size;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+
+    background-color: colors.$app-color;
+
+    @include breakpoints.desktop {
+      height: $navigation-block-size-desktop;
+    }
+  }
+
+  &__sidemenu {
+    display: flex;
+    justify-content: center;
+
+    position: fixed;
+    left: 0px;
+    top: $navigation-block-size;
+    bottom: 0px;
+
+    background-color: colors.$app-color;
+
+    @include breakpoints.desktop {
+      top: $navigation-block-size-desktop;
+      width: $side-menu-inline-size;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    min-height: calc(100vh - $navigation-block-size);
+    margin-top: $navigation-block-size;
+
+    background-color: #fff;
+
+    @include breakpoints.desktop {
+      min-height: calc(100vh - $navigation-block-size-desktop - 2.4rem);
+
+      margin-inline-start: 2.4rem + $side-menu-inline-size;
+      margin-inline-end: 2.4rem;
+      margin-bottom: 2.4rem;
+      margin-top: $navigation-block-size-desktop;
+
+      border-radius: 1.6rem;
+    }
+  }
 }
