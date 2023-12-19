@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
-$accent-color: #1B85F3;
-$ff-montserrat: 'Montserrat', sans-serif;
+$petCardAccentColor: #1B85F3;
+$petCardFf: 'Montserrat', sans-serif;
 
 .pet-container {
     width: 220px;
@@ -30,18 +30,17 @@ $ff-montserrat: 'Montserrat', sans-serif;
       line-height: 1.5;
       font-size: 1.6rem;
   
-      font-family: $ff-montserrat;
+      font-family: $petCardFf;
       font-weight: 600;
 
     }
 
     &--active {
-      border: 2px solid $accent-color;
-      color: $accent-color;
+      border: 2px solid $petCardAccentColor;
+      color: $petCardAccentColor;
     }
   
     &:hover {
       box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 15px 0px;
     }
-  
 }
