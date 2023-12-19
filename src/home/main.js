@@ -21,6 +21,7 @@ function renderCards(qty, $container) {
     card.mount($container);
     card.setTitle(`${breed[i]}`);
     card.setImgSrc(imgSrc);
+    card.setImgAlt(`Um ${breed[i]}`);
     card.listen('active', () => {
       deactivatePreviousCard(card);
       card.toggle();

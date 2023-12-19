@@ -28,6 +28,9 @@ PetCard.prototype = Object.assign(PetCard.prototype, Component.prototype, {
   setImgSrc(src) {
     this.selected.get('pet-image').src = src;
   },
+  setImgAlt(alt) {
+    this.selected.get('pet-image').alt = alt;
+  },
   toggle() {
     const petContainer = this.selected.get('pet-container');
     petContainer.classList.add('pet-container--active');
