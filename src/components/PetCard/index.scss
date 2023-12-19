@@ -7,11 +7,11 @@
   display: flex;
   flex-direction: column;
 
-  border: 1px solid #eceff2;
+  border: 1px solid rgb(236, 239, 242);
   box-sizing: border-box;
 
-  background-color: #fff;
-  box-shadow: 0 0 0.5rem 0 #0c1a4b0d;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 0.5rem 0 rgba(12, 26, 75, 0.050980392156862744);
 
   border-radius: 1.8rem;
 
@@ -30,9 +30,9 @@
   }
 
   &--active {
-    color: #1b85f3;
+    color: rgb(27, 133, 243);
 
-    border: 2px solid #1b85f3;
+    border: 2px solid rgb(27, 133, 243);
   }
 
   &:hover {
