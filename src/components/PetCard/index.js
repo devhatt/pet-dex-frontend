@@ -4,13 +4,9 @@ import './index.scss';
 const events = ['active'];
 
 const html = `
-<div class="pet-container" data-select="pet-container" id="">
-    <div>
-        <p class="pet-container__title" data-select="pet-title"></p>
-    </div>
-    <div>
-        <img class="pet-container__image" data-select="pet-image" src="https://png.pngtree.com/png-clipart/20230506/original/pngtree-smiling-dogs-with-happy-expressions-png-image_9144389.png" alt="">
-    </div>
+<div class="pet-container" data-select="pet-container">
+  <p class="pet-container__title" data-select="pet-title"></p>
+  <img class="pet-container__image" data-select="pet-image" src="" alt="">
 </div>
 `;
 
@@ -28,6 +24,9 @@ export default function PetCard() {
 PetCard.prototype = Object.assign(PetCard.prototype, Component.prototype, {
   setTitle(text) {
     this.selected.get('pet-title').textContent = text;
+  },
+  setImgSrc(src) {
+    this.selected.get('pet-image').src = src;
   },
   toggle() {
     const petContainer = this.selected.get('pet-container');

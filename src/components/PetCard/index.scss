@@ -1,46 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
-
-$petCardAccentColor: #1B85F3;
-$petCardFf: 'Montserrat', sans-serif;
+@use '../../styles/base.scss';
+@use '../../styles/var.scss';
 
 .pet-container {
-    width: 220px;
-    height: 225px;
-    overflow: hidden;
-    box-sizing: border-box;
-  
-    display: flex;
-    flex-direction: column;
-  
-    background-color: #fff;
-    box-shadow: 0px 4px 20px -2px #32324705;
-    box-shadow: 0px 0px 5px 0px #0C1A4B0D;
+  width: 220px;
+  height: 225px;
+  overflow: hidden;
 
-    border-radius: 18px;
-    border: 1px solid #ECEFF2;
-  
-    &__image {
-      width: 100%;
-      
-    }
-  
-    &__title { 
-      margin: 2rem;
-      text-align: center;
-      line-height: 1.5;
-      font-size: 1.6rem;
-  
-      font-family: $petCardFf;
-      font-weight: 600;
+  display: flex;
+  flex-direction: column;
 
-    }
+  border: 1px solid #eceff2;
+  box-sizing: border-box;
 
-    &--active {
-      border: 2px solid $petCardAccentColor;
-      color: $petCardAccentColor;
-    }
-  
-    &:hover {
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 15px 0px;
-    }
+  background-color: #fff;
+  box-shadow: 0 4px 20px -2px #32324705;
+  box-shadow: 0 0 5px 0 #0c1a4b0d;
+
+  border-radius: 18px;
+
+  &__image {
+    width: 100%;
+  }
+
+  &__title {
+    font-family: var.$petCardFf;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    margin: 2rem;
+  }
+
+  &--active {
+    color: var.$petCardAccentColor;
+
+    border: 2px solid var.$petCardAccentColor;
+  }
+
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0 2px 15px 0;
+  }
 }

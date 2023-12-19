@@ -3,6 +3,8 @@ import PetCard from '../components/PetCard';
 import './index.scss';
 
 const breed = ['Pug', 'Bulldog', 'Beagle', 'Rottweiler', 'Pastor Alemão'];
+// eslint-disable-next-line prettier/prettier
+const imgSrc = 'https://png.pngtree.com/png-clipart/20230506/original/pngtree-smiling-dogs-with-happy-expressions-png-image_9144389.png';
 const cards = [];
 
 function deactivatePreviousCard() {
@@ -18,6 +20,7 @@ function renderCards(qty, $container) {
     cards.push(card);
     card.mount($container);
     card.setTitle(`${breed[i]}`);
+    card.setImgSrc(imgSrc);
     card.listen('active', () => {
       deactivatePreviousCard(card);
       card.toggle();
