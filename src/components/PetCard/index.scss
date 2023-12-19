@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+
+$accent-color: #1B85F3;
+$ff-montserrat: 'Montserrat', sans-serif;
+
+.pet-container {
+    width: 220px;
+    height: 225px;
+    overflow: hidden;
+    box-sizing: border-box;
+  
+    display: flex;
+    flex-direction: column;
+  
+    background-color: #fff;
+    box-shadow: 0px 4px 20px -2px #32324705;
+    box-shadow: 0px 0px 5px 0px #0C1A4B0D;
+
+    border-radius: 18px;
+    border: 1px solid #ECEFF2;
+  
+    &__image {
+      width: 100%;
+      
+    }
+  
+    &__title { 
+      margin: 2rem;
+      text-align: center;
+      line-height: 1.5;
+      font-size: 1.6rem;
+  
+      font-family: $ff-montserrat;
+      font-weight: 600;
+
+    }
+
+    &--active {
+      border: 2px solid $accent-color;
+      color: $accent-color;
+    }
+  
+    &:hover {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 15px 0px;
+    }
+  
+}

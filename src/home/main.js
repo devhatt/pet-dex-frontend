@@ -1,24 +1,27 @@
 import { extractElements } from 'pet-dex-utilities';
-import Card from '../components/Card';
+import PetCard from '../components/PetCard';
 import './index.scss';
+
+const breed = ['Pug', 'Bulldog', 'Beagle', 'Rottweiler', 'Pastor Alemão'];
+const cards = [];
+
+function deactivatePreviousCard() {
+  const allPetContainers = document.querySelectorAll('.pet-container');
+  allPetContainers.forEach((container) => {
+    container.classList.remove('pet-container--active');
+  });
+}
 
 function renderCards(qty, $container) {
   for (let i = 0; i < qty; i += 1) {
-    const card = new Card();
+    const card = new PetCard();
+    cards.push(card);
     card.mount($container);
-    card.setTitle(`Card ${i}`);
-    card.listen('purchase', () => {
-      console.log(`purchase de quem usa o componente, esse é o card ${i}`);
+    card.setTitle(`${breed[i]}`);
+    card.listen('active', () => {
+      deactivatePreviousCard(card);
+      card.toggle();
     });
-
-    const $card = card.selected.get('card-button');
-
-    if (i === 2) {
-      card.disable();
-      $card.classList.add('card-container__button--disabled');
-    } else {
-      $card.classList.add('card-container__button--active');
-    }
   }
 }
 
