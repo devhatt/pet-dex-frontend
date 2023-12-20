@@ -4,7 +4,6 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: resolve(__dirname, 'src'),
-  assetsInclude: ['**/*.html'],
   define: {
     __isBrowser__: true,
   },
@@ -19,7 +18,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'src/home/index.html'),
-        login: resolve(__dirname, 'src/login/index.html'),
       },
     },
   },
