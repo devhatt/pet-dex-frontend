@@ -1,0 +1,44 @@
+@use '~styles/base.scss';
+
+.pet-container {
+  max-width: 220px;
+  max-height: 225px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid #eceff2;
+  box-sizing: border-box;
+
+  background-color: #fff;
+  box-shadow: 0 4px 20px -2px #32324705;
+  box-shadow: 0 0 5px 0 #0c1a4b0d;
+
+  border-radius: 18px;
+
+  &__image {
+    height: 100%;
+  }
+
+  &__title {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    margin-top: 2rem;
+  }
+
+  &--active {
+    color: #1b85f3;
+
+    border: 2px solid #1b85f3;
+  }
+
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0 2px 15px 0;
+  }
+}
