@@ -1,0 +1,64 @@
+@use 'sass:math';
+@use '../../../styles/breakpoints.scss' as breakpoints;
+@use '../../../styles/colors.scss' as colors;
+
+.navigation {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  &__icons {
+    display: flex;
+
+    gap: 2.4rem;
+
+    align-items: center;
+    justify-items: center;
+  }
+
+  &__icon-container {
+    width: 4rem;
+    height: 4rem;
+
+    display: grid;
+
+    place-items: center;
+
+    &--mobile {
+      display: grid;
+
+      @include breakpoints.desktop {
+        display: none;
+      }
+    }
+
+    &--desktop {
+      display: none;
+
+      @include breakpoints.desktop {
+        display: grid;
+      }
+    }
+  }
+
+  > :first-child {
+    padding-inline-start: 2rem;
+  }
+
+  > * {
+    padding-inline: math.div(2rem, 2);
+  }
+
+  > :last-child {
+    padding-inline-end: 2rem;
+  }
+
+  &__logo {
+    @include breakpoints.desktop {
+      padding-inline-start: 7.5rem;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+@use '../../../styles/colors.scss' as colors;
+@use '../../../styles/breakpoints.scss' as breakpoints;
+
+.none-pet {
+  min-width: 100%;
+  min-height: 100%;
+
+  display: grid;
+
+  place-items: center;
+
+  text-align: center;
+
+  margin: auto;
+
+  &__description {
+    max-width: 33.5rem;
+
+    @include breakpoints.desktop {
+      max-width: 46rem;
+    }
+  }
+
+  &__title {
+    font-family: 'Montserrat', sans-serif;
+    color: colors.$gray800;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 3rem;
+
+    @include breakpoints.desktop {
+      font-size: 3.4rem;
+    }
+  }
+
+  &__hint {
+    font-family: 'Montserrat', sans-serif;
+    color: colors.$gray600;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 3rem;
+
+    margin-top: 1.8rem;
+
+    @include breakpoints.desktop {
+      font-size: 1.8rem;
+
+      margin-top: 2rem;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+
+    margin-top: 2.4rem;
+
+    @include breakpoints.desktop {
+      margin-top: 0;
+    }
+  }
+
+  &__button {
+    max-width: 42rem;
+
+    margin-top: 3.2rem;
+
+    @include breakpoints.desktop {
+      margin-top: 4rem;
+    }
+  }
+
+  &__content {
+    @include breakpoints.desktop {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
