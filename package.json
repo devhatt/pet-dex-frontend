@@ -30,8 +30,8 @@
     "sass": "^1.69.5",
     "stylelint": "^15.11.0",
     "stylelint-config-sass-guidelines": "^10.0.0",
-    "stylelint-order": "^6.0.4",
-    "vitest": "^0.34.6"
+    "stylelint-order": "^6.0.3",
+    "vitest": "^1.0.4"
   },
   "dependencies": {
     "pet-dex-utilities": "^1.0.1",
