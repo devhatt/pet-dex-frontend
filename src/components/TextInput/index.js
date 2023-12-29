@@ -12,12 +12,22 @@ const events = [
 const html = `
     <div class="input-text-container">
       <input class="input-text-container__input" type="text" data-select="input-text" placeholder="">
-  </div>
+    </div>
 `;
 
-export default function InputText() {
+export default function InputText({
+  placeholder,
+  assetUrl,
+  assetPosition, // preffix, suffix
+  variation, // outlined, standard
+}) {
   Component.call(this, { html, events });
   this.disabled = false;
+
+  this.placeholder = placeholder;
+  this.selected.get('input-text').classList.add(variation);
+  this.selected.get('input-text').backgroundImage = assetUrl;
+  this.selected.get('input-text').classList.add(assetPosition);
 
   this.selected.get('input-text').addEventListener('focus', () => {
     if (this.disabled) return;
@@ -31,12 +41,11 @@ InputText.prototype = Object.assign(InputText.prototype, Component.prototype, {
     this.emit('placeholderChanged', placeholder);
   },
   setAsset(url) {
-    this.selected.get('input-text').background = `url(${url}) 
-    no-repeat 10px center`;
+    this.selected.get('input-text').backgroundImage = `url(${url})`;
     this.emit('inputAssetChanged');
   },
-  isStandart() {
-    this.selected.get('input-text').classList.add('standart');
+  isStandard() {
+    this.selected.get('input-text').classList.add('standard');
     this.selected.get('input-text').classList.remove('outlined');
   },
   isOutlined() {

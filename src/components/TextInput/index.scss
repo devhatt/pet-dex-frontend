@@ -1,65 +1,84 @@
 .input-text-container {
   position: relative;
-}
 
-.input-text-container__input {
-  &.standart {
+  &__input {
     width: 100%;
 
     font-size: 1rem;
 
-    padding: 10px 30px 10px 40px;
-    border: 1px solid #bfbfbf;
-
-    background: url('https://www.svgrepo.com/show/532555/search.svg') no-repeat
-      10px center;
+    background-repeat: no-repeat;
     background-size: 20px;
     filter: opacity(0.85);
-    border-radius: 4px;
 
-    transition: border-color 0.3s ease-in-out;
+    &.standard {
+      padding: 0.65rem 1rem;
+      border: 1px solid #a3a3a3;
 
-    &:focus {
-      border-color: #007bff;
+      border-radius: 8px;
 
-      filter: opacity(1);
-      outline-color: #007bff;
+      transition: border-color 0.3s ease-in-out;
+
+      &.prefix {
+        padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+
+        background-position: 10px center;
+      }
+
+      &.suffix {
+        padding: 0.8rem 2.5rem 0.8rem 0.8rem;
+
+        background-position: calc(100% - 1rem) center;
+      }
+
+      &:focus {
+        border-color: #007bff;
+
+        filter: opacity(1);
+        outline-color: #007bff;
+      }
+
+      &.input-error {
+        border-color: #dc3545;
+
+        background-color: #ee727e75;
+        filter: opacity(0.75);
+        outline-color: #dc3545;
+      }
     }
 
-    &.input-error {
-      border-color: #dc3545;
+    &.outlined {
+      padding: 0.5rem 0.35rem;
+      border-bottom: 2px solid #bfbfbf;
+      border-color: transparent;
 
-      background-color: #ee727e75;
-      filter: opacity(0.75);
-      outline-color: #dc3545;
-    }
-  }
+      outline: none;
 
-  &.outlined {
-    width: 100%;
+      transition: border-color 0.3s ease-in-out;
 
-    font-size: 1rem;
+      &:focus {
+        border-bottom-color: #007bff;
+      }
 
-    padding: 8px 5px;
-    border-bottom: 2px solid #bfbfbf;
-    border-color: transparent;
+      &.input-error {
+        border-bottom-color: #dc3545;
 
-    background: none;
-    outline: none;
+        filter: opacity(0.65);
 
-    transition: border-color 0.3s ease-in-out;
+        &::placeholder {
+          color: #dc3545;
+        }
+      }
 
-    &:focus {
-      border-bottom-color: #007bff;
-    }
+      &.suffix {
+        padding: 0.5rem 2.5rem 0.5rem 0.3rem;
 
-    &.input-error {
-      border-bottom-color: #dc3545;
+        background-position: calc(100% - 1rem) center;
+      }
 
-      filter: opacity(0.65);
+      &.prefix {
+        padding: 0.5rem 0.3rem 0.5rem 2.5rem;
 
-      &::placeholder {
-        color: #dc3545;
+        background-position: 10px center;
       }
     }
   }
