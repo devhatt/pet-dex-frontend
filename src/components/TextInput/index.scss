@@ -7,7 +7,7 @@
     font-size: 1rem;
 
     background-repeat: no-repeat;
-    background-size: 20px;
+    background-size: auto 50%;
     filter: opacity(0.85);
 
     &.standard {
@@ -21,13 +21,13 @@
       &.prefix {
         padding: 0.8rem 0.8rem 0.8rem 2.5rem;
 
-        background-position: 10px center;
+        background-position: 0.5rem center;
       }
 
       &.suffix {
         padding: 0.8rem 2.5rem 0.8rem 0.8rem;
 
-        background-position: calc(100% - 1rem) center;
+        background-position: calc(100% - 0.5rem) center;
       }
 
       &:focus {
@@ -72,13 +72,13 @@
       &.suffix {
         padding: 0.5rem 2.5rem 0.5rem 0.3rem;
 
-        background-position: calc(100% - 1rem) center;
+        background-position: calc(100% - 0.5rem) center;
       }
 
       &.prefix {
         padding: 0.5rem 0.3rem 0.5rem 2.5rem;
 
-        background-position: 10px center;
+        background-position: 0.5rem center;
       }
     }
   }

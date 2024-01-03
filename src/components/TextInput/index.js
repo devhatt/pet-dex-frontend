@@ -18,8 +18,8 @@ const html = `
 export default function InputText({
   placeholder,
   assetUrl,
-  assetPosition, // preffix, suffix
-  variation, // outlined, standard
+  assetPosition,
+  variation,
 }) {
   Component.call(this, { html, events });
   this.disabled = false;
