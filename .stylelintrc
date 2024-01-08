@@ -1,6 +1,9 @@
 {
-  "extends": "stylelint-config-sass-guidelines",
-  "plugins": ["stylelint-order"],
+  "extends": [
+    "stylelint-config-sass-guidelines",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss"],
   "rules": {
     "scss/dollar-variable-pattern": "(^[a-z])[A-Za-z0-9]+$",
 
