@@ -1,6 +1,9 @@
-import { extractElements } from 'pet-dex-utilities';
-import Card from '../components/Card';
 import './index.scss';
+
+import { extractElements } from 'pet-dex-utilities';
+
+import Card from '../components/Card';
+import CardPet from '../components/card-pet';
 
 function renderCards(qty, $container) {
   for (let i = 0; i < qty; i += 1) {
@@ -22,9 +25,19 @@ function renderCards(qty, $container) {
   }
 }
 
+function renderCardMoreInfo($container) {
+  const cardPet = new CardPet();
+  cardPet.mount($container);
+  cardPet.setImage('../assets/stethoscope.svg');
+  cardPet.setTitle('O seu pet amigo foi castrado?');
+  cardPet.setQuestion('');
+  cardPet.setInputObservation('');
+}
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);
   const $container = selected.get('container');
+  const $container2 = selected.get('container2');
 
   renderCards(5, $container);
+  renderCardMoreInfo($container2);
 });

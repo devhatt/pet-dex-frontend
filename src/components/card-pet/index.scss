@@ -1,0 +1,86 @@
+.more-info-container {
+  margin: 100px auto;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 16px;
+  color: #39434f;
+  max-width: 1157px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.more-info__description {
+  max-width: 940px;
+  width: 100%;
+  text-align: center;
+}
+
+.more-info__sub-title {
+  color: #606873;
+  font-size: 0.875rem;
+}
+
+.more-info__form,
+.more-info__card {
+  max-width: 630px;
+  min-width: 630px;
+}
+
+.more-info__card,
+.more-info__card-description,
+.more-info__card-input-group,
+.label-check-radios {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.more-info__card {
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.more-info__card-checkbox-group {
+  display: flex;
+  min-width: 60px;
+  gap: 20px;
+}
+
+.more-info__card-text-group {
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid #606873;
+
+    &::placeholder {
+      line-height: 21px;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Esconder o input radio
+input[type='radio'] {
+  display: none;
+}
+
+// Estilizar a aparência do label para se parecer com um checkbox
+input[type='radio'] + label .checkmark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #999;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+// Estilizar quando o input radio está selecionado
+input[type='radio']:checked + label .checkmark {
+  background-color: #5649e4;
+  border-color: #5649e4;
+  color: #fff;
+}
