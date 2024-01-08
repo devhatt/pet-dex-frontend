@@ -34,6 +34,7 @@
     "reset-css": "^5.0.2",
     "sass": "^1.69.6",
     "stylelint": "^16.1.0",
+    "stylelint-color-format": "^1.1.0",
     "stylelint-config-sass-guidelines": "11.0.0",
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.0",
