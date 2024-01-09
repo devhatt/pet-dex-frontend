@@ -2,11 +2,11 @@ import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
 const events = [
-  'inputError',
-  'inputPlaceholderChanged',
-  'inputAssetChanged',
-  'inputDisabled',
-  'inputEnabled',
+  'input:error',
+  'inputPlaceholder:changed',
+  'inputAsset:changed',
+  'input:disabled',
+  'input:enabled',
 ];
 
 const html = `
@@ -24,7 +24,7 @@ export default function InputText({
   Component.call(this, { html, events });
   this.disabled = false;
 
-  this.placeholder = placeholder;
+  this.setPlaceholder(placeholder);
   this.selected.get('input-text').classList.add(variation);
   this.selected.get('input-text').backgroundImage = assetUrl;
   this.selected.get('input-text').classList.add(assetPosition);
@@ -38,11 +38,11 @@ export default function InputText({
 InputText.prototype = Object.assign(InputText.prototype, Component.prototype, {
   setPlaceholder(placeholder) {
     this.selected.get('input-text').placeholder = placeholder;
-    this.emit('placeholderChanged', placeholder);
+    this.emit('inputPlaceholder:changed', placeholder);
   },
   setAsset(url) {
     this.selected.get('input-text').backgroundImage = `url(${url})`;
-    this.emit('inputAssetChanged');
+    this.emit('inputAsset:changed');
   },
   isStandard() {
     this.selected.get('input-text').classList.add('standard');
@@ -54,14 +54,14 @@ InputText.prototype = Object.assign(InputText.prototype, Component.prototype, {
   },
   inputError() {
     this.selected.get('input-text').classList.add('input-error');
-    this.emit('inputError');
+    this.emit('input:error');
   },
   disable() {
     this.disabled = true;
-    this.emit('inputDisabled');
+    this.emit('input:disabled');
   },
   enable() {
     this.disabled = false;
-    this.emit('inputEnabled');
+    this.emit('input:enabled');
   },
 });
