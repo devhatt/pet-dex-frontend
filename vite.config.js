@@ -17,8 +17,14 @@ export default defineConfig({
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'src/home/index.html'),
+        index: resolve(__dirname, 'src/index.html'),
+        home: resolve(__dirname, 'src/home/index.html'),
       },
+    },
+  },
+  resolve: {
+    alias: {
+      '~styles': resolve(__dirname, 'src/styles'),
     },
   },
 });

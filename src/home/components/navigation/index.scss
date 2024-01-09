@@ -1,0 +1,57 @@
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.navigation {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-inline: 2rem;
+
+  &__icons {
+    display: flex;
+
+    gap: 2.4rem;
+  }
+
+  &__icon-container {
+    width: 4rem;
+    height: 4rem;
+
+    display: grid;
+
+    place-items: center;
+
+    &--menu {
+      display: grid;
+    }
+
+    &--avatar,
+    &--bell,
+    &--exit {
+      display: none;
+    }
+  }
+}
+
+@include breakpoints.from1024 {
+  .navigation {
+    &__icon-container {
+      &--menu {
+        display: none;
+      }
+
+      &--avatar,
+      &--bell,
+      &--exit {
+        display: grid;
+      }
+    }
+
+    &__logo {
+      display: none;
+    }
+  }
+}

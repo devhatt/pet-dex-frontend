@@ -1,0 +1,7 @@
+$from1024SizeMin: 1024px;
+
+@mixin from1024() {
+  @media (min-width: #{$from1024SizeMin}) {
+    @content;
+  }
+}
