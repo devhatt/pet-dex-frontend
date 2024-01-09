@@ -1,16 +1,12 @@
-body {
-  background: #111;
-}
-
 .plus {
   padding: 18px;
   border-radius: 9999px;
   border: 1.5px solid #fff;
   background: rgba(32, 35, 38, 1);
-}
 
-.plus:hover {
-  transition: 0.3s;
-  border: 1.5px solid #62dcf6;
-  cursor: pointer;
+  &:hover {
+    transition: 0.3s;
+    border: 1.5px solid #62dcf6;
+    cursor: pointer;
+  }
 }

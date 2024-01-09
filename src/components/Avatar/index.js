@@ -20,4 +20,7 @@ export default function AvatarButton() {
   $image.addEventListener('mouseout', () => ($image.src = imageOriginal));
 }
 
-AvatarButton.prototype = Object.assign(AvatarButton.prototype, Component.prototype);
+AvatarButton.prototype = Object.assign(
+  AvatarButton.prototype,
+  Component.prototype
+);
