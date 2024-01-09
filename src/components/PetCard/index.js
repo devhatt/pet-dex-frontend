@@ -5,7 +5,9 @@ const events = ['active'];
 
 const html = `
   <div class="pet-container" data-select="pet-container">
-    <p class="pet-container__title" data-select="pet-title"> </p>
+    <div>
+      <p class="pet-container__title" data-select="pet-title"> </p>
+    </div>
     <img class="pet-container__image" data-select="pet-image" src="" alt="">
   </div>
 `;

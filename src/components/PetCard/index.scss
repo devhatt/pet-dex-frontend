@@ -20,13 +20,21 @@
   }
 
   &__title {
+    min-height: 2.4em;
+    overflow: hidden;
+
+    display: -webkit-box;
+
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.6rem);
     font-weight: 600;
-    line-height: 1.5;
-
-    margin-top: 2rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   &--active {
@@ -37,5 +45,16 @@
 
   &:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0 0.2rem 1.5rem 0;
+
+    .pet-container__title {
+      overflow: unset;
+
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+    }
+  }
+
+  div {
+    margin: 15% 0.5rem 0;
   }
 }
