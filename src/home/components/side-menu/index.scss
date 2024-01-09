@@ -1,11 +1,11 @@
-@use '../../../styles/breakpoints.scss' as breakpoints;
-
 .side-menu {
-  width: 22rem;
+  &__logo-container {
+    padding-block: 4rem 2rem;
 
-  display: none;
+    text-align: center;
+  }
 
-  @include breakpoints.desktop {
-    display: block;
+  &__logo {
+    max-width: 100%;
   }
 }

@@ -1,7 +1,7 @@
-$desktopSizeMin: 1024px;
+$from1024SizeMin: 1024px;
 
-@mixin desktop() {
-  @media (min-width: #{$desktopSizeMin}) {
+@mixin from1024() {
+  @media (min-width: #{$from1024SizeMin}) {
     @content;
   }
 }

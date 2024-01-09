@@ -1,24 +1,15 @@
-@use '../../../styles/colors.scss' as colors;
-@use '../../../styles/breakpoints.scss' as breakpoints;
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
 
 .none-pet {
-  min-width: 100%;
   min-height: 100%;
 
   display: grid;
 
   place-items: center;
 
-  text-align: center;
-
-  margin: auto;
-
   &__description {
     max-width: 33.5rem;
-
-    @include breakpoints.desktop {
-      max-width: 46rem;
-    }
   }
 
   &__title {
@@ -26,11 +17,7 @@
     color: colors.$gray800;
     font-size: 2.4rem;
     font-weight: 700;
-    line-height: 3rem;
-
-    @include breakpoints.desktop {
-      font-size: 3.4rem;
-    }
+    line-height: 1.25;
   }
 
   &__hint {
@@ -38,43 +25,56 @@
     color: colors.$gray600;
     font-size: 1.6rem;
     font-weight: 500;
-    line-height: 3rem;
+    line-height: 1.875;
 
     margin-top: 1.8rem;
-
-    @include breakpoints.desktop {
-      font-size: 1.8rem;
-
-      margin-top: 2rem;
-    }
   }
 
   &__image {
     max-width: 100%;
 
     margin-top: 2.4rem;
-
-    @include breakpoints.desktop {
-      margin-top: 0;
-    }
   }
 
   &__button {
     max-width: 42rem;
 
     margin-top: 3.2rem;
-
-    @include breakpoints.desktop {
-      margin-top: 4rem;
-    }
   }
 
   &__content {
-    @include breakpoints.desktop {
+    text-align: center;
+  }
+}
+
+@include breakpoints.from1024 {
+  .none-pet {
+    &__description {
+      max-width: 46rem;
+    }
+
+    &__title {
+      font-size: 3.4rem;
+    }
+
+    &__hint {
+      font-size: 1.8rem;
+
+      margin-top: 2rem;
+    }
+
+    &__image {
+      margin-top: 0;
+    }
+
+    &__button {
+      margin-top: 4rem;
+    }
+
+    &__content {
       display: flex;
 
       align-items: center;
-      justify-content: center;
     }
   }
 }

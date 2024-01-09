@@ -1,6 +1,10 @@
-@use 'reset-css/sass/_reset.scss';
+@use 'reset-css/sass/reset.scss';
 
 html,
 body {
   font-size: 62.5%;
+}
+
+.root {
+  font-size: 1.6rem;
 }

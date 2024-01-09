@@ -22,4 +22,9 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      '~styles': resolve(__dirname, 'src/styles'),
+    },
+  },
 });

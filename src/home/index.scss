@@ -1,77 +1,62 @@
-@use '../styles/base.scss';
-@use '../styles/colors.scss' as colors;
-@use '../styles/breakpoints.scss' as breakpoints;
-
-$navigationBlockSize: 8.1rem;
-$navigationBlockSizeDesktop: 8.8rem;
-
-$sideMenuInlineSize: 31.3rem;
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
 
 .home {
   width: 100vw;
   height: 100vh;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    'nav'
+    'content';
+  grid-template-rows: 8.1rem 1fr;
+  grid-template-columns: 1fr;
 
   background-color: colors.$appColor;
 
   &__navigation {
-    height: $navigationBlockSize;
-
     display: flex;
-    flex-shrink: 0;
+    grid-area: nav;
 
     align-items: center;
-
-    background-color: colors.$appColor;
-
-    @include breakpoints.desktop {
-      height: $navigationBlockSizeDesktop;
-    }
-  }
-
-  &__main {
-    overflow: auto;
-
-    display: flex;
-    flex-grow: 1;
   }
 
   &__sidemenu {
-    display: flex;
-    flex-shrink: 0;
-
-    justify-content: center;
-
-    top: $navigationBlockSize;
-
-    background-color: colors.$appColor;
-
-    @include breakpoints.desktop {
-      width: $sideMenuInlineSize;
-
-      top: $navigationBlockSizeDesktop;
-    }
+    display: none;
+    padding-inline: 4.65rem;
   }
 
   &__content {
     overflow: auto;
+
+    grid-area: content;
+
+    background-color: colors.$appContentColor;
+
     padding-inline: 2rem;
     padding-block: 3.2rem;
+  }
+}
 
-    flex-grow: 1;
+@include breakpoints.from1024 {
+  .home {
+    grid-template-areas:
+      'menu nav'
+      'menu content';
+    grid-template-rows: 8.1rem 1fr;
+    grid-template-columns: 31.3rem 1fr;
 
-    justify-content: center;
-
-    background-color: #fff;
-
-    @include breakpoints.desktop {
+    &__content {
       margin-inline: 2.4rem;
 
       margin-bottom: 2.4rem;
 
       border-radius: 1.6rem;
+    }
+
+    &__sidemenu {
+      grid-area: menu;
     }
   }
 }
