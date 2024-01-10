@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 import Bars from './Bars.svg';
@@ -35,8 +36,7 @@ Slider.prototype = Object.assign(Slider.prototype, Component.prototype, {
     this.selected.get('weight').textContent = Text;
   },
   setValue() {
-    this.selected.get('weight').textContent =
-      this.selected.get('rangeSlider').value;
+    this.selected.get('weight').textContent = this.selected.get('rangeSlider').value;
   },
   weight() {
     this.emit('weight');
@@ -45,6 +45,3 @@ Slider.prototype = Object.assign(Slider.prototype, Component.prototype, {
     this.enable = false;
   },
 });
-
-// always start w/ const if will need changes, u made it.
-// forget .innerHTML uses textContent or innerText
