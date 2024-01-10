@@ -1,0 +1,182 @@
+* {
+  width: 100%;
+  height: auto;
+  overflow-x: visible;
+
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+.slider {
+  width: 100%;
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.slider__text-slider{
+  width: 50vw;
+  height: 30vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  text-align: center;
+
+  margin: 5px;
+}
+
+.slider__weight{
+  font-family: Montserrat;
+  color: #1B85F3;
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 80px;
+}
+
+.slider__container{
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  position: relative;
+}
+
+.slider__bars-svg{
+  width: 90vw;
+
+  display: flex;
+
+  align-items:center;
+
+  padding-right: 85px;
+
+  position:absolute;
+  top: -75px;
+  z-index: -1;
+}
+
+.slider__input{
+    width: 600px;
+
+  margin-top: -45px;
+
+    position: relative;
+    appearance: none;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 0;
+
+        border: 0 solid #010101;
+
+        background: #606873;
+        box-shadow: none;
+        border-radius: 0;
+
+        cursor: pointer;
+    }
+
+    &::-webkit-slider-thumb {
+      width: 100px;
+      height: 100px;
+
+      background: url('./Ellipse.svg') no-repeat;
+      appearance: none;
+    }
+}
+
+@media only screen and (max-width: 600px){
+  *{
+    overscroll-behavior-x: none;
+  }
+
+  .slider {
+  width: 100vw;
+  height: 70vh;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+  }
+  
+  .slider__weight{
+    overflow-y: hidden;
+
+    font-family: 'Montserrat';
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 10rem;
+  }
+
+  .slider__container{
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    position: relative;
+  }
+
+  .slider__bars-svg{
+    width: 200vw;
+
+    position:absolute;
+    top: 5px;
+    z-index: -1;    
+  }
+
+  .slider__input{
+      width: 80vw;
+
+    margin-top: 15px;
+
+      position: relative;
+      appearance: none;
+
+      &:focus {
+          outline: none;
+      }
+
+      &::-webkit-slider-runnable-track {
+          width: 100%;
+          height: 0;
+
+          border: 0 solid #010101;
+
+          box-shadow: none;
+          border-radius: 0;
+
+          cursor: pointer;
+      }
+
+      &::-webkit-slider-thumb {
+        width: 100px;
+        height: 50px;
+
+        background: url('./Ellipse-responsive.svg') no-repeat;
+        appearance: none;
+      }
+    }
+}

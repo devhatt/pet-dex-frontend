@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+html {
+  font-size: 10px;
+}
+
+.organize {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bonhoeffer {
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #39434F;
+}
+
+#adjuste {
+  font-family: Montserrat;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 0;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #606873;
+}
+
+#weight {
+  font-family: Montserrat;
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #1B85F3;
+  margin-bottom: 120px;
+}
+
+#rangeSlider {
+  margin-top: 0;
+  width: 600px;
+  -webkit-appearance: none;
+}
+#rangeSlider:focus {
+  outline: none;
+}
+#rangeSlider::-webkit-slider-runnable-track {
+  width: 10000px;
+  height: 1px;
+  cursor: pointer;
+  box-shadow: none;
+  background: #606873;
+  border-radius: 0px;
+  border: 0px solid #010101;
+}
+#rangeSlider::-webkit-slider-thumb {
+  box-shadow: none;
+  border: 2px solid #1268CC;
+  height: 42px;
+  width: 75px;
+  border-radius: 15px;
+  background: #1B85F3;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -20px;
+}
+
+#Slider-SVG {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#bars-svg {
+  width: 100%;
+  display: flex;
+  background-repeat: repeat-x;
+  position: absolute;
+  top: -80px;
+  z-index: -1;
+}/*# sourceMappingURL=index.css.map */
