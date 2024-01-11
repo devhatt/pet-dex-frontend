@@ -1,0 +1,28 @@
+@use './../../styles/base.scss' as *;
+
+.progress-bar {
+  margin: 0;
+  padding: 40px;
+  padding-right: 40px;
+  width: 100%;
+}
+
+.progress-bar-background {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  margin: 0;
+  padding: 0;
+  background-color: $grey-150;
+  border-radius: 3px;
+}
+
+.progress-bar-foreground {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  height: 6px;
+  background-color: $yellow-500;
+  border-radius: 3px;
+  transition: width 1s ease-in-out;
+}
