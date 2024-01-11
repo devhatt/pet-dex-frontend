@@ -15,8 +15,8 @@ export default function ProgressBar(minimum, maximum, startValue = minimum) {
   Component.call(this, { html, events });
   this.minimum = minimum;
   this.maximum = maximum;
-  this.value = startValue;
-  this.load(startValue);
+  this.value = this.validValue(startValue) ? startValue : minimum;
+  this.load(this.value);
   this.selected.get('progress-bar').ariaValueMin = minimum;
   this.selected.get('progress-bar').ariaValueMax = maximum;
   this.selected.get('progress-bar').ariaValueNow = startValue;
