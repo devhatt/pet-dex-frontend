@@ -25,6 +25,7 @@ export default function Slider() {
     'input',
     (event) => {
       if (!this.enable) return;
+
       this.weight();
       this.setValue(event.target.value);
     },
