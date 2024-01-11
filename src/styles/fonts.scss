@@ -119,11 +119,18 @@ $fontStyleunderline: underline;
 
 /* Exemplos de uso
 
+  Como utitlzar variáveis  
+  body {
+    font-family: $primaryFont
+  }  
+
+  Como utilizar mixins
   p {
     @include textFont(); <-- Aplica o mixin para estilo de texto
     Outras propriedades do body...
   }
 
+  Como utilizar funções
   h1 {
     @include getFontStyle($color, $primaryFont, $fontWeightNormal, $_2xl, $fontStyleNormal);
     Outras propriedades do título...
