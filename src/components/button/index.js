@@ -7,7 +7,7 @@ const html = `
     <button data-select="button" class="button" type="button"></button>
 `;
 
-export default function Button({ text = '', isFullWidth = false } = {}) {
+export default function Button({ text = '', isFullWidth = false }) {
   Component.call(this, { html, events });
 
   this.setText(text);
