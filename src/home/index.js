@@ -1,7 +1,7 @@
 import { extractElements } from 'pet-dex-utilities';
-import Navigation from './components/navigation';
-import NoPetRegirestedPage from './components/no-pet-regirested-page';
-import SideMenu from './components/side-menu';
+import Navigation from './components/Navigation';
+import NoPetRegirestedPage from './components/NoPetRegirestedPage';
+import SideMenu from './components/SideMenu';
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
