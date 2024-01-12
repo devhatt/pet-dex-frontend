@@ -1,94 +1,152 @@
-  .more-info-container {
-    max-width: 940px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 20px;
-  }
+.more-info-container {
+  max-width: 940px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 1.3rem;
+  color: #39434f;
+}
 
-  .more-info-header{
-    padding: 20px;
-    width: 100%;
+.more-info-header {
+  padding: 1.3rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  &__title {
+    font-size: 2rem;
+    color: #39434f;
+  }
+  &__sub-title {
+    color: #606873;
+  }
+}
+
+.more-info-card,
+.vaccines-container {
+  max-width: 630px;
+  min-width: 630px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.3rem;
+  &__description,
+  &__input-group {
+    display: flex;
     align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    &__title{
-      font-size: 2rem;
-      color: #39434F;
-    }
-    &__sub-title {
-      color: #606873;
-    }
-  }
-
-  .more-info-card {
-    max-width: 630px;
-    min-width: 630px;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px;
-    &__description,
-    &__input-group{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      max-width: 46%;
-    }
+    gap: 1.3rem;
+    max-width: 46%;
   }
+}
 
-  .label-check-radios{
+.render-vaccines {
+  max-height: 130px;
+  overflow-y: auto;
+}
+.render-vaccines::-webkit-scrollbar {
+  width: 6px;
+}
+
+.render-vaccines::-webkit-scrollbar-thumb {
+  background-color: #A0AEC0;
+  border-radius: 6px; 
+}
+
+.render-vaccines::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+.vaccines-container{
+  &__year,
+  .vaccines-group{
+    display: flex;
+    width: 100%;
+  }
+  &__year{
+    font-weight: bold;
+  }
+}
+.vaccines-group{
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.3rem;
+  padding: 1.5rem;
+  &__date-group{
     display: flex;
     align-items: center;
-    gap: 5px;
+    
   }
-  .more-info-card__input-group__checkbox-group {
-    display: flex;
-    min-width: 60px;
-    gap: 20px;
+  &__title{
+    font-weight: bold;
   }
-  
-  .more-info__card-text-group {
+  &__date-group,
+  &__doctor{
+    color: #808B9A;
+  }
+}
+
+.label-check-radios,
+.button_add {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.button_add{
+padding: 1.3rem;
+color: #1B85F3;
+cursor: pointer;
+
+border: none;
+}
+.label-cuidado{
+  width: 100%;
+  color: #606873;
+  margin-top: 1.3rem;
+}
+.more-info-card__input-group__checkbox-group {
+  display: flex;
+  min-width: 60px;
+  gap: 1.3rem;
+}
+
+.more-info__card-text-group {
+  width: 100%;
+
+  input {
     width: 100%;
-  
-    input {
-      width: 100%;
-      padding: 5px;
-      border: 0;
-      border-bottom: 1px solid #606873;
-  
-      &::placeholder {
-        line-height: 21px;
-        font-size: 0.875rem;
-      }
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid #606873;
+
+    &::placeholder {
+      line-height: 21px;
+      font-size: 0.875rem;
     }
   }
-  
+}
 
-  // apenas marcação uma task para o checkbos que não é minha
-  // Esconder o input radio
-  input[type='radio'] {
-    display: none;
-  }
-  
-  // Estilizar a aparência do label para se parecer com um checkbox
-  input[type='radio'] + label .checkmark {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #999;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  // Estilizar quando o input radio está selecionado
-  input[type='radio']:checked + label .checkmark {
-    background-color: #5649e4;
-    border-color: #5649e4;
-    color: #fff;
-  }
-  
+// apenas marcação exixte uma task para o checkbox que não é minha
+// Esconder o input radio
+input[type='radio'] {
+  display: none;
+}
+
+// Estilizar a aparência do label para se parecer com um checkbox
+input[type='radio'] + label .checkmark {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 2px solid #999;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+// Estilizar quando o input radio está selecionado
+input[type='radio']:checked + label .checkmark {
+  background-color: #5649e4;
+  border-color: #5649e4;
+  color: #fff;
+}

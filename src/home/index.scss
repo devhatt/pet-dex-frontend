@@ -1,11 +1,11 @@
 @use '../styles/base.scss';
 
-body{
+body {
   background-color: #003459;
 }
 .home-main-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 100px auto;
+  margin: 40px auto;
 }

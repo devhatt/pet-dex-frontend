@@ -28,10 +28,6 @@ import CardPet from '../components/more-info';
 function renderCardMoreInfo($container) {
   const cardPet = new CardPet();
   cardPet.mount($container);
-  cardPet.setImage('../assets/stethoscope.svg');
-  cardPet.setTitle('O seu pet amigo foi castrado?');
-  cardPet.setQuestion('castrado');
-  cardPet.setInputObservation('Escreva o cuidado especial');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
