@@ -1,5 +1,6 @@
 import { Component } from 'pet-dex-utilities';
-import Button from '../../../components/Button';
+import Button from '../../../components/button';
+import petUrl from './images/no-pet-regirested-page.png';
 import './index.scss';
 
 const html = `
@@ -9,7 +10,7 @@ const html = `
         <h1 class="no-pet-regirested-page__title">Você ainda não tem nenhum pet cadastrado</h1>
         <p class="no-pet-regirested-page__hint">Crie o perfil do seu pet e deixe o nosso site com o focinho do seu filhote!</p>
       </div>
-      <img class="no-pet-regirested-page__image" src="/no-pet-regirested-page.png" alt="dog in an smart phone" />
+      <img class="no-pet-regirested-page__image" src="${petUrl}" alt="dog in an smart phone" />
     </div>
   </div>;
 `;
@@ -32,5 +33,5 @@ export default function NoPetRegirestedPage() {
 
 NoPetRegirestedPage.prototype = Object.assign(
   NoPetRegirestedPage.prototype,
-  Component.prototype
+  Component.prototype,
 );
