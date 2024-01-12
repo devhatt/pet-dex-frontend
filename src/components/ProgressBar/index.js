@@ -1,52 +1,58 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['load', 'next', 'previous'];
+const events = ['setProgress'];
 
 const html = `
   <div class="progress-bar" data-select="progress-bar">
-    <div class="progress-bar-background">
-      <div class="progress-bar-foreground" data-select="progress-bar-foreground"></div>
-    </div>
+    <div class="progress-bar__background"></div>
+    <div class="progress-bar__foreground" data-select="progress-bar-foreground"></div>
   </div>
 `;
+
+function isValueValid(value, minimum, maximum) {
+  return value >= minimum && value <= maximum;
+}
+
+function getRatio(value, minimum, maximum) {
+  return (value - minimum) / (maximum - minimum);
+}
+
+function getWidthFormated(value, minimum, maximum) {
+  const ratio = getRatio(value, minimum, maximum);
+  return `${ratio * 100}%`;
+}
 
 export default function ProgressBar(minimum, maximum, startValue = minimum) {
   Component.call(this, { html, events });
   this.minimum = minimum;
   this.maximum = maximum;
-  this.value = this.validValue(startValue) ? startValue : minimum;
-  this.load(this.value);
-  this.selected.get('progress-bar').ariaValueMin = minimum;
-  this.selected.get('progress-bar').ariaValueMax = maximum;
-  this.selected.get('progress-bar').ariaValueNow = startValue;
+  this.currentProgress = isValueValid(startValue, this.minimum, this.maximum)
+    ? startValue
+    : this.minimum;
+
+  this.setProgress(this.currentProgress);
+  this.selected.get('progress-bar').ariaValueMin = this.minimum;
+  this.selected.get('progress-bar').ariaValueMax = this.maximum;
+  this.selected.get('progress-bar').ariaValueNow = this.currentProgress;
 }
 
 ProgressBar.prototype = Object.assign(
   ProgressBar.prototype,
   Component.prototype,
   {
-    getPercentile(value) {
-      return `${
-        ((value - this.minimum) / (this.maximum - this.minimum)) * 100
-      }%`;
-    },
-    validValue(value) {
-      return value >= this.minimum && value <= this.maximum;
-    },
-    load(value) {
-      if (!this.validValue(value)) {
-        return;
-      }
-      this.value = value;
-      this.selected.get('progress-bar-foreground').style.width = this.getPercentile(this.value, this.minimum, this.maximum);
-      this.selected.get('progress-bar').ariaValueNow = this.value;
+    setProgress(value) {
+      if (!isValueValid(value, this.minimum, this.maximum)) return;
+      this.currentProgress = value;
+      this.selected.get('progress-bar-foreground').style.width = getWidthFormated(this.currentProgress, this.minimum, this.maximum);
+      this.selected.get('progress-bar').ariaValueNow = this.currentProgress;
+      this.emit('setProgress', this.currentProgress);
     },
     next() {
-      this.load(this.value + 1);
+      this.setProgress(this.currentProgress + 1);
     },
-    previous() {
-      this.load(this.value - 1);
+    prev() {
+      this.setProgress(this.currentProgress - 1);
     },
   },
 );

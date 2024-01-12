@@ -1,56 +1,53 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 import ProgressBar from './index';
 
 describe('ProgressBar', () => {
-  it('should be a Function', () => {
+  it('is be a Function', () => {
     expect(ProgressBar).toBeInstanceOf(Function);
   });
 
-  it('should return an object', () => {
+  it('returns an object', () => {
     expect(new ProgressBar()).toBeInstanceOf(Object);
   });
 
-  it('should initialize with a valid value', () => {
+  it('initializes with a valid value', () => {
     const progressBar = new ProgressBar(0, 5, 10);
     expect(progressBar.value).toBe(0);
   });
 
-  it('should initialize with a especific valid value', () => {
-    const progressBar = new ProgressBar(0, 5, 3);
-    expect(progressBar.value).toBe(3);
+  test.each([
+    [-1, 0],
+    [0, 0],
+    [1, 1],
+    [2, 2],
+    [3, 3],
+    [4, 4],
+    [5, 5],
+    [6, 0],
+  ])('it initializes with a specific valid value set', (value, expected) => {
+    const progressBar = new ProgressBar(0, 5, value);
+    expect(progressBar.value).toBe(expected);
   });
 
-  it('should increment value when next is called', () => {
+  it('increments value when next is called', () => {
     const progressBar = new ProgressBar(0, 5, 10);
     progressBar.next();
     expect(progressBar.value).toBe(1);
   });
 
-  it('shouldn`t increment value when next is called', () => {
+  it('keeps the maximum value when next is called and it is already at the maximum', () => {
     const progressBar = new ProgressBar(0, 5, 5);
     progressBar.next();
     expect(progressBar.value).toBe(progressBar.maximum);
   });
 
-  it('should increment value when next is called', () => {
-    const progressBar = new ProgressBar(0, 5, 10);
-    progressBar.next();
-    expect(progressBar.value).toBe(1);
-  });
-
-  it('shouldn`t increment value when next is called', () => {
-    const progressBar = new ProgressBar(0, 5, 5);
-    progressBar.next();
-    expect(progressBar.value).toBe(progressBar.maximum);
-  });
-
-  it('should decrement value when previous is called', () => {
+  it('decrements value when previous is called', () => {
     const progressBar = new ProgressBar(0, 5, 5);
     progressBar.previous();
     expect(progressBar.value).toBe(4);
   });
 
-  it('shouldn`t decrement value when previous is called', () => {
+  it('keeps the minimum value when previous is called and it is already at the minimum', () => {
     const progressBar = new ProgressBar(0, 5, 10);
     progressBar.previous();
     expect(progressBar.value).toBe(progressBar.minimum);
