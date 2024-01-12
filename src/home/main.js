@@ -1,30 +1,44 @@
-import { extractElements } from 'pet-dex-utilities';
-import Card from '../components/Card';
 import './index.scss';
 
-function renderCards(qty, $container) {
-  for (let i = 0; i < qty; i += 1) {
-    const card = new Card();
-    card.mount($container);
-    card.setTitle(`Card ${i}`);
-    card.listen('purchase', () => {
-      console.log(`purchase de quem usa o componente, esse é o card ${i}`);
-    });
+import { extractElements } from 'pet-dex-utilities';
 
-    const $card = card.selected.get('card-button');
+// import Card from '../components/Card';
+import CardPet from '../components/more-info';
 
-    if (i === 2) {
-      card.disable();
-      $card.classList.add('card-container__button--disabled');
-    } else {
-      $card.classList.add('card-container__button--active');
-    }
-  }
+// function renderCards(qty, $container) {
+//   for (let i = 0; i < qty; i += 1) {
+//     const card = new Card();
+//     card.mount($container);
+//     card.setTitle(`Card ${i}`);
+//     card.listen('purchase', () => {
+//       console.log(`purchase de quem usa o componente, esse é o card ${i}`);
+//     });
+
+//     const $card = card.selected.get('card-button');
+
+//     if (i === 2) {
+//       card.disable();
+//       $card.classList.add('card-container__button--disabled');
+//     } else {
+//       $card.classList.add('card-container__button--active');
+//     }
+//   }
+// }
+
+function renderCardMoreInfo($container) {
+  const cardPet = new CardPet();
+  cardPet.mount($container);
+  cardPet.setImage('../assets/stethoscope.svg');
+  cardPet.setTitle('O seu pet amigo foi castrado?');
+  cardPet.setQuestion('castrado');
+  cardPet.setInputObservation('Escreva o cuidado especial');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);
   const $container = selected.get('container');
+  // const $container2 = selected.get('container2');
 
-  renderCards(5, $container);
+  // renderCards(5, $container);
+  renderCardMoreInfo($container);
 });

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "img": "assets/stethoscope.svg",
+    "title": "O seu pet amigo foi castrado?",
+    "nameQuestion": "castrado",
+    "observation": ""
+  },
+  {
+    "id": 2,
+    "img": "assets/shield.svg",
+    "title": "Precisa de cuidados especiais?",
+    "nameQuestion": "cuidado",
+    "observation": ""
+  },
+  {
+    "id": 3,
+    "img": "assets/vaccine.svg",
+    "title": "O seu pet amigo foi castrado?",
+    "nameQuestion": "",
+    "observation": ""
+  }
+]
