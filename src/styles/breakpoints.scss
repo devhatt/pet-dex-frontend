@@ -1,0 +1,42 @@
+$smartwatchsDeviceSizeMax: 31.9em;
+$smallDeviceSizeMin: 32em;
+$mediumDeviceSizeMin: 43.1em;
+$largeDeviceSizeMin: 102.4em;
+$largestDeviceSizeMin: 128em;
+$extraLargeDeviceSizeMin: 192.1em;
+
+@mixin smartwatchDevices() {
+  @media (max-width: #{$smartwatchsDeviceSizeMax}) {
+    @content;
+  }
+}
+
+@mixin smallDevices() {
+  @media (min-width: #{$smallDeviceSizeMax}) {
+    @content;
+  }
+}
+
+@mixin mediumDevices() {
+  @media (min-width: #{$mediumDeviceSizeMin}) {
+    @content;
+  }
+}
+
+@mixin largeDevices() {
+  @media (min-width: #{$largeDeviceSizeMin}) {
+    @content;
+  }
+}
+
+@mixin largestDevices() {
+  @media (min-width: #{$largestDeviceSizeMin}) {
+    @content;
+  }
+}
+
+@mixin extraLargeDevices() {
+  @media (min-width: #{$extraLargeDeviceSizeMin}) {
+    @content;
+  }
+}
