@@ -1,7 +1,42 @@
+<<<<<<< HEAD
 $from1024SizeMin: 1024px;
+=======
+$smartwatchsDeviceSizeMax: 31.9em;
+$smallDeviceSizeMin: 32em;
+$mediumDeviceSizeMin: 43.1em;
+$largeDeviceSizeMin: 102.4em;
+$extraLargeDeviceSizeMin: 192.1em;
+>>>>>>> 4092670 (Updade breakpoints.scss)
 
 @mixin from1024() {
   @media (min-width: #{$from1024SizeMin}) {
     @content;
   }
 }
+<<<<<<< HEAD
+=======
+
+@mixin smallDevices() {
+  @media (min-width: #{$smallDeviceSizeMax}) {
+    @content;
+  }
+}
+
+@mixin mediumDevices() {
+  @media (min-width: #{$mediumDeviceSizeMin}) {
+    @content;
+  }
+}
+
+@mixin largestDevices() {
+  @media (min-width: #{$largestDeviceSizeMin}) {
+    @content;
+  }
+}
+
+@mixin extraLargeDevices() {
+  @media (min-width: #{$extraLargeDeviceSizeMin}) {
+    @content;
+  }
+}
+>>>>>>> 4092670 (Updade breakpoints.scss)
