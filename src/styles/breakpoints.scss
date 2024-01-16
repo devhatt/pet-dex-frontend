@@ -23,8 +23,7 @@ $smartwatchsSizeMax: 319px;
 $smallDeviceSizeMin: 320px;
 $smallDeviceSizeMaxLandscape: 900px;
 $mediumDeviceSizeMin: 600px;
-$mediumDeviceSizeMax: 1024px;
-$largeDeviceSizeMin: 1024px;
+$largeDeviceSizeMin: 1280px;
 $largestDeviceSizeMin: 1921px;
 $landscape: landscape;
 $portrait: portrait;
@@ -57,13 +56,13 @@ $portrait: portrait;
 }
 
 @mixin fromMedium {
-  @media (min-width: #{$mediumDeviceSizeMin}) and (max-width: #{$mediumDeviceSizeMax}) and (orientation: #{$portrait}) {
+  @media (min-width: #{$mediumDeviceSizeMin}) {
     @content;
   }
 }
 
 @mixin fromLarge {
-  @media (min-width: #{$largeDeviceSizeMin}) and (orientation: #{$landscape}) {
+  @media (min-width: #{$largeDeviceSizeMin}) {
     @content;
   }
 }
