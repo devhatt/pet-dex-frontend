@@ -17,14 +17,18 @@
 
   &__image {
     height: 100%;
+
+    transition: margin-bottom 0.3s ease-in-out;
   }
 
   &__title {
-    min-height: 2em;
+    height: 100%;
+    min-height: 2.4em;
     max-height: 2.4em;
     overflow: hidden;
 
     display: -webkit-box;
+    flex-grow: 1;
 
     font-family: 'Montserrat', sans-serif;
     text-align: center;
@@ -33,10 +37,11 @@
     line-height: 1.2;
     text-overflow: ellipsis;
     word-wrap: break-word;
+
+    margin: 15% 0.5rem 0;
+
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
-    transition: max-height 0.4s ease;
   }
 
   &--active {
@@ -45,17 +50,15 @@
     border: 2px solid rgb(27, 133, 243);
   }
 
-  &:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0 0.2rem 1.5rem 0;
-
+  &__title--extended {
     .pet-container__title {
-      max-height: 10em;
+      max-height: fit-content;
       overflow: unset;
       -webkit-line-clamp: unset;
     }
   }
 
-  div {
-    margin: 15% 0.5rem 0;
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0 0.2rem 1.5rem 0;
   }
 }

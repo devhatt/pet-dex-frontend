@@ -5,9 +5,7 @@ const events = ['active'];
 
 const html = `
   <div class="pet-container" data-select="pet-container">
-    <div>
-      <p class="pet-container__title" data-select="pet-title"> </p>
-    </div>
+    <p class="pet-container__title" data-select="pet-title"> </p>
     <img class="pet-container__image" data-select="pet-image" src="" alt="">
   </div>
 `;
@@ -16,10 +14,33 @@ export default function PetCard({ title, imgSrc, imgAlt }) {
   Component.call(this, { html, events });
 
   const petContainer = this.selected.get('pet-container');
+  const petTitle = this.selected.get('pet-title');
+  const petImage = this.selected.get('pet-image');
 
   petContainer.addEventListener('click', () => {
     this.toggle();
     this.active();
+  });
+
+  petContainer.addEventListener('mouseenter', () => {
+    if (petTitle.scrollHeight > petTitle.clientHeight) {
+      petContainer.classList.add('pet-container__title--extended');
+      petImage.style.marginBottom = `-${
+        petTitle.scrollHeight - petTitle.clientHeight
+      }px`;
+    }
+  });
+
+  petContainer.addEventListener('mouseleave', () => {
+    if (petContainer.classList.contains('pet-container__title--extended')) {
+      const transitionEndHandler = () => {
+        petContainer.classList.remove('pet-container__title--extended');
+        petImage.removeEventListener('transitionend', transitionEndHandler);
+      };
+
+      petImage.addEventListener('transitionend', transitionEndHandler);
+      petImage.style.marginBottom = '0px';
+    }
   });
 
   if (title) this.setTitle(title);
