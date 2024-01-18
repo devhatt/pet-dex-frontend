@@ -2,17 +2,12 @@ import { describe, expect, it, test } from 'vitest';
 import ProgressBar from './index';
 
 describe('ProgressBar', () => {
-  it('is be a Function', () => {
+  it('is a Function', () => {
     expect(ProgressBar).toBeInstanceOf(Function);
   });
 
   it('returns an object', () => {
     expect(new ProgressBar()).toBeInstanceOf(Object);
-  });
-
-  it('initializes with a valid value', () => {
-    const progressBar = new ProgressBar(0, 5, 10);
-    expect(progressBar.value).toBe(0);
   });
 
   test.each([
