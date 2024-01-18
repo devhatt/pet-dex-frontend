@@ -1,32 +1,20 @@
-//font-family
 $primaryFont: "Montserrat", sans-serif;
 $secondaryFont: 'Wix Madefor Display', sans-serif;
-$tertiaryFont: 'Rubik', sans-serif;
-$contactPageFont: 'Poppins', sans-serif;
+$tertiaryFont: 'Poppins', sans-serif;
 
 
-//font-size 
-$xs: 1.4rem;    //14px
-$sm: 1.6rem;        //16px
-$md: 2.0rem;     //20px
-$lg: 2.4rem;      //24px
-$xl: 3.0rem;    //30px
-$_2xl: 3.6rem;   //36px
-$_3xl: 4.8rem;      //48px
-$_4xl: 6.0rem;   //60px
+$xs: 1.4rem;   
+$md: 2.0rem;
+$lg: 2.4rem;     
+$xl: 3.0rem;
+$_2xl: 3.6rem;
+$_3xl: 4.8rem;
 
-
-//font-weight
-$fontWeightLight: 300;
 $fontWeightRegular: 400;
 $fontWeightMedium: 500;
 $fontWeightSemiBold: 600;
 $fontWeightBold: 700;
-$fontWeightExtraBold: 800;
-$fontWeightBlack: 900;
 
-
-//font-style
 $fontStyleNormal: normal;
 $fontStyleItalic: italic;
 $fontStyleunderline: underline;
@@ -81,10 +69,6 @@ $descriptionPetFontSize: $xs;
 $descriptionPetFontStyle: $fontStyleNormal;
 $descriptionPetFonteWeight: $fontWeightMedium;
 $descriptionLineHeight: 2rem;
-
-
-//funções para estilos tipográficos
-
 
 //função para criar estilos tipográficos em geral
 @function getFontStyle($color, $family, $weight, $size, $style) {
