@@ -5,9 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pet Hat</title>
-    <script src="main.js" type="module"></script>
+    <script src="index.js" type="module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans:wght@500&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <main data-select="container" class="home-main-container"></main>
+    <div class="root home">
+      <nav data-select="navigation" class="home__navigation"></nav>
+      <aside data-select="sidemenu" class="home__sidemenu"></aside>
+      <main data-select="content" class="home__content"></main>
+    </div>
   </body>
 </html>
