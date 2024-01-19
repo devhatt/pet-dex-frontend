@@ -20,6 +20,7 @@ $extraLargeDeviceSizeMin: 192.1em;
 $largestDeviceSizeMin: 192.1em;
 =======
 $smartwatchsSizeMax: 319px;
+<<<<<<< HEAD
 $smallDeviceSizeMin: 320px;
 $smallDeviceSizeMaxLandscape: 900px;
 $mediumDeviceSizeMin: 600px;
@@ -28,6 +29,20 @@ $largestDeviceSizeMin: 1921px;
 $landscape: landscape;
 $portrait: portrait;
 >>>>>>> ea995a1 (Update breakpoints.scss)
+=======
+$extraSmallDeviceSizeMin: 320px;
+$smallDeviceSizeMin: 360px;
+$mediumDeviceSizeMin: 768px;
+$largeDeviceSizeMin: 1024px;
+$largestDeviceSizeMin: 1280px;
+
+// smartwatch = até 319px
+// small mobile = 320px até 359px
+// mobile = 360px até 767px
+// mobile paisagem e tablets retrato = 768px até 1023px
+// tablets paisagem / medium devices = 1024px até 1279px
+// large screen = 1280px até infinito
+>>>>>>> 3194a94 (Update breakpoints.scss)
 
 <<<<<<< HEAD
 @mixin fromSmartwatch() {
@@ -43,14 +58,14 @@ $portrait: portrait;
 <<<<<<< HEAD
 =======
 
-@mixin fromSmallPortrait {
-  @media (min-width: #{$smallDeviceSizeMin}) {
+@mixin fromSmall {
+  @media (min-width: #{$extraSmallDeviceSizeMin}) {
     @content;
   }
 }
 
-@mixin fromSmallLandscape {
-  @media (min-width: #{$smallDeviceSizeMin}) and (max-width: #{$smallDeviceSizeMaxLandscape}) and (orientation: #{$landscape}) {
+@mixin fromExtraSmall {
+  @media (min-width: #{$smallDeviceSizeMin}) {
     @content;
   }
 }
