@@ -32,10 +32,11 @@ $portrait: portrait;
 =======
 $extraSmallDeviceSizeMin: 320px;
 $smallDeviceSizeMin: 360px;
-$mediumDeviceSizeMin: 768px;
+$mediumDeviceSizeMin: 667px;
 $largeDeviceSizeMin: 1024px;
 $largestDeviceSizeMin: 1280px;
 
+<<<<<<< HEAD
 // smartwatch = até 319px
 // small mobile = 320px até 359px
 // mobile = 360px até 767px
@@ -49,6 +50,8 @@ $largestDeviceSizeMin: 1280px;
   @media (max-width: #{$smartwatchsDeviceSizeMax}) {
 >>>>>>> 1c3df30 (Update breakpoints.scss)
 =======
+=======
+>>>>>>> 8a741e2 (Update breakpoints.scss)
 @mixin fromSmartwatch {
   @media (max-width: #{$smartwatchsSizeMax}) {
 >>>>>>> 79632b2 (Update breakpoints.scss)
@@ -58,13 +61,13 @@ $largestDeviceSizeMin: 1280px;
 <<<<<<< HEAD
 =======
 
-@mixin fromSmall {
+@mixin fromExtraSmall{
   @media (min-width: #{$extraSmallDeviceSizeMin}) {
     @content;
   }
 }
 
-@mixin fromExtraSmall {
+@mixin fromSmall {
   @media (min-width: #{$smallDeviceSizeMin}) {
     @content;
   }
