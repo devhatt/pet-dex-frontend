@@ -68,32 +68,31 @@ $largestDeviceSizeMin: 128rem;
   }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+=======
+>>>>>>> 41b9f86 (Update breakpoints.scss)
 @mixin fromExtraSmall{
   @media (min-width: #{$extraSmallDeviceSizeMin}) {
     @content;
   }
 }
-
 @mixin fromSmall {
   @media (min-width: #{$smallDeviceSizeMin}) {
     @content;
   }
 }
-
 @mixin fromMedium {
   @media (min-width: #{$mediumDeviceSizeMin}) {
     @content;
   }
 }
-
 @mixin fromLarge {
   @media (min-width: #{$largeDeviceSizeMin}) {
     @content;
   }
 }
-
 @mixin fromLargest {
   @media (min-width: #{$largestDeviceSizeMin}) {
     @content;
