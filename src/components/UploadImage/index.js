@@ -49,5 +49,5 @@ export default function UploadImage() {
 
 UploadImage.prototype = Object.assign(
   UploadImage.prototype,
-  Component.prototype
+  Component.prototype,
 );
