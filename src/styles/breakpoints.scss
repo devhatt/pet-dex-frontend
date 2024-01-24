@@ -50,6 +50,7 @@ $largestDeviceSizeMin: 128rem;
 >>>>>>> f1c5ab8 (Update breakpoints.scss)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // smartwatch = até 319px
 // small mobile = 320px até 359px
 // mobile = 360px até 767px
@@ -81,6 +82,9 @@ $largestDeviceSizeMin: 128rem;
 @mixin fromExtraSmall{
   @media (min-width: #{$extraSmallDeviceSizeMin}) {
 =======
+=======
+@mixin fromMax319 {
+>>>>>>> 2afc790 (Update breakpoints.scss)
   @media (max-width: $smartwatchSizeMax) {
     @content;
   }
