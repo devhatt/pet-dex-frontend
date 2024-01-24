@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 $from1024SizeMin: 1024px;
 =======
 $smartwatchsDeviceSizeMax: 31.9em;
@@ -38,6 +39,9 @@ $largeDeviceSizeMin: 1024px;
 $largestDeviceSizeMin: 1280px;
 =======
 $smartwatchsSizeMax: 31.9rem;
+=======
+$smartwatchSizeMax: 31.9rem;
+>>>>>>> 9b59316 (Update breakpoints.scss)
 $extraSmallDeviceSizeMin: 32rem;
 $smallDeviceSizeMin: 36rem;
 $mediumDeviceSizeMin: 66.7rem;
@@ -62,6 +66,7 @@ $largestDeviceSizeMin: 128rem;
 =======
 >>>>>>> 8a741e2 (Update breakpoints.scss)
 @mixin fromSmartwatch {
+<<<<<<< HEAD
   @media (max-width: #{$smartwatchsSizeMax}) {
 >>>>>>> 79632b2 (Update breakpoints.scss)
     @content;
@@ -75,26 +80,39 @@ $largestDeviceSizeMin: 128rem;
 >>>>>>> 41b9f86 (Update breakpoints.scss)
 @mixin fromExtraSmall{
   @media (min-width: #{$extraSmallDeviceSizeMin}) {
+=======
+  @media (max-width: $smartwatchSizeMax) {
     @content;
   }
 }
+
+@mixin fromExtraSmall {
+  @media (min-width: $extraSmallDeviceSizeMin) {
+>>>>>>> 9b59316 (Update breakpoints.scss)
+    @content;
+  }
+}
+
 @mixin fromSmall {
-  @media (min-width: #{$smallDeviceSizeMin}) {
+  @media (min-width: $smallDeviceSizeMin) {
     @content;
   }
 }
+
 @mixin fromMedium {
-  @media (min-width: #{$mediumDeviceSizeMin}) {
+  @media (min-width: $mediumDeviceSizeMin) {
     @content;
   }
 }
+
 @mixin fromLarge {
-  @media (min-width: #{$largeDeviceSizeMin}) {
+  @media (min-width: $largeDeviceSizeMin) {
     @content;
   }
 }
+
 @mixin fromLargest {
-  @media (min-width: #{$largestDeviceSizeMin}) {
+  @media (min-width: $largestDeviceSizeMin) {
     @content;
   }
 }
