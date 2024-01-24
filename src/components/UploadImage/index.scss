@@ -1,4 +1,4 @@
-.upload-image-container {
+.upload-container {
   position: relative;
 
   &__label {
@@ -11,6 +11,7 @@
     .image-container {
       min-width: 270px;
       min-height: 270px;
+
       overflow: hidden;
 
       display: flex;
@@ -24,14 +25,12 @@
       border-radius: 50%;
     }
 
-    .profile-image {
-      width: 100%;
-      height: 100%;
+    .placeholder-image {
+      max-width: 100%;
 
       position: absolute;
 
       border-radius: 50%;
-      object-fit: cover;
     }
 
     .preview-image {
@@ -39,6 +38,8 @@
 
       position: absolute;
       inset: 0;
+
+      object-fit: cover;
 
       &.hidden {
         display: none;
@@ -88,8 +89,6 @@
     }
 
     .circle-duplicate {
-      border: 2px solid var(--Grey-Grey-150, rgb(236, 239, 242));
-
       animation-delay: 2s;
     }
   }
