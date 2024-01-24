@@ -90,14 +90,14 @@ $largestDeviceSizeMin: 128rem;
   }
 }
 
-@mixin from320{
+@mixin from320 {
   @media (min-width: $extraSmallDeviceSizeMin) {
 >>>>>>> 9b59316 (Update breakpoints.scss)
     @content;
   }
 }
 
-@mixin from360{
+@mixin from360 {
   @media (min-width: $smallDeviceSizeMin) {
     @content;
   }
