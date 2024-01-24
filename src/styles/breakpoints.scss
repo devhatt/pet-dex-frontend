@@ -86,34 +86,37 @@ $largestDeviceSizeMin: 128rem;
   }
 }
 
-@mixin fromExtraSmall {
+@mixin from320{
   @media (min-width: $extraSmallDeviceSizeMin) {
 >>>>>>> 9b59316 (Update breakpoints.scss)
     @content;
   }
 }
 
-@mixin fromSmall {
+@mixin from360{
   @media (min-width: $smallDeviceSizeMin) {
     @content;
   }
 }
 
-@mixin fromMedium {
+@mixin from667 {
   @media (min-width: $mediumDeviceSizeMin) {
     @content;
   }
 }
 
-@mixin fromLarge {
+@mixin from1024 {
   @media (min-width: $largeDeviceSizeMin) {
     @content;
   }
 }
 
-@mixin fromLargest {
+@mixin from1280 {
   @media (min-width: $largestDeviceSizeMin) {
     @content;
   }
 }
+<<<<<<< HEAD
 >>>>>>> 4092670 (Updade breakpoints.scss)
+=======
+>>>>>>> 1210297 (Updade breakpoints.scss)
