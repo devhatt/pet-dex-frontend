@@ -4,27 +4,28 @@
 
 .home {
   width: 100vw;
-  height: 100vh;
-
+  height: 100dvh;
+  overflow-x: hidden;
   display: grid;
   grid-template-areas:
-    'nav'
-    'content';
+    'sidemenu nav'
+    'sidemenu content';
   grid-template-rows: 8.1rem 1fr;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100vw 100vw;
 
   background-color: colors.$appColor;
 
   &__navigation {
     display: flex;
     grid-area: nav;
-
+    background-color: rgb(0, 52, 89);
     align-items: center;
   }
 
   &__sidemenu {
-    display: none;
-    padding-inline: 4.65rem;
+    display: grid;
+    grid-area: sidemenu;
+    grid-template-rows: 8.1rem 1fr;
   }
 
   &__content {
@@ -42,8 +43,8 @@
 @include breakpoints.from1024 {
   .home {
     grid-template-areas:
-      'menu nav'
-      'menu content';
+      'sidemenu nav'
+      'sidemenu content';
     grid-template-rows: 8.1rem 1fr;
     grid-template-columns: 31.3rem 1fr;
 
@@ -57,7 +58,6 @@
 
     &__sidemenu {
       display: block;
-      grid-area: menu;
     }
   }
 }
