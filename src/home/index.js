@@ -1,5 +1,5 @@
 import { extractElements } from 'pet-dex-utilities';
-import Navigation from './components/Navigation';
+import Navigation from './components/navigation';
 import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
 import './index.scss';
