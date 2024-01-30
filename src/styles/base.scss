@@ -1,13 +1,10 @@
 @use 'reset-css/sass/reset.scss';
 
-html,
-body {
-  font-size: 62.5%;
-}
-
 .root {
   font-size: 1.6rem;
 }
 
-$grey-150: #ECEFF2;
-$yellow-500: #FFC542;
+html,
+body {
+  font-size: 62.5%;
+}
