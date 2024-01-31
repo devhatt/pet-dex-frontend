@@ -30,20 +30,20 @@
     "husky": "^8.0.0",
     "jsdom": "^23.2.0",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.2.2",
+    "prettier": "^3.2.4",
     "reset-css": "^5.0.2",
-    "sass": "^1.69.7",
-    "stylelint": "^16.1.0",
+    "sass": "^1.70.0",
+    "stylelint": "^16.2.0",
     "stylelint-color-format": "^1.1.0",
     "stylelint-config-sass-guidelines": "11.0.0",
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.0",
-    "stylelint-scss": "^6.0.0",
-    "vitest": "^1.2.0"
+    "stylelint-scss": "^6.1.0",
+    "vitest": "^1.2.2"
   },
   "dependencies": {
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
-    "vite": "^5.0.11"
+    "vite": "^5.0.12"
   }
 }
