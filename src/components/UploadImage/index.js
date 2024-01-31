@@ -35,8 +35,8 @@ export default function UploadImage() {
 
     if (file) {
       const reader = new FileReader();
-      reader.addEventListener('load', (l) => {
-        const readerTarget = l.target;
+      reader.addEventListener('load', (e) => {
+        const readerTarget = e.target;
         previewImage.src = readerTarget.result;
         previewImage.classList.remove('hidden');
         buttonIcon.src = photoIcon;
