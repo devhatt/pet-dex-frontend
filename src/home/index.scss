@@ -1,6 +1,63 @@
-@use '../styles/base.scss';
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
 
-.home-main-container {
-  display: flex;
-  gap: 1rem;
+.home {
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  grid-template-areas:
+    'nav'
+    'content';
+  grid-template-rows: 8.1rem 1fr;
+  grid-template-columns: 1fr;
+
+  background-color: colors.$appColor;
+
+  &__navigation {
+    display: flex;
+    grid-area: nav;
+
+    align-items: center;
+  }
+
+  &__sidemenu {
+    display: none;
+    padding-inline: 4.65rem;
+  }
+
+  &__content {
+    overflow: auto;
+
+    grid-area: content;
+
+    background-color: colors.$appContentColor;
+
+    padding-inline: 2rem;
+    padding-block: 3.2rem;
+  }
+}
+
+@include breakpoints.from1024 {
+  .home {
+    grid-template-areas:
+      'menu nav'
+      'menu content';
+    grid-template-rows: 8.1rem 1fr;
+    grid-template-columns: 31.3rem 1fr;
+
+    &__content {
+      margin-inline: 2.4rem;
+
+      margin-bottom: 2.4rem;
+
+      border-radius: 1.6rem;
+    }
+
+    &__sidemenu {
+      display: block;
+      grid-area: menu;
+    }
+  }
 }
