@@ -5,20 +5,20 @@ import plusIcon from './img/plus-icon.svg';
 import photoIcon from './img/photo-icon.svg';
 
 const html = `
-  <div class="upload-container">
-    <div class="upload-container__animation" data-select="upload-animation">
-      <div class="circle"></div>
-      <div class="circle-duplicate"></div>
+  <div class="container">
+    <div class="container__animation">
+      <div class="container__circle"></div>
+      <div class="container__circle-duplicate"></div>
     </div>
-    <label for="input-file" class="upload-container__label">
-      <div class="image-container">
-        <img class="placeholder-image" src="${placeholderImage}" alt="Placeholder">
-        <img class="preview-image hidden" data-select="upload-preview" alt="Imagem carregada">
+    <label for="input-file" class="container__label">
+      <div class="container__image-container">
+        <img class="container__placeholder-image" src="${placeholderImage}" alt="Placeholder">
+        <img class="container__preview-image hidden" data-select="image-preview" alt="Imagem carregada">
       </div>
-      <div class='button'>
+      <div class='container__button'>
         <img data-select="button-icon" src="${plusIcon}">
       </div>
-      <input id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input">
+      <input class="container__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input">
     </label>
   </div>
 `;
@@ -26,25 +26,32 @@ const html = `
 export default function UploadImage() {
   Component.call(this, { html });
 
-  const previewImage = this.selected.get('upload-preview');
+  const previewImage = this.selected.get('image-preview');
   const buttonIcon = this.selected.get('button-icon');
+  const uploadInput = this.selected.get('upload-input');
 
-  this.selected.get('upload-input').addEventListener('change', (e) => {
+  const readAndDisplayImage = (file) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', (e) => {
+      const readerTarget = e.target;
+      previewImage.src = readerTarget.result;
+      previewImage.classList.remove('hidden');
+      buttonIcon.src = photoIcon;
+    });
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleInputChange = (e) => {
     const inputTarget = e.target;
     const file = inputTarget.files[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.addEventListener('load', (e) => {
-        const readerTarget = e.target;
-        previewImage.src = readerTarget.result;
-        previewImage.classList.remove('hidden');
-        buttonIcon.src = photoIcon;
-      });
-
-      reader.readAsDataURL(file);
+      readAndDisplayImage(file);
     }
-  });
+  };
+
+  uploadInput.addEventListener('change', handleInputChange);
 }
 
 UploadImage.prototype = Object.assign(
