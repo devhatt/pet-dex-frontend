@@ -2,11 +2,11 @@ import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
 const events = [
-  'inputError',
-  'inputPlaceholderChanged',
-  'inputAssetChanged',
-  'inputDisabled',
-  'inputEnabled',
+  'error',
+  'placeholder:changed',
+  'asset:changed',
+  'disabled',
+  'enabled',
 ];
 
 const html = `
@@ -15,53 +15,61 @@ const html = `
     </div>
 `;
 
-export default function InputText({
+export default function TextInput({
   placeholder,
   assetUrl,
   assetPosition,
   variation,
 }) {
   Component.call(this, { html, events });
-  this.disabled = false;
+  const input = this.selected.get('input-text');
+  input.disabled = false;
 
-  this.placeholder = placeholder;
-  this.selected.get('input-text').classList.add(variation);
-  this.selected.get('input-text').backgroundImage = assetUrl;
-  this.selected.get('input-text').classList.add(assetPosition);
+  this.setPlaceholder(placeholder);
+  input.classList.add(variation);
+  input.style.backgroundImage = `url(${assetUrl})`;
+  input.classList.add(assetPosition);
 
-  this.selected.get('input-text').addEventListener('focus', () => {
-    if (this.disabled) return;
-    this.classList.remove('input-error');
+  input.addEventListener('focus', () => {
+    if (input.disabled) return;
+    input.classList.remove('input-error');
   });
 }
 
-InputText.prototype = Object.assign(InputText.prototype, Component.prototype, {
+TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   setPlaceholder(placeholder) {
     this.selected.get('input-text').placeholder = placeholder;
-    this.emit('placeholderChanged', placeholder);
+    this.emit('placeholder:changed', placeholder);
   },
   setAsset(url) {
-    this.selected.get('input-text').backgroundImage = `url(${url})`;
-    this.emit('inputAssetChanged');
+    this.selected.get('input-text').style.backgroundImage = `url(${url})`;
+    this.emit('asset:changed');
   },
-  isStandard() {
-    this.selected.get('input-text').classList.add('standard');
-    this.selected.get('input-text').classList.remove('outlined');
+  setAssetPosition(position) {
+    this.selected.get('input-text').classList.remove('prefix', 'suffix');
+    this.selected.get('input-text').classList.add(position);
   },
-  isOutlined() {
-    this.selected.get('input-text').classList.add('outlined');
-    this.selected.get('input-text').classList.remove('standart');
+  setVariation(standardOrOutlined) {
+    this.selected.get('input-text').classList.remove('outlined', 'standard');
+    this.selected.get('input-text').classList.add(standardOrOutlined);
   },
   inputError() {
     this.selected.get('input-text').classList.add('input-error');
-    this.emit('inputError');
+    this.emit('error');
   },
   disable() {
-    this.disabled = true;
-    this.emit('inputDisabled');
+    this.selected.get('input-text').disabled = true;
+    this.emit('disabled');
   },
   enable() {
-    this.disabled = false;
-    this.emit('inputEnabled');
+    this.selected.get('input-text').disabled = false;
+    this.emit('enabled');
+  },
+  toggle() {
+    if (this.selected.get('input-text').disabled) {
+      this.enable();
+    } else {
+      this.disable();
+    }
   },
 });

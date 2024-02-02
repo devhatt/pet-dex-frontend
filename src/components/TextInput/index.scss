@@ -4,11 +4,15 @@
   &__input {
     width: 100%;
 
-    font-size: 1rem;
+    font-size: 1.5rem;
 
     background-repeat: no-repeat;
-    background-size: auto 50%;
+    background-size: auto 60%;
     filter: opacity(0.85);
+
+    &:disabled {
+      filter: opacity(0.55);
+    }
 
     &.standard {
       padding: 0.65rem 1rem;
@@ -19,15 +23,15 @@
       transition: border-color 0.3s ease-in-out;
 
       &.prefix {
-        padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+        padding: 0.8rem 1rem 0.8rem 3.5rem;
 
-        background-position: 0.5rem center;
+        background-position: 0.8rem center;
       }
 
       &.suffix {
-        padding: 0.8rem 2.5rem 0.8rem 0.8rem;
+        padding: 0.8rem 3.5rem 0.8rem 1rem;
 
-        background-position: calc(100% - 0.5rem) center;
+        background-position: calc(100% - 0.8rem) center;
       }
 
       &:focus {
@@ -48,8 +52,9 @@
 
     &.outlined {
       padding: 0.5rem 0.35rem;
-      border-bottom: 2px solid rgb(191, 191, 191);
+
       border-color: transparent;
+      border-bottom: 1px solid #b8b8b8;
 
       outline: none;
 
@@ -70,16 +75,17 @@
       }
 
       &.suffix {
-        padding: 0.5rem 2.5rem 0.5rem 0.3rem;
+        padding: 0.8rem 3.5rem 0.8rem 1rem;
 
-        background-position: calc(100% - 0.5rem) center;
+        background-position: calc(100% - 0.8rem) center;
       }
 
       &.prefix {
-        padding: 0.5rem 0.3rem 0.5rem 2.5rem;
+        padding: 0.8rem 1rem 0.8rem 3.5rem;
 
-        background-position: 0.5rem center;
+        background-position: 0.8rem center;
       }
     }
   }
+  
 }
