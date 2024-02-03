@@ -1,8 +1,8 @@
-$extraSmallDeviceSizeMin: 32rem;
-$smallDeviceSizeMin: 36rem;
-$mediumDeviceSizeMin: 66.7rem;
-$largeDeviceSizeMin: 102.4rem;
-$largestDeviceSizeMin: 128rem;
+$extraSmallDeviceSizeMin: 20em;
+$smallDeviceSizeMin: 22.5em;
+$mediumDeviceSizeMin: 41.6875em;
+$largeDeviceSizeMin: 64em;
+$largestDeviceSizeMin: 80em;
 
 @mixin from320 {
   @media (min-width: $extraSmallDeviceSizeMin) {
