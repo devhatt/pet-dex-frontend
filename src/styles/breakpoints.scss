@@ -1,98 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-$from1024SizeMin: 1024px;
-=======
-$smartwatchsDeviceSizeMax: 31.9em;
-=======
-$smartwatchsSizeMax: 31.9em;
->>>>>>> 79632b2 (Update breakpoints.scss)
-$smallDeviceSizeMin: 32em;
-$mediumDeviceSizeMin: 43.1em;
-$largeDeviceSizeMin: 102.4em;
-<<<<<<< HEAD
-$extraLargeDeviceSizeMin: 192.1em;
->>>>>>> 4092670 (Updade breakpoints.scss)
-
-@mixin from1024() {
-  @media (min-width: #{$from1024SizeMin}) {
-=======
-$largestDeviceSizeMin: 192.1em;
-=======
-$smartwatchsSizeMax: 319px;
-<<<<<<< HEAD
-$smallDeviceSizeMin: 320px;
-$smallDeviceSizeMaxLandscape: 900px;
-$mediumDeviceSizeMin: 600px;
-$largeDeviceSizeMin: 1280px;
-$largestDeviceSizeMin: 1921px;
-$landscape: landscape;
-$portrait: portrait;
->>>>>>> ea995a1 (Update breakpoints.scss)
-=======
-$extraSmallDeviceSizeMin: 320px;
-$smallDeviceSizeMin: 360px;
-$mediumDeviceSizeMin: 667px;
-$largeDeviceSizeMin: 1024px;
-$largestDeviceSizeMin: 1280px;
-=======
-$smartwatchsSizeMax: 31.9rem;
-=======
-$smartwatchSizeMax: 31.9rem;
->>>>>>> 9b59316 (Update breakpoints.scss)
 $extraSmallDeviceSizeMin: 32rem;
 $smallDeviceSizeMin: 36rem;
 $mediumDeviceSizeMin: 66.7rem;
 $largeDeviceSizeMin: 102.4rem;
 $largestDeviceSizeMin: 128rem;
->>>>>>> f1c5ab8 (Update breakpoints.scss)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-// smartwatch = até 319px
-// small mobile = 320px até 359px
-// mobile = 360px até 767px
-// mobile paisagem e tablets retrato = 768px até 1023px
-// tablets paisagem / medium devices = 1024px até 1279px
-// large screen = 1280px até infinito
->>>>>>> 3194a94 (Update breakpoints.scss)
-
-<<<<<<< HEAD
-@mixin fromSmartwatch() {
-  @media (max-width: #{$smartwatchsDeviceSizeMax}) {
->>>>>>> 1c3df30 (Update breakpoints.scss)
-=======
-=======
->>>>>>> 8a741e2 (Update breakpoints.scss)
-@mixin fromSmartwatch {
-<<<<<<< HEAD
-  @media (max-width: #{$smartwatchsSizeMax}) {
->>>>>>> 79632b2 (Update breakpoints.scss)
-    @content;
-  }
-}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-=======
->>>>>>> 41b9f86 (Update breakpoints.scss)
-@mixin fromExtraSmall{
-  @media (min-width: #{$extraSmallDeviceSizeMin}) {
-=======
-=======
-@mixin fromMax319 {
->>>>>>> 2afc790 (Update breakpoints.scss)
-  @media (max-width: $smartwatchSizeMax) {
-    @content;
-  }
-}
 
 @mixin from320 {
   @media (min-width: $extraSmallDeviceSizeMin) {
->>>>>>> 9b59316 (Update breakpoints.scss)
     @content;
   }
 }
@@ -120,7 +33,3 @@ $largestDeviceSizeMin: 128rem;
     @content;
   }
 }
-<<<<<<< HEAD
->>>>>>> 4092670 (Updade breakpoints.scss)
-=======
->>>>>>> 1210297 (Updade breakpoints.scss)
