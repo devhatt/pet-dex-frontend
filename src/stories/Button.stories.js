@@ -2,10 +2,6 @@ import Button from '../components/button';
 
 export default {
   title: 'Button',
-  tags: ['autodocs'],
-  docs: {
-    type: 'auto',
-  },
   render: (args) => {
     const button = new Button(args);
     const $container = document.createElement('div');
