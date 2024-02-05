@@ -21,51 +21,51 @@ $underline: underline;
 //Estilos de fonte para botão primário
 $buttonFontColor: #FDFDFD;
 $buttonFontFamily: $primaryFont;
-$buttonFontSize: $sm;
-$buttonFontWeight: $fontWeightBold;
-$buttonFontStyle: $fontStyleNormal;
+$buttonFontSize: $xs;
+$buttonFontWeight: $bold;
+$buttonFontStyle: $normal;
 $buttonLineHeight: 24px;
 
 
 //Estilos de fonte para botão secundário
 $secondaryButtonFontColor: #003459;
-$secondaryButtonFontFamily: $tertiaryFont;
+$secondaryButtonFontFamily: $secondaryFont;
 $secondaryButtonFontSize: $lg;
-$secondaryButtonFontWeight: $fontWeightNormal;
-$secondaryButtonFontStyle: $fontStyleNormal;
+$secondaryButtonFontWeight: $normal;
+$secondaryButtonFontStyle: $normal;
 
 
 //Estilos de fonte para os inputs da página de Contato
 $inputFontColor: #8D8D8D;
-$inputFontFamily: $contactPageFont;
+$inputFontFamily: $primaryFont;
 $inputFontSize: 1.2rem;
-$inputFontStyle: $fontStyleNormal;
-$inputFontWeight: $fontWeightNormal;
+$inputFontStyle: $normal;
+$inputFontWeight: $normal;
 $inputLineHeight: 2rem;
 
 
 //Estilos de fonte para a navegação do header
 $headerFontColor: #003459;
 $headerFontFamily: $primaryFont;
-$headerFontSize: $sm;
-$headerFontStyle: $fontStyleNormal;
-$headerFontWeight: $fontWeightRegular;
+$headerFontSize: $xs;
+$headerFontStyle: $normal;
+$headerFontWeight: $regular;
 $headerLineHeight: 2.4rem;
 
 //Estilos de fonte para a navegação do footer
 $footerFontColor: #FFF;
 $footerFontFamily: $primaryFont;
 $footerFontSize: 1.5rem;
-$footerFontStyle: $fontStyleNormal;
-$footerFontWeight: $fontWeightRegular;
+$footerFontStyle: $normal;
+$footerFontWeight: $regular;
 $footerLetterSpacing: -.205px;
 
 
 //Estilos para textos de descirção do Pet em sua página
 $descriptionPetFontFamily: $primaryFont;
 $descriptionPetFontSize: $xs;
-$descriptionPetFontStyle: $fontStyleNormal;
-$descriptionPetFonteWeight: $fontWeightMedium;
+$descriptionPetFontStyle: $normal;
+$descriptionPetFonteWeight: $medium;
 $descriptionLineHeight: 2rem;
 
 //função para criar estilos tipográficos em geral
