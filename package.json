@@ -33,7 +33,7 @@
     "prettier": "^3.2.4",
     "reset-css": "^5.0.2",
     "sass": "^1.70.0",
-    "stylelint": "^16.2.0",
+    "stylelint": "^16.2.1",
     "stylelint-color-format": "^1.1.0",
     "stylelint-config-sass-guidelines": "11.0.0",
     "stylelint-order": "^6.0.4",
