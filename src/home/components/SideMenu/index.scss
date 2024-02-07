@@ -46,7 +46,6 @@
     width: 2.9rem;
     height: 2.4rem;
   }
-
 }
 
 .side-menu-content {
@@ -95,15 +94,13 @@
   }
 
   &__menuitens {
-
-
     &--active {
       background-color: rgb(0, 29, 49);
       border-radius: 2rem;
     }
   }
 
-  &__itens ul li a{
+  &__itens ul li a {
     display: flex;
     padding: 1.2rem;
     align-items: center;
@@ -118,7 +115,7 @@
       display: block;
       margin: 0 auto;
     }
-    
+
     &__icons {
       display: none;
     }
@@ -136,6 +133,5 @@
         color: #ffffffb0;
       }
     }
-
   }
 }
