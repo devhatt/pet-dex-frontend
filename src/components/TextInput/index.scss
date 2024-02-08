@@ -53,8 +53,8 @@
     &.outlined {
       padding: 0.5rem 0.35rem;
 
+      border-bottom: 1px solid rgb(184, 184, 184);
       border-color: transparent;
-      border-bottom: 1px solid #b8b8b8;
 
       outline: none;
 
@@ -87,5 +87,4 @@
       }
     }
   }
-  
 }
