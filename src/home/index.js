@@ -1,11 +1,13 @@
 import { extractElements } from 'pet-dex-utilities';
-import Navigation from './components/Navigation';
+import Navigation from './components/navigation';
 import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);
+
+  const $home = selected.get('home');
 
   const $sidemenu = selected.get('sidemenu');
   const sideMenu = new SideMenu();
@@ -25,21 +27,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const $itemsMenuHTML = $itemsMenu.filter((node) => node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'li');
   const breakpointDesktop = 1024;
 
-  function scrollTo(element) {
-    element.scrollIntoView({
-      behavior: 'smooth',
-    });
-  }
-
-  function clickScroll(element, targetElement) {
+  function openMenu(hamburger, home) {
     if (window.innerWidth < breakpointDesktop) {
-      element.addEventListener('click', () => {
-        scrollTo(targetElement);
+      hamburger.addEventListener('click', () => {
+        home.classList.remove('home--exitMenu');
+        home.classList.add('home--openMenu');
       });
     }
   }
 
-  function activeClassMenu(item, itemsMenu) {
+  function exitMenu(exitMenu, home) {
+    if (window.innerWidth < breakpointDesktop) {
+      exitMenu.addEventListener('click', () => {
+        home.classList.remove('home--openMenu');
+        home.classList.add('home--exitMenu');
+      });
+    }
+  }
+
+  function activeClassMenu(item, itemsMenu, home) {
     itemsMenu.forEach((element) => {
       element.classList.remove('side-menu-content__menuitens--active');
     });
@@ -47,16 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
     item.classList.add('side-menu-content__menuitens--active');
 
     if (window.innerWidth < breakpointDesktop) {
-      scrollTo($navigation);
+      home.classList.remove('home--openMenu');
+      home.classList.add('home--exitMenu');
     }
   }
 
-  clickScroll($hamburgerMenu, $sidemenu);
-  clickScroll($exitMenu, $navigation);
+  openMenu($hamburgerMenu, $home);
+  exitMenu($exitMenu, $home);
 
   $itemsMenuHTML.forEach((item) => {
     item.addEventListener('click', () => {
-      activeClassMenu(item, $itemsMenuHTML);
+      activeClassMenu(item, $itemsMenuHTML, $home);
     });
   });
 

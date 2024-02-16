@@ -8,7 +8,7 @@ import configuracoes from './images/configuracoes.svg';
 import exit from './images/exit.svg';
 import notificacoes from './images/notifications.svg';
 import perfil from './images/perfil.svg';
-import exitMenu from './images/exitMenu.svg';
+import exitMenu from './images/exitmenu.svg';
 import './index.scss';
 
 const html = `

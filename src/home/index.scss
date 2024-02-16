@@ -1,9 +1,10 @@
 @use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
 
 .home {
-  width: 100vw;
+  width: 200vw;
   height: 100dvh;
   overflow-x: hidden;
   display: grid;
@@ -12,8 +13,8 @@
     'sidemenu content';
   grid-template-rows: 8.1rem 1fr;
   grid-template-columns: 100vw 100vw;
-
   background-color: colors.$appColor;
+  transform: translateX(-100vw);
 
   &__navigation {
     display: flex;
@@ -38,10 +39,24 @@
     padding-inline: 2rem;
     padding-block: 3.2rem;
   }
+
+  &--openMenu {
+    width: 100vw;
+    transform: translateX(0);
+    transition: 0.3s;
+  }
+
+  &--exitMenu {
+    width: 200vw;
+    transform: translateX(-100vw);
+    transition: 0.3s;
+  }
 }
 
 @include breakpoints.from1024 {
   .home {
+    width: 100vw;
+    transform: translateX(0);
     grid-template-areas:
       'sidemenu nav'
       'sidemenu content';
