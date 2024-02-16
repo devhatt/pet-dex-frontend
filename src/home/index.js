@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function openMenu(hamburger, home) {
     if (window.innerWidth < breakpointDesktop) {
       hamburger.addEventListener('click', () => {
-        home.classList.remove('home--exitMenu');
-        home.classList.add('home--openMenu');
+        home.classList.remove('home--exit-menu');
+        home.classList.add('home--open-menu');
       });
     }
   }
@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function exitMenu(exitMenu, home) {
     if (window.innerWidth < breakpointDesktop) {
       exitMenu.addEventListener('click', () => {
-        home.classList.remove('home--openMenu');
-        home.classList.add('home--exitMenu');
+        home.classList.remove('home--open-menu');
+        home.classList.add('home--exit-menu');
       });
     }
   }

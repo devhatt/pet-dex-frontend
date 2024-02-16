@@ -40,13 +40,13 @@
     padding-block: 3.2rem;
   }
 
-  &--openMenu {
+  &--open-menu {
     width: 100vw;
     transform: translateX(0);
     transition: 0.3s;
   }
 
-  &--exitMenu {
+  &--exit-menu {
     width: 200vw;
     transform: translateX(-100vw);
     transition: 0.3s;
