@@ -1,7 +1,7 @@
 @use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
-// @use '~styles/fonts.scss' as fonts;
+@use '~styles/fonts.scss' as fonts;
 
 .side-menu-nav {
   display: flex;
@@ -126,8 +126,12 @@
     width: 70%;
 
     &__menuitens {
+
+      transition: 0.3s;
+
       &:hover {
-        color: #ffffffb0;
+        opacity: 0.6;
+        transition: 0.3s;
       }
     }
   }
