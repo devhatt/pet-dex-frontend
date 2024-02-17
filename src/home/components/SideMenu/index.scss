@@ -70,9 +70,16 @@
     height: 5rem;
   }
 
+  &__title-yourpet {
+    color: colors.$appContentColor;
+    font-size: 1.6rem;
+    font-style: fonts.$normal;
+    font-weight: fonts.$bold;
+  }
+
   &__itens {
     color: colors.$appContentColor;
-    // font-family: fonts.$primaryFont;
+    font-family: fonts.$primaryFont;
     font-size: 1.6rem;
   }
 

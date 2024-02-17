@@ -25,7 +25,9 @@ const html = `
     </nav>
     <div class="side-menu-content">
       <div class="side-menu-content__line"></div>
-      <div class="side-menu-content__yourpet"></div>
+      <div class="side-menu-content__yourpet">
+        <h2 class="side-menu-content__title-yourpet">Seu Pet</h2>
+      </div>
       <div class="side-menu-content__line"></div>
       <div class="side-menu-content__itens" alt="itens-um">
         <ul class="side-menu-content__ul" data-select="menuitens">
