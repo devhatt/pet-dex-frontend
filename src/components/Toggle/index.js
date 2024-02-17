@@ -24,17 +24,13 @@ export default function Toggle() {
   });
 }
 
-Toggle.prototype = Object.assign(
-  Toggle.prototype,
-  Component.prototype,
-  {
-    isChecked() {
-      this.selected.get('toggle-label').classList.add('checked');
-      this.emit('active');
-    },
-    notChecked() {
-      this.selected.get('toggle-label').classList.remove('checked');
-      this.emit('inactive');
-    },
+Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {
+  isChecked() {
+    this.selected.get('toggle-label').classList.add('checked');
+    this.emit('active');
   },
-);
+  notChecked() {
+    this.selected.get('toggle-label').classList.remove('checked');
+    this.emit('inactive');
+  },
+});
