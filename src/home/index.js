@@ -1,7 +1,8 @@
 import { extractElements } from 'pet-dex-utilities';
-import Navigation from './components/Navigation';
-import NoPetRegirestedPage from './components/NoPetRegirestedPage';
+import Navigation from './components/navigation';
+// import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
+import Slider from '../components/slider';
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,7 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const navigation = new Navigation();
   navigation.mount($navigation);
 
+  // const $content = selected.get('content');
+  // const noPetRegirestedPage = new NoPetRegirestedPage();
+  // noPetRegirestedPage.mount($content);
+
   const $content = selected.get('content');
-  const noPetRegirestedPage = new NoPetRegirestedPage();
-  noPetRegirestedPage.mount($content);
+  const slider = new Slider('slider-wrapper', 'slider-wrapper__slide');
+  slider.mount($content);
 });
