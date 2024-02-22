@@ -1,13 +1,13 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['click'];
+const events = ['click', 'text:change'];
 
 const html = `
     <button data-select="button" class="button" type="button"></button>
 `;
 
-export default function Button({ text = '', isFullWidth = false }) {
+export default function Button({ text = '', isFullWidth = false } = {}) {
   Component.call(this, { html, events });
 
   this.setText(text);
