@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import Button from '../../../components/button';
+import Button from '../../../components/Button';
 import petUrl from './images/no-pet-regirested-page.png';
 import './index.scss';
 
