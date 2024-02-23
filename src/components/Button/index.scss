@@ -12,10 +12,19 @@
   background-color: colors.$blue500;
   border-radius: 1.4rem;
   appearance: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 
+  &:hover:not(:disabled) {
+    background: colors.$appColor;
+    transform: scale(1.02);
+  }
   &--block {
     width: 100%;
-
     display: block;
+  }
+  &:disabled {
+    background: colors.$gray600;
+    cursor: not-allowed;
   }
 }
