@@ -17,20 +17,18 @@
   cursor: pointer;
   appearance: none;
 
+  &--block {
+    width: 100%;
+    display: block;
+  }
+
   &:hover:not(:disabled) {
     background: colors.$appColor;
     transform: scale(1.02);
   }
 
-  &--block {
-    width: 100%;
-
-    display: block;
-  }
-
   &:disabled {
     background: colors.$gray600;
-
     cursor: not-allowed;
   }
 }
