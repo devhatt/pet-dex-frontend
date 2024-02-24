@@ -17,6 +17,7 @@ export default function Button({
   this.setText(text);
   this.setIsFullWidth(isFullWidth);
   this.setIsDisabled(isDisabled);
+
   const $button = this.selected.get('button');
   $button.addEventListener('click', () => {
     this.click();
@@ -36,26 +37,32 @@ Button.prototype = Object.assign(Button.prototype, Component.prototype, {
   isFullWidth() {
     return this.selected.get('button').classList.has('button--block');
   },
+
   setIsFullWidth(isFullWidth = false) {
     const { classList } = this.selected.get('button');
     if (isFullWidth) classList.add('button--block');
     else classList.remove('button--block');
   },
+
   disable() {
     this.selected.get('button').disabled = true;
     this.emit('disable');
   },
+
   enable() {
     this.selected.get('button').disabled = false;
     this.emit('enable');
   },
+
   setIsDisabled(isDisabled = false) {
     if (isDisabled) this.disable();
     else this.enable();
   },
+
   isDisabled() {
     return this.selected.get('button').disabled;
   },
+
   click() {
     if (this.isDisabled()) return;
     this.emit('click');
