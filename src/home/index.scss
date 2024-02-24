@@ -1,7 +1,7 @@
 @use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
-@use '~styles/fonts.scss' as fonts;
+// @use '~styles/fonts.scss' as fonts;
 
 .home {
   width: 200vw;
@@ -15,6 +15,18 @@
   grid-template-columns: 100vw 100vw;
   background-color: colors.$appColor;
   transform: translateX(-100vw);
+
+  &--open-menu {
+    width: 100vw;
+    transform: translateX(0);
+    transition: transform 0.3s;
+  }
+
+  &--exit-menu {
+    width: 200vw;
+    transform: translateX(-100vw);
+    transition: transform 0.3s;
+  }
 
   &__navigation {
     display: flex;
@@ -38,18 +50,6 @@
 
     padding-inline: 2rem;
     padding-block: 3.2rem;
-  }
-
-  &--open-menu {
-    width: 100vw;
-    transform: translateX(0);
-    transition: 0.3s;
-  }
-
-  &--exit-menu {
-    width: 200vw;
-    transform: translateX(-100vw);
-    transition: 0.3s;
   }
 }
 

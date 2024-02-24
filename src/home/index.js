@@ -1,5 +1,5 @@
 import { extractElements } from 'pet-dex-utilities';
-import Navigation from './components/navigation';
+import Navigation from './components/Navigation';
 import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
 import './index.scss';
@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const noPetRegirestedPage = new NoPetRegirestedPage();
   noPetRegirestedPage.mount($content);
   
-  const $hamburgerMenu = navigation.selected.get('hamburgerMenu');
+  const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');
-  const $itemsMenu = Array.from(sideMenu.selected.get('menuitens').childNodes);
-  const $itemsMenuHTML = $itemsMenu.filter((node) => node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'li');
+  const $itemsMenu = Array.from(sideMenu.selected.get('menuitens').children);
+  const $itemsMenuLI = $itemsMenu.filter(item => item.tagName === 'LI')
   const breakpointDesktop = 1024;
 
   function openMenu(hamburger, home) {
@@ -45,26 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function activeClassMenu(item, itemsMenu, home) {
-    itemsMenu.forEach((element) => {
-      element.classList.remove('side-menu-content__menuitens--active');
+  function activeClassMenu(li, itemsMenuLI, home) {
+    itemsMenuLI.forEach((li) => {
+      li.classList.remove('side-menu-content__menuitens--active');
     });
 
-    item.classList.add('side-menu-content__menuitens--active');
+    li.classList.add('side-menu-content__menuitens--active');
 
     if (window.innerWidth < breakpointDesktop) {
-      home.classList.remove('home--openMenu');
-      home.classList.add('home--exitMenu');
+      home.classList.remove('home--open-menu');
+      home.classList.add('home--exit-menu');
     }
   }
+  
+    openMenu($hamburgerMenu, $home);
+    exitMenu($exitMenu, $home);
 
-  openMenu($hamburgerMenu, $home);
-  exitMenu($exitMenu, $home);
-
-  $itemsMenuHTML.forEach((item) => {
-    item.addEventListener('click', () => {
-      activeClassMenu(item, $itemsMenuHTML, $home);
+    $itemsMenuLI.forEach((li) => {
+      li.addEventListener('click', () => {
+        activeClassMenu(li, $itemsMenuLI, $home);
+      });
     });
-  });
-
 });
