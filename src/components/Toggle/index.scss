@@ -1,3 +1,5 @@
+@use '~styles/colors.scss' as colors;
+
 .toggle-container {
   display: inline-block;
 
@@ -24,7 +26,7 @@
     bottom: 0;
     left: 0;
 
-    background-color: rgba(217, 223, 230, 1);
+    background-color: colors.$grayBackground;
 
     border-radius: 34px;
 
@@ -40,7 +42,7 @@
 
       left: 10%;
 
-      background-color: rgba(255, 255, 255, 1);
+      background-color: colors.$appContentColor;
 
       border-radius: 50%;
 
@@ -50,7 +52,7 @@
     }
 
     &.checked {
-      background-color: rgba(27, 133, 243, 1);
+      background-color: colors.$blue500;
     }
 
     &.checked::after {

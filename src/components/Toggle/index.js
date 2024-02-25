@@ -1,7 +1,8 @@
-import { Component } from 'pet-dex-utilities';
 import './index.scss';
+import { Component, createIDFactory } from 'pet-dex-utilities';
+const generateID = createIDFactory("toggle");
 
-const events = ['active', 'inactive'];
+const events = ['toggle'];
 
 const html = `
   <div class="toggle-container">
@@ -10,27 +11,25 @@ const html = `
   </div>
 `;
 
-export default function Toggle() {
+export default function Toggle(checked) {
   Component.call(this, { html, events });
 
-  this.selected.get('toggle-input').addEventListener('change', (e) => {
-    const { checked } = e.target;
+  const id = generateID();
+  this.selected.get('toggle-input').setAttribute('id', id);
+  this.selected.get('toggle-label').setAttribute('for', id);
 
-    if (checked) {
-      this.notChecked();
-    } else {
-      this.isChecked();
-    }
+  this.toggle(checked);
+  this.selected.get('toggle-input').addEventListener('change', (e) => {
+    checked = !checked;
+    this.toggle(checked);
   });
 }
 
 Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {
-  isChecked() {
-    this.selected.get('toggle-label').classList.add('checked');
-    this.emit('active');
-  },
-  notChecked() {
-    this.selected.get('toggle-label').classList.remove('checked');
-    this.emit('inactive');
-  },
+  toggle(checked) {
+    if (checked) this.selected.get('toggle-label').classList.add('checked');
+    if (!checked) this.selected.get('toggle-label').classList.remove('checked');
+    
+    this.emit('toggle');
+  } 
 });
