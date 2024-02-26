@@ -1,4 +1,4 @@
-export default function Swiper() {
+export default function initializeSwiper() {
   const coordinates = {
     $element: null,
     xDown: null,
@@ -13,7 +13,7 @@ export default function Swiper() {
   };
 
   const dispatchSwipeRight = () => {
-    const event = new Event('swiper-right');
+    const event = new Event('swipe-right');
     coordinates.$element.dispatchEvent(event);
   };
 
@@ -28,14 +28,14 @@ export default function Swiper() {
   };
 
   function swipeDirection() {
-    const xDiff = coordinates.xDown - coordinates.xUp;
-    const yDiff = coordinates.yDown - coordinates.yUp;
+    const xDiff = coordinates.xUp - coordinates.xDown;
+    const yDiff = coordinates.yUp - coordinates.yDown;
 
     const isHorizontal = Math.abs(xDiff) > Math.abs(yDiff);
-    const isLeft = xDiff > 0;
-    const isRight = xDiff < 0;
-    const isUp = yDiff > 0;
-    const isDown = yDiff < 0;
+    const isLeft = xDiff < 0;
+    const isRight = xDiff > 0;
+    const isUp = yDiff < 0;
+    const isDown = yDiff > 0;
 
     if (isHorizontal) {
       switch (true) {
@@ -64,6 +64,11 @@ export default function Swiper() {
 
   function handleTouchStart(event) {
     coordinates.$element = event.target;
+
+    if (process.env.NODE_ENV === 'test') {
+      coordinates.$element = event.targetMock;
+    }
+
     coordinates.xDown = event.touches[0].clientX;
     coordinates.yDown = event.touches[0].clientY;
   }
@@ -72,11 +77,14 @@ export default function Swiper() {
     coordinates.xUp = event.changedTouches[0].clientX;
     coordinates.yUp = event.changedTouches[0].clientY;
 
-    const toucheMoved =
-      coordinates.xDown - coordinates.xUp !== 0 ||
-      coordinates.yDown - coordinates.yUp !== 0;
+    const xDiff = coordinates.xUp - coordinates.xDown;
+    const yDiff = coordinates.yUp - coordinates.yDown;
 
-    if (toucheMoved) swipeDirection();
+    const deadZone = 50;
+
+    const didSwipe = Math.abs(xDiff) > deadZone || Math.abs(yDiff) > deadZone;
+
+    if (didSwipe) swipeDirection();
   }
 
   window.addEventListener('touchstart', handleTouchStart, false);
