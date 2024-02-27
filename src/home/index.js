@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');
-  const $itemsMenu = Array.from(sideMenu.selected.get('menuitens').children);
-  const $itemsMenuLI = $itemsMenu.filter(item => item.tagName === 'LI')
+  const $itemsMenu = sideMenu.selected.get('menuitens').querySelectorAll("li");
+  // TODO: susbtistituir pelo módulo de breakpoints do js
   const breakpointDesktop = 1024;
 
   function openMenu(hamburger, home) {
@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function activeClassMenu(li, itemsMenuLI, home) {
-    itemsMenuLI.forEach((li) => {
+  function activeClassMenu(selectedItem, menuItems, home) {
+    menuItems.forEach((li) => {
       li.classList.remove('side-menu-content__menuitens--active');
     });
 
-    li.classList.add('side-menu-content__menuitens--active');
+    selectedItem.classList.add('side-menu-content__menuitens--active');
 
     if (window.innerWidth < breakpointDesktop) {
       home.classList.remove('home--open-menu');
@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     openMenu($hamburgerMenu, $home);
     exitMenu($exitMenu, $home);
 
-    $itemsMenuLI.forEach((li) => {
+    $itemsMenu.forEach((li) => {
       li.addEventListener('click', () => {
-        activeClassMenu(li, $itemsMenuLI, $home);
+        activeClassMenu(li, $itemsMenu, $home);
       });
     });
 });

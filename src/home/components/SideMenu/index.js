@@ -34,7 +34,7 @@ const html = `
           <li><a class="side-menu-content__menuitens" href="#"><img src="${meusPets}" alt="Meus Pets">Meus Pets</a></li>
           <li><a class="side-menu-content__menuitens" href="#"><img src="${petdex}" alt="Pet Dex">Pet Dex</a></li>
           <li><a class="side-menu-content__menuitens" href="#"><img src="${doacoes}" alt="Doacoes">Doações</a></li>
-          <div class="side-menu-content__lineinside"></div>
+          <hr class="side-menu-content__lineinside"/>
           <li><a class="side-menu-content__menuitens" href="#"><img src="${conta}" alt="conta">Conta</a></li>
           <li><a class="side-menu-content__menuitens" href="#"><img src="${configuracoes}" alt="configuracoes">Configurações</a></li>
         </ul>
