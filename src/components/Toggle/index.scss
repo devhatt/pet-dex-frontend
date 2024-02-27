@@ -51,11 +51,11 @@
       content: '';
     }
 
-    &.checked {
+    &--checked {
       background-color: colors.$blue500;
     }
 
-    &.checked::after {
+    &--checked::after {
       transform: translateX(100%);
     }
   }

@@ -1,6 +1,7 @@
 import './index.scss';
 import { Component, createIDFactory } from 'pet-dex-utilities';
-const generateID = createIDFactory("toggle");
+
+const generateID = createIDFactory('toggle');
 
 const events = ['toggle'];
 
@@ -19,7 +20,7 @@ export default function Toggle(checked) {
   this.selected.get('toggle-label').setAttribute('for', id);
 
   this.toggle(checked);
-  this.selected.get('toggle-input').addEventListener('change', (e) => {
+  this.selected.get('toggle-input').addEventListener('change', () => {
     checked = !checked;
     this.toggle(checked);
   });
@@ -27,9 +28,11 @@ export default function Toggle(checked) {
 
 Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {
   toggle(checked) {
-    if (checked) this.selected.get('toggle-label').classList.add('checked');
-    if (!checked) this.selected.get('toggle-label').classList.remove('checked');
-    
+    if (checked) {
+      this.selected.get('toggle-label').classList.add('toggle-container__label--checked');
+    } else {
+      this.selected.get('toggle-label').classList.remove('toggle-container__label--checked');
+    }
     this.emit('toggle');
-  } 
+  },
 });
