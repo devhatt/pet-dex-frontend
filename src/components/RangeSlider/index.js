@@ -36,9 +36,10 @@ export default function RangeSlider({ minimum = 0, maximum = 100 }) {
 
     containerElement.style.backgroundPositionX = `${parseInt(containerElement.style.backgroundPositionX || 0, 10) - offsetX}px`;
 
-    currentValue = mouseX > startX
-      ? Math.min(maximum, currentValue + stepSize)
-      : Math.max(minimum, currentValue - stepSize);
+    currentValue =
+      mouseX > startX
+        ? Math.min(maximum, currentValue + stepSize)
+        : Math.max(minimum, currentValue - stepSize);
 
     valueElement.textContent = `${currentValue.toFixed(1)} kg`;
 
@@ -53,7 +54,8 @@ export default function RangeSlider({ minimum = 0, maximum = 100 }) {
 
   const handleMouseMove = (event) => {
     event.preventDefault();
-    const clientX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+    const clientX =
+      event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
     handleMove(clientX);
   };
 
