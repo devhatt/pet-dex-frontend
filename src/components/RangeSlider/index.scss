@@ -1,0 +1,79 @@
+.range-slider {
+  width: 100%;
+}
+
+.range-slider__button {
+  color: rgb(209, 230, 255);
+
+  font-size: 2rem;
+
+  padding: 10px 20px;
+  border: 2px solid rgb(18, 104, 204);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  background-color: rgb(27, 133, 243);
+  transform: translate(-50%, -50%);
+
+  border-radius: 8px;
+
+  cursor: grab;
+  letter-spacing: 1;
+}
+
+.range-slider__value {
+  font-family: 'Noto Sans', sans-serif;
+  color: rgb(27, 133, 243);
+
+  text-align: center;
+  font-size: 8rem;
+  font-weight: 700;
+
+  margin-bottom: 2rem;
+}
+
+.range-slider__content {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+
+  position: relative;
+
+  background-image: url('../../home/images/ruler-slider.svg');
+  background-repeat: repeat-x;
+  background-position: 0 center;
+}
+
+.range-slider__content::before {
+  left: 0;
+
+  background: linear-gradient(
+    to right,
+    rgb(255, 255, 255),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.range-slider__content::after {
+  right: 0;
+
+  background: linear-gradient(
+    to left,
+    rgb(255, 255, 255),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.range-slider__content::before,
+.range-slider__content::after {
+  width: 200px;
+  height: 100%;
+
+  position: absolute;
+  z-index: 2;
+
+  pointer-events: none;
+  content: '';
+}
