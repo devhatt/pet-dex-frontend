@@ -7,12 +7,12 @@ const events = ['toggle'];
 
 const html = `
   <div class="toggle-container">
-    <input type="checkbox" id="toggle-input" class="toggle-container__input" data-select="toggle-input">
-    <label for="toggle-input" class="toggle-container__label" data-select="toggle-label"></label>
+    <input type="checkbox" class="toggle-container__input" data-select="toggle-input">
+    <label class="toggle-container__label" data-select="toggle-label"></label>
   </div>
 `;
 
-export default function Toggle(checked) {
+export default function Toggle({ checked = false } = {}) {
   Component.call(this, { html, events });
 
   const id = generateID();
@@ -20,9 +20,9 @@ export default function Toggle(checked) {
   this.selected.get('toggle-label').setAttribute('for', id);
 
   this.toggle(checked);
-  this.selected.get('toggle-input').addEventListener('change', () => {
-    checked = !checked;
-    this.toggle(checked);
+  this.selected.get('toggle-input').addEventListener('change', (event) => {
+    const newChecked = event.target.checked;
+    this.toggle(newChecked);
   });
 }
 
