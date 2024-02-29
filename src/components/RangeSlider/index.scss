@@ -5,6 +5,11 @@
 .range-slider {
   width: 100%;
 
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
   &__button {
     color: rgb(209, 230, 255);
 
@@ -26,7 +31,9 @@
     letter-spacing: 1;
   }
 
-  &__value {
+  &__info {
+    display: inline-block;
+
     font-family: 'Noto Sans', sans-serif;
     color: colors.$blue500;
 
@@ -35,6 +42,10 @@
     font-weight: 700;
 
     margin-bottom: 2rem;
+  }
+
+  &__info:first-child {
+    padding-right: 2rem;
   }
 
   &__content {
