@@ -1,79 +1,94 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
 .range-slider {
   width: 100%;
+
+  &__button {
+    color: rgb(209, 230, 255);
+
+    font-size: 2rem;
+
+    padding: 1rem;
+    border: 2px solid colors.$blue600;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    background-color: colors.$blue500;
+    transform: translate(-50%, -50%);
+
+    border-radius: 0.8rem;
+
+    cursor: grab;
+    letter-spacing: 1;
+  }
+
+  &__value {
+    font-family: 'Noto Sans', sans-serif;
+    color: colors.$blue500;
+
+    text-align: center;
+    font-size: 8rem;
+    font-weight: 700;
+
+    margin-bottom: 2rem;
+  }
+
+  &__content {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+
+    position: relative;
+
+    background-image: url('../../home/images/ruler-slider.svg');
+    background-repeat: repeat-x;
+    background-position: 0 center;
+  }
+
+  &__content::before {
+    left: 0;
+
+    background: linear-gradient(
+      to right,
+      colors.$appContentColor,
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  &__content::after {
+    right: 0;
+
+    background: linear-gradient(
+      to left,
+      colors.$appContentColor,
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  &__content::before,
+  &__content::after {
+    width: 30px;
+    height: 100%;
+
+    position: absolute;
+    z-index: 2;
+
+    pointer-events: none;
+    content: '';
+  }
 }
 
-.range-slider__button {
-  color: rgb(209, 230, 255);
+@include breakpoints.from667 {
+  .range-slider__content::before,
+  .range-slider__content::after {
+    width: 16%;
+  }
 
-  font-size: 2rem;
-
-  padding: 10px 20px;
-  border: 2px solid rgb(18, 104, 204);
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  background-color: rgb(27, 133, 243);
-  transform: translate(-50%, -50%);
-
-  border-radius: 8px;
-
-  cursor: grab;
-  letter-spacing: 1;
-}
-
-.range-slider__value {
-  font-family: 'Noto Sans', sans-serif;
-  color: rgb(27, 133, 243);
-
-  text-align: center;
-  font-size: 8rem;
-  font-weight: 700;
-
-  margin-bottom: 2rem;
-}
-
-.range-slider__content {
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
-
-  position: relative;
-
-  background-image: url('../../home/images/ruler-slider.svg');
-  background-repeat: repeat-x;
-  background-position: 0 center;
-}
-
-.range-slider__content::before {
-  left: 0;
-
-  background: linear-gradient(
-    to right,
-    rgb(255, 255, 255),
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.range-slider__content::after {
-  right: 0;
-
-  background: linear-gradient(
-    to left,
-    rgb(255, 255, 255),
-    rgba(255, 255, 255, 0)
-  );
-}
-
-.range-slider__content::before,
-.range-slider__content::after {
-  width: 200px;
-  height: 100%;
-
-  position: absolute;
-  z-index: 2;
-
-  pointer-events: none;
-  content: '';
+  .range-slider__button {
+    padding: 1rem 2rem;
+  }
 }
