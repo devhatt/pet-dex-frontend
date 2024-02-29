@@ -44,8 +44,8 @@
     margin-bottom: 2rem;
   }
 
-  &__info:first-child {
-    padding-right: 2rem;
+  &__info:nth-child(2) {
+    display: none;
   }
 
   &__content {
@@ -101,5 +101,13 @@
 
   .range-slider__button {
     padding: 1rem 2rem;
+  }
+
+  .range-slider__info:first-child {
+    padding-right: 2rem;
+  }
+
+  .range-slider__info:nth-child(2) {
+    display: inline-block;
   }
 }

@@ -15,7 +15,11 @@ const html = `
   </div>
 `;
 
-export default function RangeSlider({ minimum = 0, maximum = 100, unit = 'kg' }) {
+export default function RangeSlider({
+  minimum = 0,
+  maximum = 100,
+  unit = 'kg',
+}) {
   Component.call(this, { html, events });
 
   const valueElement = this.selected.get('range-slider-value');
