@@ -41,10 +41,12 @@ export default function RangeSlider({
   let isMouseDown = false;
   let startX = 0;
   let currentValue = Math.min(Math.max(value, minimum), maximum);
+  let prevValue = value;
 
   const handleStart = (clientX) => {
     isMouseDown = true;
     startX = clientX;
+    prevValue = currentValue;
     this.emit('interactionStart', currentValue);
   };
 
@@ -84,6 +86,15 @@ export default function RangeSlider({
     moveBackground(clientX);
   };
 
+  const escKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      isMouseDown = false;
+      currentValue = prevValue;
+      this.setValue(prevValue);
+      this.emit('interactionEnd', currentValue);
+    }
+  };
+
   containerElement.addEventListener('mousedown', (event) => {
     event.preventDefault();
     handleStart(event.clientX);
@@ -99,6 +110,7 @@ export default function RangeSlider({
     document.addEventListener('mouseup', handleEnd);
     document.addEventListener('touchmove', handleTouchMove);
     document.addEventListener('touchend', handleEnd);
+    document.addEventListener('keydown', escKeyDown);
   });
 
   this.listen('unmount', () => {
@@ -106,6 +118,7 @@ export default function RangeSlider({
     document.removeEventListener('mouseup', handleEnd);
     document.removeEventListener('touchmove', handleTouchMove);
     document.removeEventListener('touchend', handleEnd);
+    document.removeEventListener('keydown', escKeyDown);
   });
 }
 
