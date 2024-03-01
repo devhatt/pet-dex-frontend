@@ -12,7 +12,13 @@ export default {
   argTypes: {
     minimum: { control: 'number', default: 0 },
     maximum: { control: 'number', default: 100 },
-    unit: { control: 'text', default: 'kg' },
+    unit: {
+      control: {
+        type: 'text',
+        options: ['kg', 'lb'],
+      },
+      default: 'kg',
+    },
     value: { control: 'number', default: 10 },
     stepSize: { control: 'number', default: 0.05 },
   },

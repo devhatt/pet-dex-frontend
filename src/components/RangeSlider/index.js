@@ -1,7 +1,12 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['change', 'interactionEnd'];
+const events = [
+  'value:change',
+  'unit:change',
+  'interactionEnd',
+  'interactionStart',
+];
 
 const html = `
   <div class="range-slider" data-select="range-slider">
@@ -40,9 +45,10 @@ export default function RangeSlider({
   const handleStart = (clientX) => {
     isMouseDown = true;
     startX = clientX;
+    this.emit('interactionStart', currentValue);
   };
 
-  const handleMove = (clientX) => {
+  const moveBackground = (clientX) => {
     if (!isMouseDown) return;
 
     const mouseX = clientX;
@@ -58,7 +64,7 @@ export default function RangeSlider({
     unitElement.textContent = unit;
 
     startX = mouseX;
-    this.emit('change', currentValue);
+    this.emit('value:change', currentValue);
   };
 
   const handleEnd = () => {
@@ -66,24 +72,34 @@ export default function RangeSlider({
     this.emit('interactionEnd', currentValue);
   };
 
-  const handleMouseMove = (event) => {
+  const handleMove = (event) => {
     event.preventDefault();
     const clientX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
-    handleMove(clientX);
+    moveBackground(clientX);
   };
 
   containerElement.addEventListener('mousedown', (event) => {
     event.preventDefault();
     handleStart(event.clientX);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleEnd);
   });
 
   containerElement.addEventListener('touchstart', (event) => {
     event.preventDefault();
     handleStart(event.touches[0].clientX);
-    document.addEventListener('touchmove', handleMouseMove);
+  });
+
+  this.listen('mount', () => {
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
+    document.addEventListener('touchmove', handleMove);
     document.addEventListener('touchend', handleEnd);
+  });
+
+  this.listen('unmount', () => {
+    document.removeEventListener('mousemove', handleMove);
+    document.removeEventListener('mouseup', handleEnd);
+    document.removeEventListener('touchmove', handleMove);
+    document.removeEventListener('touchend', handleEnd);
   });
 }
 
@@ -96,12 +112,14 @@ RangeSlider.prototype = Object.assign(
     },
     setValue(value) {
       this.selected.get('range-slider-value').textContent = value.toFixed(1);
+      this.emit('value:change', value);
     },
     getUnit() {
       return this.selected.get('range-slider-unit').textContent;
     },
     setUnit(unit) {
       this.selected.get('range-slider-unit').textContent = unit;
+      this.emit('unit:change', unit);
     },
     getMinimum() {
       return this.minimum;
