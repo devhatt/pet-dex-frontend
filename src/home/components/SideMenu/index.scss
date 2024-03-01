@@ -1,7 +1,7 @@
 @use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
-// @use '~styles/fonts.scss' as fonts;
+@use '~styles/fonts.scss' as fonts;
 
 .side-menu-nav {
   display: flex;
@@ -67,19 +67,19 @@
   }
 
   &__yourpet {
-    // font-family: fonts.$primaryFont;
+    font-family: fonts.$primaryFont;
   }
 
   &__title-yourpet {
     color: colors.$appContentColor;
     font-size: 1.6rem;
-    // font-style: fonts.$normal;
-    // font-weight: fonts.$bold;
+    font-style: fonts.$normal;
+    font-weight: fonts.$bold;
   }
 
   &__itens {
     color: colors.$appContentColor;
-    // font-family: fonts.$primaryFont;
+    font-family: fonts.$primaryFont;
     font-size: 1.6rem;
   }
 
@@ -126,12 +126,10 @@
     width: 70%;
 
     &__menuitens {
-
       transition: 0.3s;
 
       &:hover {
         opacity: 0.6;
-        transition: 0.3s;
       }
     }
   }
