@@ -6,8 +6,8 @@ const events = ['change', 'interactionEnd'];
 const html = `
   <div class="range-slider" data-select="range-slider">
     <div>
-      <span class="range-slider__info" data-select="range-slider-value">10</span>
-      <span class="range-slider__info" data-select="range-slider-unit">kg</span>
+      <span class="range-slider__info" data-select="range-slider-value"></span>
+      <span class="range-slider__info" data-select="range-slider-unit"></span>
     </div>
     <div class="range-slider__content" data-select="range-slider-content">
       <button class="range-slider__button" data-select="range-slider-button">I I I</button>
@@ -19,17 +19,23 @@ export default function RangeSlider({
   minimum = 0,
   maximum = 100,
   unit = 'kg',
-}) {
+  initialValue = 10,
+  stepSize = 0.05,
+} = {}) {
   Component.call(this, { html, events });
 
-  const valueElement = this.selected.get('range-slider-value');
+  this.setMinimum(minimum);
+  this.setMaximum(maximum);
+  this.setUnit(unit);
+  this.setValue(initialValue);
+  this.setStepSize(stepSize);
+
   const unitElement = this.selected.get('range-slider-unit');
   const containerElement = this.selected.get('range-slider-content');
 
   let isMouseDown = false;
   let startX = 0;
-  let currentValue = Math.min(Math.max(10, minimum), maximum);
-  const stepSize = 0.05;
+  let currentValue = Math.min(Math.max(initialValue, minimum), maximum);
 
   const handleStart = (clientX) => {
     isMouseDown = true;
@@ -45,10 +51,10 @@ export default function RangeSlider({
     containerElement.style.backgroundPositionX = `${parseInt(containerElement.style.backgroundPositionX || 0, 10) - offsetX}px`;
 
     currentValue = mouseX > startX
-      ? Math.min(maximum, currentValue + stepSize)
-      : Math.max(minimum, currentValue - stepSize);
+      ? Math.min(maximum, currentValue + this.getStepSize())
+      : Math.max(minimum, currentValue - this.getStepSize());
 
-    valueElement.textContent = `${currentValue.toFixed(1)}`;
+    this.setValue(currentValue);
     unitElement.textContent = unit;
 
     startX = mouseX;
@@ -81,6 +87,35 @@ export default function RangeSlider({
   });
 }
 
-RangeSlider.prototype = Object.assign(Object.create(Component.prototype), {
-  constructor: RangeSlider,
+RangeSlider.prototype = Object.assign(RangeSlider.prototype, Component.prototype, {
+  getValue() {
+    return parseFloat(this.selected.get('range-slider-value').textContent);
+  },
+  setValue(value) {
+    this.selected.get('range-slider-value').textContent = value.toFixed(1);
+  },
+  getUnit() {
+    return this.selected.get('range-slider-unit').textContent;
+  },
+  setUnit(unit) {
+    this.selected.get('range-slider-unit').textContent = unit;
+  },
+  getMinimum() {
+    return this.minimum;
+  },
+  setMinimum(value) {
+    this.minimum = value;
+  },
+  getMaximum() {
+    return this.maximum;
+  },
+  setMaximum(value) {
+    this.maximum = value;
+  },
+  setStepSize(value) {
+    this.stepSize = value;
+  },
+  getStepSize() {
+    return this.stepSize;
+  },
 });
