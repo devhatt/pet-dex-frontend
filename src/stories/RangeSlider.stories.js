@@ -13,7 +13,7 @@ export default {
     minimum: { control: 'number', default: 0 },
     maximum: { control: 'number', default: 100 },
     unit: { control: 'text', default: 'kg' },
-    initialValue: { control: 'number', default: 10 },
+    value: { control: 'number', default: 10 },
     stepSize: { control: 'number', default: 0.05 },
   },
 };
@@ -26,6 +26,6 @@ export const WithLbUnit = {
   args: {
     ...Default.args,
     unit: 'lb',
-    initialValue: 20,
+    value: 20,
   },
 };

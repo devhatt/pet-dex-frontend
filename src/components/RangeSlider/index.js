@@ -19,7 +19,7 @@ export default function RangeSlider({
   minimum = 0,
   maximum = 100,
   unit = 'kg',
-  initialValue = 10,
+  value = 10,
   stepSize = 0.05,
 } = {}) {
   Component.call(this, { html, events });
@@ -27,7 +27,7 @@ export default function RangeSlider({
   this.setMinimum(minimum);
   this.setMaximum(maximum);
   this.setUnit(unit);
-  this.setValue(initialValue);
+  this.setValue(value);
   this.setStepSize(stepSize);
 
   const unitElement = this.selected.get('range-slider-unit');
@@ -35,7 +35,7 @@ export default function RangeSlider({
 
   let isMouseDown = false;
   let startX = 0;
-  let currentValue = Math.min(Math.max(initialValue, minimum), maximum);
+  let currentValue = Math.min(Math.max(value, minimum), maximum);
 
   const handleStart = (clientX) => {
     isMouseDown = true;
@@ -87,35 +87,39 @@ export default function RangeSlider({
   });
 }
 
-RangeSlider.prototype = Object.assign(RangeSlider.prototype, Component.prototype, {
-  getValue() {
-    return parseFloat(this.selected.get('range-slider-value').textContent);
+RangeSlider.prototype = Object.assign(
+  RangeSlider.prototype,
+  Component.prototype,
+  {
+    getValue() {
+      return parseFloat(this.selected.get('range-slider-value').textContent);
+    },
+    setValue(value) {
+      this.selected.get('range-slider-value').textContent = value.toFixed(1);
+    },
+    getUnit() {
+      return this.selected.get('range-slider-unit').textContent;
+    },
+    setUnit(unit) {
+      this.selected.get('range-slider-unit').textContent = unit;
+    },
+    getMinimum() {
+      return this.minimum;
+    },
+    setMinimum(value) {
+      this.minimum = value;
+    },
+    getMaximum() {
+      return this.maximum;
+    },
+    setMaximum(value) {
+      this.maximum = value;
+    },
+    getStepSize() {
+      return this.stepSize;
+    },
+    setStepSize(value) {
+      this.stepSize = value;
+    },
   },
-  setValue(value) {
-    this.selected.get('range-slider-value').textContent = value.toFixed(1);
-  },
-  getUnit() {
-    return this.selected.get('range-slider-unit').textContent;
-  },
-  setUnit(unit) {
-    this.selected.get('range-slider-unit').textContent = unit;
-  },
-  getMinimum() {
-    return this.minimum;
-  },
-  setMinimum(value) {
-    this.minimum = value;
-  },
-  getMaximum() {
-    return this.maximum;
-  },
-  setMaximum(value) {
-    this.maximum = value;
-  },
-  setStepSize(value) {
-    this.stepSize = value;
-  },
-  getStepSize() {
-    return this.stepSize;
-  },
-});
+);
