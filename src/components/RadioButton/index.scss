@@ -1,0 +1,45 @@
+@import '../../styles/colors.scss';
+
+.radio-container {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px 80px 10px 10px;
+    border: 1.5px solid $gray600; 
+    border-radius: 20px;
+    transition: border-color 0.3s;
+
+    &:focus-within {
+        border-color: $blue500;
+        .radio-dot {
+            color: $blue500;
+        }
+    }
+
+    input[type="radio"] {
+        border-color: $blue500; 
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        width: 22px;
+        height: 22px;
+        border: 1.5px solid $gray600;
+        border-radius: 50%;
+        margin: 8px;
+
+        &:checked {
+            background: url(./images/Ellipse.svg) no-repeat center center/60%;
+            border-color: $blue500; 
+        }
+    }
+
+    .radio-dot {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: $gray600; 
+    }
+}

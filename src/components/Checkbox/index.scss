@@ -1,0 +1,41 @@
+@import '../../styles/colors.scss';
+
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        width: 22px;
+        height: 22px;
+        border: 2px solid #ACACB5;
+        border-radius: 5px;
+        margin: 8px;
+
+        &:checked {
+            background: #5649E4 url(./images/check.svg) no-repeat center center/70%;
+            border-color: #5649E4;
+        }
+    }
+
+    .checkmark {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: $gray800;
+    }
+
+    input[type="checkbox"]:disabled {
+        border-color: #B9BECD;
+        cursor:default;
+        + .checkmark {
+            color: #B9BECD;
+        }
+    }
+}
