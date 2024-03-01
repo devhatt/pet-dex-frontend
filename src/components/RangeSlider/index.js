@@ -72,9 +72,15 @@ export default function RangeSlider({
     this.emit('interactionEnd', currentValue);
   };
 
-  const handleMove = (event) => {
+  const handleMouseMove = (event) => {
     event.preventDefault();
-    const clientX = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+    const { clientX } = event;
+    moveBackground(clientX);
+  };
+
+  const handleTouchMove = (event) => {
+    event.preventDefault();
+    const { clientX } = event.touches[0];
     moveBackground(clientX);
   };
 
@@ -89,16 +95,16 @@ export default function RangeSlider({
   });
 
   this.listen('mount', () => {
-    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleEnd);
-    document.addEventListener('touchmove', handleMove);
+    document.addEventListener('touchmove', handleTouchMove);
     document.addEventListener('touchend', handleEnd);
   });
 
   this.listen('unmount', () => {
-    document.removeEventListener('mousemove', handleMove);
+    document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleEnd);
-    document.removeEventListener('touchmove', handleMove);
+    document.removeEventListener('touchmove', handleTouchMove);
     document.removeEventListener('touchend', handleEnd);
   });
 }
