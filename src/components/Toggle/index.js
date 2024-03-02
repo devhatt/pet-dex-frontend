@@ -33,6 +33,6 @@ Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {
     } else {
       this.selected.get('toggle-label').classList.remove('toggle-container__label--checked');
     }
-    this.emit('toggle');
+    this.emit('toggle', checked);
   },
 });

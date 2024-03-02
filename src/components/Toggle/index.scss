@@ -13,8 +13,8 @@
   }
 
   &__label {
-    min-width: 44px;
-    min-height: 24px;
+    min-width: 4.4rem;
+    min-height: 2.4rem;
 
     display: flex;
 
@@ -26,7 +26,7 @@
     bottom: 0;
     left: 0;
 
-    background-color: colors.$grayBackground;
+    background-color: colors.$gray100;
 
     border-radius: 34px;
 

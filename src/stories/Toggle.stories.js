@@ -9,6 +9,9 @@ export default {
     toggle.mount($container);
     return $container;
   },
+  argTypes: {
+    checked: { control: 'boolean', default: false },
+  },
 };
 
 export const Default = {};
