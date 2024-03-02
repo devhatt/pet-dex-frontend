@@ -1,7 +1,7 @@
 @use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
-// @use '~styles/fonts.scss' as fonts;
+@use '~styles/fonts.scss' as fonts;
 
 .home {
   width: 200vw;
@@ -37,7 +37,7 @@
 
   &__sidemenu {
     display: grid;
-   	grid-area: sidemenu;
+    grid-area: sidemenu;
     grid-template-rows: 8.1rem 1fr;
   }
 
