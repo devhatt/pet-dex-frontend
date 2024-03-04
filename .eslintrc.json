@@ -8,7 +8,6 @@
   },
   "rules": {
     "no-console": "warn",
-    "object-curly-newline": "off",
-    "linebreak-style":"off"
+    "object-curly-newline": "off"
   }
 }
