@@ -1,7 +1,5 @@
 import { describe, expect, it, beforeEach } from 'vitest';
-import initializeSwiper from './swiper';
-
-// Create a mock element for testing
+import { initializeSwiper } from './swiper';
 
 describe('Swiper', () => {
   initializeSwiper();
@@ -18,11 +16,8 @@ describe('Swiper', () => {
   };
 
   mockElement.addEventListener('swipe-left', () => { eventFired.swipeLeft = true; });
-
   mockElement.addEventListener('swipe-right', () => { eventFired.swipeRight = true; });
-
   mockElement.addEventListener('swipe-up', () => { eventFired.swipeUp = true; });
-
   mockElement.addEventListener('swipe-down', () => { eventFired.swipeDown = true; });
 
   beforeEach(() => {

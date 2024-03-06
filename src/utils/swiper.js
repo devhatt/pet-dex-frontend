@@ -1,4 +1,4 @@
-export default function initializeSwiper() {
+export function initializeSwiper() {
   const coordinates = {
     $element: null,
     xDown: null,
@@ -37,29 +37,10 @@ export default function initializeSwiper() {
     const isUp = yDiff < 0;
     const isDown = yDiff > 0;
 
-    if (isHorizontal) {
-      switch (true) {
-        case isLeft:
-          dispatchSwipeLeft();
-          break;
-        case isRight:
-          dispatchSwipeRight();
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (true) {
-        case isUp:
-          dispatchSwipeUp();
-          break;
-        case isDown:
-          dispatchSwipeDown();
-          break;
-        default:
-          break;
-      }
-    }
+    if (isHorizontal && isLeft) dispatchSwipeLeft();
+    if (isHorizontal && isRight) dispatchSwipeRight();
+    if (!isHorizontal && isUp) dispatchSwipeUp();
+    if (!isHorizontal && isDown) dispatchSwipeDown();
   }
 
   function handleTouchStart(event) {
