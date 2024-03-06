@@ -12,6 +12,7 @@ export default {
   argTypes: {
     text: { control: 'text', default: '' },
     isFullWidth: { control: 'boolean', default: false },
+    isDisabled: { control: 'boolean', default: false },
   },
 };
 
@@ -25,5 +26,12 @@ export const Full = {
   args: {
     ...Default.args,
     isFullWidth: true,
+  },
+};
+
+export const Disabled = {
+  args: {
+    ...Default.args,
+    isDisabled: true,
   },
 };

@@ -11,11 +11,24 @@
 
   background-color: colors.$blue500;
   border-radius: 1.4rem;
+
+  transition: 0.3s ease-in-out;
+
+  cursor: pointer;
   appearance: none;
 
   &--block {
     width: 100%;
-
     display: block;
+  }
+
+  &:hover:not(:disabled) {
+    background: colors.$appColor;
+    transform: scale(1.02);
+  }
+
+  &:disabled {
+    background: colors.$gray600;
+    cursor: not-allowed;
   }
 }
