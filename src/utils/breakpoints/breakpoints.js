@@ -1,7 +1,6 @@
 import variables from '../../styles/breakpoints.module.scss';
 
-const { extraSmallSize, smallSize, mediumSize, largeSize, largestSize } =
-  variables;
+const { extraSmallSize, smallSize, mediumSize, largeSize, largestSize } = variables;
 
 const events = new Map();
 events.set('from320', new Set());
@@ -12,11 +11,19 @@ events.set('from1280', new Set());
 
 export function listenCallBack(breakpoint, callback) {
   const callbacks = events.get(breakpoint);
+  if (!callbacks) {
+    console.warn('callback not found: ', breakpoint);
+    return;
+  }
   callbacks.add(callback);
 }
 
 export function unlistenCallback(breakpoint, callback) {
   const callbacks = events.get(breakpoint);
+  if (!callbacks) {
+    console.warn('callback not found: ', breakpoint);
+    return;
+  }
   callbacks.delete(callback);
 }
 
