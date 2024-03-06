@@ -1,4 +1,3 @@
-@use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
 @use '~styles/fonts.scss' as fonts;
@@ -103,7 +102,6 @@
       border-radius: 2rem;
     }
   }
-
 }
 
 @include breakpoints.from1024() {
