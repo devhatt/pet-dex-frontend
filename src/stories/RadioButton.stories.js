@@ -13,6 +13,7 @@ export default {
         value: { control: 'number', default: 1 },
         text: { control: 'text', default: '' },
         isChecked: { control: 'boolean', default: false },
+        name: { control: 'text', default: ''}
     },
   };
 
@@ -20,6 +21,7 @@ export default {
     args: {
         value:1,
         text:'Radio Button Example',
-        isChecked:false
+        isChecked:false,
+        name: 'Example'
     },
   };

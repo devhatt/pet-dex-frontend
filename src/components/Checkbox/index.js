@@ -21,8 +21,9 @@ export default function Checkbox({ isChecked = false, text = '', isDisabled = fa
     const $checkbox = this.selected.get('checkbox');
     const $checkboxText = this.selected.get('checkbox-text');
 
-    $checkbox.addEventListener('change', () => {
-        this.emit('change', $checkbox.checked);
+    $checkbox.addEventListener('change', (e) => {
+        const isChecked = e.target.checked;
+        this.setChecked(isChecked);
     });
 }
 
@@ -34,20 +35,24 @@ Checkbox.prototype = Object.assign(Checkbox.prototype, Component.prototype, {
     setChecked(isChecked = false) {
         const $checkbox = this.selected.get('checkbox');
         $checkbox.checked = isChecked;
+        this.emit("change", isChecked);
     },
 
     setText(text = '') {
         const $checkboxText = this.selected.get('checkbox-text');
         $checkboxText.textContent = text;
+        this.emit("text:change", text);
     }, 
 
     setDisabled(isDisabled = false) {
         const $checkbox = this.selected.get('checkbox');
         $checkbox.disabled = isDisabled;
+        this.emit("disable", isDisabled);
     },
 
     setValue(value = '') {
         const $checkbox = this.selected.get('checkbox');
         $checkbox.value = value;
+        this.emit("value:change", value);
     }
 });

@@ -28,9 +28,7 @@ export default {
 
   export const Disabled = {
     args: {
-        value:1,
-        text:'Checkbox example',
-        isChecked:false,
+        ...Default.args,
         isDisabled: true
     },
   };
