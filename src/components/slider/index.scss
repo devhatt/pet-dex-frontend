@@ -1,4 +1,5 @@
 @use '~styles/colors.scss' as colors;
+// @use '~styles/fonts.scss' as font;
 
 .slider-wrapper {
   img,
@@ -32,6 +33,7 @@
     height: 200px;
     border: 3px solid transparent;
     transition: 0.2s ease-in-out;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 
     &:first-child img {
       width: 10px;
@@ -83,5 +85,19 @@
     display: block;
     margin: 0 auto;
     padding: 10px;
+  }
+}
+
+// animation: scale .4s linear
+//animation-fill-mode: forwards
+
+@keyframes scale {
+  0% {
+    -webkit-transform: scale3d(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale3d(1.1);
+    transform: scale(1.1);
   }
 }
