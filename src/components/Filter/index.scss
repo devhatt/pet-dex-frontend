@@ -1,5 +1,4 @@
 @use '~styles/colors.scss' as colors;
-@use '~styles/fonts.scss' as fonts;
 
 .filter {
   width: 100%;
@@ -14,12 +13,8 @@
   &__label {
     flex: 1;
 
-    font-family: fonts.$primaryFont;
-
     p {
-      color: colors.$gray700;
-      font-size: fonts.$sm;
-      font-weight: fonts.$fontWeightRegular;
+      color: colors.$gray600;
     }
 
     b {
@@ -33,10 +28,6 @@
 
     flex: 1;
 
-    font-family: fonts.$primaryFont;
-    font-size: fonts.$sm;
-    font-weight: fonts.$fontWeightRegular;
-
     padding: 0 10px;
 
     border: 1px solid colors.$grey150;
@@ -45,6 +36,33 @@
 
     &::placeholder {
       color: colors.$gray600;
+    }
+  }
+
+  &__button {
+    height: 40px;
+
+    display: flex;
+
+    gap: 50px;
+
+    align-items: center;
+
+    font-weight: 600;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    &::before {
+      content: url('img/filter.svg');
+    }
+
+    &:hover {
     }
   }
 }
