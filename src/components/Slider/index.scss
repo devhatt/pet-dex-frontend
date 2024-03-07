@@ -1,0 +1,17 @@
+.slider--wrapper {
+  width: 100vw;
+  overflow: hidden;
+
+  display: flex;
+
+  background: purple;
+
+  &__content {
+    min-width: 100vw;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+}
