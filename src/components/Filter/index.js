@@ -37,15 +37,19 @@ const html = `
 export default function Filter(filterOptions) {
   Component.call(this, { html, events });
 
-  this.filterOptionsMock = filterOptions || {
+  this.filterOptions = filterOptions || {
     boldText: 'Qual é a raça do seu animal de estimação?',
     regularText: 'Deixe-nos saber que tipo e o seu animal de estimação',
     inputPlaceholder: 'Pesquise por uma espécie',
   };
 
-  this.selected.get('boldText').innerText = this.filterOptionsMock.boldText;
-  this.selected.get('regularText').innerText = this.filterOptionsMock.regularText;
-  this.selected.get('input-text').placeholder = this.filterOptionsMock.inputPlaceholder;
+  const $boldText = this.selected.get('boldText');
+  const $regularText = this.selected.get('regularText');
+  const $inputText = this.selected.get('input-text');
+
+  $boldText.innerText = this.filterOptions.boldText;
+  $regularText.innerText = this.filterOptions.regularText;
+  $inputText.placeholder = this.filterOptions.inputPlaceholder;
 }
 
 Filter.prototype = Object.assign(
