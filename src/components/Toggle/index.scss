@@ -9,7 +9,17 @@
     width: 0;
     height: 0;
 
+    position: absolute;
+
     opacity: 0;
+
+    &:checked + .toggle-container__label {
+      background-color: colors.$blue500;
+
+      &::after {
+        transform: translateX(100%);
+      }
+    }
   }
 
   &__label {
@@ -27,10 +37,9 @@
     left: 0;
 
     background-color: colors.$gray100;
+    border-radius: 3.4rem;
 
-    border-radius: 34px;
-
-    transition: 0.4s;
+    transition: background-color 0.4s;
 
     cursor: pointer;
 
@@ -39,24 +48,14 @@
       height: 75%;
 
       position: absolute;
-
       left: 10%;
 
       background-color: colors.$appContentColor;
-
       border-radius: 50%;
 
-      transition: 0.4s;
+      transition: transform 0.4s;
 
       content: '';
-    }
-
-    &--checked {
-      background-color: colors.$blue500;
-    }
-
-    &--checked::after {
-      transform: translateX(100%);
     }
   }
 }

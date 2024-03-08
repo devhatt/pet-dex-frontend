@@ -19,20 +19,14 @@ export default function Toggle({ checked = false } = {}) {
   this.selected.get('toggle-input').setAttribute('id', id);
   this.selected.get('toggle-label').setAttribute('for', id);
 
-  this.toggle(checked);
-  this.selected.get('toggle-input').addEventListener('change', (event) => {
-    const newChecked = event.target.checked;
-    this.toggle(newChecked);
+  this.selected.get('toggle-input').checked = checked;
+
+  this.selected.get('toggle-input').addEventListener('change', () => {
+    this.emit('toggle', this.selected.get('toggle-input').checked);
   });
 }
 
-Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {
-  toggle(checked) {
-    if (checked) {
-      this.selected.get('toggle-label').classList.add('toggle-container__label--checked');
-    } else {
-      this.selected.get('toggle-label').classList.remove('toggle-container__label--checked');
-    }
-    this.emit('toggle', checked);
-  },
-});
+Toggle.prototype = Object.assign(
+  Toggle.prototype,
+  Component.prototype,
+);
