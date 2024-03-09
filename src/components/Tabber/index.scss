@@ -2,7 +2,7 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-$borderHeight: 3px;
+$borderHeight: 0.3rem;
 
 .tabber-container {
   width: 100%;
@@ -26,7 +26,7 @@ $borderHeight: 3px;
     height: $borderHeight;
 
     position: absolute;
-    bottom: -$borderHeight;
+    bottom: 0;
 
     background: colors.$gray200;
 
@@ -50,7 +50,7 @@ $borderHeight: 3px;
 }
 
 .tabber-button {
-  min-height: 4rem;
+  min-height: 4.5rem;
 
   flex-grow: 1;
 
@@ -66,38 +66,38 @@ $borderHeight: 3px;
   position: relative;
 
   background-color: colors.$appContentColor;
-}
 
-.active {
-  color: colors.$blue500;
-  font-weight: 700;
+  &--active {
+    color: colors.$blue500;
+    font-weight: 700;
 
-  &::after,
-  &::before {
-    height: $borderHeight;
+    &::after,
+    &::before {
+      height: $borderHeight;
 
-    position: absolute;
-    bottom: -$borderHeight;
-    z-index: 2;
+      position: absolute;
+      bottom: 0;
+      z-index: 2;
 
-    background: colors.$blue500;
+      background: colors.$blue500;
 
-    content: '';
-  }
+      content: '';
+    }
 
-  &::after {
-    right: 0;
+    &::after {
+      right: 0;
 
-    left: $borderHeight;
+      left: $borderHeight;
 
-    border-radius: 0 $borderHeight $borderHeight 0;
-  }
+      border-radius: 0 $borderHeight $borderHeight 0;
+    }
 
-  &::before {
-    right: $borderHeight;
-    left: 0;
+    &::before {
+      right: $borderHeight;
+      left: 0;
 
-    border-radius: $borderHeight 0 0 $borderHeight;
+      border-radius: $borderHeight 0 0 $borderHeight;
+    }
   }
 }
 
@@ -121,16 +121,16 @@ $borderHeight: 3px;
     border: 0;
 
     border-radius: 1.6rem;
-  }
 
-  .active {
-    color: colors.$appContentColor;
+    &--active {
+      color: colors.$appContentColor;
 
-    background-color: colors.$blue500;
+      background-color: colors.$blue500;
 
-    &::after,
-    &::before {
-      content: none;
+      &::after,
+      &::before {
+        content: none;
+      }
     }
   }
 

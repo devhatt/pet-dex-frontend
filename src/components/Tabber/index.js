@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['tabChange', 'click'];
+const events = ['change', 'click'];
 
 const html = `
 <div class="tabber-container" data-select="tabber-container">
@@ -9,15 +9,12 @@ const html = `
   <div class="tabber-content" data-select="tabber-content"></div>
 </div>
 `;
-
+// todo, emitir eventos ao desativar >> talvez manter registro da aba q estava ativa antes
 export default function Tabber({ tabs }) {
   Component.call(this, { html, events });
 
-  const container = this.selected.get('tabber-container');
-  const tabsContainer = container.querySelector('[data-select="tabber-tabs"]');
-  const contentContainer = container.querySelector(
-    '[data-select="tabber-content"]',
-  );
+  const tabsContainer = this.selected.get('tabber-tabs');
+  const contentContainer = this.selected.get('tabber-content');
 
   tabs.forEach((tab, index) => {
     const tabButton = document.createElement('button');
@@ -44,7 +41,7 @@ export default function Tabber({ tabs }) {
   };
 
   const deactivateTabs = () => {
-    tabButtons.forEach((tab) => tab.classList.remove('active'));
+    tabButtons.forEach((tab) => tab.classList.remove('tabber-button--active'));
   };
 
   const activateContent = (index) => {
@@ -52,21 +49,19 @@ export default function Tabber({ tabs }) {
   };
 
   const activateTab = (tab) => {
-    tab.classList.add('active');
+    tab.classList.add('tabber-button--active');
   };
 
-  tabButtons.forEach((tabButton) =>
-    tabButton.addEventListener('click', () => {
-      const index = parseInt(tabButton.dataset.index, 10);
+  tabButtons.forEach((tabButton) => tabButton.addEventListener('click', () => {
+    const index = parseInt(tabButton.dataset.index, 10);
 
-      hideContents();
-      deactivateTabs();
-      activateTab(tabButton);
-      activateContent(index);
+    hideContents();
+    deactivateTabs();
+    activateTab(tabButton);
+    activateContent(index);
 
-      this.emit('tabChange', tabs[index].value);
-    }),
-  );
+    this.emit('change', tabs[index].value);
+  }));
 
   this.listen('mount', () => {
     activateTab(tabButtons[0]);
@@ -75,3 +70,6 @@ export default function Tabber({ tabs }) {
 }
 
 Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype);
+// get current tab
+// set tab >> passando index
+// add- remove tab
