@@ -1,0 +1,111 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+$borderHeight: 40px;
+
+.tabber-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.tabber-tab {
+  width: 100%;
+
+  display: flex;
+
+  border-bottom: $borderHeight solid colors.$gray200;
+}
+
+.tabber-button {
+  min-height: 4rem;
+
+  flex-grow: 1;
+
+  font-family: 'Noto Sans', sans-serif;
+  color: colors.$gray600;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.3;
+
+  border: 0;
+
+  position: relative;
+
+  background-color: colors.$appContentColor;
+}
+
+.active {
+  color: colors.$blue500;
+  font-weight: 700;
+}
+
+.active::after,
+.active::before {
+  height: $borderHeight;
+  overflow-x: visible;
+
+  position: absolute;
+  bottom: -$borderHeight;
+
+  background: colors.$blue500;
+
+  content: '';
+}
+
+.active::after {
+  right: 0;
+
+  left: $borderHeight;
+
+  border-radius: 0 $borderHeight $borderHeight 0;
+}
+
+.active::before {
+  right: $borderHeight;
+  left: 0;
+
+  border-radius: $borderHeight 0 0 $borderHeight;
+}
+
+.hide {
+  display: none;
+}
+
+.tabber-content > * {
+  padding: 20px;
+
+  background-color: rgb(255, 255, 255);
+}
+
+@include breakpoints.from667 {
+  .tabber-button {
+    min-height: 5rem;
+
+    font-size: 1.8rem;
+    line-height: 1.1;
+
+    border: 0;
+
+    border-radius: 1.6rem;
+  }
+
+  .active {
+    color: colors.$appContentColor;
+
+    background-color: colors.$blue500;
+  }
+
+  .tabber-tab {
+    padding: 0.4rem;
+    border: 1px solid colors.$gray200;
+
+    border-radius: 20px;
+  }
+}
