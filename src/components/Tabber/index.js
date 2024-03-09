@@ -15,7 +15,9 @@ export default function Tabber({ tabs }) {
 
   const container = this.selected.get('tabber-container');
   const tabsContainer = container.querySelector('[data-select="tabber-tabs"]');
-  const contentContainer = container.querySelector('[data-select="tabber-content"]');
+  const contentContainer = container.querySelector(
+    '[data-select="tabber-content"]',
+  );
 
   tabs.forEach((tab, index) => {
     const tabButton = document.createElement('button');
@@ -53,16 +55,18 @@ export default function Tabber({ tabs }) {
     tab.classList.add('active');
   };
 
-  tabButtons.forEach((tabButton) => tabButton.addEventListener('click', () => {
-    const index = parseInt(tabButton.dataset.index, 10);
+  tabButtons.forEach((tabButton) =>
+    tabButton.addEventListener('click', () => {
+      const index = parseInt(tabButton.dataset.index, 10);
 
-    hideContents();
-    deactivateTabs();
-    activateTab(tabButton);
-    activateContent(index);
+      hideContents();
+      deactivateTabs();
+      activateTab(tabButton);
+      activateContent(index);
 
-    this.emit('tabChange', tabs[index].value);
-  }));
+      this.emit('tabChange', tabs[index].value);
+    }),
+  );
 
   this.listen('mount', () => {
     activateTab(tabButtons[0]);
