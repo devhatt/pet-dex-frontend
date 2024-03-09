@@ -2,7 +2,7 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-$borderHeight: 40px;
+$borderHeight: 3px;
 
 .tabber-container {
   width: 100%;
@@ -19,7 +19,34 @@ $borderHeight: 40px;
 
   display: flex;
 
-  border-bottom: $borderHeight solid colors.$gray200;
+  position: relative;
+
+  &::after,
+  &::before {
+    height: $borderHeight;
+
+    position: absolute;
+    bottom: -$borderHeight;
+
+    background: colors.$gray200;
+
+    content: '';
+  }
+
+  &::after {
+    right: 0;
+
+    left: $borderHeight;
+
+    border-radius: 0 $borderHeight $borderHeight 0;
+  }
+
+  &::before {
+    right: $borderHeight;
+    left: 0;
+
+    border-radius: $borderHeight 0 0 $borderHeight;
+  }
 }
 
 .tabber-button {
@@ -44,34 +71,34 @@ $borderHeight: 40px;
 .active {
   color: colors.$blue500;
   font-weight: 700;
-}
 
-.active::after,
-.active::before {
-  height: $borderHeight;
-  overflow-x: visible;
+  &::after,
+  &::before {
+    height: $borderHeight;
 
-  position: absolute;
-  bottom: -$borderHeight;
+    position: absolute;
+    bottom: -$borderHeight;
+    z-index: 2;
 
-  background: colors.$blue500;
+    background: colors.$blue500;
 
-  content: '';
-}
+    content: '';
+  }
 
-.active::after {
-  right: 0;
+  &::after {
+    right: 0;
 
-  left: $borderHeight;
+    left: $borderHeight;
 
-  border-radius: 0 $borderHeight $borderHeight 0;
-}
+    border-radius: 0 $borderHeight $borderHeight 0;
+  }
 
-.active::before {
-  right: $borderHeight;
-  left: 0;
+  &::before {
+    right: $borderHeight;
+    left: 0;
 
-  border-radius: $borderHeight 0 0 $borderHeight;
+    border-radius: $borderHeight 0 0 $borderHeight;
+  }
 }
 
 .hide {
@@ -100,6 +127,11 @@ $borderHeight: 40px;
     color: colors.$appContentColor;
 
     background-color: colors.$blue500;
+
+    &::after,
+    &::before {
+      content: none;
+    }
   }
 
   .tabber-tab {
@@ -107,5 +139,10 @@ $borderHeight: 40px;
     border: 1px solid colors.$gray200;
 
     border-radius: 20px;
+
+    &::after,
+    &::before {
+      content: none;
+    }
   }
 }
