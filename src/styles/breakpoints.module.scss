@@ -1,0 +1,9 @@
+@import 'breakpoints';
+
+:export {
+  extraSmallSize: $extraSmallDeviceSizeMin;
+  smallSize: $smallDeviceSizeMin;
+  mediumSize: $mediumDeviceSizeMin;
+  largeSize: $largeDeviceSizeMin;
+  largestSize: $largestDeviceSizeMin;
+}
