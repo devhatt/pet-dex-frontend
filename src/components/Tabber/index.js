@@ -36,46 +36,54 @@ export default function Tabber({ tabs }) {
 
   const tabButtons = tabsContainer.querySelectorAll('button');
 
-  tabButtons.forEach((tabButton) => tabButton.addEventListener('click', () => {
-    const index = parseInt(tabButton.dataset.index, 10);
+  tabButtons.forEach((tabButton) =>
+    tabButton.addEventListener('click', () => {
+      const index = parseInt(tabButton.dataset.index, 10);
 
-    this.activateTab(index);
+      this.activateTab(index);
 
-    this.emit('change', index);
-  }));
+      this.emit('change', index);
+    }),
+  );
 
   this.listen('mount', () => {
     this.activateTab(0);
   });
 }
 
-Tabber.prototype = Object.assign(
-  Tabber.prototype,
-  Component.prototype,
-  {
-    activateTab(index) {
-      const tabButton = this.getTab(index);
-      if (!tabButton) return;
+Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
+  activateTab(index) {
+    const tabButton = this.getTab(index);
+    if (!tabButton) return;
 
-      const tabsContainer = this.selected.get('tabber-tabs');
-      const contentContainer = this.selected.get('tabber-content').querySelectorAll('div');
+    const tabsContainer = this.selected.get('tabber-tabs');
+    const contentContainer = this.selected
+      .get('tabber-content')
+      .querySelectorAll('div');
 
-      contentContainer.forEach((content) => content.classList.add('hide'));
-      tabsContainer.querySelectorAll('button').forEach((tab) => tab.classList.remove('tabber-button--active'));
+    contentContainer.forEach((content) => content.classList.add('hide'));
+    tabsContainer
+      .querySelectorAll('button')
+      .forEach((tab) => tab.classList.remove('tabber-button--active'));
 
-      const tabContent = this.getContent(index);
-      tabContent.classList.remove('hide');
-      tabButton.classList.add('tabber-button--active');
-    },
-    getTab(index) {
-      return this.selected.get('tabber-tabs').querySelector(`button[data-index="${index}"]`);
-    },
-    getContent(index) {
-      return this.selected.get('tabber-content').querySelector(`div[data-index="${index}"]`);
-    },
-    getCurrentTab() {
-      return this.selected.get('tabber-tabs').querySelector('.tabber-button--active');
-    },
+    const tabContent = this.getContent(index);
+    tabContent.classList.remove('hide');
+    tabButton.classList.add('tabber-button--active');
   },
-);
+  getTab(index) {
+    return this.selected
+      .get('tabber-tabs')
+      .querySelector(`button[data-index="${index}"]`);
+  },
+  getContent(index) {
+    return this.selected
+      .get('tabber-content')
+      .querySelector(`div[data-index="${index}"]`);
+  },
+  getCurrentTab() {
+    return this.selected
+      .get('tabber-tabs')
+      .querySelector('.tabber-button--active');
+  },
+});
 // add- remove tab
