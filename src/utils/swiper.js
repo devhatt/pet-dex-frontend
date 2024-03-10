@@ -1,4 +1,4 @@
-export function initializeSwiper() {
+export function initializeSwiper({ deadZone = 50 } = {}) {
   const coordinates = {
     $element: null,
     xDown: null,
@@ -57,7 +57,6 @@ export function initializeSwiper() {
     const xDiff = coordinates.xUp - coordinates.xDown;
     const yDiff = coordinates.yUp - coordinates.yDown;
 
-    const deadZone = 50;
 
     const didSwipe = Math.abs(xDiff) > deadZone || Math.abs(yDiff) > deadZone;
 
