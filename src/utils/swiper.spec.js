@@ -6,7 +6,10 @@ describe('Swiper', () => {
   const mockElement = document.createElement('div');
   const touchStartEvent = new Event('touchstart');
   const touchEndEvent = new Event('touchend');
-  touchStartEvent.targetMock = mockElement;
+  Object.defineProperty(touchStartEvent, 'target', {
+    writable: false,
+    value: mockElement,
+  });
 
   let eventFired = {
     swipeLeft: false,
@@ -15,10 +18,18 @@ describe('Swiper', () => {
     swipeDown: false,
   };
 
-  mockElement.addEventListener('swipe-left', () => { eventFired.swipeLeft = true; });
-  mockElement.addEventListener('swipe-right', () => { eventFired.swipeRight = true; });
-  mockElement.addEventListener('swipe-up', () => { eventFired.swipeUp = true; });
-  mockElement.addEventListener('swipe-down', () => { eventFired.swipeDown = true; });
+  mockElement.addEventListener('swipe-left', () => {
+    eventFired.swipeLeft = true;
+  });
+  mockElement.addEventListener('swipe-right', () => {
+    eventFired.swipeRight = true;
+  });
+  mockElement.addEventListener('swipe-up', () => {
+    eventFired.swipeUp = true;
+  });
+  mockElement.addEventListener('swipe-down', () => {
+    eventFired.swipeDown = true;
+  });
 
   beforeEach(() => {
     eventFired = {

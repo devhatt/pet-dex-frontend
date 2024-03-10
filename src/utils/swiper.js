@@ -46,10 +46,6 @@ export function initializeSwiper() {
   function handleTouchStart(event) {
     coordinates.$element = event.target;
 
-    if (process.env.NODE_ENV === 'test') {
-      coordinates.$element = event.targetMock;
-    }
-
     coordinates.xDown = event.touches[0].clientX;
     coordinates.yDown = event.touches[0].clientY;
   }
