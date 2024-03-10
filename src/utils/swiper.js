@@ -65,4 +65,9 @@ export function initializeSwiper({ deadZone = 50 } = {}) {
 
   window.addEventListener('touchstart', handleTouchStart, false);
   window.addEventListener('touchend', handleTouchEnd, false);
+  
+  return function destroy() {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+  }
 }
