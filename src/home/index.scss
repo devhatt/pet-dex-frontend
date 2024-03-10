@@ -1,19 +1,32 @@
 @use '~styles/base.scss';
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
 
 .home {
-  width: 100vw;
-  height: 100vh;
-
+  width: 200vw;
+  height: 100dvh;
+  overflow-x: hidden;
   display: grid;
   grid-template-areas:
-    'nav'
-    'content';
+    'sidemenu nav'
+    'sidemenu content';
   grid-template-rows: 8.1rem 1fr;
-  grid-template-columns: 1fr;
-
+  grid-template-columns: 100vw 100vw;
   background-color: colors.$appColor;
+  transform: translateX(-100vw);
+
+  &--open-menu {
+    width: 100vw;
+    transform: translateX(0);
+    transition: transform 0.3s;
+  }
+
+  &--exit-menu {
+    width: 200vw;
+    transform: translateX(-100vw);
+    transition: transform 0.3s;
+  }
 
   &__navigation {
     display: flex;
@@ -23,8 +36,9 @@
   }
 
   &__sidemenu {
-    display: none;
-    padding-inline: 4.65rem;
+    display: grid;
+    grid-area: sidemenu;
+    grid-template-rows: 8.1rem 1fr;
   }
 
   &__content {
@@ -41,9 +55,11 @@
 
 @include breakpoints.from1024 {
   .home {
+    width: 100vw;
+    transform: translateX(0);
     grid-template-areas:
-      'menu nav'
-      'menu content';
+      'sidemenu nav'
+      'sidemenu content';
     grid-template-rows: 8.1rem 1fr;
     grid-template-columns: 31.3rem 1fr;
 
@@ -57,7 +73,6 @@
 
     &__sidemenu {
       display: block;
-      grid-area: menu;
     }
   }
 }
