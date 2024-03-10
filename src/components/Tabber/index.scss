@@ -67,6 +67,8 @@ $borderHeight: 0.3rem;
 
   background-color: colors.$appContentColor;
 
+  cursor: pointer;
+
   &--active {
     color: colors.$blue500;
     font-weight: 700;
