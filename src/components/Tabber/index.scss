@@ -105,12 +105,6 @@ $borderHeight: 0.3rem;
   display: none;
 }
 
-.tabber-content > * {
-  padding: 20px;
-
-  background-color: rgb(255, 255, 255);
-}
-
 @include breakpoints.from667 {
   .tabber-button {
     min-height: 5rem;
@@ -138,7 +132,7 @@ $borderHeight: 0.3rem;
     padding: 0.4rem;
     border: 1px solid colors.$gray200;
 
-    border-radius: 20px;
+    border-radius: 2rem;
 
     &::after,
     &::before {
