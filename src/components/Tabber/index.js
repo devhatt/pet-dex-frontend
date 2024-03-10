@@ -52,16 +52,18 @@ export default function Tabber({ tabs }) {
     tab.classList.add('tabber-button--active');
   };
 
-  tabButtons.forEach((tabButton) => tabButton.addEventListener('click', () => {
-    const index = parseInt(tabButton.dataset.index, 10);
+  tabButtons.forEach((tabButton) =>
+    tabButton.addEventListener('click', () => {
+      const index = parseInt(tabButton.dataset.index, 10);
 
-    hideContents();
-    deactivateTabs();
-    activateTab(tabButton);
-    activateContent(index);
+      hideContents();
+      deactivateTabs();
+      activateTab(tabButton);
+      activateContent(index);
 
-    this.emit('change', tabs[index].value);
-  }));
+      this.emit('change', tabs[index].value);
+    }),
+  );
 
   this.listen('mount', () => {
     activateTab(tabButtons[0]);
