@@ -21,6 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // noPetRegirestedPage.mount($content);
 
   const $content = selected.get('content');
-  const slider = new Slider('slider-wrapper', 'slider-wrapper__slide');
+  const slider = new Slider('slider-wrapper__slide');
   slider.mount($content);
 });

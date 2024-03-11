@@ -2,6 +2,8 @@
 // @use '~styles/fonts.scss' as font;
 
 .slider-wrapper {
+  container-type: inline-size;
+
   img,
   h3,
   p {
@@ -10,8 +12,9 @@
 
   &__slide {
     display: flex;
+    justify-content: center;
     flex-flow: row nowrap;
-    gap: 32px;
+    gap: 2.4rem;
     padding: 0;
     list-style: none;
     align-items: center;
@@ -25,20 +28,19 @@
     justify-items: center;
     text-align: center;
     list-style: none;
-    border: 1px solid #eceff2;
     border-radius: 18px;
-    box-shadow: 0px 4px 20px -2px #3232470a;
-    box-shadow: 0px 0px 5px 0px #0c1a4b14;
-    width: 156px;
-    height: 200px;
+    box-shadow:
+      0px 4px 20px -2px #3232470a,
+      0px 0px 5px 0px #0c1a4b14;
+    width: 15.6%;
+    padding: 3.6rem 0;
+
     border: 3px solid transparent;
-    transition: 0.2s ease-in-out;
-    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 
     &:first-child img {
       width: 10px;
       height: 10px;
-      padding: 20px;
+      padding: 2rem;
     }
 
     &:hover {
@@ -47,8 +49,12 @@
 
     &.active {
       border: 3px solid colors.$blue500;
-      width: 180px;
-      height: 240px;
+
+      transition: 0.2s ease-in-out;
+      transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+      animation: scale 0.2s linear;
+      animation-fill-mode: forwards;
 
       & img {
         background: #d1e6ff;
@@ -69,11 +75,11 @@
     }
 
     h3 {
-      padding-top: 16px;
+      padding-top: 1.6rem;
     }
 
     p {
-      padding-top: 6px;
+      padding-top: 0.6rem;
     }
   }
 
@@ -84,20 +90,69 @@
     border-radius: 50%;
     display: block;
     margin: 0 auto;
-    padding: 10px;
+    padding: 1rem;
   }
 }
 
-// animation: scale .4s linear
-//animation-fill-mode: forwards
+@container (max-width: 38em) {
+  .slider-wrapper {
+    &__item {
+      width: 18%;
+      padding: 2.8rem 0;
+    }
+
+    &__image {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+@container (max-width: 32em) {
+  .slider-wrapper {
+    &__slide {
+      gap: 2.6rem;
+    }
+
+    &__item {
+      width: 22%;
+      padding: 2.4rem 0;
+    }
+  }
+}
+
+@container (max-width: 25em) {
+  .slider-wrapper {
+    &__slide {
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    &__item {
+      width: 34%;
+      padding: 2.2rem 0;
+
+      &:first-child img {
+        width: 10px;
+        height: 10px;
+        padding: 1.4rem;
+      }
+    }
+
+    &__image {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
 
 @keyframes scale {
   0% {
     -webkit-transform: scale3d(1);
-    transform: scale(1);
+    transform: scale(1.1);
   }
   100% {
     -webkit-transform: scale3d(1.1);
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 }
