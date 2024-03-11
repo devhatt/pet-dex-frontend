@@ -48,13 +48,16 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     if (!tabButton) return;
 
     const tabsContainer = this.selected
-      .get('tabber-tabs').querySelectorAll('button');
+      .get('tabber-tabs')
+      .querySelectorAll('button');
     const contentContainer = this.selected
       .get('tabber-content')
       .querySelectorAll('div');
 
     contentContainer.forEach((content) => content.classList.add('hide'));
-    tabsContainer.forEach((tab) => tab.classList.remove('tabber-button--active'));
+    tabsContainer.forEach((tab) =>
+      tab.classList.remove('tabber-button--active'),
+    );
 
     tabButton.classList.add('tabber-button--active');
     tabContent.classList.remove('hide');

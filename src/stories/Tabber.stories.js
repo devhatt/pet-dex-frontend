@@ -20,7 +20,14 @@ export const Default = {
     tabs: [
       { title: 'Aba 1', content: 'Conteúdo da aba 1' },
       { title: 'Aba 2', content: 'Conteúdo da aba 2' },
-      { title: 'Aba 3', content: new Button({ text: 'Cadastrar pet', isFullWidth: true, isDisabled: false }) },
+      {
+        title: 'Aba 3',
+        content: new Button({
+          text: 'Cadastrar pet',
+          isFullWidth: true,
+          isDisabled: false,
+        }),
+      },
       { title: 'Aba 4', content: 'Conteúdo da aba 4' },
     ],
   },
