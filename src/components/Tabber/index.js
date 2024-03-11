@@ -55,7 +55,9 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
       .querySelectorAll('div');
 
     contentContainer.forEach((content) => content.classList.add('hide'));
-    tabsContainer.forEach((tab) => tab.classList.remove('tabber-button--active'));
+    tabsContainer.forEach((tab) =>
+      tab.classList.remove('tabber-button--active'),
+    );
 
     tabButton.classList.add('tabber-button--active');
     tabContent.classList.remove('hide');
@@ -76,7 +78,10 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     if (tabsContainer.children.length === 0) {
       index = 0;
     } else {
-      const lastIndex = parseInt(tabsContainer.lastElementChild.dataset.index, 10);
+      const lastIndex = parseInt(
+        tabsContainer.lastElementChild.dataset.index,
+        10,
+      );
       index = lastIndex + 1;
     }
 
