@@ -106,6 +106,10 @@ $borderHeight: 0.3rem;
       border-radius: $borderHeight 0 0 $borderHeight;
     }
   }
+
+  img {
+    max-height: 1.4rem;
+  }
 }
 
 .tabber-content {

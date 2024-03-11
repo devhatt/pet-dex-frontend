@@ -9,7 +9,7 @@ const html = `
     <div class="tabber-content" data-select="tabber-content"></div>
   </div>
 `;
-
+// todo corrigir bug ao remover e depois adicionar aba > elas ficam com o mesmo index
 export default function Tabber({ tabs }) {
   Component.call(this, { html, events });
 
