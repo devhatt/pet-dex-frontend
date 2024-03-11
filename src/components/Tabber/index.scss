@@ -107,8 +107,10 @@ $borderHeight: 0.3rem;
     }
   }
 
-  img {
+  svg {
     max-height: 1.4rem;
+
+    fill: currentColor;
   }
 }
 

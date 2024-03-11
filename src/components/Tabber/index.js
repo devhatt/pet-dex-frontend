@@ -9,7 +9,7 @@ const html = `
     <div class="tabber-content" data-select="tabber-content"></div>
   </div>
 `;
-// todo corrigir bug ao remover e depois adicionar aba > elas ficam com o mesmo index
+
 export default function Tabber({ tabs }) {
   Component.call(this, { html, events });
 
@@ -55,9 +55,7 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
       .querySelectorAll('div');
 
     contentContainer.forEach((content) => content.classList.add('hide'));
-    tabsContainer.forEach((tab) =>
-      tab.classList.remove('tabber-button--active'),
-    );
+    tabsContainer.forEach((tab) => tab.classList.remove('tabber-button--active'));
 
     tabButton.classList.add('tabber-button--active');
     tabContent.classList.remove('hide');
@@ -74,16 +72,29 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     const tabsContainer = this.selected.get('tabber-tabs');
     const contentContainer = this.selected.get('tabber-content');
 
-    const index = tabsContainer.children.length;
+    let index;
+    if (tabsContainer.children.length === 0) {
+      index = 0;
+    } else {
+      const lastIndex = parseInt(tabsContainer.lastElementChild.dataset.index, 10);
+      index = lastIndex + 1;
+    }
+
     const tabButton = document.createElement('button');
     tabButton.textContent = tab.title;
     tabButton.dataset.index = index;
     tabButton.classList.add('tabber-button');
 
     if (tab.icon) {
-      const icon = document.createElement('img');
-      icon.src = tab.icon;
-      tabButton.appendChild(icon);
+      fetch(tab.icon)
+        .then((response) => response.text())
+        .then((svgContent) => {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = svgContent.trim();
+          const svgElement = tempDiv.querySelector('svg');
+
+          tabButton.appendChild(svgElement);
+        });
     }
 
     tabsContainer.appendChild(tabButton);
