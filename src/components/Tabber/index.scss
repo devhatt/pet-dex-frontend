@@ -52,14 +52,19 @@ $borderHeight: 0.3rem;
 .tabber-button {
   min-height: 4.5rem;
 
+  display: flex;
+  flex-direction: row-reverse;
+
   flex-grow: 1;
+  gap: 0.8rem;
+
+  align-items: center;
+  justify-content: center;
 
   font-family: 'Noto Sans', sans-serif;
   color: colors.$gray600;
-  text-align: center;
   font-size: 1.4rem;
   font-weight: 500;
-  line-height: 1.3;
 
   border: 0;
 
@@ -103,6 +108,10 @@ $borderHeight: 0.3rem;
   }
 }
 
+.tabber-content {
+  padding-top: 1rem;
+}
+
 .hide {
   display: none;
 }
@@ -127,6 +136,10 @@ $borderHeight: 0.3rem;
       &::before {
         content: none;
       }
+    }
+
+    img {
+      display: none;
     }
   }
 

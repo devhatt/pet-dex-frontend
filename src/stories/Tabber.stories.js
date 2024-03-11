@@ -1,5 +1,7 @@
 import Button from '../components/Button';
 import Tabber from '../components/Tabber';
+import iconBirthday from './assets/tabber/birthday.svg';
+import iconHome from './assets/tabber/home.svg';
 
 export default {
   title: 'Components/Tabber',
@@ -18,8 +20,8 @@ export default {
 export const Default = {
   args: {
     tabs: [
-      { title: 'Aba 1', content: 'Conteúdo da aba 1' },
-      { title: 'Aba 2', content: 'Conteúdo da aba 2' },
+      { title: 'Aba 1', icon: iconHome, content: 'Conteúdo da aba 1' },
+      { title: 'Aba 2', icon: iconBirthday, content: 'Conteúdo da aba 2' },
       {
         title: 'Aba 3',
         content: new Button({

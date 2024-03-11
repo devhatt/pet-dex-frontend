@@ -79,6 +79,13 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     tabButton.textContent = tab.title;
     tabButton.dataset.index = index;
     tabButton.classList.add('tabber-button');
+
+    if (tab.icon) {
+      const icon = document.createElement('img');
+      icon.src = tab.icon;
+      tabButton.appendChild(icon);
+    }
+
     tabsContainer.appendChild(tabButton);
 
     const tabContent = document.createElement('div');
