@@ -10,6 +10,37 @@ const html = `
   </div>
 `;
 
+// Uso fetch nessa função porque estou colocando o conteudo do svg direto no DOM.
+// Se eu usasse apenas o path dentro de uma tag IMG, o fill do svg não seria alterado pelo CSS.
+function addIconToButton(tabButton, iconURL) {
+  if (!iconURL) return;
+
+  fetch(iconURL)
+    .then((response) => response.text())
+    .then((svgContent) => {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = svgContent.trim();
+      const svgElement = tempDiv.querySelector('svg');
+
+      tabButton.appendChild(svgElement);
+    });
+}
+
+function createTabElements(tab) {
+  const tabButton = document.createElement('button');
+  tabButton.textContent = tab.title;
+  tabButton.classList.add('tabber-button');
+  addIconToButton(tabButton, tab.icon);
+
+  const tabContent = document.createElement('div');
+  if (typeof tab.content.mount === 'function') {
+    tab.content.mount(tabContent);
+  }
+  tabContent.classList.add('hide');
+
+  return { tabButton, tabContent };
+}
+
 export default function Tabber({ tabs }) {
   Component.call(this, { html, events });
 
@@ -29,7 +60,9 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     return tabButtons[index];
   },
   getContent(index) {
-    const contentContainers = Array.from(this.selected.get('tabber-content').children);
+    const contentContainers = Array.from(
+      this.selected.get('tabber-content').children,
+    );
     return contentContainers[index];
   },
   getCurrentTab() {
@@ -39,7 +72,9 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
   },
   activateTab(e) {
     const tabButtons = Array.from(this.selected.get('tabber-tabs').children);
-    const contentContainers = Array.from(this.selected.get('tabber-content').children);
+    const contentContainers = Array.from(
+      this.selected.get('tabber-content').children,
+    );
 
     const clickedTab = e.target;
     const tabIndex = tabButtons.findIndex((tab) => tab === clickedTab);
@@ -65,37 +100,10 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     const tabsContainer = this.selected.get('tabber-tabs');
     const contentContainer = this.selected.get('tabber-content');
 
-    const { tabButton, tabContent } = this.createTabElements(tab);
+    const { tabButton, tabContent } = createTabElements(tab);
 
     tabsContainer.appendChild(tabButton);
     contentContainer.appendChild(tabContent);
-
-    return { tabButton, tabContent };
-  },
-  // Uso fetch nessa função porque estou colocando o conteudo do svg direto no DOM.
-  // Se eu usasse apenas o path dentro de uma tag IMG, o fill do svg não seria alterado pelo CSS.
-  addIconToButton(tabButton, iconURL) {
-    if (!iconURL) return;
-
-    fetch(iconURL)
-      .then((response) => response.text())
-      .then((svgContent) => {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = svgContent.trim();
-        const svgElement = tempDiv.querySelector('svg');
-
-        tabButton.appendChild(svgElement);
-      });
-  },
-  createTabElements(tab) {
-    const tabButton = document.createElement('button');
-    tabButton.textContent = tab.title;
-    tabButton.classList.add('tabber-button');
-    this.addIconToButton(tabButton, tab.icon);
-
-    const tabContent = document.createElement('div');
-    if (typeof tab.content.mount === 'function') { tab.content.mount(tabContent); }
-    tabContent.classList.add('hide');
 
     tabButton.addEventListener('click', (e) => {
       this.activateTab(e);

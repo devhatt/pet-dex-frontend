@@ -1,16 +1,12 @@
 import { Component } from 'pet-dex-utilities';
 import Button from '../../../components/Button';
-import petUrl from './images/no-pet-regirested-page.png';
+import Tabber from '../../../components/Tabber';
+import iconHome from '../../../stories/assets/tabber/home.svg';
 import './index.scss';
 
 const html = `
   <div data-select="container" class="no-pet-regirested-page">
     <div class="no-pet-regirested-page__content">
-      <div class="no-pet-regirested-page__description">
-        <h1 class="no-pet-regirested-page__title">Você ainda não tem nenhum pet cadastrado</h1>
-        <p class="no-pet-regirested-page__hint">Crie o perfil do seu pet e deixe o nosso site com o focinho do seu filhote!</p>
-      </div>
-      <img class="no-pet-regirested-page__image" src="${petUrl}" alt="dog in an smart phone" />
     </div>
   </div>;
 `;
@@ -20,16 +16,28 @@ export default function NoPetRegirestedPage() {
 
   const $container = this.selected.get('container');
 
-  this.button = new Button({
+  const button = new Button({
     text: 'Cadastrar pet',
     isFullWidth: true,
     isDisabled: false,
   });
 
-  this.button.selected
-    .get('button')
-    .classList.add('no-pet-regirested-page__button');
-  this.button.mount($container);
+  const tabs = [
+    { title: 'Aba 1', icon: iconHome, content: 'Conteúdo da aba 1' },
+    { title: 'Aba 2', content: 'Conteúdo da aba 2' },
+    { title: 'Aba 3', content: button },
+    { title: 'Aba 4', content: 'Conteúdo da aba 4' },
+  ];
+
+  const tabber = new Tabber({ tabs });
+  tabber.mount($container);
+
+  const newTab = { title: 'Nova Aba', content: 'Conteúdo da nova aba' };
+  tabber.addTab(newTab);
+
+  setTimeout(() => {
+    tabber.removeTab(1);
+  }, 5000);
 }
 
 NoPetRegirestedPage.prototype = Object.assign(
