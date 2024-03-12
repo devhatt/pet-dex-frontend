@@ -110,6 +110,8 @@ $borderHeight: 0.3rem;
   svg {
     max-height: 1.4rem;
 
+    pointer-events: none;
+
     fill: currentColor;
   }
 }

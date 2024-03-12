@@ -13,52 +13,45 @@ const html = `
 export default function Tabber({ tabs }) {
   Component.call(this, { html, events });
 
-  tabs.forEach((tab, index) => {
-    const { tabButton } = this.addTab(tab, index);
-    tabButton.addEventListener('click', () => {
-      this.activateTab(index);
-      this.emit('change', index);
-    });
+  tabs.forEach((tab) => {
+    this.addTab(tab);
   });
 
   this.listen('mount', () => {
-    this.activateTab(0);
+    const firstTabButton = this.getTab(0);
+    this.activateTab({ target: firstTabButton });
   });
 }
 
 Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
   getTab(index) {
-    return this.selected
-      .get('tabber-tabs')
-      .querySelector(`button[data-index="${index}"]`);
+    const tabButtons = Array.from(this.selected.get('tabber-tabs').children);
+    return tabButtons[index];
   },
   getContent(index) {
-    return this.selected
-      .get('tabber-content')
-      .querySelector(`div[data-index="${index}"]`);
+    const contentContainers = Array.from(this.selected.get('tabber-content').children);
+    return contentContainers[index];
   },
   getCurrentTab() {
     return this.selected
       .get('tabber-tabs')
       .querySelector('.tabber-button--active');
   },
-  activateTab(index) {
-    const tabButton = this.getTab(index);
-    const tabContent = this.getContent(index);
-    if (!tabButton) return;
+  activateTab(e) {
+    const tabButtons = Array.from(this.selected.get('tabber-tabs').children);
+    const contentContainers = Array.from(this.selected.get('tabber-content').children);
 
-    const tabsContainer = this.selected
-      .get('tabber-tabs')
-      .querySelectorAll('button');
-    const contentContainer = this.selected
-      .get('tabber-content')
-      .querySelectorAll('div');
+    const clickedTab = e.target;
+    const tabIndex = tabButtons.findIndex((tab) => tab === clickedTab);
 
-    contentContainer.forEach((content) => content.classList.add('hide'));
-    tabsContainer.forEach((tab) => tab.classList.remove('tabber-button--active'));
+    if (tabIndex === -1) return;
 
-    tabButton.classList.add('tabber-button--active');
-    tabContent.classList.remove('hide');
+    tabButtons.forEach((tab) => tab.classList.remove('tabber-button--active'));
+    contentContainers.forEach((content) => content.classList.add('hide'));
+
+    contentContainers[tabIndex].classList.remove('hide');
+
+    clickedTab.classList.add('tabber-button--active');
   },
   removeTab(index) {
     const tabButton = this.getTab(index);
@@ -72,49 +65,41 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     const tabsContainer = this.selected.get('tabber-tabs');
     const contentContainer = this.selected.get('tabber-content');
 
-    let index;
-    if (tabsContainer.children.length === 0) {
-      index = 0;
-    } else {
-      const lastIndex = parseInt(
-        tabsContainer.lastElementChild.dataset.index,
-        10,
-      );
-      index = lastIndex + 1;
-    }
-
-    const tabButton = document.createElement('button');
-    tabButton.textContent = tab.title;
-    tabButton.dataset.index = index;
-    tabButton.classList.add('tabber-button');
-
-    if (tab.icon) {
-      fetch(tab.icon)
-        .then((response) => response.text())
-        .then((svgContent) => {
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = svgContent.trim();
-          const svgElement = tempDiv.querySelector('svg');
-
-          tabButton.appendChild(svgElement);
-        });
-    }
+    const { tabButton, tabContent } = this.createTabElements(tab);
 
     tabsContainer.appendChild(tabButton);
-
-    const tabContent = document.createElement('div');
-    tabContent.dataset.index = index;
-    if (typeof tab.content.mount === 'function') {
-      tab.content.mount(tabContent);
-    } else {
-      tabContent.textContent = tab.content;
-    }
-    tabContent.classList.add('hide');
     contentContainer.appendChild(tabContent);
 
-    tabButton.addEventListener('click', () => {
-      this.activateTab(index);
-      this.emit('change', index);
+    return { tabButton, tabContent };
+  },
+  // Uso fetch nessa função porque estou colocando o conteudo do svg direto no DOM.
+  // Se eu usasse apenas o path dentro de uma tag IMG, o fill do svg não seria alterado pelo CSS.
+  addIconToButton(tabButton, iconURL) {
+    if (!iconURL) return;
+
+    fetch(iconURL)
+      .then((response) => response.text())
+      .then((svgContent) => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = svgContent.trim();
+        const svgElement = tempDiv.querySelector('svg');
+
+        tabButton.appendChild(svgElement);
+      });
+  },
+  createTabElements(tab) {
+    const tabButton = document.createElement('button');
+    tabButton.textContent = tab.title;
+    tabButton.classList.add('tabber-button');
+    this.addIconToButton(tabButton, tab.icon);
+
+    const tabContent = document.createElement('div');
+    if (typeof tab.content.mount === 'function') { tab.content.mount(tabContent); }
+    tabContent.classList.add('hide');
+
+    tabButton.addEventListener('click', (e) => {
+      this.activateTab(e);
+      this.emit('change', tab);
     });
 
     return { tabButton, tabContent };
