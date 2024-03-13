@@ -5,11 +5,12 @@
   ],
   "plugins": ["stylelint-order", "stylelint-scss", "stylelint-color-format"],
   "rules": {
+    "function-disallowed-list": ["rgba", "rgb"],
+
     "color-format/format": {
       "format": "rgba"
     },
     "scss/dollar-variable-pattern": "(^[a-z])[A-Za-z0-9]+$",
-
     "max-nesting-depth": 20,
 
     "property-no-unknown": [true, { "ignoreSelectors": [":export"] }],

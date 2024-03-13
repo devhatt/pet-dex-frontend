@@ -1,3 +1,5 @@
+/* stylelint-disable function-disallowed-list */
+
 $appColor: rgb(0, 52, 89);
 $appContentColor: rgb(255, 255, 255);
 $grey150: rgb(236, 239, 242);
@@ -6,3 +8,83 @@ $gray600: rgb(128, 139, 154);
 $blue500: rgb(27, 133, 243);
 $blue600: rgb(18, 104, 204);
 $yellow500: rgb(255, 197, 66);
+
+$white: rgb(255, 255, 255);
+$black: rgb(0, 0, 0);
+
+$primary50: rgb(243, 245, 254);
+$primary100: rgb(206, 217, 249);
+$primary200: rgb(170, 188, 245);
+$primary300: rgb(133, 160, 240);
+$primary400: rgb(73, 112, 233);
+$primary500: rgb(26, 72, 211);
+$primary600: rgb(22, 60, 176);
+$primary700: rgb(15, 42, 123);
+$primary800: rgb(9, 24, 70);
+$primary900: rgb(4, 12, 35);
+
+$secondary50: rgb(242, 251, 255);
+$secondary100: rgb(204, 241, 255);
+$secondary200: rgb(166, 230, 255);
+$secondary300: rgb(115, 216, 254);
+$secondary400: rgb(77, 205, 254);
+$secondary500: rgb(1, 184, 254);
+$secondary600: rgb(1, 169, 233);
+$secondary700: rgb(1, 123, 169);
+$secondary800: rgb(0, 77, 106);
+$secondary900: rgb(0, 31, 42);
+
+$success50: rgb(244, 251, 247);
+$success100: rgb(210, 239, 224);
+$success200: rgb(176, 227, 201);
+$success300: rgb(142, 215, 179);
+$success400: rgb(108, 203, 156);
+$success500: rgb(53, 151, 102);
+$success600: rgb(49, 138, 94);
+$success700: rgb(40, 113, 77);
+$success800: rgb(27, 76, 51);
+$success900: rgb(18, 50, 34);
+
+$warning50: rgb(255, 251, 246);
+$warning100: rgb(255, 239, 220);
+$warning200: rgb(255, 226, 193);
+$warning300: rgb(255, 214, 167);
+$warning400: rgb(255, 198, 132);
+$warning500: rgb(255, 173, 79);
+$warning600: rgb(255, 155, 41);
+$warning700: rgb(251, 134, 0);
+$warning800: rgb(167, 89, 0);
+$warning900: rgb(83, 45, 0);
+
+$error50: rgb(253, 244, 245);
+$error100: rgb(246, 212, 216);
+$error200: rgb(240, 179, 186);
+$error300: rgb(234, 146, 157);
+$error400: rgb(227, 114, 127);
+$error500: rgb(209, 41, 61);
+$error600: rgb(192, 38, 56);
+$error700: rgb(157, 31, 46);
+$error800: rgb(122, 24, 36);
+$error900: rgb(87, 17, 25);
+
+$neutral50: rgb(248, 249, 250);
+$neutral100: rgb(227, 229, 235);
+$neutral200: rgb(206, 210, 220);
+$neutral300: rgb(185, 190, 205);
+$neutral400: rgb(164, 171, 189);
+$neutral500: rgb(115, 125, 154);
+$neutral600: rgb(94, 103, 130);
+$neutral700: rgb(56, 62, 78);
+$neutral800: rgb(28, 31, 39);
+$neutral900: rgb(9, 10, 13);
+
+// $warning50: ;
+// $warning100: ;
+// $warning200: ;
+// $warning300: ;
+// $warning400: ;
+// $warning500: ;
+// $warning600: ;
+// $warning700: ;
+// $warning800: ;
+// $warning900: ;
