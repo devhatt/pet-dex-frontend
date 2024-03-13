@@ -117,11 +117,15 @@ $borderHeight: 0.3rem;
 }
 
 .tabber-content {
-  padding-top: 1rem;
+  padding: 1rem;
 }
 
-.hide {
+.tabber-component {
   display: none;
+
+  &--active {
+    display: block;
+  }
 }
 
 @include breakpoints.from667 {

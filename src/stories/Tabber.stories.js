@@ -20,17 +20,40 @@ export default {
 export const Default = {
   args: {
     tabs: [
-      { title: 'Aba 1', icon: iconHome, content: 'Conteúdo da aba 1' },
-      { title: 'Aba 2', icon: iconBirthday, content: 'Conteúdo da aba 2' },
       {
-        title: 'Aba 3',
+        title: 'Aba 1',
+        icon: iconHome,
         content: new Button({
           text: 'Cadastrar pet',
           isFullWidth: true,
           isDisabled: false,
         }),
       },
-      { title: 'Aba 4', content: 'Conteúdo da aba 4' },
+      {
+        title: 'Aba 2',
+        icon: iconBirthday,
+        content: new Button({
+          text: 'Excluir pet',
+          isFullWidth: true,
+          isDisabled: false,
+        }),
+      },
+      {
+        title: 'Aba 3',
+        content: new Button({
+          text: 'Editar pet',
+          isFullWidth: true,
+          isDisabled: false,
+        }),
+      },
+      {
+        title: 'Aba 4',
+        content: new Button({
+          text: 'Consultar pet',
+          isFullWidth: true,
+          isDisabled: false,
+        }),
+      },
     ],
   },
 };
