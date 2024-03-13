@@ -1,0 +1,47 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.pet-regirested-page {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1.8rem;
+
+  align-items: start;
+  justify-content: center;
+
+  &__button {
+    max-width: 42rem;
+
+    margin-top: 3.2rem;
+  }
+
+  &__pet-card {
+    aspect-ratio: auto;
+
+    cursor: pointer;
+  }
+}
+
+@include breakpoints.from1024 {
+  .pet-regirested-page {
+    &__button {
+      margin-top: 4rem;
+    }
+
+    &__pet-container {
+      display: flex;
+
+      align-items: center;
+    }
+  }
+}
+
+@include breakpoints.from1280 {
+  .pet-regirested-page {
+    &__button {
+      margin-top: 4rem;
+      margin-left: 14rem;
+    }
+  }
+}

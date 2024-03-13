@@ -1,7 +1,6 @@
 import { extractElements } from 'pet-dex-utilities';
 import { initializeSwiper } from '../utils/swiper';
 import Navigation from './components/Navigation';
-import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
 import './index.scss';
 import initializeScrollable from './utils/scrollable-sidemenu';
@@ -20,8 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
   navigation.mount($navigation);
 
   const $content = selected.get('content');
-  const noPetRegirestedPage = new NoPetRegirestedPage();
-  noPetRegirestedPage.mount($content);
+  const petRegisterPage = new PetRegisterPage({ cards });
+  petRegisterPage.mount($content);
+  petRegisterPage.listen('select:card', (card) =>
+    console.log('card da home: ', card.elements),
+  );
 
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');
