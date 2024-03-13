@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['change', 'click', 'removed', 'added'];
+const events = ['change', 'click'];
 
 const html = `
   <div class="tabber-container" data-select="tabber-container">
@@ -14,11 +14,9 @@ const FIRST_TAB = 0;
 
 /*
 Fetch is used here because the SVG content is directly injected into the DOM.
-If only the path were used within an IMG tag, the SVG fill wouldn't be affected by CSS.
+If only the path were used within an IMG tag, the SVG 'fill: color' would not work.
 */
 function addIconToButton(tabButton, iconURL) {
-  if (!iconURL) return;
-
   fetch(iconURL)
     .then((response) => response.text())
     .then((svgContent) => {
@@ -51,7 +49,11 @@ export default function Tabber({ tabs }) {
   });
 
   this.listen('mount', () => {
-    this.activateTab(this.getTab(FIRST_TAB));
+    const tabButtons = this.arrayOfChildren('tabber-tabs');
+    const contentContainers = this.arrayOfChildren('tabber-content');
+
+    tabButtons[FIRST_TAB].classList.add('tabber-button--active');
+    contentContainers[FIRST_TAB].classList.add('tabber-component--active');
   });
 }
 
@@ -77,17 +79,17 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     const tabButtons = this.arrayOfChildren('tabber-tabs');
     const contentContainers = this.arrayOfChildren('tabber-content');
 
-    const tabIndex = tabButtons.findIndex((tab) => tab === target);
+    const previousTab = this.getCurrentTab();
+    const previousTabIndex = tabButtons.findIndex((tab) => tab === previousTab);
+    const actualTab = tabButtons.findIndex((tab) => tab === target);
 
-    if (tabIndex === -1) return;
+    if (actualTab === -1) return;
 
-    tabButtons.forEach((tab) => tab.classList.remove('tabber-button--active'));
-    tabButtons[tabIndex].classList.add('tabber-button--active');
+    tabButtons[previousTabIndex].classList.remove('tabber-button--active');
+    contentContainers[previousTabIndex].classList.remove('tabber-component--active');
 
-    contentContainers.forEach((content) => {
-      content.classList.remove('tabber-component--active');
-    });
-    contentContainers[tabIndex].classList.add('tabber-component--active');
+    tabButtons[actualTab].classList.add('tabber-button--active');
+    contentContainers[actualTab].classList.add('tabber-component--active');
   },
   removeTab(index) {
     const tabButton = this.getTab(index);
