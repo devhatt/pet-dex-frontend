@@ -12,12 +12,13 @@ const html = `
 
 const FIRST_TAB = 0;
 
-/*
-Fetch is used here because the SVG content is directly injected into the DOM.
-If only the path were used within an IMG tag, the SVG 'fill: color' would not work.
-*/
+/**
+ * Fetch is used here because the SVG content is directly injected into the DOM.
+ * If only the path were used within an IMG tag, the SVG 'fill: color' would not work.
+ */
 function addIconToButton(tabButton, iconURL) {
-  fetch(iconURL)
+  if (!iconURL) return Promise.resolve();
+  return fetch(iconURL)
     .then((response) => response.text())
     .then((svgContent) => {
       const tempDiv = document.createElement('div');
@@ -25,7 +26,8 @@ function addIconToButton(tabButton, iconURL) {
       const svgElement = tempDiv.querySelector('svg');
 
       tabButton.appendChild(svgElement);
-    });
+    })
+    .catch((error) => Promise.reject(error));
 }
 
 function createTabElements(tab) {
@@ -44,16 +46,21 @@ function createTabElements(tab) {
 export default function Tabber({ tabs }) {
   Component.call(this, { html, events });
 
+  this.currentTab = {};
+
   tabs.forEach((tab) => {
     this.addTab(tab);
   });
 
   this.listen('mount', () => {
     const tabButtons = this.arrayOfChildren('tabber-tabs');
-    const contentContainers = this.arrayOfChildren('tabber-content');
+    const contentContainer = this.arrayOfChildren('tabber-content');
+
+    this.currentTab.button = tabButtons[FIRST_TAB];
+    this.currentTab.content = contentContainer[FIRST_TAB];
 
     tabButtons[FIRST_TAB].classList.add('tabber-button--active');
-    contentContainers[FIRST_TAB].classList.add('tabber-component--active');
+    contentContainer[FIRST_TAB].classList.add('tabber-component--active');
   });
 }
 
@@ -66,11 +73,6 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     const contentContainers = this.arrayOfChildren('tabber-content');
     return contentContainers[index];
   },
-  getCurrentTab() {
-    return this.selected
-      .get('tabber-tabs')
-      .querySelector('.tabber-button--active');
-  },
   arrayOfChildren(selector) {
     const element = this.selected.get(selector);
     return Array.from(element.children);
@@ -79,17 +81,14 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     const tabButtons = this.arrayOfChildren('tabber-tabs');
     const contentContainers = this.arrayOfChildren('tabber-content');
 
-    const previousTab = this.getCurrentTab();
-    const previousTabIndex = tabButtons.findIndex((tab) => tab === previousTab);
-    const actualTab = tabButtons.findIndex((tab) => tab === target);
+    this.currentTab.button.classList.remove('tabber-button--active');
+    this.currentTab.content.classList.remove('tabber-component--active');
 
-    if (actualTab === -1) return;
+    this.currentTab.button = target;
+    this.currentTab.content = contentContainers[tabButtons.findIndex((tab) => tab === target)];
 
-    tabButtons[previousTabIndex].classList.remove('tabber-button--active');
-    contentContainers[previousTabIndex].classList.remove('tabber-component--active');
-
-    tabButtons[actualTab].classList.add('tabber-button--active');
-    contentContainers[actualTab].classList.add('tabber-component--active');
+    this.currentTab.button.classList.add('tabber-button--active');
+    this.currentTab.content.classList.add('tabber-component--active');
   },
   removeTab(index) {
     const tabButton = this.getTab(index);
