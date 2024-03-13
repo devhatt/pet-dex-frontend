@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import Button from '../../../components/Button';
 import PetCard from '../../../components/PetCard';
-// import ProgressBar from '../../../components/ProgressBar';
 import afghanHound from './images/afghanHound.svg';
 import akita from './images/akita.svg';
 import beagle from './images/beagle.svg';
@@ -14,14 +13,8 @@ import mixedBreed from './images/mixedBreed.svg';
 import './index.scss';
 
 const html = `
-  <div class="pet-regirested-page">
-    <div data-select="container">
-      <div class="pet-regirested-page__content">
-
-      </div>
+    <div data-select="container" class="pet-regirested-page">
     </div>
-  </div>
-
 `;
 
 export default function PetRegisterPage() {
@@ -36,45 +29,46 @@ export default function PetRegisterPage() {
       imgAlt: 'akita',
     },
     {
-      title: 'boxer',
+      title: 'Boxer',
       imgSrc: boxer,
       imgAlt: 'boxer',
     },
     {
-      title: 'beagle',
+      title: 'Beagle',
       imgSrc: beagle,
       imgAlt: 'beagle',
     },
     {
-      title: 'afghanHound',
+      title: 'Afghan Hound',
       imgSrc: afghanHound,
-      imgAlt: 'afghanHound',
+      imgAlt: 'afghan hound',
     },
     {
-      title: 'bichonFrise',
+      title: 'Bichon Frise',
       imgSrc: bichonFrise,
-      imgAlt: 'bichonFrise',
+      imgAlt: 'bichon frise',
     },
     {
-      title: 'chowChow',
+      title: 'Chow Chow',
       imgSrc: chowChow,
-      imgAlt: 'chowChow',
+      imgAlt: 'chow chow',
     },
     {
-      title: 'borderCollie',
+      title: 'Border Collie',
       imgSrc: borderCollie,
-      imgAlt: 'borderCollie',
+      imgAlt: 'border collie',
     },
     {
-      title: 'mixedBreed',
+      title: 'Mixed Breed',
       imgSrc: mixedBreed,
-      imgAlt: 'mixedBreed',
+      imgAlt: 'mixed breed',
     },
   ];
 
   cards.forEach((data) => {
     const card = new PetCard(data);
     card.selected.get('pet-container').classList.add('pet-regirested-page__pet-container');
+    card.selected.get('pet-container').classList.toggle('pet-regirested-page__pet-container--active');
     card.mount($container);
   });
 
@@ -84,6 +78,7 @@ export default function PetRegisterPage() {
     isDisabled: false,
   });
 
+  this.button.selected.get('button').classList.add('pet-regirested-page__button');
   this.button.mount($container);
 }
 

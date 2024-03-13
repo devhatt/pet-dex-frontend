@@ -3,82 +3,43 @@
 
 .pet-regirested-page {
   min-height: 100%;
-
-  // display: grid;
-
-  // place-items: center;
-
   display: flex;
-  flex-direction: column;
 
   align-items: start;
   justify-content: center;
 
-  gap: 2rem;
-
-
-  &__title {
-    color: colors.$gray800;
-    font-size: 2.4rem;
-    font-weight: 700;
-    line-height: 1.25;
-  }
-
-  &__card {
-    background-color: red;
-    width: 100%;
-  }
-
-  &__image {
-    max-width: 100%;
-    width: 1rem;
-
-    margin-top: 2.4rem;
-  }
+  gap: 1.8rem;
+  flex-wrap: wrap;
 
   &__button {
     max-width: 42rem;
-
     margin-top: 3.2rem;
-  }
-
-  &__content {
-    text-align: center;
   }
 
   &__pet-container {
     aspect-ratio: auto;
+    cursor: pointer;
   }
 }
 
 @include breakpoints.from1024 {
-  .no-pet-regirested-page {
-    &__description {
-      max-width: 46rem;
-    }
-
-    &__title {
-      font-size: 3.4rem;
-    }
-
-    &__hint {
-      font-size: 1.8rem;
-
-      margin-top: 2rem;
-    }
-
-    &__image {
-      margin-top: 0;
-    }
-
+  .pet-regirested-page {
     &__button {
       margin-top: 4rem;
     }
 
-    &__content {
+    &__pet-container {
       display: flex;
-
       align-items: center;
+    }
+  }
+}
+
+@include breakpoints.from1280 {
+  .pet-regirested-page {
+    &__button {
+      margin-top: 4rem;
+      margin-left: 14rem;
     }
   }
 }
