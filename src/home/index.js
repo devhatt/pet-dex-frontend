@@ -4,6 +4,7 @@ import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
 import initializeScrollable from './utils/scrollable-sidemenu';
 import './index.scss';
+import PetRegisterPage from './components/PetRegisterPage';
 
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);
@@ -21,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const $content = selected.get('content');
   const noPetRegirestedPage = new NoPetRegirestedPage();
   noPetRegirestedPage.mount($content);
+
+  const $content2 = selected.get('content');
+  const petRegisterPage = new PetRegisterPage();
+  petRegisterPage.mount($content2);
 
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');
