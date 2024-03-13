@@ -15,18 +15,18 @@ const html = `
 export default function Toggle({ checked = false } = {}) {
   Component.call(this, { html, events });
 
-  const id = generateID();
-  this.selected.get('toggle-input').setAttribute('id', id);
-  this.selected.get('toggle-label').setAttribute('for', id);
-
-  this.selected.get('toggle-input').checked = checked;
+  this.setToggle(checked);
 
   this.selected.get('toggle-input').addEventListener('change', () => {
     this.emit('toggle', this.selected.get('toggle-input').checked);
   });
 }
 
-Toggle.prototype = Object.assign(
-  Toggle.prototype,
-  Component.prototype,
-);
+Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {
+  setToggle(checked) {
+    const id = generateID();
+    this.selected.get('toggle-input').setAttribute('id', id);
+    this.selected.get('toggle-label').setAttribute('for', id);
+    this.selected.get('toggle-input').checked = checked;
+  },
+});
