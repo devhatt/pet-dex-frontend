@@ -2,7 +2,7 @@
 
 .button {
   font-family: 'Noto Sans', sans-serif;
-  color: rgb(255, 255, 255);
+  color: colors.$white;
   font-size: 1.6rem;
   font-weight: 500;
 
@@ -19,6 +19,7 @@
 
   &--block {
     width: 100%;
+
     display: block;
   }
 
@@ -29,6 +30,7 @@
 
   &:disabled {
     background: colors.$gray600;
+
     cursor: not-allowed;
   }
 }
