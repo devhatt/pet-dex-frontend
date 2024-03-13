@@ -5,8 +5,14 @@
   ],
   "plugins": ["stylelint-order", "stylelint-scss", "stylelint-color-format"],
   "rules": {
-    "function-disallowed-list": ["rgba", "rgb"],
-
+    "function-disallowed-list": [
+      ["rgba", "rgb"], 
+      { 
+        "message": "Color should come from colors.scss file! take a look at the colors file and update it if needed. (@use '~styles/colors.scss' as colors;)",
+        "severity": "error"
+      }
+    ],
+    
     "color-format/format": {
       "format": "rgba"
     },
