@@ -23,6 +23,7 @@ export default function NoPetRegirestedPage() {
   this.button = new Button({
     text: 'Cadastrar pet',
     isFullWidth: true,
+    isDisabled: false,
   });
 
   this.button.selected

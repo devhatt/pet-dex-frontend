@@ -1,11 +1,134 @@
-.side-menu {
-  &__logo-container {
-    padding-block: 4rem 2rem;
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
 
+.side-menu-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 2rem;
+
+  &__logo-container {
+    display: none;
+    padding-block: 4rem 2rem;
     text-align: center;
   }
 
   &__logo {
     max-width: 100%;
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+  }
+
+  &__notifications {
+    width: 1.6rem;
+    height: 1.95rem;
+  }
+
+  &__perfil {
+    border-radius: 100%;
+    width: 4.3rem;
+    height: 4.3rem;
+  }
+
+  &__exit {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__exitmenu {
+    width: 2.9rem;
+    height: 2.4rem;
+  }
+}
+
+.side-menu-content {
+  width: 28rem;
+  margin: 0 auto;
+  gap: 4.2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__line {
+    border: 0.1rem solid colors.$appContentColor;
+    width: 100%;
+  }
+
+  &__lineinside {
+    margin: 4.2rem 0 4.2rem 0;
+    border: 0.1rem solid colors.$appContentColor;
+    width: 100%;
+  }
+
+  &__yourpet {
+    font-family: fonts.$primaryFont;
+  }
+
+  &__title-yourpet {
+    color: colors.$appContentColor;
+    font-size: 1.6rem;
+    font-style: fonts.$normal;
+    font-weight: fonts.$bold;
+  }
+
+  &__itens {
+    color: colors.$appContentColor;
+    font-family: fonts.$primaryFont;
+    font-size: 1.6rem;
+  }
+
+  &__ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  &__menuitens {
+    display: flex;
+    padding: 1.2rem;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: colors.$appContentColor;
+
+    &--active {
+      background-color: rgb(0, 29, 49);
+      border-radius: 2rem;
+    }
+  }
+}
+
+@include breakpoints.from1024() {
+  .side-menu-nav {
+    &__logo-container {
+      display: block;
+      margin: 0 auto;
+    }
+
+    &__icons {
+      display: none;
+    }
+
+    &__exitmenu {
+      display: none;
+    }
+  }
+
+  .side-menu-content {
+    width: 70%;
+
+    &__menuitens {
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
   }
 }

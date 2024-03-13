@@ -21,30 +21,30 @@ describe('ProgressBar', () => {
     [6, 0],
   ])('it initializes with a specific valid value set', (value, expected) => {
     const progressBar = new ProgressBar(0, 5, value);
-    expect(progressBar.value).toBe(expected);
+    expect(progressBar.currentProgress).toBe(expected);
   });
 
   it('increments value when next is called', () => {
     const progressBar = new ProgressBar(0, 5, 10);
     progressBar.next();
-    expect(progressBar.value).toBe(1);
+    expect(progressBar.currentProgress).toBe(1);
   });
 
   it('keeps the maximum value when next is called and it is already at the maximum', () => {
     const progressBar = new ProgressBar(0, 5, 5);
     progressBar.next();
-    expect(progressBar.value).toBe(progressBar.maximum);
+    expect(progressBar.currentProgress).toBe(progressBar.maximum);
   });
 
   it('decrements value when previous is called', () => {
     const progressBar = new ProgressBar(0, 5, 5);
-    progressBar.previous();
-    expect(progressBar.value).toBe(4);
+    progressBar.prev();
+    expect(progressBar.currentProgress).toBe(4);
   });
 
   it('keeps the minimum value when previous is called and it is already at the minimum', () => {
     const progressBar = new ProgressBar(0, 5, 10);
-    progressBar.previous();
-    expect(progressBar.value).toBe(progressBar.minimum);
+    progressBar.prev();
+    expect(progressBar.currentProgress).toBe(progressBar.minimum);
   });
 });

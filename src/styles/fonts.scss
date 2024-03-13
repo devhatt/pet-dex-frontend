@@ -1,12 +1,14 @@
-$primaryFont: "Montserrat", sans-serif;
+$primaryFont: 'Montserrat', sans-serif;
 $secondaryFont: 'Wix Madefor Display', sans-serif;
 
-$xs: 1.4rem;   
-$md: 2.0rem;
-$lg: 2.4rem;     
-$xl: 3.0rem;
-$_2xl: 3.6rem;
-$_3xl: 4.8rem;
+$xs: 1.4rem;
+$sm: 1.6rem;
+$md: 2rem;
+$lg: 2.4rem;
+$xl: 3rem;
+$xl2: 3.6rem;
+$xl3: 4.8rem;
+$xl4: rem;
 
 $regular: 400;
 $medium: 500;
@@ -17,64 +19,13 @@ $normal: normal;
 $italic: italic;
 $underline: underline;
 
-
-//Estilos de fonte para botão primário
-$buttonFontColor: #FDFDFD;
-$buttonFontFamily: $primaryFont;
-$buttonFontSize: $sm;
-$buttonFontWeight: $fontWeightBold;
-$buttonFontStyle: $fontStyleNormal;
-$buttonLineHeight: 24px;
-
-
-//Estilos de fonte para botão secundário
-$secondaryButtonFontColor: #003459;
-$secondaryButtonFontFamily: $tertiaryFont;
-$secondaryButtonFontSize: $lg;
-$secondaryButtonFontWeight: $fontWeightNormal;
-$secondaryButtonFontStyle: $fontStyleNormal;
-
-
-//Estilos de fonte para os inputs da página de Contato
-$inputFontColor: #8D8D8D;
-$inputFontFamily: $contactPageFont;
-$inputFontSize: 1.2rem;
-$inputFontStyle: $fontStyleNormal;
-$inputFontWeight: $fontWeightNormal;
-$inputLineHeight: 2rem;
-
-
-//Estilos de fonte para a navegação do header
-$headerFontColor: #003459;
-$headerFontFamily: $primaryFont;
-$headerFontSize: $sm;
-$headerFontStyle: $fontStyleNormal;
-$headerFontWeight: $fontWeightRegular;
-$headerLineHeight: 2.4rem;
-
-//Estilos de fonte para a navegação do footer
-$footerFontColor: #FFF;
-$footerFontFamily: $primaryFont;
-$footerFontSize: 1.5rem;
-$footerFontStyle: $fontStyleNormal;
-$footerFontWeight: $fontWeightRegular;
-$footerLetterSpacing: -.205px;
-
-
-//Estilos para textos de descirção do Pet em sua página
-$descriptionPetFontFamily: $primaryFont;
-$descriptionPetFontSize: $xs;
-$descriptionPetFontStyle: $fontStyleNormal;
-$descriptionPetFonteWeight: $fontWeightMedium;
-$descriptionLineHeight: 2rem;
-
 //função para criar estilos tipográficos em geral
-@function getFontStyle($color, $family, $weight, $size, $style) {
-    @return (
-        color: $color,
-        font-family: $family,
-        font-weight: $weight,
-        font-size: $size,
-        font-style: $style,
-    );    
+@function get-font-style($color, $family, $weight, $size, $style) {
+  @return (
+    color: $color,
+    font-family: $family,
+    font-weight: $weight,
+    font-size: $size,
+    font-style: $style
+  );
 }
