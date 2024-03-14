@@ -67,8 +67,9 @@ export default function PetRegisterPage() {
 
   cards.forEach((data) => {
     const card = new PetCard(data);
-    card.selected.get('pet-container').classList.add('pet-regirested-page__pet-container');
-    card.selected.get('pet-container').classList.toggle('pet-regirested-page__pet-container--active');
+    card.selected
+      .get('pet-container')
+      .classList.add('pet-regirested-page__pet-card');
     card.mount($container);
   });
 
@@ -78,7 +79,9 @@ export default function PetRegisterPage() {
     isDisabled: false,
   });
 
-  this.button.selected.get('button').classList.add('pet-regirested-page__button');
+  this.button.selected
+    .get('button')
+    .classList.add('pet-regirested-page__button');
   this.button.mount($container);
 }
 
