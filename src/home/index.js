@@ -1,6 +1,7 @@
 import { extractElements } from 'pet-dex-utilities';
 import Navigation from './components/Navigation';
 import NoPetRegirestedPage from './components/NoPetRegirestedPage';
+import PetRegister from './components/PetRegister';
 import SideMenu from './components/SideMenu';
 import './index.scss';
 
@@ -16,6 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   navigation.mount($navigation);
 
   const $content = selected.get('content');
-  const noPetRegirestedPage = new NoPetRegirestedPage();
+  const noPetRegirestedPage = new PetRegister();
   noPetRegirestedPage.mount($content);
 });
