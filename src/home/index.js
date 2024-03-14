@@ -2,7 +2,7 @@ import { extractElements } from 'pet-dex-utilities';
 import Navigation from './components/navigation';
 // import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
-import Slider from '../components/slider';
+import SeletorDePorte from '../components/SeletorDePorte';
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,6 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // noPetRegirestedPage.mount($content);
 
   const $content = selected.get('content');
-  const slider = new Slider('slider-wrapper__slide');
-  slider.mount($content);
+  const seletor = new SeletorDePorte('slider-wrapper__slide');
+  seletor.mount($content);
 });

@@ -41,7 +41,7 @@ Slider.prototype = Object.assign(Slider.prototype, Component.prototype, {
   StartEvents(childrens) {
     childrens.map((element) => {
       element.addEventListener('pointerdown', () => {
-        this.ChangeDefault(childrens);
+        this.ChangeToDefault(childrens);
         if (element.classList.contains('active')) {
           element.classList.add('active');
         } else {
@@ -51,46 +51,47 @@ Slider.prototype = Object.assign(Slider.prototype, Component.prototype, {
           });
           element.classList.add('active');
         }
-        this.ChangeActive(element);
+        this.ChangeToActive(element);
       });
       return this;
     });
   },
 
-  ChangeDefault(childrens) {
+  ChangeToDefault(childrens) {
     childrens.map((element) => {
-      const item = element.children[0].attributes.src.value;
+      const srcValue = element.children[0].attributes.src.value;
+      const itemSrc = element.children[0].attributes.src;
 
-      if (item === '/components/slider/img/size-small-active.svg') {
-        element.children[0].attributes.src.value =
-          '/components/slider/img/size-small.svg';
+      if (srcValue === '/components/SeletorDePorte/img/size-small-active.svg') {
+        itemSrc.value = '/components/SeletorDePorte/img/size-small.svg';
         element.setAttribute('aria-selected', 'false');
-      } else if (item === '/components/slider/img/size-medium-active.svg') {
-        element.children[0].attributes.src.value =
-          '/components/slider/img/size-medium.svg';
+      } else if (
+        srcValue === '/components/SeletorDePorte/img/size-medium-active.svg'
+      ) {
+        itemSrc.value = '/components/SeletorDePorte/img/size-medium.svg';
         element.setAttribute('aria-selected', 'false');
-      } else if (item === '/components/slider/img/size-large-active.svg') {
-        element.children[0].attributes.src.value =
-          '/components/slider/img/size-large.svg';
+      } else if (
+        srcValue === '/components/SeletorDePorte/img/size-large-active.svg'
+      ) {
+        itemSrc.value = '/components/SeletorDePorte/img/size-large.svg';
         element.setAttribute('aria-selected', 'false');
       }
+      return srcValue;
     });
   },
 
-  ChangeActive(element) {
-    const item = element.children[0].attributes.src.value;
+  ChangeToActive(element) {
+    const srcValue = element.children[0].attributes.src.value;
+    const itemSrc = element.children[0].attributes.src;
 
-    if (item === '/components/slider/img/size-small.svg') {
-      element.children[0].attributes.src.value =
-        '/components/slider/img/size-small-active.svg';
+    if (srcValue === '/components/SeletorDePorte/img/size-small.svg') {
+      itemSrc.value = '/components/SeletorDePorte/img/size-small-active.svg';
       element.setAttribute('aria-selected', 'true');
-    } else if (item === '/components/slider/img/size-medium.svg') {
-      element.children[0].attributes.src.value =
-        '/components/slider/img/size-medium-active.svg';
+    } else if (srcValue === '/components/SeletorDePorte/img/size-medium.svg') {
+      itemSrc.value = '/components/SeletorDePorte/img/size-medium-active.svg';
       element.setAttribute('aria-selected', 'true');
-    } else if (item === '/components/slider/img/size-large.svg') {
-      element.children[0].attributes.src.value =
-        '/components/slider/img/size-large-active.svg';
+    } else if (srcValue === '/components/SeletorDePorte/img/size-large.svg') {
+      itemSrc.value = '/components/SeletorDePorte/img/size-large-active.svg';
       element.setAttribute('aria-selected', 'true');
     }
   },
