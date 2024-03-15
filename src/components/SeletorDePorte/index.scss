@@ -1,5 +1,5 @@
 @use '~styles/colors.scss' as colors;
-// @use '~styles/fonts.scss' as font;
+@use '~styles/fonts.scss' as font;
 
 .slider-wrapper {
   container-type: inline-size;
@@ -30,8 +30,8 @@
     list-style: none;
     border-radius: 18px;
     box-shadow:
-      0px 4px 20px -2px #3232470a,
-      0px 0px 5px 0px #0c1a4b14;
+      0px 4px 20px -2px rgba(50, 50, 71, 0.039),
+      0px 0px 5px 0px rgba(12, 26, 75, 0.078);
     width: 15.6%;
     padding: 3.6rem 0;
 
@@ -57,7 +57,7 @@
       animation-fill-mode: forwards;
 
       & img {
-        background: #d1e6ff;
+        background: colors.$secondary100;
       }
 
       h3,
@@ -65,20 +65,23 @@
         color: colors.$blue500;
       }
 
-      // h3 {
-      //   font: font.$primaryFont, font.$semiBold, font.$md;
-      // }
+      h3 {
+        font: font.$primaryFont, font.$semiBold, font.$sm;
+      }
 
       p {
-        color: #74b4ff;
+        font: font.$secondaryFont, font.$regular, font.$xs;
+        color: colors.$secondary300;
       }
     }
 
     h3 {
+      font: font.$primaryFont, font.$semiBold, font.$xs;
       padding-top: 1.6rem;
     }
 
     p {
+      font: font.$secondaryFont, font.$regular, font.$xs;
       padding-top: 0.6rem;
     }
   }
@@ -86,7 +89,7 @@
   &__image {
     width: 30px;
     height: 30px;
-    background: #eceff2;
+    background: colors.$grey150;
     border-radius: 50%;
     display: block;
     margin: 0 auto;
