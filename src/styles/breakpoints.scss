@@ -1,7 +1,35 @@
-$from1024SizeMin: 1024px;
+$extraSmallDeviceSizeMin: 20em;
+$smallDeviceSizeMin: 22.5em;
+$mediumDeviceSizeMin: 41.6875em;
+$largeDeviceSizeMin: 64em;
+$largestDeviceSizeMin: 80em;
 
-@mixin from1024() {
-  @media (min-width: #{$from1024SizeMin}) {
+@mixin from320 {
+  @media (min-width: $extraSmallDeviceSizeMin) {
+    @content;
+  }
+}
+
+@mixin from360 {
+  @media (min-width: $smallDeviceSizeMin) {
+    @content;
+  }
+}
+
+@mixin from667 {
+  @media (min-width: $mediumDeviceSizeMin) {
+    @content;
+  }
+}
+
+@mixin from1024 {
+  @media (min-width: $largeDeviceSizeMin) {
+    @content;
+  }
+}
+
+@mixin from1280 {
+  @media (min-width: $largestDeviceSizeMin) {
     @content;
   }
 }

@@ -1,0 +1,69 @@
+import { Meta, Source } from '@storybook/blocks';
+
+import Example1PNG from './Example-1.png';
+import Example2PNG from './Example-2.png';
+import ExampleStory2Raw from './Example-2.stories.js?raw';
+import ExampleRaw from './Example.js?raw';
+import ExampleStoryRaw from './Example.stories.js?raw';
+
+<Meta title="Read-me" />
+
+# Read-me
+
+<br />
+
+## O que é o Storybook?
+
+O Storybook permite que os desenvolvedores criem e visualizem componentes de forma isolada,
+facilitando o processo de desenvolvimento e teste de cada elemento da interface. Com o Storybook,
+os desenvolvedores podem criar uma biblioteca de componentes reutilizáveis, documentar suas
+funcionalidades e interações, e testar sua aparência e comportamento em diferentes estados e
+contextos. Isso ajuda as equipes de desenvolvimento a garantir a consistência visual e funcional
+em todo o aplicativo, ao mesmo tempo em que acelera o processo de desenvolvimento e colaboração
+entre os membros da equipe.
+
+<br />
+<br />
+
+## Para que iremos usar o Storybook no contexto do Petdex?
+
+Inicialmente, planejamos utilizar o Storybook principalmente como uma plataforma para visualização
+e documentação dos componentes que compõem nossa interface de usuário.
+
+<br />
+<br />
+
+## Criando um story
+
+Os componentes da interface do usuário são definidos em arquivos separados dentro da pasta <code>"src/stories"</code>,
+cada um representando um elemento específico, como botões, caixas de texto, ou qualquer outra parte da UI.
+
+O arquivo do componente deve obrigatoriamente ter o sufixo <code>.stories.js</code>,
+exemplos: <code>src/stories/Button.stories.js</code>, <code>src/stories/Carousel.stories.js</code>.
+
+Consideremos o seguinte componente de teste <code>Example.js</code>:
+
+<Source code={ExampleRaw} />
+
+Você pode criar um story minimamente como: <br /> <code>src/stories/Example-1.stories.js</code>
+
+<Source code={ExampleStoryRaw} />
+
+E ele estará disponível para ser visualizado:
+
+<img src={Example1PNG} alt="Example preview" />
+
+O Storybook permite que você adicione controles para permitir a edição em tempo real em nossos
+componente. <br/> Vamos agora adicionar controles para o component: <br /> <code>src/stories/Example-2.stories.js</code>
+
+<Source code={ExampleStory2Raw} />
+
+Agora nosso componente já está pronto para ser parametrizado:
+
+<img src={Example2PNG} alt="Example preview 2" />
+
+# Saiba mais
+
+- [Documentação do Storybook](https://storybook.js.org)
+- [Documentação sobre os Stories](https://storybook.js.org/docs/get-started/whats-a-story)
+- [Documentação sobre os argTypes](https://storybook.js.org/docs/api/arg-types)
