@@ -3,7 +3,11 @@ import ProgressBar from '../components/ProgressBar';
 export default {
   title: 'Components/ProgressBar',
   render: (args) => {
-    const progressBar = new ProgressBar(args.minimum, args.maximum, args.startValue);
+    const progressBar = new ProgressBar(
+      args.minimum,
+      args.maximum,
+      args.startValue,
+    );
     const $container = document.createElement('div');
     progressBar.mount($container);
 
