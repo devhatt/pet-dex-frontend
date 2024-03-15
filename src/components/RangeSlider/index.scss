@@ -11,18 +11,18 @@
   align-items: center;
 
   &__button {
-    color: rgb(209, 230, 255);
+    color: colors.$secondary100;
 
     font-size: 2rem;
 
     padding: 1rem;
-    border: 2px solid colors.$blue600;
+    border: 2px solid colors.$primary500;
 
     position: absolute;
     top: 50%;
     left: 50%;
 
-    background-color: colors.$blue500;
+    background-color: colors.$secondary600;
     transform: translate(-50%, -50%);
 
     border-radius: 0.8rem;
@@ -35,7 +35,7 @@
     display: inline-block;
 
     font-family: 'Noto Sans', sans-serif;
-    color: colors.$blue500;
+    color: colors.$secondary600;
 
     text-align: center;
     font-size: 8rem;
@@ -63,21 +63,13 @@
   &__content::before {
     left: 0;
 
-    background: linear-gradient(
-      to right,
-      colors.$appContentColor,
-      rgba(255, 255, 255, 0)
-    );
+    background: linear-gradient(to right, colors.$white, colors.$black);
   }
 
   &__content::after {
     right: 0;
 
-    background: linear-gradient(
-      to left,
-      colors.$appContentColor,
-      rgba(255, 255, 255, 0)
-    );
+    background: linear-gradient(to left, colors.$white, colors.$black);
   }
 
   &__content::before,

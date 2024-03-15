@@ -1,3 +1,5 @@
+@use '~styles/colors.scss' as colors;
+
 .card-container {
   width: 377px;
   height: 500px;
@@ -6,14 +8,14 @@
   display: flex;
   flex-direction: column;
 
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 31%);
+  background-color: colors.$white;
+  box-shadow: 0 4px 8px 0 colors.$boxShadow;
   border-radius: 21px;
 
   &__image {
     height: 73%;
 
-    background-color: rgb(0, 128, 0);
+    background-color: colors.$success500;
   }
 
   &__title {
@@ -39,9 +41,9 @@
     cursor: pointer;
 
     &--active {
-      color: rgb(255, 255, 255);
+      color: colors.$white;
 
-      background-color: rgb(255, 101, 0);
+      background-color: colors.$warning700;
     }
 
     &:hover {
@@ -49,9 +51,9 @@
     }
 
     &--disabled {
-      color: rgb(69, 69, 69);
+      color: colors.$neutral700;
 
-      background-color: rgb(156, 156, 156);
+      background-color: colors.$neutral400;
 
       &:hover {
         transform: none;

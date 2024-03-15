@@ -15,7 +15,7 @@
   grid-template-rows: 8.1rem 1fr;
   grid-template-columns: 100vw 100vw;
 
-  background-color: colors.$appColor;
+  background-color: colors.$primary700;
   transform: translateX(-100vw);
 
   &--open-menu {
@@ -52,7 +52,7 @@
 
     grid-area: content;
 
-    background-color: colors.$appContentColor;
+    background-color: colors.$white;
 
     padding-inline: 2rem;
     padding-block: 3.2rem;

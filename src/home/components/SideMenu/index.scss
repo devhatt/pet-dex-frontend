@@ -63,14 +63,14 @@
   &__line {
     width: 100%;
 
-    border: 0.1rem solid colors.$appContentColor;
+    border: 0.1rem solid colors.$white;
   }
 
   &__lineinside {
     width: 100%;
 
     margin: 4.2rem 0;
-    border: 0.1rem solid colors.$appContentColor;
+    border: 0.1rem solid colors.$white;
   }
 
   &__yourpet {
@@ -78,7 +78,7 @@
   }
 
   &__title-yourpet {
-    color: colors.$appContentColor;
+    color: colors.$white;
     font-size: 1.6rem;
     font-weight: fonts.$bold;
     font-style: fonts.$normal;
@@ -86,7 +86,7 @@
 
   &__itens {
     font-family: fonts.$primaryFont;
-    color: colors.$appContentColor;
+    color: colors.$white;
     font-size: 1.6rem;
   }
 
@@ -104,13 +104,13 @@
 
     align-items: center;
 
-    color: colors.$appContentColor;
+    color: colors.$white;
     text-decoration: none;
 
     padding: 1.2rem;
 
     &--active {
-      background-color: rgb(0, 29, 49);
+      background-color: colors.$secondary900;
       border-radius: 2rem;
     }
   }

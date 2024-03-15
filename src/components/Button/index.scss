@@ -9,7 +9,7 @@
   padding: 1.6rem;
   border: unset;
 
-  background-color: colors.$blue500;
+  background-color: colors.$secondary600;
   border-radius: 1.4rem;
 
   transition: 0.3s ease-in-out;
@@ -24,12 +24,12 @@
   }
 
   &:hover:not(:disabled) {
-    background: colors.$appColor;
+    background: colors.$primary700;
     transform: scale(1.02);
   }
 
   &:disabled {
-    background: colors.$gray600;
+    background: colors.$neutral500;
 
     cursor: not-allowed;
   }

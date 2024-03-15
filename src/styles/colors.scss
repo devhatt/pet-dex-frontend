@@ -5,11 +5,6 @@
 $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
 
-// App colors
-
-$appColor: rgb(0, 52, 89);
-$appContentColor: rgb(255, 255, 255);
-
 // Color Palette
 // Primary colors
 
@@ -89,13 +84,8 @@ $neutral700: rgb(56, 62, 78);
 $neutral800: rgb(28, 31, 39);
 $neutral900: rgb(9, 10, 13);
 
-// Styling colors
+$boxShadow: rgba(100, 100, 100, 0.3);
 
-$blue500: rgb(27, 133, 243);
-$blue600: rgb(18, 104, 204);
-
-$grey150: rgb(236, 239, 242);
-$gray600: rgb(128, 139, 154);
-$gray800: rgb(57, 67, 79);
-
-$yellow500: rgb(255, 197, 66);
+@function set-color-opacity($color, $opacity) {
+  @return rgba($color, $opacity);
+}
