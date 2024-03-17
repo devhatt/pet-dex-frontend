@@ -6,6 +6,7 @@ $borderHeight: 0.3rem;
 
 .tabber-container {
   width: 100%;
+  container-type: inline-size;
 
   display: flex;
   flex-direction: column;
@@ -128,7 +129,7 @@ $borderHeight: 0.3rem;
   }
 }
 
-@include breakpoints.from667 {
+@container (width > #{breakpoints.$mediumDeviceSizeMin}) {
   .tabber-button {
     min-height: 5rem;
 
