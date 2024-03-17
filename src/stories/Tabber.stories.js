@@ -14,6 +14,7 @@ export default {
   },
   argTypes: {
     tabs: { control: 'array', default: [] },
+    activeTabOnInit: { control: 'number', default: 0 },
   },
 };
 
@@ -55,5 +56,6 @@ export const Default = {
         }),
       },
     ],
+    activeTabOnInit: 0,
   },
 };

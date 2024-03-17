@@ -10,8 +10,6 @@ const html = `
   </div>
 `;
 
-const FIRST_TAB = 0;
-
 /**
  * Fetch is used here because the SVG content is directly injected into the DOM.
  * If only the path were used within an IMG tag, the SVG 'fill: color' would not work.
@@ -43,7 +41,7 @@ function createTabElements(tab) {
   return { tabButton, tabContent };
 }
 
-export default function Tabber({ tabs }) {
+export default function Tabber({ tabs, activeTabOnInit = 0 }) {
   Component.call(this, { html, events });
 
   this.currentTab = {};
@@ -56,11 +54,11 @@ export default function Tabber({ tabs }) {
     const tabButtons = this.arrayOfChildren('tabber-tabs');
     const contentContainer = this.arrayOfChildren('tabber-content');
 
-    this.currentTab.button = tabButtons[FIRST_TAB];
-    this.currentTab.content = contentContainer[FIRST_TAB];
+    this.currentTab.button = tabButtons[activeTabOnInit];
+    this.currentTab.content = contentContainer[activeTabOnInit];
 
-    tabButtons[FIRST_TAB].classList.add('tabber-button--active');
-    contentContainer[FIRST_TAB].classList.add('tabber-component--active');
+    tabButtons[activeTabOnInit].classList.add('tabber-button--active');
+    contentContainer[activeTabOnInit].classList.add('tabber-component--active');
   });
 }
 
