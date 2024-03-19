@@ -3,21 +3,24 @@
 
 .pet-regirested-page {
   min-height: 100%;
+
   display: flex;
+  flex-wrap: wrap;
+
+  gap: 1.8rem;
 
   align-items: start;
   justify-content: center;
 
-  gap: 1.8rem;
-  flex-wrap: wrap;
-
   &__button {
     max-width: 42rem;
+
     margin-top: 3.2rem;
   }
 
   &__pet-card {
     aspect-ratio: auto;
+
     cursor: pointer;
   }
 }
@@ -30,6 +33,7 @@
 
     &__pet-container {
       display: flex;
+
       align-items: center;
     }
   }
