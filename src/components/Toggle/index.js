@@ -1,5 +1,5 @@
-import './index.scss';
 import { Component, createIDFactory } from 'pet-dex-utilities';
+import './index.scss';
 
 const generateID = createIDFactory('toggle');
 
