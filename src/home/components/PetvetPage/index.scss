@@ -3,13 +3,15 @@
 @use '~styles/breakpoints' as breakpoints;
 
 .petvet-page {
-  min-width: 100%;
+  min-height: 100%;
+
+  display: grid;
+  place-items: center;
 
   &__content {
     flex-direction: column;
     display: flex;
     align-items: center;
-
   }
 
   &__header {
@@ -66,10 +68,11 @@
   }
   &__checkbox-group {
     display: flex;
+    margin-top: 0.1rem;
   }
   &__button {
     width: 85%;
-    margin-top: 4.5%;
+    margin-top: 3.2rem;
   }
   &__card-content {
     display: grid;
@@ -145,6 +148,16 @@
     display: flex;
     align-items: center;
   }
+
+}
+
+@include breakpoints.from320 {
+  .petvet-page{ 
+    &__checkbox-group {
+      max-width: 70%;
+    }
+  }
+ 
 }
 
 @include breakpoints.from667 {
@@ -183,5 +196,8 @@
       width: 3.2rem;
       height: 1.5rem;
      }
+     &__checkbox-group {
+      max-width: none;
+    }
   }
 }
