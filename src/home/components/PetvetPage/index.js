@@ -78,6 +78,8 @@ export default function PetVetPage() {
   });
   this.button = new Button({
     text: 'Concluir',
+    isFullWidth: true,
+    isDisabled: false,
   });
 
   this.textInput.mount($container);
@@ -88,7 +90,7 @@ export default function PetVetPage() {
 
   $input.classList.add('petvet-page__input-text');
   $button.classList.add('petvet-page__button');
-  $container.querySelector('.petvet-page__content').appendChild($button);
+//   $container.querySelector('.petvet-page__content').appendChild($button);
   $container.querySelector('.petvet-page__card-content.cuidados-especiais').appendChild($input);
 }
 
