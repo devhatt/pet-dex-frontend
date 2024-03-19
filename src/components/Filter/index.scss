@@ -86,29 +86,33 @@
 
     &__container {
       position: relative;
-      
+
       &__button {
         width: 106px;
         height: 38px;
-  
+
         display: flex;
         gap: 8px;
-  
+
         align-items: center;
         justify-content: center;
-  
+
         font-family: fonts.$primaryFont;
         color: colors.set-color-opacity(colors.$neutral500, 0.9);
         text-align: center;
         font-size: fonts.$xs;
         font-weight: fonts.$medium;
-  
+
         border: 1px solid colors.$neutral100;
-  
+
         background: none;
         border-radius: 8px;
-  
+
         cursor: pointer;
+
+        &::before {
+          content: url('img/filter.svg');
+        }
 
         &__counter {
           display: none;
@@ -116,26 +120,28 @@
           &--selected {
             width: 20px;
             height: 20px;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
-            border-radius: 100px;
-            background-color: colors.$white;
+
             color: colors.$secondary800;
+
+            background-color: colors.$white;
+            border-radius: 100px;
           }
         }
 
-        &::before {
-          content: url('img/filter.svg');
-        }
-  
         &:hover {
           background-color: colors.$neutral100;
         }
 
         &--selected {
           color: colors.$white;
+
           border: 1px solid colors.$secondary800;
+
           background: colors.$secondary800;
 
           &::before {

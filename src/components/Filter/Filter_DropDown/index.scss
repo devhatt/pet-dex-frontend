@@ -2,63 +2,67 @@
 @use '~styles/fonts.scss' as fonts;
 
 .filter {
-    
-    &__drop-down {
-        display: none;
-        overflow-y: auto;
+  &__drop-down {
+    min-width: 200px;
 
-        overflow: auto;
+    overflow: auto;
+    overflow-y: auto;
 
-        padding: 24px 16px;
-        margin-bottom: 16px;
-        position: absolute;
+    display: none;
 
-        background-color: colors.set-color-opacity(colors.$white, 0.8);
+    flex-direction: column;
 
-        flex-direction: column;
+    margin-bottom: 16px;
 
-        top: 62px;
-        right: 0;
+    padding: 24px 16px;
+    border: 1px solid colors.$neutral200;
 
-        border-radius: 24px;
-        border: 1px solid colors.$neutral200;
+    position: absolute;
 
-        min-width: 200px;
-      
-        &__title {
-            font-family: fonts.$primaryFont;
-            font-size: fonts.$md;
-            font-weight: fonts.$semiBold;
-            color: colors.$neutral700;
-            margin-bottom: 8px;
-        }
+    top: 62px;
+    right: 0;
 
-        &__hr {
-            border: 1px solid colors.$neutral100;
-            margin-bottom: 16px;
-        }
+    background-color: colors.set-color-opacity(colors.$white, 0.8);
 
-        &__options {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            
-            gap: 8px;
+    border-radius: 24px;
 
-            margin-bottom: 24px;
+    &__title {
+      font-family: fonts.$primaryFont;
+      color: colors.$neutral700;
+      font-size: fonts.$md;
+      font-weight: fonts.$semiBold;
 
-            &__element {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-            }
-
-            &__label {
-                font-family: fonts.$secondaryFont;
-                font-size: fonts.$sm;
-                color: colors.$neutral600;
-            }
-        }
+      margin-bottom: 8px;
     }
+
+    &__hr {
+      margin-bottom: 16px;
+      border: 1px solid colors.$neutral100;
+    }
+
+    &__options {
+      display: flex;
+      flex-direction: column;
+
+      gap: 8px;
+
+      align-items: flex-start;
+      justify-content: center;
+
+      margin-bottom: 24px;
+
+      &__element {
+        display: flex;
+        gap: 4px;
+
+        align-items: center;
+      }
+
+      &__label {
+        font-family: fonts.$secondaryFont;
+        color: colors.$neutral600;
+        font-size: fonts.$sm;
+      }
+    }
+  }
 }

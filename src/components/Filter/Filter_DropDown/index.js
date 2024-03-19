@@ -66,18 +66,25 @@ FilterDropDown.prototype = Object.assign(
     selectedValues: function selectedValues() {
       const $dropDownContainer = this.selected.get('drop-down');
       const $options = $dropDownContainer.querySelectorAll('.filter__drop-down__options__value');
-      const selected = [];
+      const values = [];
+
+      let queryGetString = '';
+
       $options.forEach(($option) => {
         if ($option.checked) {
-          selected.push($option.value);
+          values.push($option.value);
+          queryGetString += `${$option.name}=${$option.value}&`;
         }
       });
-      return selected;
+
+      queryGetString = queryGetString.slice(0, -1);
+      queryGetString = queryGetString.replace(/ /g, '%20');
+      return ({ values, queryGetString });
     },
     selectNewOptions: function selectNewOptions() {
       this.emit('selectNewOptions', this.selectedValues());
     },
-    toogleDisplay: function display() {
+    toogleDisplay: function toogleDisplay() {
       const $dropDownContainer = this.selected.get('drop-down');
       if (!$dropDownContainer.style.display || $dropDownContainer.style.display === 'none') {
         $dropDownContainer.style.display = 'block';
@@ -87,6 +94,10 @@ FilterDropDown.prototype = Object.assign(
       } else {
         $dropDownContainer.style.display = 'none';
       }
+    },
+    isVisible: function isVisible() {
+      const $dropDownContainer = this.selected.get('drop-down');
+      return $dropDownContainer.style.display === 'block';
     },
   },
 );

@@ -12,7 +12,7 @@ const events = ['fetchList'];
  * @property {string} inputPlaceholder - The placeholder text for the filter input.
  * @property {string} [endpoint] - The API endpoint to fetch filter options from.
  * @property {Array} [options] - The array of filter options.
- * @property {string} options[].label - The label for the filter option.
+ * @property {string} options[].title - The label for the filter option.
  * @property {string} options[].type - The type of the filter option (radio or checkbox).
  * @property {Array} options[].values - The values for the filter option.
  */
@@ -40,7 +40,7 @@ const html = `
 function validateFilterOptions(filterOptions) {
   if (!filterOptions) throw new TypeError('Filter options are required');
   if (!filterOptions.inputPlaceholder) throw new TypeError('Filter inputPlaceholder is required');
-  if (!filterOptions.endpoint && !filterOptions.options) throw new TypeError('Filter endpoint or options are required');
+  if (!filterOptions.endpoint) throw new TypeError('Filter endpoint is required');
 }
 
 function hasLabel(filterOptions) {
@@ -51,7 +51,8 @@ export default function Filter(filterOptions) {
   Component.call(this, { html, events });
 
   this.filterOptions = filterOptions;
-  this.selectedOptions = [];
+  this.selectedValues = [];
+  this.queryString = '';
 
   validateFilterOptions(this.filterOptions);
 
@@ -78,17 +79,26 @@ export default function Filter(filterOptions) {
   $inputText.placeholder = this.filterOptions.inputPlaceholder;
 
   this.dropDown = new FilterDropDown(this.filterOptions.options);
+
   $dropDownButton.addEventListener('click', () => {
-    if (this.selectedOptions.length > 0) this.fetchList();
+    if (this.selectedValues.length > 0 && this.dropDown.isVisible()) this.fetchList();
     this.dropDown.toogleDisplay();
   });
 
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.filter__drop-down') && !event.target.closest('.filter__actions__container__button')) {
+      this.dropDown.toogleDisplay();
+    }
+  });
+
   this.dropDown.listen('selectNewOptions', (selectedOptions) => {
-    this.selectedOptions = selectedOptions;
-    $dropDownButton.classList.toggle('filter__actions__container__button--selected', this.selectedOptions.length > 0);
+    this.selectedValues = selectedOptions.values;
+    this.queryString = selectedOptions.queryGetString;
+
+    $dropDownButton.classList.toggle('filter__actions__container__button--selected', this.selectedValues.length > 0);
     const $optionCounter = this.selected.get('drop-down-counter');
-    $optionCounter.classList.toggle('filter__actions__container__button__counter--selected', selectedOptions.length > 0);
-    $optionCounter.innerHTML = this.selectedOptions.length > 0 ? `${this.selectedOptions.length}` : '';
+    $optionCounter.classList.toggle('filter__actions__container__button__counter--selected', this.selectedValues.length > 0);
+    $optionCounter.innerHTML = this.selectedValues.length > 0 ? `${this.selectedValues.length}` : '';
     $dropDownButton.replaceChild($optionCounter, $dropDownButton.firstChild);
   });
 
@@ -100,7 +110,7 @@ Filter.prototype = Object.assign(
   Component.prototype,
   {
     fetchList: function fetchList() {
-      const apiEndPont = this.filterOptions.endpoint + this.selectedOptions.join(',');
+      const apiEndPont = `${this.filterOptions.endpoint}?${this.queryString}`;
       const responseEmit = api(apiEndPont, 'GET').then((response) => response);
       this.emit('fetchList', responseEmit);
     },
