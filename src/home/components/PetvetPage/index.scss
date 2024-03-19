@@ -9,6 +9,7 @@
     flex-direction: column;
     display: flex;
     align-items: center;
+
   }
 
   &__header {
@@ -47,6 +48,11 @@
       margin-right: 20%;
     }
   }
+  &__card-text {
+    font-family: 'Noto Sans', sans-serif;
+    color: colors.$gray800;
+    font-weight: fonts.$regular;
+  }
 
   &__input-text {
     border: none;
@@ -58,9 +64,21 @@
     line-height: 2rem;
     font-family: 'Noto Sans', sans-serif; // falta colocar a font 'Poppins'
   }
-
   &__checkbox-group {
     display: flex;
+  }
+  &__button {
+    width: 85%;
+    margin-top: 4.5%;
+  }
+  &__card-content {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 10% 90%;
+    gap: 2rem;
+  }
+  &__input-text {
+    grid-column: 1/-1;
   }
 
   &__input {
@@ -76,16 +94,11 @@
       }
     }
   }
-
-  &__button {
-    width: 85%;
-    margin-top: 6%;
-  }
-
+  
   &__input input[type='checkbox'] {
     position: relative;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.65rem;
+    height: 1.65rem;
     color: black;
     border: 1px solid gray;
     border-radius: 4px;
@@ -123,6 +136,15 @@
   &__input label {
     margin-left: 1rem;
   }
+  &__text-and-form{
+    margin-left: 2rem;
+  }
+  &__img {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 @include breakpoints.from667 {
@@ -139,22 +161,27 @@
       max-width: 63rem;
       min-width: 63rem;
     }
-    &__input-text {
-      grid-column: 1/-1;
-      width: 94%;
-    }
-    &__card-content {
-      display: grid;
-      grid-template-columns: 0.1fr 2fr 1.3fr;
-      align-items: center;
-      gap: 2rem;
-    }
     &__img {
       margin-right: 5rem;
+      width: 52px;
+      height: 52px;
     }
     &__button {
       width: 30rem;
     }
-  
+    &__text-and-form{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__card-text {
+      font-family: fonts.$primaryFont;
+      color: colors.$gray800;
+      font-weight: fonts.$semiBold;
+    }
+    &__input input[type='checkbox'] {
+      width: 3.2rem;
+      height: 1.5rem;
+     }
   }
 }

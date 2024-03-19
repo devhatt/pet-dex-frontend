@@ -20,43 +20,46 @@ const html = `
             <div class="petvet-page__card">
                 <div class="petvet-page__card-content">
                     <a href="#"><img class="petvet-page__img" src="${estetoscopio}" alt="estetoscopio"></a>
-            
-                    <p class="petvage-page__card-text">O seu pet amigo foi castrado?</p>
-                    <div class="petvet-page__checkbox-group">
-                    <div class="petvet-page__input">
-                        <input name="isRegisteredNo" type="checkbox" >
-                        <label for="isRegisteredNo" class="petvet-page__card--label"> Não </label>
-                      </div>
-                    <div class="petvet-page__input">
-                        <input name="isRegisteredYes" type="checkbox">
-                        <label for="isRegisteredYes" class="petvet-page__card--label"> Sim </label>
+                    <div class="petvet-page__text-and-form">
+                        <p class="petvet-page__card-text">O seu pet amigo foi castrado?</p>
+                        <div class="petvet-page__checkbox-group">
+                            <div class="petvet-page__input">
+                                <input name="isRegisteredNo" type="checkbox">
+                                <label for="isRegisteredNo" class="petvet-page__card--label"> Não </label>
+                            </div>
+                            <div class="petvet-page__input">
+                                <input name="isRegisteredYes" type="checkbox">
+                                <label for="isRegisteredYes" class="petvet-page__card--label"> Sim </label>
+                            </div>
                         </div>
-               
-                </div>
+                    </div>
                 </div>
             </div>
             <div class="petvet-page__card">
                 <div class="petvet-page__card-content cuidados-especiais">
                     <a href="#"><img class="petvet-page__img" src="${cuidadosEspeciais}" alt="cuidados especiais"></a>
-                    <p class="petvage-page__card-text">Cuidados especiais</p>
+                    <div class="petvet-page__text-and-form">
+                    <p class="petvet-page__card-text">Cuidados especiais</p>
                     <div class="petvet-page__checkbox-group">
-                      <div class="petvet-page__input">
-                        <input name="specialCareNo" type="checkbox" >
-                        <label for="specialCareNo" class="petvet-page__card--label"> Não </label>
-                      </div>
-                      <div class="petvet-page__input">
-                        <input name="specialCareYes" type="checkbox">
-                        <label for="specialCareYes" class="petvet-page__card--label"> Sim </label>
+                        <div class="petvet-page__input">
+                            <input name="specialCareNo" type="checkbox">
+                            <label for="specialCareNo" class="petvet-page__card--label"> Não </label>
+                        </div>
+                        <div class="petvet-page__input">
+                            <input name="specialCareYes" type="checkbox">
+                            <label for="specialCareYes" class="petvet-page__card--label"> Sim </label>
                         </div>
                     </div>
-                    
+  </div>
                 </div>
             </div>
             <div class="petvet-page__card">
                 <div class="petvet-page__card-content">
                     <a href="#"><img class="petvet-page__img" src="${vacina}" alt="vacina"></a>
-                    <p class="petvage-page__card-text">Vacinas</p>
-                    <p class="petvage-page__card-text"> +  Adicionar Vacina </p>
+                    <div class="petvet-page__text-and-form">
+                    <p class="petvet-page__card-text">Vacinas</p>
+                    <p class="petvet-page__card-text"> + Adicionar Vacina </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,9 +88,8 @@ export default function PetVetPage() {
 
   $input.classList.add('petvet-page__input-text');
   $button.classList.add('petvet-page__button');
-  $container.getElementsByClassName('petvet-page__content')[0].append($button);
-  $container.getElementsByClassName('petvet-page__card-content cuidados-especiais')[0].append($input);
-
+  $container.querySelector('.petvet-page__content').appendChild($button);
+  $container.querySelector('.petvet-page__card-content.cuidados-especiais').appendChild($input);
 }
 
 PetVetPage.prototype = Object.assign(
