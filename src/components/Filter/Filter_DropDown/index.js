@@ -51,7 +51,9 @@ export default function FilterDropDown(options) {
     addOption($dropDownContainer, option);
   });
 
-  const $options = $dropDownContainer.querySelectorAll('.filter__drop-down__options__value');
+  const $options = $dropDownContainer.querySelectorAll(
+    '.filter__drop-down__options__value',
+  );
   $options.forEach(($option) => {
     $option.addEventListener('change', () => {
       this.selectNewOptions();
@@ -65,7 +67,9 @@ FilterDropDown.prototype = Object.assign(
   {
     selectedValues: function selectedValues() {
       const $dropDownContainer = this.selected.get('drop-down');
-      const $options = $dropDownContainer.querySelectorAll('.filter__drop-down__options__value');
+      const $options = $dropDownContainer.querySelectorAll(
+        '.filter__drop-down__options__value',
+      );
       const values = [];
 
       let queryGetString = '';
@@ -79,14 +83,17 @@ FilterDropDown.prototype = Object.assign(
 
       queryGetString = queryGetString.slice(0, -1);
       queryGetString = queryGetString.replace(/ /g, '%20');
-      return ({ values, queryGetString });
+      return { values, queryGetString };
     },
     selectNewOptions: function selectNewOptions() {
       this.emit('selectNewOptions', this.selectedValues());
     },
     toogleDisplay: function toogleDisplay() {
       const $dropDownContainer = this.selected.get('drop-down');
-      if (!$dropDownContainer.style.display || $dropDownContainer.style.display === 'none') {
+      if (
+        !$dropDownContainer.style.display ||
+        $dropDownContainer.style.display === 'none'
+      ) {
         $dropDownContainer.style.display = 'block';
         const yContainerPosition = $dropDownContainer.getBoundingClientRect().y;
         const windowHeight = window.innerHeight;
