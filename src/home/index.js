@@ -1,7 +1,6 @@
 import { extractElements } from 'pet-dex-utilities';
 import Navigation from './components/Navigation';
 import NoPetRegirestedPage from './components/NoPetRegirestedPage';
-import PetVetPage from './components/PetvetPage';
 import SideMenu from './components/SideMenu';
 import initializeScrollable from './utils/scrollable-sidemenu';
 import './index.scss';
