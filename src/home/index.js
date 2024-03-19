@@ -1,6 +1,6 @@
 import { extractElements } from 'pet-dex-utilities';
 import Navigation from './components/Navigation';
-import NoPetRegirestedPage from './components/NoPetRegirestedPage';
+import PetRegisterPage from './components/PetRegisterPage';
 import SideMenu from './components/SideMenu';
 import initializeScrollable from './utils/scrollable-sidemenu';
 
@@ -19,9 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const navigation = new Navigation();
   navigation.mount($navigation);
 
+  // const $content = selected.get('content');
+  // const noPetRegirestedPage = new NoPetRegirestedPage();
+  // noPetRegirestedPage.mount($content);
+
   const $content = selected.get('content');
-  const noPetRegirestedPage = new NoPetRegirestedPage();
-  noPetRegirestedPage.mount($content);
+  const petRegisterPage = new PetRegisterPage();
+  petRegisterPage.mount($content);
 
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');
