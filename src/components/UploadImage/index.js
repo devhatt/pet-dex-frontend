@@ -5,20 +5,20 @@ import plusIcon from './img/plus-icon.svg';
 import photoIcon from './img/photo-icon.svg';
 
 const html = `
-  <div class="container">
-    <div class="container__animation">
-      <div class="container__circle"></div>
-      <div class="container__circle-duplicate"></div>
+  <div class="container-upload-image">
+    <div class="container-upload-image__animation">
+      <div class="container-upload-image__circle"></div>
+      <div class="container-upload-image__circle-duplicate"></div>
     </div>
-    <label for="input-file" class="container__label">
-      <div class="container__image-container">
-        <img class="container__placeholder-image" src="${placeholderImage}" alt="Placeholder">
-        <img class="container__preview-image hidden" data-select="image-preview" alt="Imagem carregada">
+    <label for="input-file" class="container-upload-image__label">
+      <div class="container-upload-image__image-container">
+        <img class="container-upload-image__placeholder-image" src="${placeholderImage}" alt="Placeholder">
+        <img class="container-upload-image__preview-image hidden" data-select="image-preview" alt="Imagem carregada">
       </div>
-      <div class='container__button'>
+      <div class='container-upload-image__button'>
         <img data-select="button-icon" src="${plusIcon}">
       </div>
-      <input class="container__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input">
+      <input class="container-upload-image__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input">
     </label>
   </div>
 `;
