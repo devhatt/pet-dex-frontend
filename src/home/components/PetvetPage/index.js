@@ -39,26 +39,25 @@ const html = `
                 <div class="petvet-page__card-content cuidados-especiais">
                     <a href="#"><img class="petvet-page__img" src="${cuidadosEspeciais}" alt="cuidados especiais"></a>
                     <div class="petvet-page__text-and-form">
-                    <p class="petvet-page__card-text">Cuidados especiais</p>
-                    <div class="petvet-page__checkbox-group">
-                        <div class="petvet-page__input">
-                            <input name="specialCareNo" type="checkbox">
-                            <label for="specialCareNo" class="petvet-page__card--label"> Não </label>
-                        </div>
-                        <div class="petvet-page__input">
-                            <input name="specialCareYes" type="checkbox">
-                            <label for="specialCareYes" class="petvet-page__card--label"> Sim </label>
+                        <p class="petvet-page__card-text">Cuidados especiais</p>
+                        <div class="petvet-page__checkbox-group">
+                            <div class="petvet-page__input">
+                                <input name="specialCareNo" value="specialCare" type="checkbox">
+                                <label for="specialCareNo" class="petvet-page__card--label"> Não </label>
+                            </div>
+                            <div class="petvet-page__input">
+                                <input name="specialCareYes" value="specialCare" type="checkbox">
+                                <label for="specialCareYes" class="petvet-page__card--label"> Sim </label>
+                            </div>
                         </div>
                     </div>
-  </div>
                 </div>
             </div>
             <div class="petvet-page__card">
                 <div class="petvet-page__card-content">
                     <a href="#"><img class="petvet-page__img" src="${vacina}" alt="vacina"></a>
                     <div class="petvet-page__text-and-form">
-                    <p class="petvet-page__card-text">Vacinas</p>
-                    <p class="petvet-page__card-text"> + Adicionar Vacina </p>
+                        <p class="petvet-page__card-text">Vacinas</p>
                     </div>
                 </div>
             </div>
@@ -78,20 +77,30 @@ export default function PetVetPage() {
   });
   this.button = new Button({
     text: 'Concluir',
-    isFullWidth: true,
+    isFullWidth: false,
     isDisabled: false,
   });
-
   this.textInput.mount($container);
   this.button.mount($container);
 
-  const $input = this.textInput.selected.get('input-text');
+  const $inputText = this.textInput.selected.get('input-text');
   const $button = this.button.selected.get('button');
 
-  $input.classList.add('petvet-page__input-text');
+  $inputText.classList.add('petvet-page__input-text');
   $button.classList.add('petvet-page__button');
-//   $container.querySelector('.petvet-page__content').appendChild($button);
-  $container.querySelector('.petvet-page__card-content.cuidados-especiais').appendChild($input);
+  $container.querySelector('.petvet-page__card-content.cuidados-especiais').appendChild($inputText);
+
+  const emitForm = () => {
+    const formValue = {
+      specialCareText: $inputText.value,
+      isSpecialCare: false,
+      isRegistered: false
+      // aguardando componente de input
+    };
+    this.emit('value', formValue);
+  };
+
+  this.button.listen('click', emitForm);
 }
 
 PetVetPage.prototype = Object.assign(
