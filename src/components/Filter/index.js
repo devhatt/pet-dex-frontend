@@ -20,8 +20,8 @@ const events = ['fetchList'];
 const html = `
   <div class="filter">
     <label class="filter__label" data-select="text">
-        <p><b class="filter__label__bold" data-select="boldText"></b></p>
-        <p class="filter__label__regular" data-select="regularText"></p>
+        <p><b class="filter__label__bold" data-select="bold-text"></b></p>
+        <p class="filter__label__regular" data-select="regular-text"></p>
     </label>
     <div class="filter__actions">
       <span class="filter__actions__input__icon">
@@ -39,10 +39,8 @@ const html = `
 
 function validateFilterOptions(filterOptions) {
   if (!filterOptions) throw new TypeError('Filter options are required');
-  if (!filterOptions.inputPlaceholder)
-    throw new TypeError('Filter inputPlaceholder is required');
-  if (!filterOptions.endpoint)
-    throw new TypeError('Filter endpoint is required');
+  if (!filterOptions.inputPlaceholder) throw new TypeError('Filter inputPlaceholder is required');
+  if (!filterOptions.endpoint) throw new TypeError('Filter endpoint is required');
 }
 
 function hasLabel(filterOptions) {
@@ -52,52 +50,76 @@ function hasLabel(filterOptions) {
 export default function Filter(filterOptions) {
   Component.call(this, { html, events });
 
+  validateFilterOptions(filterOptions);
+
   this.filterOptions = filterOptions;
   this.selectedValues = [];
   this.queryString = '';
 
-  validateFilterOptions(this.filterOptions);
-
-  if (this.filterOptions.endpoint && !this.filterOptions.options) {
-    api(this.filterOptions.endpoint, 'OPTIONS').then((response) => {
-      this.filterOptions.options = response;
-    });
-  }
-
-  const $textConteiner = this.selected.get('text');
-  const $boldText = this.selected.get('boldText');
-  const $regularText = this.selected.get('regularText');
   const $inputText = this.selected.get('input-text');
   const $dropDownContainer = this.selected.get('drop-down-conteiner');
   const $dropDownButton = this.selected.get('drop-down-button');
 
-  if (hasLabel(this.filterOptions)) {
-    $boldText.innerHTML = this.filterOptions.boldText;
-    $regularText.innerHTML = this.filterOptions.regularText;
-  } else {
-    $textConteiner.style.display = 'none';
-  }
+  this.displayText();
 
   $inputText.placeholder = this.filterOptions.inputPlaceholder;
 
-  this.dropDown = new FilterDropDown(this.filterOptions.options);
+  const dropDownOptions = this.fetchOptions();
+  this.dropDown = new FilterDropDown(dropDownOptions);
+  document.addEventListener('click', this.documentClickHandler.bind(this));
 
   $dropDownButton.addEventListener('click', () => {
-    if (this.selectedValues.length > 0 && this.dropDown.isVisible())
-      this.fetchList();
-    this.dropDown.toogleDisplay();
-  });
-
-  document.addEventListener('click', (event) => {
-    if (
-      !event.target.closest('.filter__drop-down') &&
-      !event.target.closest('.filter__actions__container__button')
-    ) {
-      this.dropDown.toogleDisplay();
-    }
+    this.buttonHandler($inputText.value);
   });
 
   this.dropDown.listen('selectNewOptions', (selectedOptions) => {
+    this.selectNewOptionsHandler(selectedOptions, $dropDownButton);
+  });
+
+  this.dropDown.mount($dropDownContainer);
+}
+
+Filter.prototype = Object.assign(Filter.prototype, Component.prototype, {
+  fetchList: function fetchList(inputString) {
+    const apiEndPont = `${this.filterOptions.endpoint}?${this.queryString}&search=${inputString.replace(/ /g, '%20')}`;
+    const responseEmit = api(apiEndPont, 'GET').then((response) => response);
+    this.emit('fetchList', responseEmit);
+  },
+  fetchOptions: function fetchOptions() {
+    if (!this.filterOptions.options.length) {
+      api(this.filterOptions.endpoint, 'OPTIONS').then((response) => {
+        this.filterOptions.options = response;
+      });
+    }
+    return this.filterOptions.options;
+  },
+  displayText: function displayText() {
+    const $textConteiner = this.selected.get('text');
+    const $boldText = this.selected.get('bold-text');
+    const $regularText = this.selected.get('regular-text');
+    if (hasLabel(this.filterOptions)) {
+      $boldText.innerHTML = this.filterOptions.boldText;
+      $regularText.innerHTML = this.filterOptions.regularText;
+    } else {
+      $textConteiner.style.display = 'none';
+    }
+  },
+  buttonHandler: function buttonHandler(inputString) {
+    if (this.selectedValues.length > 0 && this.dropDown.isVisible()) {
+      this.fetchList(inputString);
+    }
+    this.dropDown.toogleDisplay();
+  },
+  documentClickHandler: function documentClickHandler(event) {
+    if (
+      this.dropDown.isVisible()
+      && !event.target.closest('.filter__drop-down')
+      && !event.target.closest('.filter__actions__container__button')
+    ) {
+      this.dropDown.toogleDisplay();
+    }
+  },
+  selectNewOptionsHandler: function selectNewOptionsHandler(selectedOptions, $dropDownButton) {
     this.selectedValues = selectedOptions.values;
     this.queryString = selectedOptions.queryGetString;
 
@@ -110,18 +132,7 @@ export default function Filter(filterOptions) {
       'filter__actions__container__button__counter--selected',
       this.selectedValues.length > 0,
     );
-    $optionCounter.innerHTML =
-      this.selectedValues.length > 0 ? `${this.selectedValues.length}` : '';
+    $optionCounter.innerHTML = this.selectedValues.length > 0 ? `${this.selectedValues.length}` : '';
     $dropDownButton.replaceChild($optionCounter, $dropDownButton.firstChild);
-  });
-
-  this.dropDown.mount($dropDownContainer);
-}
-
-Filter.prototype = Object.assign(Filter.prototype, Component.prototype, {
-  fetchList: function fetchList() {
-    const apiEndPont = `${this.filterOptions.endpoint}?${this.queryString}`;
-    const responseEmit = api(apiEndPont, 'GET').then((response) => response);
-    this.emit('fetchList', responseEmit);
   },
 });

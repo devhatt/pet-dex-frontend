@@ -21,6 +21,7 @@ export const Default = {
     boldText: 'Qual é a raça do seu animal de estimação?',
     regularText: 'Deixe-nos saber que tipo e o seu animal de estimação',
     inputPlaceholder: 'Pesquise por uma espécie',
+    endpoint: 'https://api.mock.com/v1/breeds',
     options: [
       {
         title: 'Raça',
@@ -45,6 +46,7 @@ export const Default = {
 export const DesktopNoTitle = {
   args: {
     inputPlaceholder: 'Pesquise por uma espécie',
+    endpoint: 'https://api.mock.com/v1/breeds',
     options: [
       {
         title: 'Raça',
@@ -71,6 +73,7 @@ export const Mobile = {
     boldText: 'Qual é a raça do seu animal de estimação?',
     regularText: 'Deixe-nos saber que tipo e o seu animal de estimação',
     inputPlaceholder: 'Pesquise por uma espécie',
+    endpoint: 'https://api.mock.com/v1/breeds',
     options: [
       {
         title: 'Raça',
@@ -96,6 +99,7 @@ export const Mobile = {
 export const MobileNoTitle = {
   args: {
     inputPlaceholder: 'Pesquise por uma espécie',
+    endpoint: 'https://api.mock.com/v1/breeds',
     options: [
       {
         title: 'Raça',
