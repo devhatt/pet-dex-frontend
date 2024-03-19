@@ -1,8 +1,9 @@
 import { Component } from 'pet-dex-utilities';
+import FilterDropDown from './Filter_DropDown';
 import './index.scss';
 import { api } from '../../utils/api/api';
 
-const events = [];
+const events = ['fetchList'];
 
 /**
  * @typedef {Object} FilterOptions
@@ -26,7 +27,12 @@ const html = `
       <span class="filter__actions__input__icon">
         <input class="filter__actions__input" type="text" data-select="input-text" placeholder="" />
       </span>
-      <div class="filter__actions__button">Filtrar</div>
+      <div class="filter__actions__container" data-select="drop-down-conteiner">
+        <div class="filter__actions__container__button" data-select="drop-down-button">
+          <span class="filter__actions__container__button__counter" data-select="drop-down-counter"></span>
+          Filtrar
+        </div>
+      </div>
     </div>
   </div>
 `;
@@ -37,40 +43,66 @@ function validateFilterOptions(filterOptions) {
   if (!filterOptions.endpoint && !filterOptions.options) throw new TypeError('Filter endpoint or options are required');
 }
 
+function hasLabel(filterOptions) {
+  return filterOptions.boldText || filterOptions.regularText;
+}
+
 export default function Filter(filterOptions) {
   Component.call(this, { html, events });
 
-  this.filterOptions = filterOptions || {
-    // boldText: 'Qual é a raça do seu animal de estimação?',
-    regularText: 'Deixe-nos saber que tipo e o seu animal de estimação',
-    inputPlaceholder: 'Pesquise por uma espécie',
-  };
+  this.filterOptions = filterOptions;
+  this.selectedOptions = [];
 
-  // remover
-  this.filterOptions.endpoint = 'https://api.thecatapi.com/v1/breeds';
   validateFilterOptions(this.filterOptions);
-  if (this.filterOptions.endpoint) {
-    api(this.filterOptions.endpoint, 'GET').then((response) => {
+
+  if (this.filterOptions.endpoint && !this.filterOptions.options) {
+    api(this.filterOptions.endpoint, 'OPTIONS').then((response) => {
       this.filterOptions.options = response;
     });
   }
 
-  console.log(this.filterOptions);
-
+  const $textConteiner = this.selected.get('text');
   const $boldText = this.selected.get('boldText');
   const $regularText = this.selected.get('regularText');
   const $inputText = this.selected.get('input-text');
+  const $dropDownContainer = this.selected.get('drop-down-conteiner');
+  const $dropDownButton = this.selected.get('drop-down-button');
 
-  // this.selected.get('text').style.display = 'none';
+  if (hasLabel(this.filterOptions)) {
+    $boldText.innerHTML = this.filterOptions.boldText;
+    $regularText.innerHTML = this.filterOptions.regularText;
+  } else {
+    $textConteiner.style.display = 'none';
+  }
 
-  $boldText.innerText = this.filterOptions.boldText ? this.filterOptions.boldText : '';
-  $regularText.innerText = this.filterOptions.regularText ? this.filterOptions.regularText : '';
   $inputText.placeholder = this.filterOptions.inputPlaceholder;
+
+  this.dropDown = new FilterDropDown(this.filterOptions.options);
+  $dropDownButton.addEventListener('click', () => {
+    if (this.selectedOptions.length > 0) this.fetchList();
+    this.dropDown.toogleDisplay();
+  });
+
+  this.dropDown.listen('selectNewOptions', (selectedOptions) => {
+    this.selectedOptions = selectedOptions;
+    $dropDownButton.classList.toggle('filter__actions__container__button--selected', this.selectedOptions.length > 0);
+    const $optionCounter = this.selected.get('drop-down-counter');
+    $optionCounter.classList.toggle('filter__actions__container__button__counter--selected', selectedOptions.length > 0);
+    $optionCounter.innerHTML = this.selectedOptions.length > 0 ? `${this.selectedOptions.length}` : '';
+    $dropDownButton.replaceChild($optionCounter, $dropDownButton.firstChild);
+  });
+
+  this.dropDown.mount($dropDownContainer);
 }
 
 Filter.prototype = Object.assign(
   Filter.prototype,
   Component.prototype,
   {
+    fetchList: function fetchList() {
+      const apiEndPont = this.filterOptions.endpoint + this.selectedOptions.join(',');
+      const responseEmit = api(apiEndPont, 'GET').then((response) => response);
+      this.emit('fetchList', responseEmit);
+    },
   },
 );

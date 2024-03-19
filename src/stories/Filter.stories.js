@@ -21,6 +21,42 @@ export const Default = {
     boldText: 'Qual é a raça do seu animal de estimação?',
     regularText: 'Deixe-nos saber que tipo e o seu animal de estimação',
     inputPlaceholder: 'Pesquise por uma espécie',
+    options: [
+      {
+        title: 'Raça',
+        type: 'radio',
+        values: ['Cachorro', 'Gato', 'Pássaro', 'Peixe'],
+      },
+      {
+        title: 'Porte',
+        type: 'radio',
+        values: ['Pequeno', 'Médio', 'Grande'],
+      },
+    ],
+  },
+
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop',
+    },
+  },
+};
+
+export const DesktopNoTitle = {
+  args: {
+    inputPlaceholder: 'Pesquise por uma espécie',
+    options: [
+      {
+        title: 'Raça',
+        type: 'checkbox',
+        values: ['Cachorro', 'Gato', 'Pássaro', 'Peixe'],
+      },
+      {
+        title: 'Porte',
+        type: 'radio',
+        values: ['Pequeno', 'Médio', 'Grande'],
+      },
+    ],
   },
 
   parameters: {
@@ -35,6 +71,18 @@ export const Mobile = {
     boldText: 'Qual é a raça do seu animal de estimação?',
     regularText: 'Deixe-nos saber que tipo e o seu animal de estimação',
     inputPlaceholder: 'Pesquise por uma espécie',
+    options: [
+      {
+        title: 'Raça',
+        type: 'radio',
+        values: ['Cachorro', 'Gato', 'Pássaro', 'Peixe'],
+      },
+      {
+        title: 'Porte',
+        type: 'radio',
+        values: ['Pequeno', 'Médio', 'Grande'],
+      },
+    ],
   },
 
   parameters: {
@@ -43,4 +91,28 @@ export const Mobile = {
     },
   },
 
+};
+
+export const MobileNoTitle = {
+  args: {
+    inputPlaceholder: 'Pesquise por uma espécie',
+    options: [
+      {
+        title: 'Raça',
+        type: 'checkbox',
+        values: ['Cachorro', 'Gato', 'Pássaro', 'Peixe'],
+      },
+      {
+        title: 'Porte',
+        type: 'radio',
+        values: ['Pequeno', 'Médio', 'Grande'],
+      },
+    ],
+  },
+
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
 };

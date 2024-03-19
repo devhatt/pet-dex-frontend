@@ -23,7 +23,7 @@
     }
 
     &__bold {
-      font-family: Montserrat;
+      font-family: fonts.$primaryFont;
       color: colors.$neutral700;
       font-size: 1.8rem;
       font-weight: fonts.$semiBold;
@@ -84,35 +84,68 @@
       }
     }
 
-    &__button {
-      width: 106px;
-      height: 38px;
+    &__container {
+      position: relative;
+      
+      &__button {
+        width: 106px;
+        height: 38px;
+  
+        display: flex;
+        gap: 8px;
+  
+        align-items: center;
+        justify-content: center;
+  
+        font-family: fonts.$primaryFont;
+        color: colors.set-color-opacity(colors.$neutral500, 0.9);
+        text-align: center;
+        font-size: fonts.$xs;
+        font-weight: fonts.$medium;
+  
+        border: 1px solid colors.$neutral100;
+  
+        background: none;
+        border-radius: 8px;
+  
+        cursor: pointer;
 
-      display: flex;
-      gap: 8px;
+        &__counter {
+          display: none;
 
-      align-items: center;
-      justify-content: center;
+          &--selected {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100px;
+            background-color: colors.$white;
+            color: colors.$secondary800;
+          }
+        }
 
-      font-family: fonts.$primaryFont;
-      color: colors.set-color-opacity(colors.$neutral500, 0.9);
-      text-align: center;
-      font-size: fonts.$xs;
-      font-weight: fonts.$medium;
+        &::before {
+          content: url('img/filter.svg');
+        }
+  
+        &:hover {
+          background-color: colors.$neutral100;
+        }
 
-      border: 1px solid colors.$neutral100;
+        &--selected {
+          color: colors.$white;
+          border: 1px solid colors.$secondary800;
+          background: colors.$secondary800;
 
-      background: none;
-      border-radius: 8px;
+          &::before {
+            content: none;
+          }
 
-      cursor: pointer;
-
-      &::before {
-        content: url('img/filter.svg');
-      }
-
-      &:hover {
-        background-color: colors.$neutral100;
+          &:hover {
+            background-color: colors.$secondary900;
+          }
+        }
       }
     }
   }
@@ -141,7 +174,7 @@
         }
       }
 
-      &__button {
+      &__container {
         display: none;
       }
     }
