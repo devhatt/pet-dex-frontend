@@ -17,10 +17,18 @@ const html = `
     </div>
 `;
 
+const events = ['click', 'active'];
+
 export default function PetRegisterPage() {
-  Component.call(this, { html });
+  Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
+
+  const $button = new Button({
+    text: 'Continuar',
+    isFullWidth: true,
+    isDisabled: true,
+  });
 
   const cards = [
     {
@@ -71,18 +79,19 @@ export default function PetRegisterPage() {
       .get('pet-container')
       .classList.add('pet-regirested-page__pet-card');
     card.mount($container);
+
+    card.selected.get('pet-container').addEventListener('click', () => {
+      card.toggle();
+      $button.enable();
+      // consegui deixar o button desabilitado até que o pet-card seja clicado,
+      // o card não esta respondendo, ou o botão ativa ou o card ativa
+    });
   });
 
-  this.button = new Button({
-    text: 'Continuar',
-    isFullWidth: true,
-    isDisabled: false,
-  });
-
-  this.button.selected
+  $button.selected
     .get('button')
     .classList.add('pet-regirested-page__button');
-  this.button.mount($container);
+  $button.mount($container);
 }
 
 PetRegisterPage.prototype = Object.assign(

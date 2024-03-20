@@ -25,9 +25,8 @@ export default function PetCard({ title, imgSrc, imgAlt }) {
   petContainer.addEventListener('mouseenter', () => {
     if (petTitle.scrollHeight > petTitle.clientHeight) {
       petContainer.classList.add('pet-container__title--extended');
-      petImage.style.marginBottom = `-${
-        petTitle.scrollHeight - petTitle.clientHeight
-      }px`;
+      petImage.style.marginBottom = `-${petTitle.scrollHeight - petTitle.clientHeight
+        }px`;
     }
   });
 
