@@ -1,0 +1,161 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as font;
+
+.selector-wrapper {
+  container-type: inline-size;
+
+  img,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    gap: 2.4rem;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+    list-style: none;
+    border-radius: 18px;
+    box-shadow:
+      0px 4px 20px -2px rgba(50, 50, 71, 0.039),
+      0px 0px 5px 0px rgba(12, 26, 75, 0.078);
+    width: 15.6%;
+    padding: 3.6rem 0;
+
+    border: 3px solid transparent;
+
+    &:first-child img {
+      width: 10px;
+      height: 10px;
+      padding: 2rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      border: 3px solid colors.$blue500;
+
+      transition: 0.2s ease-in-out;
+      transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+      animation: scale 0.2s linear;
+      animation-fill-mode: forwards;
+
+      & img {
+        background: colors.$secondary100;
+      }
+
+      h3,
+      img {
+        color: colors.$blue500;
+      }
+
+      h3 {
+        font: font.$primaryFont;
+      }
+
+      p {
+        font: font.$secondaryFont, font.$regular, font.$xs;
+        color: colors.$secondary300;
+      }
+    }
+
+    h3 {
+      font: font.$primaryFont, font.$semiBold, font.$xs;
+      padding-top: 1.6rem;
+    }
+
+    p {
+      font: font.$secondaryFont, font.$regular, font.$xs;
+      padding-top: 0.6rem;
+    }
+  }
+
+  &__image {
+    width: 30px;
+    height: 30px;
+    background: colors.$grey150;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+}
+
+@container (max-width: 38em) {
+  .selector-wrapper {
+    &__item {
+      width: 18%;
+      padding: 2.8rem 0;
+    }
+
+    &__image {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+@container (max-width: 32em) {
+  .selector-wrapper {
+    &__slide {
+      gap: 2.6rem;
+    }
+
+    &__item {
+      width: 22%;
+      padding: 2.4rem 0;
+    }
+  }
+}
+
+@container (max-width: 25em) {
+  .selector-wrapper {
+    &__slide {
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    &__item {
+      width: 34%;
+      padding: 2.2rem 0;
+
+      &:first-child img {
+        width: 10px;
+        height: 10px;
+        padding: 1.4rem;
+      }
+    }
+
+    &__image {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    -webkit-transform: scale3d(1);
+    transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale3d(1.1);
+    transform: scale(1.2);
+  }
+}
