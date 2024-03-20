@@ -1,0 +1,55 @@
+@use '~styles/colors.scss' as colors;
+
+.toggle-container {
+  display: inline-block;
+
+  position: relative;
+
+  &__input {
+    width: 0;
+    height: 0;
+
+    position: absolute;
+
+    opacity: 0;
+
+    &:checked + .toggle-container__label {
+      background-color: colors.$blue500;
+
+      &::after {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &__label {
+    min-width: 4.4rem;
+    min-height: 2.4rem;
+
+    display: flex;
+
+    align-items: center;
+
+    background-color: colors.$gray100;
+    border-radius: 3.4rem;
+
+    transition: background-color 0.3s;
+
+    cursor: pointer;
+
+    &::after {
+      width: 41%;
+      height: 75%;
+
+      position: absolute;
+      left: 10%;
+
+      background-color: colors.$appContentColor;
+      border-radius: 50%;
+
+      transition: transform 0.3s;
+
+      content: '';
+    }
+  }
+}
