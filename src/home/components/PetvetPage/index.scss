@@ -31,7 +31,7 @@
       font-size: fonts.$xs;
       line-height: 2.2rem;
       font-weight: fonts.$regular;
-      font-family: 'Noto Sans', sans-serif;
+      font-family: fonts.$notoSansFont;
     }
   }
 
@@ -51,7 +51,7 @@
     }
   }
   &__card-text {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: fonts.$notoSansFont;
     color: colors.$gray800;
     font-weight: fonts.$regular;
   }
@@ -64,7 +64,7 @@
     font-weight: fonts.$regular;
     font-size: fonts.$xs;
     line-height: 2rem;
-    font-family: 'Noto Sans', sans-serif; // falta colocar a font 'Poppins'
+    font-family: fonts.$poppinsFont; 
   }
   &__checkbox-group {
     display: flex;
@@ -141,8 +141,6 @@
   }
   &__text-and-form{
     margin-left: 2rem;
-    
-  
   }
   &__img {
     width: 42px;
