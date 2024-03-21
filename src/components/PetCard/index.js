@@ -24,8 +24,9 @@ export default function PetCard({ title, imgSrc, imgAlt }) {
   petContainer.addEventListener('mouseenter', () => {
     if (petTitle.scrollHeight > petTitle.clientHeight) {
       petContainer.classList.add('pet-container__title--extended');
-      petImage.style.marginBottom = `-${petTitle.scrollHeight - petTitle.clientHeight
-        }px`;
+      petImage.style.marginBottom = `-${
+        petTitle.scrollHeight - petTitle.clientHeight
+      }px`;
     }
   });
 
@@ -57,7 +58,9 @@ PetCard.prototype = Object.assign(PetCard.prototype, Component.prototype, {
     this.selected.get('pet-image').alt = alt;
   },
   isActive() {
-    return this.selected.get('pet-container').classList.contains('pet-container--active');
+    return this.selected
+      .get('pet-container')
+      .classList.contains('pet-container--active');
   },
   toggle() {
     if (this.isActive()) this.desactive();

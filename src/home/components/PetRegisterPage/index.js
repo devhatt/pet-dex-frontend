@@ -38,11 +38,13 @@ export default function PetRegisterPage({ cards = [] } = {}) {
 
       cardActive = card;
       this.emit('select:card', card);
+      $button.enable();
     });
 
     card.listen('desactive', () => {
       if (cardActive === card) {
         cardActive = null;
+        $button.disable();
       }
     });
   });
@@ -50,12 +52,8 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   $button.selected.get('button').classList.add('pet-regirested-page__button');
   $button.mount($container);
 }
-
-PetRegisterPage.prototype = Object.assign(
-  PetRegisterPage.prototype,
-  Component.prototype,
-  // TODO
-  /**
+// TODO
+/**
    *  1 - precisa de add card
       2 - remove card
       3 - active card
@@ -64,4 +62,7 @@ PetRegisterPage.prototype = Object.assign(
 
       EVENTOS para mudança de card,
    */
-);
+
+PetRegisterPage.prototype = Object.assign(PetRegisterPage.prototype, Component.prototype, {
+
+});

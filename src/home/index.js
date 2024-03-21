@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const petRegisterPage = new PetRegisterPage({ cards });
   petRegisterPage.mount($content);
   petRegisterPage.listen('select:card', (card) => {
-    console.log(card);
+    console.log('card da home: ', card);
   });
 
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
