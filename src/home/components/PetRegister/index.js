@@ -5,19 +5,22 @@ import UploadImage from '../../../components/UploadImage';
 import Button from '../../../components/Button';
 
 const html = `
-  <div class='pet-register__container' data-select="input">
-    <div class='pet-register-description__container'>
-      <div class='pet-register-image' data-select='upload-image'></div>
-      <h1 class='pet-register-title__container'>Qual o nome do seu bichinho?</h1>
-    </div>
+  <div class='pet-register'>
+      <div>
+        <div class='pet-register__image' data-select='upload-image-container'></div>
+        <h1 class='pet-register__title'>Qual o nome do seu bichinho?</h1>
+        <div class='pet-register__input' data-select='input-container'></div>
+      </div>
+      <div class='pet-register__button' data-select='button-container'></div>
   </div>
 `;
 
 export default function PetRegister() {
   Component.call(this, { html });
 
-  const $inputContainer = this.selected.get('input');
-  const $uploadImage = this.selected.get('upload-image');
+  const $inputContainer = this.selected.get('input-container');
+  const $uploadImage = this.selected.get('upload-image-container');
+  const $buttonContainer = this.selected.get('button-container');
 
   this.input = new TextInput({
     placeholder: 'Nome do Pet',
@@ -35,7 +38,7 @@ export default function PetRegister() {
   this.button.selected.get('button').classList.add('pet-register-button');
   this.upload.mount($uploadImage);
   this.input.mount($inputContainer);
-  this.button.mount($inputContainer);
+  this.button.mount($buttonContainer);
 }
 
 PetRegister.prototype = Object.assign(
