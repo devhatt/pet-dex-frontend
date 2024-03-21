@@ -1,14 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import Button from '../../../components/Button';
 import PetCard from '../../../components/PetCard';
-import afghanHound from './images/afghanHound.svg';
-import akita from './images/akita.svg';
-import beagle from './images/beagle.svg';
-import bichonFrise from './images/bichonFrise.svg';
-import borderCollie from './images/borderCollie.svg';
-import boxer from './images/boxer.svg';
-import chowChow from './images/chowChow.svg';
-import mixedBreed from './images/mixedBreed.svg';
 
 import './index.scss';
 
@@ -17,9 +9,9 @@ const html = `
     </div>
 `;
 
-const events = ['click', 'active'];
+const events = ['select:card'];
 
-export default function PetRegisterPage() {
+export default function PetRegisterPage({ cards = [] } = {}) {
   Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
@@ -30,48 +22,7 @@ export default function PetRegisterPage() {
     isDisabled: true,
   });
 
-  const cards = [
-    {
-      title: 'Akita',
-      imgSrc: akita,
-      imgAlt: 'akita',
-    },
-    {
-      title: 'Boxer',
-      imgSrc: boxer,
-      imgAlt: 'boxer',
-    },
-    {
-      title: 'Beagle',
-      imgSrc: beagle,
-      imgAlt: 'beagle',
-    },
-    {
-      title: 'Afghan Hound',
-      imgSrc: afghanHound,
-      imgAlt: 'afghan hound',
-    },
-    {
-      title: 'Bichon Frise',
-      imgSrc: bichonFrise,
-      imgAlt: 'bichon frise',
-    },
-    {
-      title: 'Chow Chow',
-      imgSrc: chowChow,
-      imgAlt: 'chow chow',
-    },
-    {
-      title: 'Border Collie',
-      imgSrc: borderCollie,
-      imgAlt: 'border collie',
-    },
-    {
-      title: 'Mixed Breed',
-      imgSrc: mixedBreed,
-      imgAlt: 'mixed breed',
-    },
-  ];
+  let cardActive = null;
 
   cards.forEach((data) => {
     const card = new PetCard(data);
@@ -80,21 +31,37 @@ export default function PetRegisterPage() {
       .classList.add('pet-regirested-page__pet-card');
     card.mount($container);
 
-    card.selected.get('pet-container').addEventListener('click', () => {
-      card.toggle();
-      $button.enable();
-      // consegui deixar o button desabilitado até que o pet-card seja clicado,
-      // o card não esta respondendo, ou o botão ativa ou o card ativa
+    card.listen('active', () => {
+      if (cardActive !== null) {
+        cardActive.desactive();
+      }
+
+      cardActive = card;
+      this.emit('select:card', card);
+    });
+
+    card.listen('desactive', () => {
+      if (cardActive === card) {
+        cardActive = null;
+      }
     });
   });
 
-  $button.selected
-    .get('button')
-    .classList.add('pet-regirested-page__button');
+  $button.selected.get('button').classList.add('pet-regirested-page__button');
   $button.mount($container);
 }
 
 PetRegisterPage.prototype = Object.assign(
   PetRegisterPage.prototype,
   Component.prototype,
+  // TODO
+  /**
+   *  1 - precisa de add card
+      2 - remove card
+      3 - active card
+      4 - desactive card
+      5 - current card ativo
+
+      EVENTOS para mudança de card,
+   */
 );

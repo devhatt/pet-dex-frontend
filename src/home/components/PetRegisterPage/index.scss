@@ -12,11 +12,13 @@
 
   &__button {
     max-width: 42rem;
+
     margin-top: 3.2rem;
   }
 
   &__pet-card {
     aspect-ratio: auto;
+
     cursor: pointer;
   }
 }
