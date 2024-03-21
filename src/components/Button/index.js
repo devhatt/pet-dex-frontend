@@ -1,17 +1,22 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['click', 'text:change'];
+const events = ['click', 'text:change', 'enable', 'disable'];
 
 const html = `
     <button data-select="button" class="button" type="button"></button>
 `;
 
-export default function Button({ text = '', isFullWidth = false } = {}) {
+export default function Button({
+  text = '',
+  isFullWidth = false,
+  isDisabled = false,
+} = {}) {
   Component.call(this, { html, events });
 
   this.setText(text);
   this.setIsFullWidth(isFullWidth);
+  this.setIsDisabled(isDisabled);
 
   const $button = this.selected.get('button');
   $button.addEventListener('click', () => {
@@ -39,7 +44,27 @@ Button.prototype = Object.assign(Button.prototype, Component.prototype, {
     else classList.remove('button--block');
   },
 
+  disable() {
+    this.selected.get('button').disabled = true;
+    this.emit('disable');
+  },
+
+  enable() {
+    this.selected.get('button').disabled = false;
+    this.emit('enable');
+  },
+
+  setIsDisabled(isDisabled = false) {
+    if (isDisabled) this.disable();
+    else this.enable();
+  },
+
+  isDisabled() {
+    return this.selected.get('button').disabled;
+  },
+
   click() {
+    if (this.isDisabled()) return;
     this.emit('click');
   },
 });

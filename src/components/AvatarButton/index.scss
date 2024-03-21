@@ -1,0 +1,64 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.avatar-button {
+  display: flex;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    align-items: center;
+
+    text-decoration: none;
+
+    &:hover {
+      .avatar-button__bg {
+        border: 0.15rem solid colors.$grey900;
+
+        background: colors.$appContentColor;
+      }
+
+      .avatar-button__cross {
+        filter: invert(1);
+      }
+
+      .avatar-button__text {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__bg {
+    width: 3rem;
+    height: 3rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.8rem;
+    border: 0.15rem solid colors.$appContentColor;
+
+    background: colors.$grey900;
+    border-radius: 8rem;
+
+    transition: 0.6s;
+  }
+
+  &__cross {
+    filter: invert(0);
+
+    transition: 0.6s;
+  }
+
+  &__text {
+    font-family: fonts.$primaryFont;
+    color: colors.$appContentColor;
+    font-size: 1.4rem;
+
+    transition: 0.6s;
+  }
+}

@@ -13,7 +13,7 @@ const html = `
       <img class="navigation__logo" src="${petUrl}" alt="pet-dex logo" />
     </figure>
     <div class="navigation__icons">
-      <figure class="navigation__icon-container navigation__icon-container--menu">
+      <figure data-select="hamburger-menu" class="navigation__icon-container navigation__icon-container--menu">
         <img class="navigation__icon" src="${menuUrl}" alt="menu" />
       </figure>
       <figure class="navigation__icon-container navigation__icon-container--bell">
