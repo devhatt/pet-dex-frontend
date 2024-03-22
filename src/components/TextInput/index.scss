@@ -16,7 +16,7 @@
 
     &.standard {
       padding: 0.65rem 1rem;
-      border: 1px solid rgb(163, 163, 163);
+      border: 1px solid colors.$neutral400;
 
       border-radius: 8px;
 
@@ -35,25 +35,25 @@
       }
 
       &:focus {
-        border-color: rgb(0, 123, 255);
+        border-color: colors.$secondary600;
 
         filter: opacity(1);
-        outline-color: rgb(0, 123, 255);
+        outline-color: colors.$secondary600;
       }
 
       &.input-error {
-        border-color: rgb(220, 53, 69);
+        border-color: colors.$error500;
 
-        background-color: rgba(238, 114, 126, 0.458);
+        background-color: colors.set-color-opacity((colors.$error400, 0.458));
         filter: opacity(0.75);
-        outline-color: rgb(220, 53, 69);
+        outline-color: colors.$error500;
       }
     }
 
     &.outlined {
       padding: 0.5rem 0.35rem;
 
-      border-bottom: 1px solid rgb(184, 184, 184);
+      border-bottom: 1px solid colors.$neutral300;
       border-color: transparent;
 
       outline: none;
@@ -61,16 +61,16 @@
       transition: border-color 0.3s ease-in-out;
 
       &:focus {
-        border-bottom-color: rgb(0, 123, 255);
+        border-bottom-color: colors.$secondary600;
       }
 
       &.input-error {
-        border-bottom-color: rgb(220, 53, 69);
+        border-bottom-color: colors.$error500;
 
         filter: opacity(0.65);
 
         &::placeholder {
-          color: rgb(220, 53, 69);
+          color: colors.$error500;
         }
       }
 

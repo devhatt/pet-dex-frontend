@@ -1,0 +1,80 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.filter {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+
+  &__container {
+    position: relative;
+
+    &__button {
+      width: 106px;
+      height: 38px;
+
+      display: flex;
+      gap: 8px;
+
+      align-items: center;
+      justify-content: center;
+
+      font-family: fonts.$primaryFont;
+      color: colors.set-color-opacity(colors.$neutral500, 0.9);
+      text-align: center;
+      font-size: fonts.$xs;
+      font-weight: fonts.$medium;
+
+      border: 1px solid colors.$neutral100;
+
+      background: none;
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      &::before {
+        content: url('img/filter.svg');
+      }
+
+      &__counter {
+        display: none;
+
+        &--selected {
+          width: 20px;
+          height: 20px;
+
+          display: flex;
+
+          align-items: center;
+          justify-content: center;
+
+          color: colors.$secondary800;
+
+          background-color: colors.$white;
+          border-radius: 100px;
+        }
+      }
+
+      &:hover {
+        background-color: colors.$neutral100;
+      }
+
+      &--selected {
+        color: colors.$white;
+
+        border: 1px solid colors.$secondary800;
+
+        background: colors.$secondary800;
+
+        &::before {
+          content: none;
+        }
+
+        &:hover {
+          background-color: colors.$secondary900;
+        }
+      }
+    }
+  }
+}

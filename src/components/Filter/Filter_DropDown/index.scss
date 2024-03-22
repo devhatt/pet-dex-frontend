@@ -1,0 +1,68 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.filter {
+  &__drop-down {
+    min-width: 200px;
+
+    overflow: auto;
+    overflow-y: auto;
+
+    display: none;
+
+    flex-direction: column;
+
+    margin-bottom: 16px;
+
+    padding: 24px 16px;
+    border: 1px solid colors.$neutral200;
+
+    position: absolute;
+
+    top: 62px;
+    right: 0;
+
+    background-color: colors.set-color-opacity(colors.$white, 0.8);
+
+    border-radius: 24px;
+
+    &__title {
+      font-family: fonts.$primaryFont;
+      color: colors.$neutral700;
+      font-size: fonts.$md;
+      font-weight: fonts.$semiBold;
+
+      margin-bottom: 8px;
+    }
+
+    &__hr {
+      margin-bottom: 16px;
+      border: 1px solid colors.$neutral100;
+    }
+
+    &__options {
+      display: flex;
+      flex-direction: column;
+
+      gap: 8px;
+
+      align-items: flex-start;
+      justify-content: center;
+
+      margin-bottom: 24px;
+
+      &__element {
+        display: flex;
+        gap: 4px;
+
+        align-items: center;
+      }
+
+      &__label {
+        font-family: fonts.$secondaryFont;
+        color: colors.$neutral600;
+        font-size: fonts.$sm;
+      }
+    }
+  }
+}

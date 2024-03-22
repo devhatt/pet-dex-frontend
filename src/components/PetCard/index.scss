@@ -7,11 +7,11 @@
   display: flex;
   flex-direction: column;
 
-  border: 1px solid rgb(236, 239, 242);
+  border: 1px solid colors.$neutral100;
   box-sizing: border-box;
 
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 0.5rem 0 rgba(12, 26, 75, 0.05);
+  background-color: colors.$white;
+  box-shadow: 0 0 0.5rem 0 colors.$boxShadow;
 
   border-radius: 1.8rem;
 
@@ -45,9 +45,9 @@
   }
 
   &--active {
-    color: rgb(27, 133, 243);
+    color: colors.$secondary500;
 
-    border: 2px solid rgb(27, 133, 243);
+    border: 2px solid colors.$secondary500;
   }
 
   &__title--extended {
@@ -59,6 +59,6 @@
   }
 
   &:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0 0.2rem 1.5rem 0;
+    box-shadow: 0 0.2rem 1.5rem 0 colors.$boxShadow;
   }
 }
