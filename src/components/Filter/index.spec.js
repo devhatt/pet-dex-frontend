@@ -7,9 +7,6 @@ describe('Filter', () => {
   });
 
   const filterOptions = {
-    boldText: 'Bold Text',
-    regularText: 'Regular Text',
-    inputPlaceholder: 'Input Placeholder',
     endpoint: '/api/filter-options',
     options: [
       {
@@ -33,11 +30,7 @@ describe('Filter', () => {
 
   it('initializes with the correct properties', () => {
     expect(filter.filterOptions).toEqual(filterOptions);
-    expect(filter.selected.get('bold-text').innerHTML).toEqual('Bold Text');
-    expect(filter.selected.get('regular-text').innerHTML).toEqual('Regular Text');
-    expect(filter.selected.get('input-text').placeholder).toEqual('Input Placeholder');
     expect(filter.selectedValues).toEqual([]);
-    expect(filter.queryString).toEqual('');
   });
 
   it('toggles dropdown display on button click', () => {

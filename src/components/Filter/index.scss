@@ -2,186 +2,78 @@
 @use '~styles/fonts.scss' as fonts;
 
 .filter {
-  width: 100%;
-
   display: flex;
   flex-direction: row;
 
-  gap: 24px;
+  justify-content: center;
 
-  align-items: center;
+  &__container {
+    position: relative;
 
-  justify-content: space-between;
+    &__button {
+      width: 106px;
+      height: 38px;
 
-  &__label {
-    display: flex;
-    flex-direction: column;
+      display: flex;
+      gap: 8px;
 
-    &__regular {
-      font-family: fonts.$secondaryFont;
-      color: colors.$neutral600;
-    }
+      align-items: center;
+      justify-content: center;
 
-    &__bold {
       font-family: fonts.$primaryFont;
-      color: colors.$neutral700;
-      font-size: 1.8rem;
-      font-weight: fonts.$semiBold;
-      line-height: 26px;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    flex: 1;
-
-    gap: 24px;
-
-    align-items: center;
-
-    &__input {
-      min-width: 344px;
-
-      flex: 1;
-
-      font-family: fonts.$secondaryFont;
-
-      font-size: fonts.$sm;
-
-      padding: 18px 10px 18px 46px;
+      color: colors.set-color-opacity(colors.$neutral500, 0.9);
+      text-align: center;
+      font-size: fonts.$xs;
+      font-weight: fonts.$medium;
 
       border: 1px solid colors.$neutral100;
 
-      border-radius: 14px;
+      background: none;
+      border-radius: 8px;
 
-      &__icon {
-        width: 100%;
+      cursor: pointer;
 
-        display: flex;
+      &::before {
+        content: url('img/filter.svg');
+      }
 
-        flex: 1;
+      &__counter {
+        display: none;
 
-        margin: 0;
-        padding: 0;
+        &--selected {
+          width: 20px;
+          height: 20px;
 
-        position: relative;
+          display: flex;
 
-        &::before {
-          position: absolute;
+          align-items: center;
+          justify-content: center;
 
-          top: 50%;
+          color: colors.$secondary800;
 
-          left: 16px;
-
-          transform: translateY(-50%);
-
-          content: url('img/magnifying.svg');
+          background-color: colors.$white;
+          border-radius: 100px;
         }
       }
 
-      &::placeholder {
-        color: colors.$neutral500;
+      &:hover {
+        background-color: colors.$neutral100;
       }
-    }
 
-    &__container {
-      position: relative;
+      &--selected {
+        color: colors.$white;
 
-      &__button {
-        width: 106px;
-        height: 38px;
+        border: 1px solid colors.$secondary800;
 
-        display: flex;
-        gap: 8px;
-
-        align-items: center;
-        justify-content: center;
-
-        font-family: fonts.$primaryFont;
-        color: colors.set-color-opacity(colors.$neutral500, 0.9);
-        text-align: center;
-        font-size: fonts.$xs;
-        font-weight: fonts.$medium;
-
-        border: 1px solid colors.$neutral100;
-
-        background: none;
-        border-radius: 8px;
-
-        cursor: pointer;
+        background: colors.$secondary800;
 
         &::before {
-          content: url('img/filter.svg');
-        }
-
-        &__counter {
-          display: none;
-
-          &--selected {
-            width: 20px;
-            height: 20px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: colors.$secondary800;
-
-            background-color: colors.$white;
-            border-radius: 100px;
-          }
+          content: none;
         }
 
         &:hover {
-          background-color: colors.$neutral100;
+          background-color: colors.$secondary900;
         }
-
-        &--selected {
-          color: colors.$white;
-
-          border: 1px solid colors.$secondary800;
-
-          background: colors.$secondary800;
-
-          &::before {
-            content: none;
-          }
-
-          &:hover {
-            background-color: colors.$secondary900;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .filter {
-    flex-direction: column;
-
-    gap: 8px;
-
-    &__label {
-      text-align: center;
-    }
-
-    &__actions {
-      width: 100% !important;
-
-      &__input {
-        min-width: 1px;
-
-        &__icon {
-          &::before {
-            left: 12px;
-          }
-        }
-      }
-
-      &__container {
-        display: none;
       }
     }
   }

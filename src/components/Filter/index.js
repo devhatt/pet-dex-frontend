@@ -7,9 +7,6 @@ const events = ['fetchList'];
 
 /**
  * @typedef {Object} FilterOptions
- * @property {string} boldText - The bold text to be displayed in the filter label.
- * @property {string} regularText - The regular text to be displayed in the filter label.
- * @property {string} inputPlaceholder - The placeholder text for the filter input.
  * @property {string} [endpoint] - The API endpoint to fetch filter options from.
  * @property {Array} [options] - The array of filter options.
  * @property {string} options[].title - The label for the filter option.
@@ -19,19 +16,10 @@ const events = ['fetchList'];
 
 const html = `
   <div class="filter">
-    <label class="filter__label" data-select="text">
-        <p><b class="filter__label__bold" data-select="bold-text"></b></p>
-        <p class="filter__label__regular" data-select="regular-text"></p>
-    </label>
-    <div class="filter__actions">
-      <span class="filter__actions__input__icon">
-        <input class="filter__actions__input" type="text" data-select="input-text" placeholder="" />
-      </span>
-      <div class="filter__actions__container" data-select="drop-down-conteiner">
-        <div class="filter__actions__container__button" data-select="drop-down-button">
-          <span class="filter__actions__container__button__counter" data-select="drop-down-counter"></span>
-          Filtrar
-        </div>
+    <div class="filter__container" data-select="drop-down-conteiner">
+      <div class="filter__container__button" data-select="drop-down-button">
+        <span class="filter__container__button__counter" data-select="drop-down-counter"></span>
+        Filtrar
       </div>
     </div>
   </div>
@@ -39,12 +27,9 @@ const html = `
 
 function validateFilterOptions(filterOptions) {
   if (!filterOptions) throw new TypeError('Filter options are required');
-  if (!filterOptions.inputPlaceholder) throw new TypeError('Filter inputPlaceholder is required');
-  if (!filterOptions.endpoint) throw new TypeError('Filter endpoint is required');
-}
-
-function hasLabel(filterOptions) {
-  return filterOptions.boldText || filterOptions.regularText;
+  if (!filterOptions.endpoint && !filterOptions.options) {
+    throw new TypeError('Filter options must have an endpoint or options');
+  }
 }
 
 export default function Filter(filterOptions) {
@@ -54,59 +39,39 @@ export default function Filter(filterOptions) {
 
   this.filterOptions = filterOptions;
   this.selectedValues = [];
-  this.queryString = '';
 
-  const $inputText = this.selected.get('input-text');
   const $dropDownContainer = this.selected.get('drop-down-conteiner');
   const $dropDownButton = this.selected.get('drop-down-button');
 
-  this.displayText();
-
-  $inputText.placeholder = this.filterOptions.inputPlaceholder;
-
   const dropDownOptions = this.fetchOptions();
+
   this.dropDown = new FilterDropDown(dropDownOptions);
-  document.addEventListener('click', this.documentClickHandler.bind(this));
-
-  $dropDownButton.addEventListener('click', () => {
-    this.buttonHandler($inputText.value);
-  });
-
   this.dropDown.listen('selectNewOptions', (selectedOptions) => {
     this.selectNewOptionsHandler(selectedOptions, $dropDownButton);
   });
-
   this.dropDown.mount($dropDownContainer);
+
+  document.addEventListener('click', this.documentClickHandler.bind(this));
+  $dropDownButton.addEventListener('click', this.buttonHandler.bind(this));
+
+  this.listen('unmount', () => {
+    document.removeEventListener('click', this.documentClickHandler.bind(this));
+    $dropDownButton.removeEventListener('click', this.buttonHandler.bind(this));
+  });
 }
 
 Filter.prototype = Object.assign(Filter.prototype, Component.prototype, {
-  fetchList: function fetchList(inputString) {
-    const apiEndPont = `${this.filterOptions.endpoint}?${this.queryString}&search=${inputString.replace(/ /g, '%20')}`;
-    const responseEmit = api(apiEndPont, 'GET').then((response) => response);
-    this.emit('fetchList', responseEmit);
-  },
   fetchOptions: function fetchOptions() {
     if (!this.filterOptions.options.length) {
-      api(this.filterOptions.endpoint, 'OPTIONS').then((response) => {
+      api(this.filterOptions.endpoint, 'GET').then((response) => {
         this.filterOptions.options = response;
       });
     }
     return this.filterOptions.options;
   },
-  displayText: function displayText() {
-    const $textConteiner = this.selected.get('text');
-    const $boldText = this.selected.get('bold-text');
-    const $regularText = this.selected.get('regular-text');
-    if (hasLabel(this.filterOptions)) {
-      $boldText.innerHTML = this.filterOptions.boldText;
-      $regularText.innerHTML = this.filterOptions.regularText;
-    } else {
-      $textConteiner.style.display = 'none';
-    }
-  },
-  buttonHandler: function buttonHandler(inputString) {
+  buttonHandler: function buttonHandler() {
     if (this.selectedValues.length > 0 && this.dropDown.isVisible()) {
-      this.fetchList(inputString);
+      this.emit('filter', this.selectedValues);
     }
     this.dropDown.toogleDisplay();
   },
@@ -114,22 +79,22 @@ Filter.prototype = Object.assign(Filter.prototype, Component.prototype, {
     if (
       this.dropDown.isVisible()
       && !event.target.closest('.filter__drop-down')
-      && !event.target.closest('.filter__actions__container__button')
+      && !event.target.closest('.filter__container__button')
     ) {
       this.dropDown.toogleDisplay();
     }
   },
   selectNewOptionsHandler: function selectNewOptionsHandler(selectedOptions, $dropDownButton) {
     this.selectedValues = selectedOptions.values;
-    this.queryString = selectedOptions.queryGetString;
 
     $dropDownButton.classList.toggle(
-      'filter__actions__container__button--selected',
+      'filter__container__button--selected',
       this.selectedValues.length > 0,
     );
+
     const $optionCounter = this.selected.get('drop-down-counter');
     $optionCounter.classList.toggle(
-      'filter__actions__container__button__counter--selected',
+      'filter__container__button__counter--selected',
       this.selectedValues.length > 0,
     );
     $optionCounter.innerHTML = this.selectedValues.length > 0 ? `${this.selectedValues.length}` : '';

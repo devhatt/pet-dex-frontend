@@ -58,6 +58,14 @@ export default function FilterDropDown(options) {
       this.selectNewOptions();
     });
   });
+
+  this.listen('unmount', () => {
+    $options.forEach(($option) => {
+      $option.removeEventListener('change', () => {
+        this.selectNewOptions();
+      });
+    });
+  });
 }
 
 FilterDropDown.prototype = Object.assign(
@@ -75,7 +83,7 @@ FilterDropDown.prototype = Object.assign(
 
       $options.forEach(($option) => {
         if ($option.checked) {
-          values.push($option.value);
+          values.push({ title: $option.name, value: $option.value });
           queryGetString += `${$option.name}=${$option.value}&`;
         }
       });
