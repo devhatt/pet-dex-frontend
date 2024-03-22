@@ -77,14 +77,17 @@ Filter.prototype = Object.assign(Filter.prototype, Component.prototype, {
   },
   documentClickHandler: function documentClickHandler(event) {
     if (
-      this.dropDown.isVisible()
-      && !event.target.closest('.filter__drop-down')
-      && !event.target.closest('.filter__container__button')
+      this.dropDown.isVisible() &&
+      !event.target.closest('.filter__drop-down') &&
+      !event.target.closest('.filter__container__button')
     ) {
       this.dropDown.toogleDisplay();
     }
   },
-  selectNewOptionsHandler: function selectNewOptionsHandler(selectedOptions, $dropDownButton) {
+  selectNewOptionsHandler: function selectNewOptionsHandler(
+    selectedOptions,
+    $dropDownButton,
+  ) {
     this.selectedValues = selectedOptions.values;
 
     $dropDownButton.classList.toggle(
@@ -97,7 +100,8 @@ Filter.prototype = Object.assign(Filter.prototype, Component.prototype, {
       'filter__container__button__counter--selected',
       this.selectedValues.length > 0,
     );
-    $optionCounter.innerHTML = this.selectedValues.length > 0 ? `${this.selectedValues.length}` : '';
+    $optionCounter.innerHTML =
+      this.selectedValues.length > 0 ? `${this.selectedValues.length}` : '';
     $dropDownButton.replaceChild($optionCounter, $dropDownButton.firstChild);
   },
 });

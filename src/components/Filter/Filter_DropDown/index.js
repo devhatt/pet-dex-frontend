@@ -98,8 +98,8 @@ FilterDropDown.prototype = Object.assign(
     toogleDisplay: function toogleDisplay() {
       const $dropDownContainer = this.selected.get('drop-down');
       if (
-        !$dropDownContainer.style.display
-        || $dropDownContainer.style.display === 'none'
+        !$dropDownContainer.style.display ||
+        $dropDownContainer.style.display === 'none'
       ) {
         $dropDownContainer.style.display = 'block';
         const yContainerPosition = $dropDownContainer.getBoundingClientRect().y;
