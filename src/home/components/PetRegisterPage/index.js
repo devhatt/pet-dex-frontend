@@ -47,6 +47,15 @@ export default function PetRegisterPage({ cards = [] } = {}) {
         $button.disable();
       }
     });
+
+    $button.listen('click', () => {
+      const cardSelect = card.selected.get('pet-container')
+        .classList.contains('pet-container--active');
+
+      if (cardSelect) {
+        console.log('submit dados', cardSelect, card.selected.get('pet-container'));
+      }
+    });
   });
 
   $button.selected.get('button').classList.add('pet-regirested-page__button');
@@ -63,6 +72,8 @@ export default function PetRegisterPage({ cards = [] } = {}) {
       EVENTOS para mudança de card,
    */
 
-PetRegisterPage.prototype = Object.assign(PetRegisterPage.prototype, Component.prototype, {
-
-});
+PetRegisterPage.prototype = Object.assign(
+  PetRegisterPage.prototype,
+  Component.prototype,
+  {},
+);
