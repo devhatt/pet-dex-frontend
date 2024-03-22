@@ -1,5 +1,5 @@
-import './index.scss';
 import { Component, createIDFactory } from 'pet-dex-utilities';
+import './index.scss';
 
 const generateID = createIDFactory('toggle');
 
@@ -21,7 +21,9 @@ export default function Toggle({ checked = false } = {}) {
 
   this.setToggle(checked, false);
 
-  this.selected.get('toggle-input').addEventListener('change', () => this.emitToggle());
+  this.selected
+    .get('toggle-input')
+    .addEventListener('change', () => this.emitToggle());
 }
 
 Toggle.prototype = Object.assign(Toggle.prototype, Component.prototype, {

@@ -1,0 +1,170 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+$borderHeight: 0.3rem;
+
+.tabber-container {
+  width: 100%;
+  container-type: inline-size;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.tabber-tab {
+  width: 100%;
+
+  display: flex;
+
+  position: relative;
+
+  &::after,
+  &::before {
+    height: $borderHeight;
+
+    position: absolute;
+    bottom: 0;
+
+    background: colors.$gray200;
+
+    content: '';
+  }
+
+  &::after {
+    right: 0;
+
+    left: $borderHeight;
+
+    border-radius: 0 $borderHeight $borderHeight 0;
+  }
+
+  &::before {
+    right: $borderHeight;
+    left: 0;
+
+    border-radius: $borderHeight 0 0 $borderHeight;
+  }
+}
+
+.tabber-button {
+  min-height: 4.5rem;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  flex-grow: 1;
+  gap: 0.8rem;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Noto Sans', sans-serif;
+  color: colors.$gray600;
+  font-size: 1.4rem;
+  font-weight: 500;
+
+  border: 0;
+
+  position: relative;
+
+  background-color: colors.$appContentColor;
+
+  cursor: pointer;
+
+  &--active {
+    color: colors.$blue500;
+    font-weight: 700;
+
+    &::after,
+    &::before {
+      height: $borderHeight;
+
+      position: absolute;
+      bottom: 0;
+      z-index: 2;
+
+      background: colors.$blue500;
+
+      content: '';
+    }
+
+    &::after {
+      right: 0;
+
+      left: $borderHeight;
+
+      border-radius: 0 $borderHeight $borderHeight 0;
+    }
+
+    &::before {
+      right: $borderHeight;
+      left: 0;
+
+      border-radius: $borderHeight 0 0 $borderHeight;
+    }
+  }
+
+  svg {
+    max-height: 1.4rem;
+
+    pointer-events: none;
+
+    fill: currentColor;
+  }
+}
+
+.tabber-content {
+  padding: 1rem;
+}
+
+.tabber-component {
+  display: none;
+
+  &--active {
+    display: block;
+  }
+}
+
+@container (width > #{breakpoints.$mediumDeviceSizeMin}) {
+  .tabber-button {
+    min-height: 5rem;
+
+    font-size: 1.8rem;
+    line-height: 1.1;
+
+    border: 0;
+
+    border-radius: 1.6rem;
+
+    &--active {
+      color: colors.$appContentColor;
+
+      background-color: colors.$blue500;
+
+      &::after,
+      &::before {
+        content: none;
+      }
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  .tabber-tab {
+    padding: 0.4rem;
+    border: 0.1rem solid colors.$gray200;
+
+    border-radius: 2rem;
+
+    &::after,
+    &::before {
+      content: none;
+    }
+  }
+}
