@@ -22,7 +22,7 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     isDisabled: true,
   });
 
-  let cardActive = null;
+  const cardActive = null;
 
   cards.forEach((data) => {
     const card = new PetCard(data);
@@ -32,28 +32,22 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     card.mount($container);
 
     card.listen('active', () => {
-      if (cardActive !== null) {
-        cardActive.desactive();
-      }
-
-      cardActive = card;
-      this.emit('select:card', card);
+      this.activeCard(cardActive);
       $button.enable();
     });
 
     card.listen('desactive', () => {
-      if (cardActive === card) {
-        cardActive = null;
-        $button.disable();
-      }
+      this.desactive(cardActive);
+      $button.disable();
     });
 
     $button.listen('click', () => {
-      const cardSelect = card.selected.get('pet-container')
+      const cardSelect = card.selected
+        .get('pet-container')
         .classList.contains('pet-container--active');
 
       if (cardSelect) {
-        console.log('submit dados', cardSelect, card.selected.get('pet-container'));
+        // console.log('enviando dados: ', card.elements);
       }
     });
   });
@@ -75,5 +69,22 @@ export default function PetRegisterPage({ cards = [] } = {}) {
 PetRegisterPage.prototype = Object.assign(
   PetRegisterPage.prototype,
   Component.prototype,
-  {},
+  // {
+  //   activeCard(cardActive) {
+  //     if (cardActive !== null) {
+  //       this.desactive(this);
+  //     }
+
+  //     cardActive = this;
+  //     this.emit('select:card', this);
+  //     console.log('active metodo');
+  //   },
+
+  //   desactive(cardActive) {
+  //     if (cardActive === this) {
+  //       cardActive = null;
+  //     }
+  //     console.log('desactive metodo');
+  //   },
+  // },
 );
