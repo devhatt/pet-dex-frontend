@@ -67,7 +67,7 @@ const html = `
 </div>
 `;
 
-const events = ['value']
+const events = ['value'];
 
 export default function PetVetPage() {
   Component.call(this, { html, events });
@@ -90,13 +90,15 @@ export default function PetVetPage() {
 
   $inputText.classList.add('petvet-page__input-text');
   $button.classList.add('petvet-page__button');
-  $container.querySelector('.petvet-page__card-content.cuidados-especiais').appendChild($inputText);
+  $container
+    .querySelector('.petvet-page__card-content.cuidados-especiais')
+    .appendChild($inputText);
 
   const emitForm = () => {
     const formValue = {
       specialCareText: $inputText.value,
       isSpecialCare: false,
-      isRegistered: false
+      isRegistered: false,
       // aguardando componente de input
     };
     this.emit('value', formValue);
@@ -105,7 +107,4 @@ export default function PetVetPage() {
   this.button.listen('click', emitForm);
 }
 
-PetVetPage.prototype = Object.assign(
-  PetVetPage.prototype,
-  Component.prototype,
-);
+PetVetPage.prototype = Object.assign(PetVetPage.prototype, Component.prototype);
