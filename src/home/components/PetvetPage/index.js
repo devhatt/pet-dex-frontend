@@ -67,8 +67,10 @@ const html = `
 </div>
 `;
 
+const events = ['value']
+
 export default function PetVetPage() {
-  Component.call(this, { html });
+  Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
 
