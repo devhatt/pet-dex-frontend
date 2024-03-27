@@ -1,0 +1,24 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.vaccine-container {
+  max-width: 40rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2rem;
+  border: 0.1rem;
+
+  &__text {
+    font-family: Helvetica, sans-serif;
+    color: colors.$blue500;
+    font-size: fonts.$xs;
+    font-weight: fonts.$bold;
+    line-height: 2.1rem;
+
+    cursor: pointer;
+  }
+}
