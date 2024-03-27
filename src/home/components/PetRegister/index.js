@@ -24,7 +24,7 @@ export default function PetRegister() {
 
   this.input = new TextInput({
     placeholder: 'Nome do Pet',
-    variation: 'standard',
+    variation: '--inputPadding',
   });
 
   this.upload = new UploadImage();
@@ -34,7 +34,9 @@ export default function PetRegister() {
     isDisabled: false,
   });
 
-  this.input.selected.get('input-text').classList.add('pet-register-input');
+  this.input.selected
+    .get('input-text')
+    .classList.add('pet-register--inputPadding');
   this.button.selected.get('button').classList.add('pet-register-button');
   this.upload.mount($uploadImage);
   this.input.mount($inputContainer);

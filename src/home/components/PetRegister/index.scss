@@ -10,9 +10,9 @@
   margin-top: 12rem;
 
   &__title {
-    font-family: 'Montserrat';
     color: rgb(57, 67, 79);
     text-align: center;
+    font-family: 'Montserrat';
     font-size: 1.4rem;
     font-weight: 500;
 
@@ -21,12 +21,21 @@
 
   &__image {
     margin: 5rem;
-
     transform: scale(1.2);
   }
 
-  &__input {
-    margin-top: 1.6rem;
+  &--inputPadding {
+    padding: 1.5rem;
+    border: 1px solid rgb(163, 163, 163);
+    border-color: #d9dfe6;
+    border-radius: 14px;
+    transition: border-color 0.3s ease-in-out;
+    width: 100%;
+
+    font-size: 1.5rem;
+
+    background-repeat: no-repeat;
+    background-size: auto 60%;
   }
 
   &__button {
@@ -44,25 +53,22 @@
 
 @include breakpoints.from1024 {
   .pet-register {
-    .pet-register__image {
+    &__image {
       transform: scale(1.5);
     }
 
-    .pet-register__title {
+    &__title {
       font-size: 1.8rem;
-
-      margin-top: 20rem;
+      margin-top: 15rem;
     }
 
-    .pet-register__input {
+    &--inputPadding {
       width: 100%;
     }
 
-    .pet-register__button {
+    &__button {
       width: 30%;
-
-      margin-top: 6.9rem;
-
+      margin-top: 6rem;
       box-shadow: unset;
     }
   }
