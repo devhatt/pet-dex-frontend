@@ -1,6 +1,7 @@
 import variables from '../../styles/breakpoints.module.scss';
 
-const { extraSmallSize, smallSize, mediumSize, largeSize, largestSize } = variables;
+const { extraSmallSize, smallSize, mediumSize, largeSize, largestSize } =
+  variables;
 
 const events = new Map();
 events.set('from320', new Set());

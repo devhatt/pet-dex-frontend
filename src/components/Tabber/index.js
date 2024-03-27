@@ -83,7 +83,8 @@ Tabber.prototype = Object.assign(Tabber.prototype, Component.prototype, {
     this.currentTab.content.classList.remove('tabber-component--active');
 
     this.currentTab.button = target;
-    this.currentTab.content = contentContainers[tabButtons.findIndex((tab) => tab === target)];
+    this.currentTab.content =
+      contentContainers[tabButtons.findIndex((tab) => tab === target)];
 
     this.currentTab.button.classList.add('tabber-button--active');
     this.currentTab.content.classList.add('tabber-component--active');

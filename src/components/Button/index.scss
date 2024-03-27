@@ -19,6 +19,7 @@
 
   &--block {
     width: 100%;
+
     display: block;
   }
 
@@ -29,6 +30,7 @@
 
   &:disabled {
     background: colors.$gray600;
+
     cursor: not-allowed;
   }
 }

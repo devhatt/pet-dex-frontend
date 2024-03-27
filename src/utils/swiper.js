@@ -57,7 +57,6 @@ export function initializeSwiper({ deadZone = 50 } = {}) {
     const xDiff = coordinates.xUp - coordinates.xDown;
     const yDiff = coordinates.yUp - coordinates.yDown;
 
-
     const didSwipe = Math.abs(xDiff) > deadZone || Math.abs(yDiff) > deadZone;
 
     if (didSwipe) swipeDirection();
@@ -65,9 +64,9 @@ export function initializeSwiper({ deadZone = 50 } = {}) {
 
   window.addEventListener('touchstart', handleTouchStart, false);
   window.addEventListener('touchend', handleTouchEnd, false);
-  
+
   return function destroy() {
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
-  }
+    window.removeEventListener('touchstart', handleTouchStart);
+    window.removeEventListener('touchend', handleTouchEnd);
+  };
 }
