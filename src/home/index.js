@@ -82,6 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('card da home: ', card.elements);
   });
 
+  petRegisterPage.listen('submit-pet', (card) => {
+    console.log('submit da home: ', card);
+  });
+
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');
   const $itemsMenu = sideMenu.selected.get('menuitens').querySelectorAll('li');

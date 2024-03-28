@@ -9,82 +9,52 @@ const html = `
     </div>
 `;
 
-const events = ['select:card'];
+const events = ['select:card', 'submit-pet'];
 
 export default function PetRegisterPage({ cards = [] } = {}) {
   Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
+  this.activeCard = null;
 
-  const $button = new Button({
+  const button = new Button({
     text: 'Continuar',
     isFullWidth: true,
     isDisabled: true,
   });
 
-  const cardActive = null;
-
   cards.forEach((data) => {
     const card = new PetCard(data);
+
     card.selected
       .get('pet-container')
       .classList.add('pet-regirested-page__pet-card');
     card.mount($container);
 
     card.listen('active', () => {
-      this.activeCard(cardActive);
-      $button.enable();
+      if (this.activeCard === null) {
+        button.disable();
+      }
+
+      this.activeCard = card;
+      this.emit('select:card', card);
+      button.enable();
     });
 
     card.listen('desactive', () => {
-      this.desactive(cardActive);
-      $button.disable();
-    });
-
-    $button.listen('click', () => {
-      const cardSelect = card.selected
-        .get('pet-container')
-        .classList.contains('pet-container--active');
-
-      if (cardSelect) {
-        // console.log('enviando dados: ', card.elements);
-      }
+      button.disable();
     });
   });
 
-  $button.selected.get('button').classList.add('pet-regirested-page__button');
-  $button.mount($container);
-}
-// TODO
-/**
-   *  1 - precisa de add card
-      2 - remove card
-      3 - active card
-      4 - desactive card
-      5 - current card ativo
+  button.listen('click', () => {
+    this.emit('submit-pet', this.activeCard);
+  });
 
-      EVENTOS para mudança de card,
-   */
+  button.selected.get('button').classList.add('pet-regirested-page__button');
+  button.mount($container);
+}
 
 PetRegisterPage.prototype = Object.assign(
   PetRegisterPage.prototype,
   Component.prototype,
-  // {
-  //   activeCard(cardActive) {
-  //     if (cardActive !== null) {
-  //       this.desactive(this);
-  //     }
-
-  //     cardActive = this;
-  //     this.emit('select:card', this);
-  //     console.log('active metodo');
-  //   },
-
-  //   desactive(cardActive) {
-  //     if (cardActive === this) {
-  //       cardActive = null;
-  //     }
-  //     console.log('desactive metodo');
-  //   },
-  // },
 );
