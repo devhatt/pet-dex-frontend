@@ -1,0 +1,50 @@
+@import '~styles/colors';
+
+.checkbox-container {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin: 1rem;
+
+  input[type='checkbox'] {
+    width: 2.2rem;
+    height: 2.2rem;
+
+    margin: 0.8rem;
+    border: 0.2rem solid $gray500;
+
+    border-radius: 0.5rem;
+
+    cursor: pointer;
+    appearance: none;
+    appearance: none;
+
+    &:checked {
+      border-color: $purple500;
+
+      background: $purple500 url('./images/check.svg') no-repeat center
+        center/70%;
+    }
+  }
+
+  input[type='checkbox']:disabled {
+    border-color: $gray500;
+
+    cursor: default;
+
+    + .checkmark {
+      color: $gray500;
+    }
+  }
+
+  .checkmark {
+    font-family: Montserrat;
+    color: $gray800;
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2rem;
+    letter-spacing: 0;
+  }
+}
