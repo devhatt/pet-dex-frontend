@@ -23,46 +23,46 @@ $underline: underline;
 $buttonFontColor: rgb(253, 253, 253);
 $buttonFontFamily: $primaryFont;
 $buttonFontSize: $sm;
-$buttonFontWeight: $fontWeightBold;
-$buttonFontStyle: $fontStyleNormal;
+$buttonFontWeight: $bold;
+$buttonFontStyle: $normal;
 $buttonLineHeight: 24px;
 
 //Estilos de fonte para botão secundário
 $secondaryButtonFontColor: rgb(0, 52, 89);
-$secondaryButtonFontFamily: $tertiaryFont;
+// $secondaryButtonFontFamily: $tertiaryFont;
 $secondaryButtonFontSize: $lg;
-$secondaryButtonFontWeight: $fontWeightNormal;
-$secondaryButtonFontStyle: $fontStyleNormal;
+$secondaryButtonFontWeight: $regular;
+$secondaryButtonFontStyle: $normal;
 
 //Estilos de fonte para os inputs da página de Contato
 $inputFontColor: rgb(141, 141, 141);
-$inputFontFamily: $contactPageFont;
+// $inputFontFamily: $contactPageFont;
 $inputFontSize: 1.2rem;
-$inputFontStyle: $fontStyleNormal;
-$inputFontWeight: $fontWeightNormal;
+$inputFontStyle: $normal;
+$inputFontWeight: $regular;
 $inputLineHeight: 2rem;
 
 //Estilos de fonte para a navegação do header
 $headerFontColor: rgb(0, 52, 89);
 $headerFontFamily: $primaryFont;
 $headerFontSize: $sm;
-$headerFontStyle: $fontStyleNormal;
-$headerFontWeight: $fontWeightRegular;
+$headerFontStyle: $normal;
+$headerFontWeight: $regular;
 $headerLineHeight: 2.4rem;
 
 //Estilos de fonte para a navegação do footer
 $footerFontColor: rgb(255, 255, 255);
 $footerFontFamily: $primaryFont;
 $footerFontSize: 1.5rem;
-$footerFontStyle: $fontStyleNormal;
-$footerFontWeight: $fontWeightRegular;
+$footerFontStyle: $normal;
+$footerFontWeight: $regular;
 $footerLetterSpacing: -0.205px;
 
 //Estilos para textos de descirção do Pet em sua página
 $descriptionPetFontFamily: $primaryFont;
 $descriptionPetFontSize: $xs;
-$descriptionPetFontStyle: $fontStyleNormal;
-$descriptionPetFonteWeight: $fontWeightMedium;
+$descriptionPetFontStyle: $normal;
+$descriptionPetFonteWeight: $medium;
 $descriptionLineHeight: 2rem;
 
 //função para criar estilos tipográficos em geral
