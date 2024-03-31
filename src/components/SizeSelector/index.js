@@ -98,7 +98,7 @@ function checkingTheElement(children) {
   });
 }
 
-export default function SizeSelector(slide) {
+export default function SizeSelector({ slide }) {
   Component.call(this, { html, events });
 
   const slideItems = this.selected.get(slide);
