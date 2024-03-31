@@ -4,10 +4,30 @@
 .selector-wrapper {
   container-type: inline-size;
 
-  img,
-  h3,
-  p {
+  &__title {
+    font-family: font.$primaryFont;
+    font-weight: font.$semiBold;
+    font-size: font.$sm;
+    padding-top: 1.6rem;
     margin: 0;
+  }
+
+  &__weight {
+    font-family: font.$tertiaryFont;
+    font-weight: font.$regular;
+    font-size: font.$xs;
+    padding-top: 0.6rem;
+    margin: 0;
+  }
+
+  &__image {
+    width: 30px;
+    height: 30px;
+    background: colors.$grey150;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
   }
 
   &__slide {
@@ -37,63 +57,36 @@
 
     border: 3px solid transparent;
 
-    &:first-child img {
-      width: 10px;
-      height: 10px;
-      padding: 2rem;
-    }
-
     &:hover {
       cursor: pointer;
     }
 
-    &.active {
-      border: 3px solid colors.$blue500;
-
-      transition: 0.2s ease-in-out;
-      transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
-
-      animation: scale 0.2s linear;
-      animation-fill-mode: forwards;
-
-      & img {
-        background: colors.$secondary100;
-      }
-
-      h3,
-      img {
-        color: colors.$blue500;
-      }
-
-      h3 {
-        font: font.$primaryFont;
-      }
-
-      p {
-        font: font.$secondaryFont, font.$regular, font.$xs;
-        color: colors.$secondary300;
-      }
-    }
-
-    h3 {
-      font: font.$primaryFont, font.$semiBold, font.$xs;
-      padding-top: 1.6rem;
-    }
-
-    p {
-      font: font.$secondaryFont, font.$regular, font.$xs;
-      padding-top: 0.6rem;
+    &:first-child .selector-wrapper__image {
+      width: 20px;
+      height: 20px;
     }
   }
 
-  &__image {
-    width: 30px;
-    height: 30px;
-    background: colors.$grey150;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
-    padding: 1rem;
+  &__item--active {
+    border: 3px solid colors.$blue500;
+
+    transform: scale(1.2);
+    transition: 0.2s ease-in-out;
+
+    .selector-wrapper__image {
+      background: colors.$secondary100;
+    }
+
+    .selector-wrapper__title {
+      font-family: font.$primaryFont;
+      font-weight: font.$semiBold;
+      font-size: font.$xs;
+      color: colors.$blue500;
+    }
+
+    .selector-wrapper__weight {
+      color: colors.$secondary300;
+    }
   }
 }
 
@@ -131,31 +124,9 @@
       gap: 2rem;
     }
 
-    &__item {
-      width: 34%;
-      padding: 2.2rem 0;
-
-      &:first-child img {
-        width: 10px;
-        height: 10px;
-        padding: 1.4rem;
-      }
-    }
-
     &__image {
       width: 16px;
       height: 16px;
     }
-  }
-}
-
-@keyframes scale {
-  0% {
-    -webkit-transform: scale3d(1);
-    transform: scale(1.1);
-  }
-  100% {
-    -webkit-transform: scale3d(1.1);
-    transform: scale(1.2);
   }
 }
