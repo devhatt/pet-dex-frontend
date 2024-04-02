@@ -4,17 +4,22 @@
 
 .pet-weight-page {
   min-height: 100%;
+
   display: grid;
+
   place-items: center;
 
   &__content {
-    text-align: center;
     width: 100%;
+
+    text-align: center;
   }
 
   &__image {
     width: max-content;
+
     display: inline-block;
+
     margin-bottom: 4rem;
   }
 
@@ -32,18 +37,22 @@
     color: colors.$gray800;
     font-size: 1.1rem;
     font-weight: fonts.$regular;
+
     margin-top: 1.6rem;
   }
 
   &__slider-container {
-    margin-top: 3rem;
     max-width: 100%;
+
+    margin-top: 3rem;
   }
 
   &__inputs {
     display: flex;
-    justify-content: center;
+
     align-items: center;
+    justify-content: center;
+
     margin-top: 2rem;
     margin-bottom: 2rem;
   }
@@ -63,18 +72,24 @@
       font-size: fonts.$sm;
       font-weight: fonts.$medium;
     }
+
     &__hint {
       font-size: fonts.$xs;
     }
+
     &__slider-container {
       max-width: 70vw;
     }
+
     &__input {
-      display: block;
       width: 14rem;
       height: 3.5rem;
+
+      display: block;
+
       padding: 0.5rem;
     }
+
     &__button {
       width: 41vw;
     }
@@ -87,9 +102,11 @@
       font-size: fonts.$md;
       font-weight: fonts.$semiBold;
     }
+
     &__hint {
       font-size: fonts.$sm;
     }
+
     &__slider-container {
       max-width: 80vw;
     }
