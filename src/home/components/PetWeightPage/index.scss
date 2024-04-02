@@ -1,0 +1,97 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
+
+.pet-weight-page {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+
+  &__content {
+    text-align: center;
+    width: 100%;
+  }
+
+  &__image {
+    width: max-content;
+    display: inline-block;
+    margin-bottom: 4rem;
+  }
+
+  &__description {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  &__title {
+    color: colors.$gray800;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+  }
+
+  &__hint {
+    color: colors.$gray800;
+    font-size: 1.1rem;
+    font-weight: fonts.$regular;
+    margin-top: 1.6rem;
+  }
+
+  &__slider-container {
+    margin-top: 3rem;
+    max-width: 100%;
+  }
+
+  &__inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__button {
+    width: 80vw;
+  }
+}
+
+@include breakpoints.from1024 {
+  .pet-weight-page {
+    &__title {
+      font-size: fonts.$sm;
+      font-weight: fonts.$medium;
+    }
+    &__hint {
+      font-size: fonts.$xs;
+    }
+    &__slider-container {
+      max-width: 70vw;
+    }
+    &__input {
+      display: block;
+      width: 14rem;
+      height: 3.5rem;
+      padding: 0.5rem;
+    }
+    &__button {
+      width: 41vw;
+    }
+  }
+}
+
+@include breakpoints.from1280 {
+  .pet-weight-page {
+    &__title {
+      font-size: fonts.$md;
+      font-weight: fonts.$semiBold;
+    }
+    &__hint {
+      font-size: fonts.$sm;
+    }
+    &__slider-container {
+      max-width: 80vw;
+    }
+  }
+}

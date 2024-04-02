@@ -7,6 +7,7 @@ const events = [
   'asset:changed',
   'disabled',
   'enabled',
+  'value:changed',
 ];
 
 const html = `
@@ -20,6 +21,7 @@ export default function TextInput({
   assetUrl,
   assetPosition,
   variation,
+  value = '',
 }) {
   Component.call(this, { html, events });
   const input = this.selected.get('input-text');
@@ -29,10 +31,18 @@ export default function TextInput({
   input.classList.add(variation);
   input.style.backgroundImage = `url(${assetUrl})`;
   input.classList.add(assetPosition);
+  if (value !== '') {
+    this.setValue(value);
+  }
 
   input.addEventListener('focus', () => {
     if (input.disabled) return;
     input.classList.remove('input-error');
+  });
+
+  input.addEventListener('blur', () => {
+    if (input.disabled) return;
+    this.emit('value:changed', input.value);
   });
 }
 
@@ -44,6 +54,12 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   setAsset(url) {
     this.selected.get('input-text').style.backgroundImage = `url(${url})`;
     this.emit('asset:changed');
+  },
+  setValue(value) {
+    if (value !== '') {
+      this.selected.get('input-text').value = value;
+      this.emit('value:changed', value);
+    }
   },
   setAssetPosition(position) {
     this.selected.get('input-text').classList.remove('prefix', 'suffix');

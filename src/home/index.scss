@@ -72,6 +72,8 @@
     transform: translateX(0);
 
     &__content {
+      overflow: hidden;
+
       margin-inline: 2.4rem;
 
       margin-bottom: 2.4rem;
