@@ -26,15 +26,15 @@
       background: $purple500 url('./images/check.svg') no-repeat center
         center/70%;
     }
-  }
 
-  input[type='checkbox']:disabled {
-    border-color: $gray500;
+    &:disabled {
+      border-color: $gray500;
 
-    cursor: default;
+      cursor: not-allowed;
 
-    + .checkmark {
-      color: $gray500;
+      + .checkmark {
+        color: $gray500;
+      }
     }
   }
 

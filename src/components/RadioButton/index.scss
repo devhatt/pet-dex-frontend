@@ -40,6 +40,17 @@
 
       background: url('./images/Ellipse.svg') no-repeat center center/60%;
     }
+
+    &:disabled {
+      border-color: $gray200;
+
+      cursor: default;
+      cursor: not-allowed;
+
+      + .checkmark {
+        color: $gray200;
+      }
+    }
   }
 
   .radio-dot {

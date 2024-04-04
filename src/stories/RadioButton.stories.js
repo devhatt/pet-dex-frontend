@@ -25,3 +25,10 @@ export const Default = {
     name: 'Example',
   },
 };
+
+export const Disabled = {
+  args: {
+    ...Default.args,
+    isDisabled: true,
+  },
+};

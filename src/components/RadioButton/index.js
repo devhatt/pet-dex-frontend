@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['change', 'value:change', 'text:change', 'name:change'];
+const events = ['change', 'value:change', 'text:change', 'name:change', 'disable'];
 
 const html = `
 <label class="radio-container">
@@ -15,6 +15,7 @@ export default function RadioButton({
   text = '',
   value = '',
   name = '',
+  isDisabled = false,
 } = {}) {
   Component.call(this, { html, events });
 
@@ -22,13 +23,13 @@ export default function RadioButton({
   this.setText(text);
   this.setValue(value);
   this.setName(name);
+  this.setDisabled(isDisabled);
 
   const $radioButton = this.selected.get('radio-button');
-  const $radioButtonText = this.selected.get('radio-button-text');
 
   $radioButton.addEventListener('change', (e) => {
-    const isChecked = e.target.checked;
-    this.setChecked(isChecked);
+    const isRealChecked = e.target.checked;
+    this.setChecked(isRealChecked);
   });
 }
 
@@ -57,7 +58,14 @@ RadioButton.prototype = Object.assign(
       $radioButton.value = value;
       this.emit('value:change', value);
     },
-
+    isDisabled() {
+      return this.selected.get('radio-button').disabled;
+    },
+    setDisabled(isDisabled = false) {
+      const $radioButton = this.selected.get('radio-button');
+      $radioButton.disabled = isDisabled;
+      this.emit('disable', isDisabled);
+    },
     getName() {
       const $radioButton = this.selected.get('radio-button');
       return $radioButton.name;

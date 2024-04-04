@@ -10,7 +10,7 @@ const html = `
     </label>
 `;
 
-export default function Checkbox({ isChecked = false, text = '', isDisabled = false, value = '' }) {
+export default function Checkbox({ isChecked = false, text = '', isDisabled = false, value = '' } = {}) {
   Component.call(this, { html, events });
 
   this.setChecked(isChecked);
@@ -19,11 +19,10 @@ export default function Checkbox({ isChecked = false, text = '', isDisabled = fa
   this.setValue(value);
 
   const $checkbox = this.selected.get('checkbox');
-  const $checkboxText = this.selected.get('checkbox-text');
 
   $checkbox.addEventListener('change', (e) => {
-    const isChecked = e.target.checked;
-    this.setChecked(isChecked);
+    const isRealChecked = e.target.checked;
+    this.setChecked(isRealChecked);
   });
 }
 
@@ -42,6 +41,13 @@ Checkbox.prototype = Object.assign(Checkbox.prototype, Component.prototype, {
     const $checkboxText = this.selected.get('checkbox-text');
     $checkboxText.textContent = text;
     this.emit('text:change', text);
+  },
+
+  getText() {
+    return this.selected.get('checkbox-text').textContent;
+  },
+  isDisabled() {
+    return this.selected.get('checkbox').disabled;
   },
 
   setDisabled(isDisabled = false) {
