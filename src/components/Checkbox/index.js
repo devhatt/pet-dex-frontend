@@ -10,11 +10,12 @@ const html = `
     </label>
 `;
 
-export default function Checkbox({ isChecked = false, text = '', isDisabled = false, value = '' } = {}) {
+export default function Checkbox({ isChecked = false, name = '', text = '', isDisabled = false, value = '' } = {}) {
   Component.call(this, { html, events });
 
   this.setChecked(isChecked);
   this.setText(text);
+  this.setName(name);
   this.setDisabled(isDisabled);
   this.setValue(value);
 
@@ -60,5 +61,18 @@ Checkbox.prototype = Object.assign(Checkbox.prototype, Component.prototype, {
     const $checkbox = this.selected.get('checkbox');
     $checkbox.value = value;
     this.emit('value:change', value);
+  },
+  getValue() {
+    return this.selected.get('checkbox').value;
+  },
+  getName() {
+    const $checkbox = this.selected.get('checkbox');
+    return $checkbox.name;
+  },
+
+  setName(name = '') {
+    const $checkbox = this.selected.get('checkbox');
+    $checkbox.name = name;
+    this.emit('name:change', name);
   },
 });

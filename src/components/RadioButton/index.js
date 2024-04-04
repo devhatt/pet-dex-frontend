@@ -52,11 +52,16 @@ RadioButton.prototype = Object.assign(
       $radioButtonText.textContent = text;
       this.emit('text:change', text);
     },
-
+    getText() {
+      return this.selected.get('radio-button-text').textContent;
+    },
     setValue(value = '') {
       const $radioButton = this.selected.get('radio-button');
       $radioButton.value = value;
       this.emit('value:change', value);
+    },
+    getValue() {
+      return this.selected.get('radio-button').value;
     },
     isDisabled() {
       return this.selected.get('radio-button').disabled;

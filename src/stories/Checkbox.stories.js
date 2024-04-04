@@ -14,6 +14,7 @@ export default {
     text: { control: 'text', default: '' },
     isChecked: { control: 'boolean', default: false },
     isDisabled: { control: 'boolean', default: false },
+    name: { control: 'text', default: '' },
   },
 };
 
@@ -23,6 +24,7 @@ export const Default = {
     text: 'Checkbox example',
     isChecked: false,
     isDisabled: false,
+    name: 'Example',
   },
 };
 
