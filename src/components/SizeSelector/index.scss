@@ -8,6 +8,7 @@
     font-family: font.$primaryFont;
     font-weight: font.$semiBold;
     font-size: font.$sm;
+    color: colors.$gray800;
     padding-top: 1.6rem;
     margin: 0;
   }
@@ -16,13 +17,14 @@
     font-family: font.$tertiaryFont;
     font-weight: font.$regular;
     font-size: font.$xs;
+    color: colors.$gray600;
     padding-top: 0.6rem;
     margin: 0;
   }
 
   &__image {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background: colors.$grey150;
     border-radius: 50%;
     display: block;
@@ -74,7 +76,7 @@
     transition: 0.2s ease-in-out;
 
     .selector-wrapper__image {
-      background: colors.$secondary100;
+      background: colors.$blue100;
     }
 
     .selector-wrapper__title {
@@ -85,7 +87,7 @@
     }
 
     .selector-wrapper__weight {
-      color: colors.$secondary300;
+      color: colors.$blue100;
     }
   }
 }
