@@ -3,14 +3,19 @@
 
 .vaccine-container {
   max-width: 40rem;
+  font-family: fonts.$primaryFont;
 
   display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
+  flex-direction: column;
   padding: 2rem;
   border: 0.1rem;
+  gap: 2rem;
+
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &__text {
     font-family: Helvetica, sans-serif;
@@ -20,5 +25,38 @@
     line-height: 2.1rem;
 
     cursor: pointer;
+  }
+
+  &__year-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 7rem;
+    gap: 1.2rem;
+    border: 0.1rem;
+    padding: 0.8rem;
+  }
+
+  &__vaccine-title {
+    font-weight: fonts.$semiBold;
+    font-size: 1.8rem;
+    line-height: fonts.$lg;
+  }
+
+  &__sickness-body {
+    font-weight: fonts.$semiBold;
+    font-size: 1.6rem;
+  }
+
+  &__info-body {
+    line-height: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: fonts.$medium;
+
+    &.date {
+      margin-right: 0;
+      margin-left: auto;
+    }
   }
 }
