@@ -38,13 +38,13 @@ export default function Dropdown({
 
   this.placeholder = placeholder;
   this.items = new Map();
-  this.itemSelected = null;
+  this.selectedItem = null;
 
   this.onSelect = (item) => {
-    const existsAndIsDifferent = this.itemSelected != null && this.itemSelected !== item;
-    if (existsAndIsDifferent) this.itemSelected.unselect();
+    const existsAndIsDifferent = this.selectedItem !== null && this.selectedItem !== item;
+    if (existsAndIsDifferent) this.selectedItem.unselect();
 
-    this.itemSelected = item;
+    this.selectedItem = item;
     this.setValue(item.getValue());
     this.emit('select', item);
 
@@ -52,10 +52,10 @@ export default function Dropdown({
   };
 
   this.onUnselect = (item) => {
-    const isDifferent = this.itemSelected !== item;
+    const isDifferent = this.selectedItem !== item;
     if (isDifferent) return;
 
-    this.itemSelected = null;
+    this.selectedItem = null;
     this.setValue(null);
     this.emit('unselect', item);
   };
@@ -77,10 +77,8 @@ export default function Dropdown({
     if (this.isOpen()) this.close();
   };
 
-  this.listen('mount', () => document.addEventListener('click', closeOnClickOutside),
-  );
-  this.listen('unmount', () => document.removeEventListener('click', closeOnClickOutside),
-  );
+  this.listen('mount', () => document.addEventListener('click', closeOnClickOutside));
+  this.listen('unmount', () => document.removeEventListener('click', closeOnClickOutside));
 
   if (cssClass) {
     this.selected.get('dropdown-container').classList.add(cssClass);
@@ -89,8 +87,6 @@ export default function Dropdown({
 
 Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   addItem(props = {}) {
-    if (this.items.has(props.value)) return;
-
     const item = new DropdownItem(props);
     const $list = this.selected.get('dropdown-options');
     item.mount($list);
@@ -101,7 +97,7 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   },
 
   removeItem(value = '') {
-    if (!this.items.has(value)) return;
+    if (!this.items.has(value)) throw new Error('Item not found');
 
     const item = this.items.get(value);
     item.unmount();
@@ -126,8 +122,6 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   },
 
   open() {
-    if (this.items.size === 0) return;
-
     const $container = this.selected.get('dropdown-container');
     $container.classList.add('dropdown--open');
     this.emit('open');
@@ -141,14 +135,13 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
 
   getValue() {
     const { value } = this.selected.get('dropdown-selected').dataset;
-    if (value == null) return null;
     return value;
   },
 
   setValue(value = null) {
-    if (value == null) {
-      if (this.itemSelected != null) {
-        this.itemSelected.unselect();
+    if (value === null) {
+      if (this.selectedItem !== null) {
+        this.selectedItem.unselect();
         return;
       }
 

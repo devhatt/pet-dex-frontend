@@ -7,7 +7,6 @@
     background-color: colors.$blue500;
   }
 
-  &--selected,
   &[data-selected='true'] {
     color: colors.$blue600;
   }
