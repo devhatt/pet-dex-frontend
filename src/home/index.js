@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const $navigation = selected.get('navigation');
   const navigation = new Navigation();
   navigation.mount($navigation);
-
   const $content = selected.get('content');
   const noPetRegirestedPage = new NoPetRegirestedPage();
   noPetRegirestedPage.mount($content);
