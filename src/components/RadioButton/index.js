@@ -5,31 +5,30 @@ const events = ['change', 'value:change', 'text:change', 'name:change', 'disable
 
 const html = `
 <label class="radio-container">
-    <input data-select="radio-button" type="radio" name="" value="">
-    <span data-select="radio-button-text" class="radio-dot"></span>
+    <input data-select="radio-button" type="radio" class="radio-container__input" name="" value="">
+    <span data-select="radio-button-text" class="radio-container__dot"></span>
 </label>
 `;
 
 export default function RadioButton({
-  isChecked = false,
+  check = false,
   text = '',
   value = '',
   name = '',
-  isDisabled = false,
+  disabled = false,
 } = {}) {
   Component.call(this, { html, events });
 
-  this.setChecked(isChecked);
+  this.setCheck(check);
   this.setText(text);
   this.setValue(value);
   this.setName(name);
-  this.setDisabled(isDisabled);
+  this.setDisabled(disabled);
 
   const $radioButton = this.selected.get('radio-button');
 
   $radioButton.addEventListener('change', (e) => {
-    const isRealChecked = e.target.checked;
-    this.setChecked(isRealChecked);
+    this.setChecked(e.target.checked);
   });
 }
 
@@ -41,10 +40,10 @@ RadioButton.prototype = Object.assign(
       return this.selected.get('radio-button').checked;
     },
 
-    setChecked(isChecked = false) {
+    setCheck(check = false) {
       const $radioButton = this.selected.get('radio-button');
-      $radioButton.checked = isChecked;
-      this.emit('change', isChecked);
+      $radioButton.checked = check;
+      this.emit('change', check);
     },
 
     setText(text = '') {
@@ -66,10 +65,10 @@ RadioButton.prototype = Object.assign(
     isDisabled() {
       return this.selected.get('radio-button').disabled;
     },
-    setDisabled(isDisabled = false) {
+    setDisabled(disabled = false) {
       const $radioButton = this.selected.get('radio-button');
-      $radioButton.disabled = isDisabled;
-      this.emit('disable', isDisabled);
+      $radioButton.disabled = disabled;
+      this.emit('disable', disabled);
     },
     getName() {
       const $radioButton = this.selected.get('radio-button');

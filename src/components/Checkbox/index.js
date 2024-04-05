@@ -5,25 +5,24 @@ const events = ['change', 'text:change', 'disable', 'value:change'];
 
 const html = `
     <label class="checkbox-container">
-        <input data-select="checkbox" type="checkbox" value="">
-        <span data-select="checkbox-text" class="checkmark"></span>
+        <input data-select="checkbox" class="checkbox-container__input" type="checkbox" value="">
+        <span data-select="checkbox-text" class="checkbox-container__checkboxText"></span>
     </label>
 `;
 
-export default function Checkbox({ isChecked = false, name = '', text = '', isDisabled = false, value = '' } = {}) {
+export default function Checkbox({ check = false, name = '', text = '', disabled = false, value = '' } = {}) {
   Component.call(this, { html, events });
 
-  this.setChecked(isChecked);
+  this.setCheck(check);
   this.setText(text);
   this.setName(name);
-  this.setDisabled(isDisabled);
+  this.setDisabled(disabled);
   this.setValue(value);
 
   const $checkbox = this.selected.get('checkbox');
 
   $checkbox.addEventListener('change', (e) => {
-    const isRealChecked = e.target.checked;
-    this.setChecked(isRealChecked);
+    this.setChecked(e.target.checked);
   });
 }
 
@@ -32,10 +31,10 @@ Checkbox.prototype = Object.assign(Checkbox.prototype, Component.prototype, {
     return this.selected.get('checkbox').checked;
   },
 
-  setChecked(isChecked = false) {
+  setCheck(check = false) {
     const $checkbox = this.selected.get('checkbox');
-    $checkbox.checked = isChecked;
-    this.emit('change', isChecked);
+    $checkbox.checked = check;
+    this.emit('change', check);
   },
 
   setText(text = '') {
@@ -47,14 +46,15 @@ Checkbox.prototype = Object.assign(Checkbox.prototype, Component.prototype, {
   getText() {
     return this.selected.get('checkbox-text').textContent;
   },
+
   isDisabled() {
     return this.selected.get('checkbox').disabled;
   },
 
-  setDisabled(isDisabled = false) {
+  setDisabled(disabled = false) {
     const $checkbox = this.selected.get('checkbox');
-    $checkbox.disabled = isDisabled;
-    this.emit('disable', isDisabled);
+    $checkbox.disabled = disabled;
+    this.emit('disable', disabled);
   },
 
   setValue(value = '') {
@@ -62,9 +62,11 @@ Checkbox.prototype = Object.assign(Checkbox.prototype, Component.prototype, {
     $checkbox.value = value;
     this.emit('value:change', value);
   },
+
   getValue() {
     return this.selected.get('checkbox').value;
   },
+
   getName() {
     const $checkbox = this.selected.get('checkbox');
     return $checkbox.name;

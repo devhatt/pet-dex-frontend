@@ -1,4 +1,5 @@
-@import '~styles/colors';
+@use '~styles/colors' as colors;
+@use '~styles/fonts.scss' as fonts;
 
 .radio-container {
   display: inline-flex;
@@ -7,27 +8,27 @@
 
   margin: 1rem;
   padding: 1rem 8rem 1rem 1rem;
-  border: 0.15rem solid $gray600;
+  border: 0.15rem solid colors.$gray600;
 
   border-radius: 2rem;
 
   transition: border-color 0.3s;
 
   &:focus-within {
-    border-color: $blue500;
+    border-color: colors.$blue500;
 
     .radio-dot {
-      color: $blue500;
+      color: colors.$blue500;
     }
   }
 
-  input[type='radio'] {
+  &__input {
     width: 2.2rem;
     height: 2.2rem;
 
     margin: 0.8rem;
-    border: 0.15rem solid $gray600;
-    border-color: $blue500;
+    border: 0.15rem solid colors.$gray600;
+    border-color: colors.$blue500;
 
     border-radius: 50%;
 
@@ -36,30 +37,29 @@
     appearance: none;
 
     &:checked {
-      border-color: $blue500;
+      border-color: colors.$blue500;
 
       background: url('./images/ellipse.svg') no-repeat center center/60%;
     }
 
     &:disabled {
-      border-color: $gray200;
+      border-color: colors.$gray200;
 
-      cursor: default;
       cursor: not-allowed;
 
       + .checkmark {
-        color: $gray200;
+        color: colors.$gray200;
       }
     }
   }
 
-  .radio-dot {
-    font-family: Montserrat;
-    color: $gray600;
+  &__dot {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray600;
     text-align: left;
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 2rem;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+    line-height: 2;
     letter-spacing: 0;
   }
 }

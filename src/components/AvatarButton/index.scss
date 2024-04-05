@@ -1,6 +1,6 @@
-@use '~styles/colors' as *;
-@use '~styles/fonts' as *;
-//TODO: Dar um confere aqui dps
+@use '~styles/colors' as colors;
+@use '~styles/fonts' as fonts;
+
 .avatar-button {
   display: flex;
 
@@ -15,9 +15,9 @@
 
     &:hover {
       .avatar-button__bg {
-        border: 0.15rem solid $grey900;
+        border: 0.15rem solid colors.$grey900;
 
-        background: $appContentColor;
+        background: colors.$appContentColor;
       }
 
       .avatar-button__cross {
@@ -40,9 +40,9 @@
     justify-content: center;
 
     padding: 1.8rem;
-    border: 0.15rem solid $appContentColor;
+    border: 0.15rem solid colors.$appContentColor;
 
-    background: $grey900;
+    background: colors.$grey900;
     border-radius: 8rem;
 
     transition: 0.6s;
@@ -55,8 +55,8 @@
   }
 
   &__text {
-    font-family: $primaryFont;
-    color: $appContentColor;
+    font-family: fonts.$primaryFont;
+    color: colors.$appContentColor;
     font-size: 1.4rem;
 
     transition: 0.6s;

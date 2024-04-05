@@ -12,7 +12,7 @@ export default {
   argTypes: {
     value: { control: 'number', default: 1 },
     text: { control: 'text', default: '' },
-    isChecked: { control: 'boolean', default: false },
+    check: { control: 'boolean', default: false },
     name: { control: 'text', default: '' },
   },
 };
@@ -21,7 +21,7 @@ export const Default = {
   args: {
     value: 1,
     text: 'Radio Button Example',
-    isChecked: false,
+    check: false,
     name: 'Example',
   },
 };
@@ -29,6 +29,6 @@ export const Default = {
 export const Disabled = {
   args: {
     ...Default.args,
-    isDisabled: true,
+    disabled: true,
   },
 };
