@@ -46,12 +46,14 @@ describe('Dropdown', () => {
     fireEvent.click(item);
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--label');
   });
 
   it('selects an item by value', () => {
     dropdown.setValue('soninho');
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--label');
     expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
   });
 
@@ -97,6 +99,7 @@ describe('Dropdown', () => {
 
   it('has the placeholder', () => {
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe(propsMock.placeholder);
+    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--label');
   });
 
   it('has the custom class', () => {
@@ -116,10 +119,33 @@ describe('Dropdown', () => {
     expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
   });
 
+  it('get the value when calling the method', () => {
+    const item = getByText(dropdown.selected.get('dropdown-options'), 'Raiva');
+
+    fireEvent.click(item);
+
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
+  });
+
+  it('has the value when calling the method', () => {
+    dropdown.setValue('raiva');
+
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
+  });
+
+  it('clear the value', () => {
+    dropdown.setValue('soninho');
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('soninho');
+
+    dropdown.clearValue();
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(undefined);
+  });
+
   it('has the text when calling the method', () => {
     dropdown.setText('Age');
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Age');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--label');
   });
 
   it('get the text when calling the method', () => {
@@ -131,18 +157,17 @@ describe('Dropdown', () => {
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
   });
 
-  it('has the value when calling the method', () => {
-    dropdown.setValue('raiva');
+  it('get the placeholder', () => {
+    const placeholder = dropdown.getPlaceholder();
 
-    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
+    expect(placeholder).toBe(propsMock.placeholder);
   });
 
-  it('get the value when calling the method', () => {
-    const item = getByText(dropdown.selected.get('dropdown-options'), 'Raiva');
+  it('has the placeholder when calling the value', () => {
+    dropdown.setPlaceholder('PetDex');
 
-    fireEvent.click(item);
-
-    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
+    expect(dropdown.selected.get('dropdown-selected').textContent).toBe('PetDex');
+    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--label');
   });
 
   it('clear all itens', () => {

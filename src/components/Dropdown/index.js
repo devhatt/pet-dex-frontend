@@ -10,8 +10,10 @@ const events = [
   'open',
   'close',
   'value:change',
+  'value:clear',
   'text:change',
   'items:clear',
+  'placeholder:change',
 ];
 
 const html = `
@@ -56,7 +58,7 @@ export default function Dropdown({
     if (isDifferent) return;
 
     this.selectedItem = null;
-    this.setValue(null);
+    this.clearValue();
     this.emit('unselect', item);
   };
 
@@ -97,14 +99,14 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   },
 
   removeItem(value = '') {
-    if (!this.items.has(value)) throw new Error('Item not found');
+    if (!this.items.has(value)) return;
 
     const item = this.items.get(value);
     item.unmount();
     this.items.delete(value);
 
     if (item.getValue() === this.getValue()) {
-      this.setValue(null);
+      this.clearValue();
     }
 
     this.emit('item:remove', item);
@@ -138,21 +140,13 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
     return value;
   },
 
-  setValue(value = null) {
-    if (value === null) {
-      if (this.selectedItem !== null) {
-        this.selectedItem.unselect();
-        return;
-      }
-
-      this.setText(this.placeholder, true);
-      this.emit('value:change', null);
-      delete this.selected.get('dropdown-selected').dataset.value;
-
+  setValue(value = '') {
+    if (!value) {
+      this.clearValue();
       return;
     }
 
-    if (!this.items.has(value)) return;
+    if (!this.items.has(value)) throw new Error('Value is not found');
 
     const item = this.items.get(value);
     this.setText(item.getText());
@@ -160,15 +154,33 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
     this.emit('value:change', item.getValue());
   },
 
+  clearValue() {
+    this.setPlaceholder(this.placeholder);
+    this.emit('value:clear', null);
+    delete this.selected.get('dropdown-selected').dataset.value;
+  },
+
   getText() {
     return this.selected.get('dropdown-selected').textContent;
   },
 
-  setText(text = '', isPlaceholder = false) {
+  setText(text = '') {
     const $container = this.selected.get('dropdown-selected');
-    $container.classList.toggle('dropdown__selected--label', isPlaceholder);
+    $container.classList.toggle('dropdown__selected--label', false);
     $container.textContent = text;
     this.emit('text:change', text);
+  },
+
+  getPlaceholder() {
+    return this.placeholder;
+  },
+
+  setPlaceholder(text = this.placeholder) {
+    this.placeholder = text;
+    const $container = this.selected.get('dropdown-selected');
+    $container.classList.toggle('dropdown__selected--label', true);
+    $container.textContent = this.placeholder;
+    this.emit('placeholder:change', this.placeholder);
   },
 
   clearItems() {
