@@ -23,12 +23,7 @@ export default function Vaccine({ vaccinesList = [] }) {
 
   function formatDate(dataISO) {
     const date = new Date(dataISO);
-
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat('pt-BR').format(date);
   }
 
   function loadVaccineList() {
@@ -47,15 +42,15 @@ export default function Vaccine({ vaccinesList = [] }) {
 
       if ($yearSection) {
         $yearSection.innerHTML += htmlToInsert;
-      } else {
-        const $vaccineList = document.createElement('div');
-        const $titleYear = `<p class="vaccine-container__vaccine-title"> ${dateYear} </p>`;
-
-        $vaccineList.innerHTML = $titleYear + htmlToInsert;
-        $vaccineList.classList.add('vaccine-container__vaccine-section');
-        $vaccineList.setAttribute('year', dateYear);
-        $vaccineContainer.appendChild($vaccineList);
+        return;
       }
+      const $vaccineList = document.createElement('div');
+      const $titleYear = `<p class="vaccine-container__vaccine-title"> ${dateYear} </p>`;
+
+      $vaccineList.innerHTML = $titleYear + htmlToInsert;
+      $vaccineList.classList.add('vaccine-container__vaccine-section');
+      $vaccineList.setAttribute('year', dateYear);
+      $vaccineContainer.appendChild($vaccineList);
     });
   }
 
