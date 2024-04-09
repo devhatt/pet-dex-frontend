@@ -1,8 +1,9 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
 
 .vaccine-container {
-  max-width: 40rem;
+  max-width: 63rem;
 
   display: flex;
   flex-direction: column;
@@ -20,14 +21,28 @@
     justify-content: space-between;
   }
 
-  &__text {
+  &__add-vacine {
     font-family: Helvetica, sans-serif;
     color: colors.$blue500;
     font-size: fonts.$xs;
     font-weight: fonts.$bold;
     line-height: 2.1rem;
 
+    display: flex;
+    gap: 1rem;
+
     cursor: pointer;
+  }
+
+  &__text {
+    font-family: fonts.$primaryFont;
+    font-weight: fonts.$semiBold;
+    line-height: 2rem;
+    font-size: fonts.$xs;
+    color: colors.$gray800;
+
+    margin-left: 3%;
+    margin-right: auto;
   }
 
   &__year-body {
@@ -43,25 +58,42 @@
     border: 1px;
   }
 
-  &__vaccine-title {
+  &__vaccine-year-title {
     font-size: 1.8rem;
     font-weight: fonts.$semiBold;
-    line-height: fonts.$lg;
-  }
-
-  &__sickness-body {
-    font-size: 1.6rem;
-    font-weight: fonts.$semiBold;
+    color: colors.$gray800;
   }
 
   &__info-body {
     font-size: 1.6rem;
     font-weight: fonts.$medium;
     line-height: 2.4rem;
+    color: colors.$gray600;
+
+    &.vaccine {
+      font-size: 1.6rem;
+      font-weight: fonts.$semiBold;
+      line-height: fonts.$lg;
+      color: colors.$gray800;
+    }
 
     &.date {
-      margin-right: 0;
-      margin-left: auto;
+      display: flex;
+      gap: 0.8rem;
+    }
+  }
+}
+
+@include breakpoints.from667 {
+  .vaccine-container {
+    &__text {
+      font-size: fonts.$sm;
+    }
+    &__info-body {
+      &.date {
+        margin-right: 0;
+        margin-left: auto;
+      }
     }
   }
 }
