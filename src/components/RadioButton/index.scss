@@ -1,0 +1,67 @@
+@use '~styles/colors' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.radio-container {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin: 1rem;
+  padding: 1rem 8rem 1rem 1rem;
+  border: 0.15rem solid colors.$gray600;
+
+  border-radius: 2rem;
+
+  transition: border-color 0.3s;
+
+  cursor: pointer;
+
+  &:focus-within {
+    border-color: colors.$blue500;
+
+    .radio-dot {
+      color: colors.$blue500;
+    }
+  }
+
+  &__input {
+    width: 2.2rem;
+    height: 2.2rem;
+
+    margin: 0.8rem;
+    border: 0.15rem solid colors.$gray600;
+    border-color: colors.$blue500;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+    appearance: none;
+    appearance: none;
+
+    &:checked {
+      border-color: colors.$blue500;
+
+      background: url('./images/ellipse.svg') no-repeat center center/60%;
+    }
+
+    &:disabled {
+      border-color: colors.$gray200;
+
+      cursor: not-allowed;
+
+      + .checkmark {
+        color: colors.$gray200;
+      }
+    }
+  }
+
+  &__dot {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray600;
+    text-align: left;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+    line-height: 2;
+    letter-spacing: 0;
+  }
+}
