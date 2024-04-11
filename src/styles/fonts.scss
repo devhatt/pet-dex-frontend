@@ -1,5 +1,6 @@
 $primaryFont: 'Montserrat', sans-serif;
 $secondaryFont: 'Wix Madefor Display', sans-serif;
+$tertiaryFont: 'Helvetica', sans-serif;
 
 $xs: 1.4rem;
 $sm: 1.6rem;
@@ -74,4 +75,13 @@ $descriptionLineHeight: 2rem;
     font-size: $size,
     font-style: $style
   );
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('Helvetica'),
+    url('/helvetica.woff') format('woff');
 }
