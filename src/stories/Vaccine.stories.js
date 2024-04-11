@@ -19,18 +19,21 @@ export const Default = {
   args: {
     vaccinesList: [
       {
+        id: '1',
         vet: 'Dr octopus',
-        vaccine: 'Antirrábica',
+        title: 'Antirrábica',
         date: new Date().toISOString(),
       },
       {
+        id: '2',
         vet: 'Dr Almeida',
-        vaccine: 'Raiva',
+        title: 'Raiva',
         date: new Date(2023, 5, 2).toISOString(),
       },
       {
+        id: '3',
         vet: 'Dr octopus',
-        vaccine: 'Raiva',
+        title: 'Raiva',
         date: new Date(2023, 2, 2).toISOString(),
       },
     ],

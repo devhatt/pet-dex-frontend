@@ -4,83 +4,50 @@
 
 .vaccine-container {
   max-width: 63rem;
-
-  display: flex;
-  flex-direction: column;
   gap: 2rem;
-
-  font-family: fonts.$primaryFont;
-
   padding: 2rem;
   border: 1px;
 
+  display: flex;
+  flex-direction: column;
+
+  font-family: fonts.$primaryFont;
   &__card {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
   }
 
   &__add-vacine {
-    font-family: Helvetica, sans-serif;
+    display: flex;
+
+    line-height: 2.1rem;
+    gap: 1rem;
+
+    font-family: fonts.$tertiaryFont;
     color: colors.$blue500;
     font-size: fonts.$xs;
     font-weight: fonts.$bold;
-    line-height: 2.1rem;
-
-    display: flex;
-    gap: 1rem;
 
     cursor: pointer;
   }
 
-  &__text {
-    font-family: fonts.$primaryFont;
-    font-weight: fonts.$semiBold;
-    line-height: 2rem;
-    font-size: fonts.$xs;
-    color: colors.$gray800;
+  &__add-vacine-text {
+    padding-right: 0.9rem;
+  }
 
+  &__text {
     margin-left: 3%;
     margin-right: auto;
-  }
 
-  &__year-body {
-    height: 7rem;
-
-    display: flex;
-    gap: 1.2rem;
-
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0.8rem;
-    border: 1px;
-  }
-
-  &__vaccine-year-title {
-    font-size: 1.8rem;
+    line-height: 2rem;
+    font-family: fonts.$primaryFont;
     font-weight: fonts.$semiBold;
+    font-size: fonts.$xs;
     color: colors.$gray800;
   }
-
-  &__info-body {
-    font-size: 1.6rem;
-    font-weight: fonts.$medium;
-    line-height: 2.4rem;
-    color: colors.$gray600;
-
-    &.vaccine {
-      font-size: 1.6rem;
-      font-weight: fonts.$semiBold;
-      line-height: fonts.$lg;
-      color: colors.$gray800;
-    }
-
-    &.date {
-      display: flex;
-      gap: 0.8rem;
-    }
+  &__add-vacine-text {
+    display: none;
   }
 }
 
@@ -89,11 +56,8 @@
     &__text {
       font-size: fonts.$sm;
     }
-    &__info-body {
-      &.date {
-        margin-right: 0;
-        margin-left: auto;
-      }
+    &__add-vacine-text {
+      display: block;
     }
   }
 }

@@ -1,0 +1,10 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.vaccine-group {
+  &__vaccine-title {
+    color: colors.$gray800;
+    font-size: 1.8rem;
+    font-weight: fonts.$semiBold;
+  }
+}
