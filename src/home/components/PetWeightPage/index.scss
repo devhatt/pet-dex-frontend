@@ -15,7 +15,7 @@
     text-align: center;
   }
 
-  &__image {
+  &__image-container {
     width: max-content;
 
     display: inline-block;
@@ -24,7 +24,7 @@
   }
 
   &__description {
-    font-family: 'Montserrat', sans-serif;
+    font-family: fonts.$primaryFont;
   }
 
   &__title {
@@ -47,14 +47,18 @@
     margin-top: 3rem;
   }
 
+  &__value {
+    margin-bottom: 0;
+  }
+
   &__inputs {
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    width: 30%;
+    margin: 2rem auto;
   }
 
   &__input {
@@ -62,7 +66,8 @@
   }
 
   &__button {
-    width: 80vw;
+    width: 95%;
+    margin-top: 1rem;
   }
 }
 
@@ -77,21 +82,17 @@
       font-size: fonts.$xs;
     }
 
-    &__slider-container {
-      max-width: 70vw;
-    }
-
     &__input {
-      width: 14rem;
-      height: 3.5rem;
+      width: 50%;
+      // Não sei muito bem como resolver a altura aqui.
+      // height: 3.5rem;
 
       display: block;
-
-      padding: 0.5rem;
     }
 
     &__button {
-      width: 41vw;
+      width: 40%;
+      margin-top: 3rem;
     }
   }
 }
@@ -105,10 +106,6 @@
 
     &__hint {
       font-size: fonts.$sm;
-    }
-
-    &__slider-container {
-      max-width: 80vw;
     }
   }
 }
