@@ -8,7 +8,7 @@ import './index.scss';
 const html = `
   <div class="pet-weight-page">
     <div class="pet-weight-page__content" data-select="container">
-      <div class="pet-weight-page__image" data-select="image-container"></div>
+      <div class="pet-weight-page__image-container" data-select="image-container"></div>
 
       <div class="pet-weight-page__description">
         <h1 class="pet-weight-page__title">Qual é o peso do seu animal de estimação?</h1>
@@ -41,8 +41,6 @@ export default function PetWeightPage() {
   const $sliderContainer = this.selected.get('slider-container');
   const $textInputContainer = this.selected.get('input-container');
 
-  let $weight = null;
-
   this.image = new UploadImage();
   this.slider = new RangeSlider();
   this.input = new TextInput({
@@ -59,22 +57,41 @@ export default function PetWeightPage() {
 
   this.image.selected
     .get('image-preview')
-    .classList.add('pet-weight-page__img');
+    .classList.add('pet-weight-page__image');
 
   this.slider.selected
     .get('range-slider')
     .classList.add('pet-weight-page__slider');
+  this.slider.selected
+    .get('range-slider-value')
+    .classList.add('pet-weight-page__value');
   this.input.selected.get('input-text').classList.add('pet-weight-page__input');
   this.button.selected.get('button').classList.add('pet-weight-page__button');
 
   this.slider.listen('value:change', (value) => {
-    $weight = value.toFixed(1);
-    this.input.selected.get('input-text').value = $weight;
+    this.weight = Number(value.toFixed(1));
+    this.input.setValue(this.weight);
   });
 
   this.input.listen('value:changed', (value) => {
-    $weight = Number(value);
-    this.slider.setValue($weight);
+    if (this.weight !== value) {
+      const numericValue = parseFloat(value);
+      if (!numericValue.isNaN && this.weight !== numericValue) {
+        this.weight = Number(value);
+        this.slider.setValue(this.weight);
+      }
+    }
+  });
+
+  this.button.listen('click', () => {
+    const weightUnit = 'kg';
+    const finalWeight = this.weight;
+    const event = new CustomEvent('weight:submit', {
+      detail: { finalWeight, unit: weightUnit },
+
+      bubbles: true,
+    });
+    $container.dispatchEvent(event);
   });
 
   this.image.mount($imageContainer);
