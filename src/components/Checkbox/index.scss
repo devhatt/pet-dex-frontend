@@ -1,0 +1,48 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.checkbox-container {
+  display: inline-flex;
+
+  align-items: center;
+
+  margin: 1rem;
+
+  cursor: pointer;
+
+  &__input {
+    width: 2.2rem;
+    height: 2.2rem;
+
+    margin: 0.8rem;
+    border: 0.2rem solid colors.$gray500;
+
+    border-radius: 0.5rem;
+
+    cursor: pointer;
+    appearance: none;
+
+    &:checked {
+      border-color: colors.$purple500;
+
+      background: colors.$purple500 url('./images/check.svg') no-repeat center
+        center/70%;
+    }
+
+    &:disabled {
+      border-color: colors.$gray500;
+
+      cursor: not-allowed;
+    }
+  }
+
+  &__checkboxText {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    text-align: left;
+    font-size: fonts.$xs;
+    font-weight: fonts.$semiBold;
+    line-height: 2;
+    letter-spacing: 0;
+  }
+}
