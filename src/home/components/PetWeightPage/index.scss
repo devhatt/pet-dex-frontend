@@ -52,18 +52,26 @@
   }
 
   &__inputs {
-    width: 30%;
-
     display: flex;
 
     align-items: center;
     justify-content: center;
-
-    margin: 2rem auto;
   }
 
   &__input {
     display: none;
+  }
+
+  &__radio {
+    margin-right: 0.5rem;
+    padding: 1rem 5rem 1rem 1rem;
+    border: 1px solid rgb(163, 163, 163);
+
+    border-radius: 8px;
+
+    &:last-child {
+      margin-right: 0; // Removendo a margem direita
+    }
   }
 
   &__button {
@@ -75,6 +83,14 @@
 
 @include breakpoints.from1024 {
   .pet-weight-page {
+    &__image-container {
+      margin-bottom: 3rem;
+    }
+
+    &__slider-container {
+      margin-top: 2rem;
+    }
+
     &__title {
       font-size: fonts.$sm;
       font-weight: fonts.$medium;
@@ -85,17 +101,22 @@
     }
 
     &__input {
-      width: 50%;
-      // Não sei muito bem como resolver a altura aqui.
-      // height: 3.5rem;
+      width: 6rem;
+      height: 3rem;
 
       display: block;
+
+      margin-right: 0.5rem;
+    }
+
+    &__radio {
+      padding: 0.5rem 5rem 0.5rem 1rem;
     }
 
     &__button {
       width: 40%;
 
-      margin-top: 3rem;
+      margin-top: 1rem;
     }
   }
 }
@@ -109,6 +130,19 @@
 
     &__hint {
       font-size: fonts.$sm;
+    }
+
+    &__input {
+      width: 14rem;
+      height: 3rem;
+    }
+
+    &__radio {
+      padding: 0.5rem 5rem 0.5rem 1rem;
+    }
+
+    &__button {
+      width: 35%;
     }
   }
 }

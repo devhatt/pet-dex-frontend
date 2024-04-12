@@ -2,6 +2,7 @@ import { Component } from 'pet-dex-utilities';
 import UploadImage from '../../../components/UploadImage';
 import RangeSlider from '../../../components/RangeSlider';
 import TextInput from '../../../components/TextInput';
+import RadioButton from '../../../components/RadioButton';
 import Button from '../../../components/Button';
 import './index.scss';
 
@@ -17,17 +18,7 @@ const html = `
 
       <div class="pet-weight-page__slider-container" data-select="slider-container"></div>
 
-      <div class="pet-weight-page__inputs">
-        <div class="pet-weight-page__text-input" data-select="input-container"></div>
-        <div>
-          <input type="radio" id="kg" name="weight-unit" value="kg" checked>
-          <label for="kg">Kg</label>
-        </div>
-
-        <div>
-          <input type="radio" id="lb" name="weight-unit" value="lb">
-          <label for="lb">Lb</label>
-        </div>
+      <div class="pet-weight-page__inputs" data-select="input-container">
       </div>    
     </div>
   </div>;
@@ -39,7 +30,7 @@ export default function PetWeightPage() {
   const $container = this.selected.get('container');
   const $imageContainer = this.selected.get('image-container');
   const $sliderContainer = this.selected.get('slider-container');
-  const $textInputContainer = this.selected.get('input-container');
+  const $inputsContainer = this.selected.get('input-container');
 
   this.image = new UploadImage();
   this.slider = new RangeSlider();
@@ -48,6 +39,17 @@ export default function PetWeightPage() {
     assetUrl: '',
     assetPosition: 'prefix',
     variation: 'standard',
+  });
+  this.radioKG = new RadioButton({
+    check: true,
+    text: 'KG',
+    value: 'kg',
+    name: 'weight-unit',
+  });
+  this.radioLB = new RadioButton({
+    text: 'LB',
+    value: 'lb',
+    name: 'weight-unit',
   });
   this.button = new Button({
     text: 'Continuar',
@@ -66,6 +68,12 @@ export default function PetWeightPage() {
     .get('range-slider-value')
     .classList.add('pet-weight-page__value');
   this.input.selected.get('input-text').classList.add('pet-weight-page__input');
+  this.radioKG.selected
+    .get('radio-container')
+    .classList.add('pet-weight-page__radio');
+  this.radioLB.selected
+    .get('radio-container')
+    .classList.add('pet-weight-page__radio');
   this.button.selected.get('button').classList.add('pet-weight-page__button');
 
   this.slider.listen('value:change', (value) => {
@@ -83,11 +91,18 @@ export default function PetWeightPage() {
     }
   });
 
+  const weightUnit = () => {
+    if (this.radioKG.isChecked()) {
+      return this.radioKG.getValue();
+    }
+    return this.radioLB.getValue();
+  };
+
   this.button.listen('click', () => {
-    const weightUnit = 'kg';
+    const finalWeightUnit = weightUnit();
     const finalWeight = this.weight;
     const event = new CustomEvent('weight:submit', {
-      detail: { finalWeight, unit: weightUnit },
+      detail: { finalWeight, finalWeightUnit },
 
       bubbles: true,
     });
@@ -96,7 +111,9 @@ export default function PetWeightPage() {
 
   this.image.mount($imageContainer);
   this.slider.mount($sliderContainer);
-  this.input.mount($textInputContainer);
+  this.input.mount($inputsContainer);
+  this.radioKG.mount($inputsContainer);
+  this.radioLB.mount($inputsContainer);
   this.button.mount($container);
 }
 
