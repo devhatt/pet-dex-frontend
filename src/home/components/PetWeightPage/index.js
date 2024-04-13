@@ -68,6 +68,9 @@ export default function PetWeightPage() {
     .get('range-slider-value')
     .classList.add('pet-weight-page__value');
   this.input.selected.get('input-text').classList.add('pet-weight-page__input');
+  this.input.selected
+    .get('input-text-container')
+    .classList.add('pet-weight-page__input-container');
   this.radioKG.selected
     .get('radio-container')
     .classList.add('pet-weight-page__radio');

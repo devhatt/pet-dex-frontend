@@ -11,7 +11,7 @@ const events = [
 ];
 
 const html = `
-    <div class="input-text-container">
+    <div class="input-text-container" data-select="input-text-container">
       <input class="input-text-container__input" type="text" data-select="input-text" placeholder="">
     </div>
 `;

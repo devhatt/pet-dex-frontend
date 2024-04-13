@@ -100,13 +100,14 @@
       font-size: fonts.$xs;
     }
 
+    &__input-container {
+      max-width: max-content;
+    }
+
     &__input {
-      width: 6rem;
-      height: 3rem;
+      width: 70%;
 
       display: block;
-
-      margin-right: 0.5rem;
     }
 
     &__radio {
@@ -132,9 +133,12 @@
       font-size: fonts.$sm;
     }
 
+    &__input-container {
+      max-width: max-content;
+    }
+
     &__input {
-      width: 14rem;
-      height: 3rem;
+      width: 70%;
     }
 
     &__radio {
