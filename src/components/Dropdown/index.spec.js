@@ -17,13 +17,16 @@ const propsMock = {
       value: 'castracao',
     },
   ],
+
   placeholder: 'Selecione',
-  cssClass: 'dropdown',
+
 };
+
 describe('Dropdown', () => {
   let dropdown;
   let clickEvent;
   const $container = document.createElement('div');
+
   beforeEach(() => {
     dropdown = new Dropdown(propsMock);
     clickEvent = new Event('click');
@@ -46,14 +49,15 @@ describe('Dropdown', () => {
     fireEvent.click(item);
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
-    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--label');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--placeholder');
+    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
   });
 
-  it('selects an item by value', () => {
+  it('selects a item programmatically', () => {
     dropdown.setValue('soninho');
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
-    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--label');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--placeholder');
     expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
   });
 
@@ -65,6 +69,7 @@ describe('Dropdown', () => {
 
     dropdown.addItem(mockAdditionalItem);
 
+    expect(dropdown.selected.get('dropdown-options').children[3].dataset.value).toBe(mockAdditionalItem.value);
     expect(dropdown.selected.get('dropdown-options').children.length).toBe(4);
   });
 
@@ -82,14 +87,6 @@ describe('Dropdown', () => {
     expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
   });
 
-  it('closes when selecting item', () => {
-    const item = getByText(dropdown.selected.get('dropdown-options'), 'Soninho');
-
-    fireEvent.click(item);
-
-    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
-  });
-
   it('closes when clicked in toggle', () => {
     dropdown.selected.get('dropdown-toggle').dispatchEvent(clickEvent);
     dropdown.selected.get('dropdown-toggle').dispatchEvent(clickEvent);
@@ -99,27 +96,24 @@ describe('Dropdown', () => {
 
   it('has the placeholder', () => {
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe(propsMock.placeholder);
-    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--label');
+    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--placeholder');
   });
 
-  it('has the custom class', () => {
-    expect(dropdown.selected.get('dropdown-container').classList).toContain(propsMock.cssClass);
-  });
-
-  it('opens when calling the method', () => {
+  it('opens programmatically', () => {
     dropdown.open();
 
     expect(dropdown.selected.get('dropdown-container').classList).toContain('dropdown--open');
   });
 
-  it('closes when calling the method', () => {
+  it('closes programmatically', () => {
     dropdown.open();
     dropdown.close();
 
     expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
   });
 
-  it('get the value when calling the method', () => {
+  it('get the value programmatically', () => {
+    dropdown.open();
     const item = getByText(dropdown.selected.get('dropdown-options'), 'Raiva');
 
     fireEvent.click(item);
@@ -127,28 +121,29 @@ describe('Dropdown', () => {
     expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
   });
 
-  it('has the value when calling the method', () => {
+  it('has the value programmatically', () => {
     dropdown.setValue('raiva');
 
     expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
   });
 
-  it('clear the value', () => {
+  it('reset the value', () => {
     dropdown.setValue('soninho');
     expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('soninho');
 
-    dropdown.clearValue();
+    dropdown.reset();
     expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(undefined);
   });
 
-  it('has the text when calling the method', () => {
+  it('has the text label programmatically', () => {
     dropdown.setText('Age');
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Age');
-    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--label');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--placeholder');
   });
 
-  it('get the text when calling the method', () => {
+  it('get the text label programmatically', () => {
+    dropdown.open();
     const item = getByText(dropdown.selected.get('dropdown-options'), 'Soninho');
 
     fireEvent.click(item);
@@ -157,22 +152,32 @@ describe('Dropdown', () => {
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
   });
 
-  it('get the placeholder', () => {
+  it('get the placeholder programmatically', () => {
     const placeholder = dropdown.getPlaceholder();
 
     expect(placeholder).toBe(propsMock.placeholder);
   });
 
-  it('has the placeholder when calling the value', () => {
+  it('has the placeholder programmatically', () => {
     dropdown.setPlaceholder('PetDex');
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('PetDex');
-    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--label');
+    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--placeholder');
   });
 
   it('clear all itens', () => {
     dropdown.clearItems();
 
     expect(dropdown.selected.get('dropdown-options').children.length).toBe(0);
+  });
+
+  it('contains the objects', () => {
+    const toJson = dropdown.toJson();
+
+    expect(toJson.size).toBe(3);
+    expect(toJson.keys()).toContain('raiva');
+    expect(toJson.keys()).toContain('soninho');
+    expect(toJson.keys()).toContain('castracao');
+    expect(toJson).toBeInstanceOf(Map);
   });
 });

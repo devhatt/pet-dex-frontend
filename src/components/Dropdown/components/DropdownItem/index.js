@@ -56,5 +56,12 @@ DropdownItem.prototype = Object.assign(
       this.selected.get('option').dataset.selected = false;
       this.emit('unselect', this);
     },
+
+    toJson() {
+      return {
+        text: this.getText(),
+        value: this.getValue(),
+      };
+    },
   },
 );

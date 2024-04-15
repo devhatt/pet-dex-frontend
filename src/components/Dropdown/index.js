@@ -3,23 +3,23 @@ import DropdownItem from './components/DropdownItem';
 import './index.scss';
 
 const events = [
-  'select',
-  'unselect',
+  'close',
   'item:add',
   'item:remove',
+  'items:clear',
   'open',
-  'close',
+  'placeholder:change',
+  'select',
+  'text:change',
+  'unselect',
   'value:change',
   'value:clear',
-  'text:change',
-  'items:clear',
-  'placeholder:change',
 ];
 
 const html = `
   <div class="dropdown" data-select="dropdown-container">
     <div class="dropdown__toggle" data-select="dropdown-toggle">
-      <span class="dropdown__selected dropdown__selected--label" data-select="dropdown-selected"></span>
+      <span class="dropdown__selected dropdown__selected--placeholder" data-select="dropdown-selected"></span>
       <span class="dropdown__icon" data-select="dropdown-icon">
         <svg fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="overflow: visible; color: currentcolor;" height="1em" width="1em">
           <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
@@ -33,8 +33,6 @@ const html = `
 export default function Dropdown({
   items = [],
   placeholder = 'Select an option',
-  value = null,
-  cssClass = '',
 } = {}) {
   Component.call(this, { html, events });
 
@@ -58,12 +56,12 @@ export default function Dropdown({
     if (isDifferent) return;
 
     this.selectedItem = null;
-    this.clearValue();
+    this.reset();
     this.emit('unselect', item);
   };
 
   items.map((item) => this.addItem(item));
-  this.setValue(value);
+  this.setPlaceholder(placeholder);
 
   this.selected
     .get('dropdown-toggle')
@@ -81,14 +79,12 @@ export default function Dropdown({
 
   this.listen('mount', () => document.addEventListener('click', closeOnClickOutside));
   this.listen('unmount', () => document.removeEventListener('click', closeOnClickOutside));
-
-  if (cssClass) {
-    this.selected.get('dropdown-container').classList.add(cssClass);
-  }
 }
 
 Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   addItem(props = {}) {
+    if (this.items.has(props.value)) throw new Error('item already exists');
+
     const item = new DropdownItem(props);
     const $list = this.selected.get('dropdown-options');
     item.mount($list);
@@ -141,11 +137,6 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   },
 
   setValue(value = '') {
-    if (!value) {
-      this.clearValue();
-      return;
-    }
-
     if (!this.items.has(value)) throw new Error('Value is not found');
 
     const item = this.items.get(value);
@@ -154,7 +145,7 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
     this.emit('value:change', item.getValue());
   },
 
-  clearValue() {
+  reset() {
     this.setPlaceholder(this.placeholder);
     this.emit('value:clear', null);
     delete this.selected.get('dropdown-selected').dataset.value;
@@ -166,7 +157,7 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
 
   setText(text = '') {
     const $container = this.selected.get('dropdown-selected');
-    $container.classList.toggle('dropdown__selected--label', false);
+    $container.classList.toggle('dropdown__selected--placeholder', false);
     $container.textContent = text;
     this.emit('text:change', text);
   },
@@ -178,7 +169,7 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   setPlaceholder(text = this.placeholder) {
     this.placeholder = text;
     const $container = this.selected.get('dropdown-selected');
-    $container.classList.toggle('dropdown__selected--label', true);
+    $container.classList.toggle('dropdown__selected--placeholder', true);
     $container.textContent = this.placeholder;
     this.emit('placeholder:change', this.placeholder);
   },
@@ -187,5 +178,15 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
     this.items.forEach((item) => this.removeItem(item.getValue()));
     this.close();
     this.emit('items:clear', this);
+  },
+
+  toJson() {
+    const allItems = new Map();
+
+    this.items.forEach((item) => {
+      allItems.set(item.getValue(), item.toJson());
+    });
+
+    return allItems;
   },
 });
