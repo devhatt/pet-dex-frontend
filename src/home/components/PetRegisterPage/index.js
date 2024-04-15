@@ -16,7 +16,7 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   const $container = this.selected.get('container');
   this.activeCard = null;
 
-  const button = new Button({
+  const $button = new Button({
     text: 'Continuar',
     isFullWidth: true,
     isDisabled: true,
@@ -34,11 +34,11 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     card.mount($container);
 
     card.listen('active', () => {
-      if (!this.activeCard) button.disable();
+      if (!this.activeCard) $button.disable();
 
       this.activeCard = card;
       this.emit('select:card', card);
-      button.enable();
+      $button.enable();
     });
 
     card.listen('desactive', () => {
@@ -61,12 +61,12 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     });
   });
 
-  button.listen('click', () => {
+  $button.listen('click', () => {
     this.emit('submit-breed', this.activeCard);
   });
 
-  button.selected.get('button').classList.add('pet-regirested-page__button');
-  button.mount($container);
+  $button.selected.get('button').classList.add('pet-regirested-page__button');
+  $button.mount($container);
 }
 
 PetRegisterPage.prototype = Object.assign(
