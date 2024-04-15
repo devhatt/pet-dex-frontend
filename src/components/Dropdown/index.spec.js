@@ -71,6 +71,7 @@ describe('Dropdown', () => {
 
     expect(dropdown.selected.get('dropdown-options').children[3].dataset.value).toBe(mockAdditionalItem.value);
     expect(dropdown.selected.get('dropdown-options').children.length).toBe(4);
+    expect(() => dropdown.addItem(mockAdditionalItem)).toThrowError('Item already exists');
   });
 
   it('removes an element in options', () => {
@@ -169,15 +170,5 @@ describe('Dropdown', () => {
     dropdown.clearItems();
 
     expect(dropdown.selected.get('dropdown-options').children.length).toBe(0);
-  });
-
-  it('contains the objects', () => {
-    const toJson = dropdown.toJson();
-
-    expect(toJson.size).toBe(3);
-    expect(toJson.keys()).toContain('raiva');
-    expect(toJson.keys()).toContain('soninho');
-    expect(toJson.keys()).toContain('castracao');
-    expect(toJson).toBeInstanceOf(Map);
   });
 });

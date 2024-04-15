@@ -83,7 +83,7 @@ export default function Dropdown({
 
 Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
   addItem(props = {}) {
-    if (this.items.has(props.value)) throw new Error('item already exists');
+    if (this.items.has(props.value)) throw new Error('Item already exists');
 
     const item = new DropdownItem(props);
     const $list = this.selected.get('dropdown-options');
@@ -187,6 +187,8 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
       allItems.set(item.getValue(), item.toJson());
     });
 
-    return allItems;
+    const objectItems = Object.fromEntries(allItems);
+
+    return JSON.stringify(objectItems);
   },
 });
