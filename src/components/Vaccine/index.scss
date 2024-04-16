@@ -10,16 +10,18 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  border: 1px solid colors.$gray600;
-  border-radius: 18px;
   font-family: fonts.$primaryFont;
+  border: 1px solid colors.$grey150;
+  border-radius: 1.8rem;
+
+  box-shadow: rgba(50, 50, 71, 0.04);
 
   &__sections {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    margin-right: 2rem;
+    margin-right: 1rem;
   }
 
   &__header {
@@ -59,8 +61,29 @@
   &__add-vacine-text {
     display: none;
   }
+
   &__list-group {
     overflow-y: scroll;
+  }
+}
+
+@include breakpoints.from667 {
+  .vaccine-container {
+    max-height: 46.2rem;
+
+    &__text {
+      font-size: fonts.$sm;
+      font-size: 1.8rem;
+      font-weight: fonts.$semiBold;
+      line-height: 2.4rem;
+      color: colors.$gray800;
+    }
+    &__add-vacine-text {
+      display: block;
+    }
+    &__sections {
+      margin-right: 2rem;
+    }
   }
   ::-webkit-scrollbar {
     width: 6px;
@@ -82,22 +105,5 @@
 
   ::-webkit-scrollbar-button {
     display: none;
-  }
-}
-
-@include breakpoints.from667 {
-  .vaccine-container {
-    max-height: 46.2rem;
-
-    &__text {
-      font-size: fonts.$sm;
-      font-size: 1.8rem;
-      font-weight: fonts.$semiBold;
-      line-height: 2.4rem;
-      color: colors.$gray800;
-    }
-    &__add-vacine-text {
-      display: block;
-    }
   }
 }
