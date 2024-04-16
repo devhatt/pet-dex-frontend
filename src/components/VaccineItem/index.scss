@@ -11,8 +11,10 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 0.8rem;
-  border: 1px;
+  padding: 0 1.6rem;
+  border: 1px solid colors.$grey150;
+
+  border-radius: 14px;
 
   &__info-body {
     color: colors.$gray600;
@@ -30,6 +32,15 @@
     &.date {
       display: flex;
       gap: 0.8rem;
+
+      align-items: center;
+    }
+
+    &.divider {
+      width: 1px;
+      height: 30px;
+
+      background-color: colors.$grey150;
     }
   }
 }

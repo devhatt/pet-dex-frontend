@@ -2,6 +2,10 @@
 @use '~styles/fonts.scss' as fonts;
 
 .vaccine-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
   &__vaccine-title {
     color: colors.$gray800;
     font-size: 1.8rem;

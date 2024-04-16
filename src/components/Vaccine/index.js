@@ -8,7 +8,7 @@ const events = ['open', 'change:group'];
 
 const html = `
   <div class="vaccine-container" data-select="vaccine-container">
-    <div class="vaccine-container__card" data-select-"vaccine-card">
+    <div class="vaccine-container__header" data-select-"vaccine-header">
       <img class="vaccine-container__img" src="${vaccineUrl}" alt="vaccine" />
       <p class="vaccine-container__text"> Vacinas </p>
       <div class="vaccine-container__add-vacine" data-select="vaccine-add-vaccine"> 
@@ -16,6 +16,9 @@ const html = `
         data-select="add-vacine-icon" /> 
         <p class="vaccine-container__add-vacine-text" data-select="add-vacine-text"> Adicionar Vacina </p>
       </div>
+    </div>
+    <div class="vaccine-container__list-group"> 
+    <div class="vaccine-container__sections" data-select="vaccine-list-group"> </div>
     </div>
   </div>
 `;
@@ -43,7 +46,7 @@ Vaccine.prototype = Object.assign(Vaccine.prototype, Component.prototype, {
   addVaccine(vaccine) {
     const dateYear = new Date(vaccine.date).getFullYear();
     const group = this.groups.get(dateYear);
-    const $vaccineContainer = this.selected.get('vaccine-container');
+    const $vaccineList = this.selected.get('vaccine-list-group');
 
     if (group) {
       group.addItem(vaccine);
@@ -51,7 +54,7 @@ Vaccine.prototype = Object.assign(Vaccine.prototype, Component.prototype, {
       return;
     }
     const vaccineGroup = new VaccineGroup(dateYear, vaccine);
-    vaccineGroup.mount($vaccineContainer);
+    vaccineGroup.mount($vaccineList);
 
     this.groups.set(dateYear, vaccineGroup);
     this.emit('change:group', vaccine);

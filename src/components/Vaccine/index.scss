@@ -4,15 +4,25 @@
 
 .vaccine-container {
   max-width: 63rem;
+  max-height: 22.4rem;
+
   gap: 2rem;
   padding: 2rem;
-  border: 1px;
-
   display: flex;
   flex-direction: column;
-
+  border: 1px solid colors.$gray600;
+  border-radius: 18px;
   font-family: fonts.$primaryFont;
-  &__card {
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    margin-right: 2rem;
+  }
+
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,12 +59,42 @@
   &__add-vacine-text {
     display: none;
   }
+  &__list-group {
+    overflow-y: scroll;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: colors.$gray500;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 }
 
 @include breakpoints.from667 {
   .vaccine-container {
+    max-height: 46.2rem;
+
     &__text {
       font-size: fonts.$sm;
+      font-size: 1.8rem;
+      font-weight: fonts.$semiBold;
+      line-height: 2.4rem;
+      color: colors.$gray800;
     }
     &__add-vacine-text {
       display: block;

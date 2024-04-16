@@ -7,10 +7,14 @@ const events = ['change:date', 'change:title', 'change:vet'];
 const html = `
       <div class="vaccine-item">
         <p class="vaccine-item__info-body title" data-select="body-title"></p>
+        
         <div class="vaccine-item__info-body date">
+        <div class="vaccine-item__info-body divider"></div>
           <img src=${calendarUrl} alt="calendar">
           <p data-select="body-date"></p>
+          <div class="vaccine-item__info-body divider"></div>
         </div>
+        
         <p class="vaccine-item__info-body" data-select="body-vet"></p>
       </div>`;
 
