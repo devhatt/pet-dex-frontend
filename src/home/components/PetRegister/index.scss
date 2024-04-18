@@ -1,0 +1,99 @@
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.pet-register {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 14.2rem;
+
+  &__container {
+    width: 100%;
+  }
+
+  &__image {
+    max-width: fit-content;
+
+    margin: 5rem auto;
+
+    transform: scale(1.2);
+  }
+
+  &__title {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    text-align: center;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+
+    margin: 7rem auto 3rem;
+  }
+
+  &__input {
+    max-width: 32.7rem;
+
+    margin: 0 auto;
+  }
+
+  &--inputStyle {
+    font-size: fonts.$xs;
+
+    padding: 1.5rem;
+    border: 1px solid rgb(163, 163, 163);
+    border-color: rgb(217, 223, 230);
+
+    box-sizing: border-box;
+
+    background-repeat: no-repeat;
+    background-size: auto 60%;
+    border-radius: 14px;
+
+    transition: border-color 0.3s ease-in-out;
+  }
+
+  &__button {
+    width: 100%;
+
+    margin-top: 16.8rem;
+    padding: 2rem;
+
+    box-shadow: 0 -3px 8px 0 rgba(73, 77, 90, 0.12156862745098039);
+    border-radius: 1.7rem;
+  }
+}
+
+@include breakpoints.from1024 {
+  .pet-register {
+    &__image {
+      transform: scale(1.5);
+    }
+
+    &__title {
+      font-size: fonts.$sm;
+
+      margin-top: 15rem;
+    }
+
+    &__input {
+      max-width: 40rem;
+
+      margin: 0 auto;
+    }
+
+    &--inputRemake {
+      width: 100%;
+    }
+
+    &__button {
+      width: 30%;
+
+      margin-top: 4rem;
+
+      box-shadow: unset;
+    }
+  }
+}
