@@ -1,0 +1,87 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.general-size {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__general-size-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: 2.4rem;
+    padding-inline: 2rem;
+    padding-block: 3.2rem;
+  }
+
+  &__upload-image-container {
+    padding: 3rem;
+  }
+
+  &__upload-image {
+  }
+
+  &__texts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  &__title {
+    font-family: fonts.$primaryFont;
+    font-weight: fonts.$medium;
+    font-style: fonts.$normal;
+    font-size: fonts.$xs;
+    color: colors.$gray800;
+    line-height: 2rem;
+  }
+
+  &__text {
+    font-family: fonts.$tertiaryFont;
+    font-weight: fonts.$regular;
+    font-style: fonts.$normal;
+    font-size: fonts.$xxs;
+    color: colors.$gray700;
+    line-height: 2rem;
+  }
+
+  &__slider {
+    height: 20rem;
+  }
+
+  &__container-button {
+    border-radius: 7px;
+    box-shadow: 0 -0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.4rem;
+  }
+
+  &__button {
+    width: 42rem;
+  }
+}
+
+@include breakpoints.from1024 {
+  .general-size {
+    &__title {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+      font-weight: fonts.$medium;
+    }
+    &__text {
+      line-height: 2.2rem;
+      font-style: fonts.$normal;
+    }
+    &__container-button {
+      border-radius: none;
+      box-shadow: none;
+    }
+  }
+}
