@@ -6,15 +6,18 @@
   max-width: 63rem;
   max-height: 22.4rem;
 
-  gap: 2rem;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
+
+  gap: 2rem;
+
   font-family: fonts.$primaryFont;
+
+  padding: 2rem;
   border: 1px solid colors.$grey150;
-  border-radius: 1.8rem;
 
   box-shadow: rgba(50, 50, 71, 0.04);
+  border-radius: 1.8rem;
 
   &__sections {
     display: flex;
@@ -26,20 +29,21 @@
 
   &__header {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
   }
 
   &__add-vacine {
     display: flex;
-
-    line-height: 2.1rem;
     gap: 1rem;
 
     font-family: fonts.$tertiaryFont;
     color: colors.$blue500;
     font-size: fonts.$xs;
     font-weight: fonts.$bold;
+
+    line-height: 2.1rem;
 
     cursor: pointer;
   }
@@ -49,15 +53,17 @@
   }
 
   &__text {
-    margin-left: 3%;
-    margin-right: auto;
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    font-size: fonts.$xs;
+    font-weight: fonts.$semiBold;
 
     line-height: 2rem;
-    font-family: fonts.$primaryFont;
-    font-weight: fonts.$semiBold;
-    font-size: fonts.$xs;
-    color: colors.$gray800;
+
+    margin-right: auto;
+    margin-left: 3%;
   }
+
   &__add-vacine-text {
     display: none;
   }
@@ -72,38 +78,42 @@
     max-height: 46.2rem;
 
     &__text {
+      color: colors.$gray800;
       font-size: fonts.$sm;
       font-size: 1.8rem;
       font-weight: fonts.$semiBold;
       line-height: 2.4rem;
-      color: colors.$gray800;
     }
+
     &__add-vacine-text {
       display: block;
     }
+
     &__sections {
       margin-right: 2rem;
     }
-  }
-  ::-webkit-scrollbar {
-    width: 6px;
-    border-radius: 10px;
-  }
 
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
+    ::-webkit-scrollbar {
+      width: 6px;
 
-  ::-webkit-scrollbar-thumb {
-    background: colors.$gray500;
-    border-radius: 10px;
-  }
+      border-radius: 10px;
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+    ::-webkit-scrollbar-track {
+      background: rgb(241, 241, 241);
+    }
 
-  ::-webkit-scrollbar-button {
-    display: none;
+    ::-webkit-scrollbar-thumb {
+      background: colors.$gray500;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgb(85, 85, 85);
+    }
+
+    ::-webkit-scrollbar-button {
+      display: none;
+    }
   }
 }
