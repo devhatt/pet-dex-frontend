@@ -1,5 +1,6 @@
 @use '~styles/colors' as colors;
 @use '~styles/fonts' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
 
 .drawer {
   overflow: hidden;
@@ -10,8 +11,8 @@
   inset: 0;
 
   &__wrapper {
-    width: fit-content;
-    height: 100%;
+    width: 100%;
+    height: fit-content;
 
     display: flex;
     flex-direction: column;
@@ -22,15 +23,19 @@
     box-sizing: border-box;
 
     position: absolute;
-    right: -100%;
+    bottom: -100%;
 
     background: colors.$appContentColor;
     border-top-left-radius: 2.4rem;
+    border-top-right-radius: 2.4rem;
 
-    transition: right 0.3s ease-in-out;
+    transition:
+      right 0.3s ease-in-out,
+      bottom 0.3s ease-in-out;
 
     &.drawer__wrapper--open {
-      right: 0;
+      right: unset;
+      bottom: 0;
     }
 
     .drawer__nav {
@@ -69,6 +74,30 @@
       width: 100%;
 
       flex-grow: 1;
+    }
+  }
+}
+
+@include breakpoints.from667 {
+  .drawer {
+    &__wrapper {
+      width: fit-content;
+      height: 100%;
+
+      padding: 3rem;
+
+      right: -100%;
+      bottom: 0;
+
+      border-top-left-radius: 2.4rem;
+      border-top-right-radius: 0;
+
+      transition: right 0.3s ease-in-out;
+
+      &.drawer__wrapper--open {
+        right: 0;
+        bottom: unset;
+      }
     }
   }
 }
