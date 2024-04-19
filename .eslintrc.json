@@ -1,9 +1,11 @@
 {
-  "extends": ["airbnb-base", "plugin:storybook/recommended"],
+  "plugins": ["prettier"],
+  "extends": ["airbnb-base", "plugin:storybook/recommended", "prettier"],
   "env": {
     "browser": true
   },
   "rules": {
+    "prettier/prettier": "error",
     "no-console": "warn",
     "object-curly-newline": "off",
     "import/prefer-default-export": "off"
