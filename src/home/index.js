@@ -1,9 +1,10 @@
 import { extractElements } from 'pet-dex-utilities';
+import { initializeSwiper } from '../utils/swiper';
 import Navigation from './components/Navigation';
 import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
-import initializeScrollable from './utils/scrollable-sidemenu';
 import './index.scss';
+import initializeScrollable from './utils/scrollable-sidemenu';
 
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);
@@ -27,4 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const $itemsMenu = sideMenu.selected.get('menuitens').querySelectorAll('li');
 
   initializeScrollable($hamburgerMenu, $exitMenu, $itemsMenu, $home);
+  initializeSwiper();
 });
