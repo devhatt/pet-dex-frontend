@@ -180,15 +180,10 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
     this.emit('items:clear', this);
   },
 
-  toJson() {
-    const allItems = new Map();
-
-    this.items.forEach((item) => {
-      allItems.set(item.getValue(), item.toJson());
-    });
-
-    const objectItems = Object.fromEntries(allItems);
-
-    return JSON.stringify(objectItems);
+  toJSON() {
+    return {
+      items: this.items.map((item) => item.toJSON()),
+      placeholder: this.getPlaceholder(),
+    };
   },
 });

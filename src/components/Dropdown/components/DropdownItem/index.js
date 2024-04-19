@@ -57,7 +57,7 @@ DropdownItem.prototype = Object.assign(
       this.emit('unselect', this);
     },
 
-    toJson() {
+    toJSON() {
       return {
         text: this.getText(),
         value: this.getValue(),
