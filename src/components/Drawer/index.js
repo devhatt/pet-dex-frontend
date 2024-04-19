@@ -33,29 +33,32 @@ export default function Drawer({ title, content }) {
     setTimeout(() => {
       drawerWrapper.classList.add('drawer__wrapper--open');
     }, 1);
+    window.addEventListener('keydown', this.handleKeyDown);
+    drawer.addEventListener('click', this.handleClickOutside);
   });
 
-  // mount the drawer on the right outside the screen,
-  // when the element is mounted it will be animated until hit right: 0
-
-  window.addEventListener('keydown', (event) => {
+  this.handleKeyDown = (event) => {
     if (event.key === 'Escape') {
       this.close();
     }
-  });
+  };
 
-  drawer.addEventListener('click', (event) => {
+  this.handleClickOutside = (event) => {
     if (event.target === drawer) {
       this.close();
     }
-  });
+  };
+
+  this.transitionHandler = () => {
+    this.emit('close');
+    this.isOpen = false;
+    drawerWrapper.removeEventListener('transitionend', this.transitionHandler);
+    this.unmount();
+  };
 
   this.listen('unmount', () => {
-    window.removeEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        this.close();
-      }
-    });
+    window.removeEventListener('keydown', this.handleKeyDown);
+    drawer.removeEventListener('click', this.handleClickOutside);
   });
 }
 
@@ -69,9 +72,9 @@ Drawer.prototype = Object.assign(Drawer.prototype, Component.prototype, {
   },
   close() {
     if (this.isOpen) {
-      this.unmount(true);
-      this.isOpen = false;
-      this.emit('close');
+      const drawerWrapper = this.selected.get('drawer-wrapper');
+      drawerWrapper.classList.remove('drawer__wrapper--open');
+      drawerWrapper.addEventListener('transitionend', this.transitionHandler);
     }
   },
   setTitle(title) {
@@ -80,12 +83,5 @@ Drawer.prototype = Object.assign(Drawer.prototype, Component.prototype, {
   setContent(content) {
     const contentDiv = this.selected.get('content');
     content.mount(contentDiv);
-  },
-  toggle() {
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
-    }
   },
 });
