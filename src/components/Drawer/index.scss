@@ -19,7 +19,7 @@
 
     align-items: start;
 
-    padding: 3rem;
+    padding: 1.2rem 2.4rem 2.4rem;
     box-sizing: border-box;
 
     position: absolute;
@@ -42,18 +42,14 @@
       width: 100%;
 
       display: flex;
-      gap: 2rem;
 
       align-items: center;
+      justify-content: center;
 
-      justify-content: space-between;
-
-      padding-bottom: 3rem;
+      padding-bottom: 1.2rem;
 
       .drawer__title {
-        font-family: fonts.$primaryFont;
-        color: colors.$gray700;
-        font-weight: 600;
+        display: none;
       }
 
       .drawer__close {
@@ -67,6 +63,14 @@
         background: inherit;
 
         cursor: pointer;
+
+        .drawer__close--xiszinho {
+          display: none;
+        }
+
+        .drawer__close--linhazinha {
+          display: block;
+        }
       }
     }
 
@@ -97,6 +101,48 @@
       &.drawer__wrapper--open {
         right: 0;
         bottom: unset;
+      }
+
+      .drawer__nav {
+        width: 100%;
+
+        display: flex;
+        gap: 2rem;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding-bottom: 3rem;
+
+        .drawer__title {
+          display: block;
+
+          font-family: fonts.$primaryFont;
+          color: colors.$gray700;
+          font-weight: 600;
+        }
+
+        .drawer__close {
+          display: grid;
+
+          place-items: center;
+
+          padding: 0.5rem;
+          border: 0;
+
+          background: inherit;
+
+          cursor: pointer;
+
+          .drawer__close--xiszinho {
+            display: block;
+          }
+
+          .drawer__close--linhazinha {
+            display: none;
+          }
+        }
       }
     }
   }

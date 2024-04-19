@@ -1,5 +1,8 @@
 import { Component } from 'pet-dex-utilities';
+import { listenBreakpoint } from '../../utils/breakpoints/breakpoints';
+import { makeSwipable } from '../../utils/swiper';
 import close from './images/close.svg';
+import line from './images/line.svg';
 import './index.scss';
 
 const events = ['open', 'close'];
@@ -9,7 +12,10 @@ const html = `
       <div class="drawer__wrapper" data-select="drawer-wrapper">
           <div class="drawer__nav">
             <span class="drawer__title" data-select="title"></span>
-            <button class="drawer__close" data-select="close"><img src="${close}"></button>
+            <button class="drawer__close" data-select="close">
+              <img class="drawer__close--xiszinho" src="${close}">
+              <img class="drawer__close--linhazinha" src="${line}">
+            </button>
           </div>
           <div class="drawer__content" data-select="content"></div>
       </div>
@@ -33,32 +39,41 @@ export default function Drawer({ title, content }) {
     setTimeout(() => {
       drawerWrapper.classList.add('drawer__wrapper--open');
     }, 1);
-    window.addEventListener('keydown', this.handleKeyDown);
-    drawer.addEventListener('click', this.handleClickOutside);
+    window.addEventListener('keydown', this.onEscapeKey);
+    drawer.addEventListener('click', this.onClickOutside);
+
+    const swipe = () => this.close();
+
+    listenBreakpoint('from667', (matches) => {
+      if (matches) {
+        makeSwipable(drawerWrapper).right(swipe);
+      }
+      makeSwipable(drawerWrapper).down(swipe);
+    });
   });
 
-  this.handleKeyDown = (event) => {
+  this.onEscapeKey = (event) => {
     if (event.key === 'Escape') {
       this.close();
     }
   };
 
-  this.handleClickOutside = (event) => {
+  this.onClickOutside = (event) => {
     if (event.target === drawer) {
       this.close();
     }
   };
 
-  this.transitionHandler = () => {
+  this.onTransition = () => {
     this.emit('close');
     this.isOpen = false;
-    drawerWrapper.removeEventListener('transitionend', this.transitionHandler);
+    drawerWrapper.removeEventListener('transitionend', this.onTransition);
     this.unmount();
   };
 
   this.listen('unmount', () => {
-    window.removeEventListener('keydown', this.handleKeyDown);
-    drawer.removeEventListener('click', this.handleClickOutside);
+    window.removeEventListener('keydown', this.onEscapeKey);
+    drawer.removeEventListener('click', this.onClickOutside);
   });
 }
 
@@ -74,7 +89,7 @@ Drawer.prototype = Object.assign(Drawer.prototype, Component.prototype, {
     if (this.isOpen) {
       const drawerWrapper = this.selected.get('drawer-wrapper');
       drawerWrapper.classList.remove('drawer__wrapper--open');
-      drawerWrapper.addEventListener('transitionend', this.transitionHandler);
+      drawerWrapper.addEventListener('transitionend', this.onTransition);
     }
   },
   setTitle(title) {
