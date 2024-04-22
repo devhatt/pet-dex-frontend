@@ -41,7 +41,8 @@ export default function Dropdown({
   this.selectedItem = null;
 
   this.onSelect = (item) => {
-    const existsAndIsDifferent = this.selectedItem !== null && this.selectedItem !== item;
+    const existsAndIsDifferent =
+      this.selectedItem !== null && this.selectedItem !== item;
     if (existsAndIsDifferent) this.selectedItem.unselect();
 
     this.selectedItem = item;
@@ -77,8 +78,12 @@ export default function Dropdown({
     if (this.isOpen()) this.close();
   };
 
-  this.listen('mount', () => document.addEventListener('click', closeOnClickOutside));
-  this.listen('unmount', () => document.removeEventListener('click', closeOnClickOutside));
+  this.listen('mount', () =>
+    document.addEventListener('click', closeOnClickOutside),
+  );
+  this.listen('unmount', () =>
+    document.removeEventListener('click', closeOnClickOutside),
+  );
 }
 
 Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
