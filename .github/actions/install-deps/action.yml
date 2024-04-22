@@ -4,11 +4,11 @@ inputs:
   NODE_VERSION:
     description: 'The version of Node.js to use'
     required: true
-    default: '19.x'
+    default: '20.x'
   PNPM_VERSION:
     description: 'The version of PNPM to use'
     required: true
-    default: '9.x'
+    default: '8.x'
 runs:
   using: composite
   steps:
