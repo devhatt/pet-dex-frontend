@@ -4,7 +4,7 @@ inputs:
   NODE_VERSION:
     description: 'The version of Node.js to use'
     required: true
-    default: '18.x'
+    default: '19.x'
   PNPM_VERSION:
     description: 'The version of PNPM to use'
     required: true
@@ -13,14 +13,14 @@ runs:
   using: composite
   steps:
     - name: Code checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ inputs.NODE_VERSION }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.NODE_VERSION }}
 
-    - uses: pnpm/action-setup@v2
+    - uses: pnpm/action-setup@v3
       name: Install pnpm
       with:
         version: ${{ inputs.PNPM_VERSION }}
@@ -31,7 +31,7 @@ runs:
       run: |
         echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-    - uses: actions/cache@v3
+    - uses: actions/cache@v4
       name: Setup PNPM cache
       with:
         path: ${{ env.STORE_PATH }}
