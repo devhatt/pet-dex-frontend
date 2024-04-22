@@ -8,7 +8,7 @@ inputs:
   PNPM_VERSION:
     description: 'The version of PNPM to use'
     required: true
-    default: '8.x'
+    default: '9.x'
 runs:
   using: composite
   steps:

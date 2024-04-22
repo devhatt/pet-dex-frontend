@@ -1,13 +1,12 @@
 name: Code Style
 
 on:
-    push:
-      branches:
-        - main
-    pull_request:
-      branches:
-        - main
-  
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   code-style:
@@ -47,7 +46,6 @@ jobs:
               - '**.cjs'
             style:
               - '**.scss'
-              - '**.css'
 
       - name: Run stylelint in scss files
         if: steps.changed-files.outputs.style_any_changed == 'true'
