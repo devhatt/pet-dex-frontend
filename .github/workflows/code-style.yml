@@ -24,8 +24,7 @@ jobs:
         uses: tj-actions/changed-files@v41
         with:
           files: |
-            !pnpm-lock.yaml
-            !*.yml
+            ./src/**
 
       - name: Run prettier in all files
         if: steps.all-changed-files.outputs.any_changed == 'true'
