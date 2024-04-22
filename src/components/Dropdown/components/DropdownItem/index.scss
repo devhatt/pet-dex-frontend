@@ -1,0 +1,13 @@
+@use '~styles/colors.scss' as colors;
+
+.dropdown__options--option {
+  padding: 0.3rem;
+
+  &:hover {
+    background-color: colors.$blue500;
+  }
+
+  &[data-selected='true'] {
+    color: colors.$blue600;
+  }
+}
