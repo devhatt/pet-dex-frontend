@@ -25,6 +25,7 @@ jobs:
         with:
           files: |
             !pnpm-lock.yaml
+            !*.yml
 
       - name: Run prettier in all files
         if: steps.all-changed-files.outputs.any_changed == 'true'
