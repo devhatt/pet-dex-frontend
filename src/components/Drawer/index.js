@@ -13,8 +13,8 @@ const html = `
           <div class="drawer__nav">
             <span class="drawer__title" data-select="title"></span>
             <button class="drawer__close" data-select="close">
-              <img class="drawer__close--xiszinho" src="${close}">
-              <img class="drawer__close--linhazinha" src="${line}">
+              <img class="drawer__close--icon" src="${close}">
+              <img class="drawer__close--line" src="${line}">
             </button>
           </div>
           <div class="drawer__content" data-select="content"></div>
@@ -29,9 +29,7 @@ export default function Drawer({ title, content }) {
   const drawerWrapper = this.selected.get('drawer-wrapper');
   this.isOpen = false;
 
-  this.selected.get('close').addEventListener('click', () => {
-    this.close();
-  });
+  this.selected.get('close').addEventListener('click', () => this.close());
 
   this.listen('mount', () => {
     this.setTitle(title);
@@ -42,33 +40,20 @@ export default function Drawer({ title, content }) {
     window.addEventListener('keydown', this.onEscapeKey);
     drawer.addEventListener('click', this.onClickOutside);
 
-    const swipe = () => this.close();
-
     listenBreakpoint('from667', (matches) => {
       if (matches) {
-        makeSwipable(drawerWrapper).right(swipe);
+        makeSwipable(drawerWrapper).right(() => this.close());
       }
-      makeSwipable(drawerWrapper).down(swipe);
+      makeSwipable(drawerWrapper).down(() => this.close());
     });
   });
 
   this.onEscapeKey = (event) => {
-    if (event.key === 'Escape') {
-      this.close();
-    }
+    if (event.key === 'Escape') this.close();
   };
 
   this.onClickOutside = (event) => {
-    if (event.target === drawer) {
-      this.close();
-    }
-  };
-
-  this.onTransition = () => {
-    this.emit('close');
-    this.isOpen = false;
-    drawerWrapper.removeEventListener('transitionend', this.onTransition);
-    this.unmount();
+    if (event.target === drawer) this.close();
   };
 
   this.listen('unmount', () => {
@@ -89,7 +74,15 @@ Drawer.prototype = Object.assign(Drawer.prototype, Component.prototype, {
     if (this.isOpen) {
       const drawerWrapper = this.selected.get('drawer-wrapper');
       drawerWrapper.classList.remove('drawer__wrapper--open');
-      drawerWrapper.addEventListener('transitionend', this.onTransition);
+      drawerWrapper.addEventListener(
+        'transitionend',
+        () => {
+          this.emit('close');
+          this.isOpen = false;
+          this.unmount();
+        },
+        { once: true },
+      );
     }
   },
   setTitle(title) {
