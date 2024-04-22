@@ -1,8 +1,13 @@
 name: Code Style
 
 on:
-  pull_request:
-    branches: ['master']
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+  
 
 jobs:
   code-style:
