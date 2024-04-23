@@ -54,7 +54,6 @@
   &__inputs {
     display: flex;
 
-    align-items: center;
     justify-content: center;
   }
 
@@ -63,14 +62,11 @@
   }
 
   &__radio {
-    margin-right: 0.5rem;
-    padding: 1rem 5rem 1rem 1rem;
-    border: 1px solid rgb(163, 163, 163);
-
-    border-radius: 8px;
+    margin-right: 1rem;
+    padding: 0.5rem 5rem 0.5rem 1rem;
 
     &:last-child {
-      margin-right: 0; // Removendo a margem direita
+      margin-right: 0;
     }
   }
 
@@ -100,20 +96,6 @@
       font-size: fonts.$xs;
     }
 
-    &__input-container {
-      max-width: max-content;
-    }
-
-    &__input {
-      width: 70%;
-
-      display: block;
-    }
-
-    &__radio {
-      padding: 0.5rem 5rem 0.5rem 1rem;
-    }
-
     &__button {
       width: 40%;
 
@@ -131,18 +113,6 @@
 
     &__hint {
       font-size: fonts.$sm;
-    }
-
-    &__input-container {
-      max-width: max-content;
-    }
-
-    &__input {
-      width: 70%;
-    }
-
-    &__radio {
-      padding: 0.5rem 5rem 0.5rem 1rem;
     }
 
     &__button {
