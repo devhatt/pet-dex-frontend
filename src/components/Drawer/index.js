@@ -9,16 +9,16 @@ const events = ['open', 'close'];
 
 const html = `
   <div class="drawer" data-select="drawer">
-      <div class="drawer__wrapper" data-select="drawer-wrapper">
-          <div class="drawer__nav">
-            <span class="drawer__title" data-select="title"></span>
-            <button class="drawer__close" data-select="close">
-              <img class="drawer__close--icon" src="${close}">
-              <img class="drawer__close--line" src="${line}">
-            </button>
-          </div>
-          <div class="drawer__content" data-select="content"></div>
+    <div class="drawer__wrapper" data-select="drawer-wrapper">
+      <div class="drawer__nav">
+        <span class="drawer__title" data-select="title"></span>
+        <button class="drawer__close" data-select="close">
+          <img class="drawer__close--icon" src="${close}">
+          <img class="drawer__close--line" src="${line}">
+        </button>
       </div>
+      <div class="drawer__content" data-select="content"></div>
+    </div>
   </div>
 `;
 
@@ -39,12 +39,13 @@ export default function Drawer({ title, content }) {
     }, 1);
     window.addEventListener('keydown', this.onEscapeKey);
     drawer.addEventListener('click', this.onClickOutside);
+    makeSwipable(drawerWrapper);
 
     listenBreakpoint('from667', (matches) => {
       if (matches) {
-        makeSwipable(drawerWrapper).right(() => this.close());
+        drawerWrapper.addEventListener('swipe-right', () => this.close());
       }
-      makeSwipable(drawerWrapper).down(() => this.close());
+      drawerWrapper.addEventListener('swipe-down', () => this.close());
     });
   });
 
