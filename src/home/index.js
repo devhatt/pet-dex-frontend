@@ -19,11 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   navigation.mount($navigation);
 
   const $content = selected.get('content');
-  const petRegisterPage = new PetRegisterPage({ cards });
-  petRegisterPage.mount($content);
-  petRegisterPage.listen('select:card', (card) =>
-    console.log('card da home: ', card.elements),
-  );
+  const noPetRegirestedPage = new NoPetRegirestedPage();
+  noPetRegirestedPage.mount($content);
 
   const $hamburgerMenu = navigation.selected.get('hamburger-menu');
   const $exitMenu = sideMenu.selected.get('exitMenu');

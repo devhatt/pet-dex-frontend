@@ -53,8 +53,8 @@ const cards = [
 ];
 
 export default {
-  component: DocumentFragment,
-  render: (args) => {
+  title: 'Pages/PetRegister',
+  render: (args = {}) => {
     const card = new PetRegisterPage(args);
     const $container = document.createElement('div');
     card.mount($container);
