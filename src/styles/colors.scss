@@ -1,42 +1,42 @@
 // primary fonts
-$primary100: rgba(98, 220, 246, 1);
-$primary200: rgba(27, 133, 243, 1);
-$primary300: rgba(255, 197, 66, 1);
-$primary400: rgba(58, 141, 168, 1);
-$primary500: rgba(86, 73, 228, 1);
-$primary600: rgba(0, 52, 89, 1);
-$primary700: rgba(9, 24, 70, 1);
-$primary800: rgba(223, 61, 130, 1);
+$primary100: rgb(98, 220, 246);
+$primary200: rgb(27, 133, 243);
+$primary300: rgb(255, 197, 66);
+$primary400: rgb(58, 141, 168);
+$primary500: rgb(86, 73, 228);
+$primary600: rgb(0, 52, 89);
+$primary700: rgb(9, 24, 70);
+$primary800: rgb(223, 61, 130);
 
 // secondary fonts
-$secondary100: rgba(255, 255, 255, 1);
-$secondary200: rgba(186, 216, 235, 1);
-$secondary300: rgba(255, 241, 166, 1);
-$secondary400: rgba(255, 198, 218, 1);
+$secondary100: rgb(255, 255, 255);
+$secondary200: rgb(186, 216, 235);
+$secondary300: rgb(255, 241, 166);
+$secondary400: rgb(255, 198, 218);
 
-//sucess
-$success100: rgba(210, 239, 224, 1);
-$success200: rgba(49, 138, 94, 1);
+// success
+$success100: rgb(210, 239, 224);
+$success200: rgb(49, 138, 94);
 
-//error
-$error100: rgba(179, 38, 30, 1);
+// error
+$error100: rgb(179, 38, 30);
 
-//neutrals (Grey)
-$grey100: rgba(236, 239, 242, 1);
-$grey200: rgba(224, 224, 224, 1);
-$grey300: rgba(179, 190, 205, 1);
-$grey400: rgba(141, 141, 141, 1);
-$grey500: rgba(96, 104, 115, 1);
-$grey600: rgba(102, 116, 121, 1);
-$grey700: rgba(128, 139, 154, 1);
-$grey800: rgba(57, 67, 79, 1);
-$grey900: rgba(32, 35, 38, 1);
+// neutrals (Grey)
+$grey100: rgb(236, 239, 242);
+$grey200: rgb(224, 224, 224);
+$grey300: rgb(179, 190, 205);
+$grey400: rgb(141, 141, 141);
+$grey500: rgb(96, 104, 115);
+$grey600: rgb(102, 116, 121);
+$grey700: rgb(128, 139, 154);
+$grey800: rgb(57, 67, 79);
+$grey900: rgb(32, 35, 38);
 
-//dark mode
-$dark100: rgba(30, 40, 51, 1);
-$dark200: rgba(18, 20, 20, 1);
-$dark300: rgba(0, 0, 0, 1);
+// dark mode
+$dark100: rgb(30, 40, 51);
+$dark200: rgb(18, 20, 20);
+$dark300: rgb(0, 0, 0);
 
-//shades
-$shade50: rgba(255, 255, 255, 1);
-$shade100: rgba(0, 0, 0, 1);
+// shades
+$shade50: rgb(255, 255, 255);
+$shade100: rgb(0, 0, 0);
