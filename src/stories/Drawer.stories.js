@@ -1,9 +1,11 @@
 import Button from '../components/Button';
 import Drawer from '../components/Drawer';
+import { initializeSwiper } from '../utils/swiper';
 
 export default {
   title: 'Components/Drawer',
   render: (args) => {
+    initializeSwiper();
     const drawer = new Drawer(args);
     const button = new Button({
       text: 'Abrir drawer',
@@ -21,7 +23,7 @@ export default {
   },
   argTypes: {
     title: { control: 'text', description: 'Title of the drawer' },
-    content: { control: 'component', description: 'Component inside drawer' },
+    content: { control: null, description: 'Component inside drawer' },
   },
 };
 
