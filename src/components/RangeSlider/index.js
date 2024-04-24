@@ -58,9 +58,10 @@ export default function RangeSlider({
 
     containerElement.style.backgroundPositionX = `${parseInt(containerElement.style.backgroundPositionX || 0, 10) - offsetX}px`;
 
-    currentValue = mouseX > startX
-      ? Math.min(maximum, currentValue + this.getStepSize())
-      : Math.max(minimum, currentValue - this.getStepSize());
+    currentValue =
+      mouseX > startX
+        ? Math.min(maximum, currentValue + this.getStepSize())
+        : Math.max(minimum, currentValue - this.getStepSize());
 
     this.setValue(currentValue);
     unitElement.textContent = unit;

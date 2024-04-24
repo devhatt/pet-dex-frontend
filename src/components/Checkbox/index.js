@@ -10,7 +10,13 @@ const html = `
     </label>
 `;
 
-export default function Checkbox({ check = false, name = '', text = '', disabled = false, value = '' } = {}) {
+export default function Checkbox({
+  check = false,
+  name = '',
+  text = '',
+  disabled = false,
+  value = '',
+} = {}) {
   Component.call(this, { html, events });
 
   this.setCheck(check);

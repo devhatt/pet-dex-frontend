@@ -1,7 +1,13 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['change', 'value:change', 'text:change', 'name:change', 'disable'];
+const events = [
+  'change',
+  'value:change',
+  'text:change',
+  'name:change',
+  'disable',
+];
 
 const html = `
 <label class="radio-container">
