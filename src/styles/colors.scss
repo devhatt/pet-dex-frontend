@@ -1,13 +1,42 @@
-$appColor: rgb(0, 52, 89);
-$appContentColor: rgb(255, 255, 255);
-$gray100: rgba(217, 223, 230);
-$grey150: rgb(236, 239, 242);
-$gray200: rgb(217, 223, 230);
-$gray800: rgb(57, 67, 79);
-$gray600: rgb(128, 139, 154);
-$gray500: rgba(172, 172, 181);
-$blue500: rgb(27, 133, 243);
-$blue600: rgb(18, 104, 204);
-$yellow500: rgb(255, 197, 66);
+// primary fonts
+$primary100: rgb(98, 220, 246);
+$primary200: rgb(27, 133, 243);
+$primary300: rgb(255, 197, 66);
+$primary400: rgb(58, 141, 168);
+$primary500: rgb(86, 73, 228);
+$primary600: rgb(0, 52, 89);
+$primary700: rgb(9, 24, 70);
+$primary800: rgb(223, 61, 130);
+
+// secondary fonts
+$secondary100: rgb(255, 255, 255);
+$secondary200: rgb(186, 216, 235);
+$secondary300: rgb(255, 241, 166);
+$secondary400: rgb(255, 198, 218);
+
+// success
+$success100: rgb(210, 239, 224);
+$success200: rgb(49, 138, 94);
+
+// error
+$error100: rgb(179, 38, 30);
+
+// neutrals (Grey)
+$grey100: rgb(236, 239, 242);
+$grey200: rgb(224, 224, 224);
+$grey300: rgb(179, 190, 205);
+$grey400: rgb(141, 141, 141);
+$grey500: rgb(96, 104, 115);
+$grey600: rgb(102, 116, 121);
+$grey700: rgb(128, 139, 154);
+$grey800: rgb(57, 67, 79);
 $grey900: rgb(32, 35, 38);
-$purple500: rgb(86, 73, 228);
+
+// dark mode
+$dark100: rgb(30, 40, 51);
+$dark200: rgb(18, 20, 20);
+$dark300: rgb(0, 0, 0);
+
+// shades
+$shade50: rgb(255, 255, 255);
+$shade100: rgb(0, 0, 0);
