@@ -1,24 +1,26 @@
 import { Component } from 'pet-dex-utilities';
 import Button from '../../../components/Button';
 import PetCard from '../../../components/PetCard';
+// import ProgressBar from '../../../components/ProgressBar';
 import './index.scss';
 
 const events = ['select:card', 'submit-breed'];
 
 const html = `
-    <div data-select="container" class="pet-regirested-page">
-    </div>
+    <div data-select="container" class="pet-regirested-page"></div>
+    <div data-select="btn-container" class="pet-regirested-footer"></div>
 `;
 
 export default function PetRegisterPage({ cards = [] } = {}) {
   Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
+  const $btnContainer = this.selected.get('btn-container');
   this.activeCard = null;
 
   const $button = new Button({
     text: 'Continuar',
-    isFullWidth: true,
+    isFullWidth: false,
     isDisabled: true,
   });
 
@@ -27,10 +29,10 @@ export default function PetRegisterPage({ cards = [] } = {}) {
 
     card.selected
       .get('pet-container')
-      .classList.add('pet-regirested-page__pet-container');
+      .classList.add('pet-regirested-page__pet-card');
     card.selected
       .get('pet-container')
-      .classList.toggle('pet-regirested-page__pet-container--active');
+      .classList.toggle('pet-regirested-page__pet-card--active');
     card.mount($container);
 
     card.listen('active', () => {
@@ -42,21 +44,17 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     });
 
     card.listen('desactive', () => {
-      this.desactive(cardActive);
+      this.desactive(this.activeCard);
       $button.disable();
     });
 
     $button.listen('click', () => {
       const cardSelect = card.selected
         .get('pet-container')
-        .classList.contains('pet-container--active');
+        .classList.contains('pet-card--active');
 
       if (cardSelect) {
-        console.log(
-          'submit dados',
-          cardSelect,
-          card.selected.get('pet-container'),
-        );
+        console.log('submit dados', cardSelect, card.selected.get('pet-card'));
       }
     });
   });
@@ -65,8 +63,8 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     this.emit('submit-breed', this.activeCard);
   });
 
-  $button.selected.get('button').classList.add('pet-regirested-page__button');
-  $button.mount($container);
+  $button.selected.get('button').classList.add('pet-regirested-footer__button');
+  $button.mount($btnContainer);
 }
 
 PetRegisterPage.prototype = Object.assign(

@@ -5,43 +5,56 @@
   display: flex;
   flex-wrap: wrap;
 
-  gap: 1.8rem;
+  max-width: 100rem;
+  max-height: 50rem;
+  overflow: scroll;
+
+  gap: 1.4rem;
 
   align-items: start;
   justify-content: center;
 
-  &__button {
-    max-width: 42rem;
-
-    margin-top: 3.2rem;
-  }
-
   &__pet-card {
     aspect-ratio: auto;
-
     cursor: pointer;
+  }
+}
+
+.pet-regirested-footer {
+  // border: 1px solid red;
+  display: flex;
+  margin-top: 1.2rem;
+
+  &__button {
+    width: 44rem;
+    margin: 0 auto;
   }
 }
 
 @include breakpoints.from1024 {
   .pet-regirested-page {
-    &__button {
-      margin-top: 4rem;
-    }
-
     &__pet-container {
       display: flex;
-
       align-items: center;
     }
   }
 }
 
 @include breakpoints.from1280 {
-  .pet-regirested-page {
+  .pet-regirested-footer {
     &__button {
-      margin-top: 4rem;
-      margin-left: 14rem;
+      margin: 0 auto;
     }
   }
 }
+
+// @include breakpoints.from360 {
+//   .pet-regirested-footer {
+//     position: fixed;
+//     bottom: 0;
+//     background-color: colors.$appContentColor;
+//     &__button {
+//       margin: 2.2rem;
+//     }
+//   }
+// }
