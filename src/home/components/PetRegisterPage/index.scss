@@ -2,12 +2,12 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .pet-regirested-page {
-  display: flex;
-  flex-wrap: wrap;
-
   max-width: 100rem;
   max-height: 50rem;
   overflow: scroll;
+
+  display: flex;
+  flex-wrap: wrap;
 
   gap: 1.4rem;
 
@@ -16,17 +16,21 @@
 
   &__pet-card {
     aspect-ratio: auto;
+
     cursor: pointer;
   }
 }
 
 .pet-regirested-footer {
-  // border: 1px solid red;
   display: flex;
-  margin-top: 1.2rem;
+
+  margin: 2rem;
+
+  background-color: colors.$appContentColor;
 
   &__button {
     width: 44rem;
+
     margin: 0 auto;
   }
 }
@@ -35,8 +39,13 @@
   .pet-regirested-page {
     &__pet-container {
       display: flex;
+
       align-items: center;
     }
+  }
+
+  .pet-regirested-footer {
+    margin: 1.2rem;
   }
 }
 
@@ -47,14 +56,3 @@
     }
   }
 }
-
-// @include breakpoints.from360 {
-//   .pet-regirested-footer {
-//     position: fixed;
-//     bottom: 0;
-//     background-color: colors.$appContentColor;
-//     &__button {
-//       margin: 2.2rem;
-//     }
-//   }
-// }

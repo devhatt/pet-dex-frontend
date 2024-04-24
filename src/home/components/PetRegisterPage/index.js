@@ -7,8 +7,10 @@ import './index.scss';
 const events = ['select:card', 'submit-breed'];
 
 const html = `
+  <div>
     <div data-select="container" class="pet-regirested-page"></div>
     <div data-select="btn-container" class="pet-regirested-footer"></div>
+  </div>
 `;
 
 export default function PetRegisterPage({ cards = [] } = {}) {

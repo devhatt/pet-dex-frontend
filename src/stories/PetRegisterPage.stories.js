@@ -21,6 +21,16 @@ const cards = [
     imgAlt: 'boxer',
   },
   {
+    title: 'Akita',
+    imgSrc: akita,
+    imgAlt: 'akita',
+  },
+  {
+    title: 'Boxer',
+    imgSrc: boxer,
+    imgAlt: 'boxer',
+  },
+  {
     title: 'Beagle',
     imgSrc: beagle,
     imgAlt: 'beagle',
