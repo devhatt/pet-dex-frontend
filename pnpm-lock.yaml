@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   pet-dex-utilities:
     specifier: ^1.0.1
     version: 1.0.1

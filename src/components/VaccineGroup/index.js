@@ -2,7 +2,7 @@ import { Component } from 'pet-dex-utilities';
 import VaccineItem from '../VaccineItem';
 import './index.scss';
 
-const events = ['change:title', 'change:vaccineItem'];
+const events = ['vaccineItem:change', 'title:change'];
 
 const html = `
 <div class="vaccine-group" data-select="vaccine-group">
@@ -17,6 +17,7 @@ export default function VaccineGroup(year, vaccineItem) {
   if (year) this.setTitle(year);
   if (vaccineItem) this.addItem(vaccineItem);
 }
+
 VaccineGroup.prototype = Object.assign(
   VaccineGroup.prototype,
   Component.prototype,

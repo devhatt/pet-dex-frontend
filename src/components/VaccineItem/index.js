@@ -1,4 +1,5 @@
 import { Component } from 'pet-dex-utilities';
+import dayjs from 'dayjs';
 import calendarUrl from './images/calendar.svg';
 import './index.scss';
 
@@ -7,20 +8,18 @@ const events = ['change:date', 'change:title', 'change:vet'];
 const html = `
       <div class="vaccine-item">
         <p class="vaccine-item__info-body title" data-select="body-title"></p>
-        
         <div class="vaccine-item__info-body date">
-        <div class="vaccine-item__info-body divider"></div>
+        <hr class="vaccine-item__info-body divider"></hr>
           <img src=${calendarUrl} alt="calendar">
           <p data-select="body-date"></p>
-          <div class="vaccine-item__info-body divider"></div>
+          <hr class="vaccine-item__info-body divider"></hr>
         </div>
-        
         <p class="vaccine-item__info-body" data-select="body-vet"></p>
-      </div>`;
+      </div>
+`;
 
-function formatDate(dataISO) {
-  const date = new Date(dataISO);
-  return new Intl.DateTimeFormat('pt-BR').format(date).replaceAll('/', '.');
+function formatDate(date) {
+  return dayjs(date).format('MM/DD/YYYY');
 }
 
 export default function VaccineItem({ title, vet, date }) {
@@ -30,6 +29,7 @@ export default function VaccineItem({ title, vet, date }) {
   if (vet) this.setVet(vet);
   if (date) this.setDate(date);
 }
+
 VaccineItem.prototype = Object.assign(
   VaccineItem.prototype,
   Component.prototype,

@@ -3,9 +3,6 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .vaccine-container {
-  max-width: 63rem;
-  max-height: 22.4rem;
-
   display: flex;
   flex-direction: column;
 
@@ -30,22 +27,44 @@
   &__header {
     display: flex;
 
-    align-items: center;
     justify-content: space-between;
+  }
+
+  &__header-title {
+    display: flex;
+
+    gap: 2rem;
+
+    align-items: center;
   }
 
   &__add-vacine {
     display: flex;
+
+    align-items: center;
+  }
+
+  &__add-vacine-container {
+    display: flex;
     gap: 1rem;
 
     font-family: fonts.$tertiaryFont;
+
     color: colors.$blue500;
     font-size: fonts.$xs;
     font-weight: fonts.$bold;
-
-    line-height: 2.1rem;
+    line-height: 2.1;
 
     cursor: pointer;
+  }
+
+  &__add-vaccine-img {
+    max-width: 1.2rem;
+  }
+
+  &__img {
+    min-width: 6rem;
+    min-height: 6rem;
   }
 
   &__add-vacine-text {
@@ -58,10 +77,7 @@
     font-size: fonts.$xs;
     font-weight: fonts.$semiBold;
 
-    line-height: 2rem;
-
-    margin-right: auto;
-    margin-left: 3%;
+    line-height: 2;
   }
 
   &__add-vacine-text {
@@ -69,20 +85,18 @@
   }
 
   &__list-group {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 
 @include breakpoints.from667 {
   .vaccine-container {
-    max-height: 46.2rem;
-
     &__text {
       color: colors.$gray800;
       font-size: fonts.$sm;
       font-size: 1.8rem;
       font-weight: fonts.$semiBold;
-      line-height: 2.4rem;
+      line-height: 2.4;
     }
 
     &__add-vacine-text {
@@ -91,29 +105,6 @@
 
     &__sections {
       margin-right: 2rem;
-    }
-
-    ::-webkit-scrollbar {
-      width: 6px;
-
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgb(241, 241, 241);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: colors.$gray500;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgb(85, 85, 85);
-    }
-
-    ::-webkit-scrollbar-button {
-      display: none;
     }
   }
 }

@@ -3,30 +3,28 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .vaccine-item {
-  height: 7rem;
-
   display: flex;
   gap: 1.2rem;
 
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 1.6rem;
+  padding: 1.5rem;
   border: 1px solid colors.$grey150;
 
   border-radius: 14px;
 
   &__info-body {
     color: colors.$gray600;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: fonts.$medium;
-    line-height: 2.4rem;
+    line-height: 2.4;
 
-    &.vaccine {
+    &.title {
       color: colors.$gray800;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       font-weight: fonts.$semiBold;
-      line-height: fonts.$lg;
+      line-height: 2.4;
     }
 
     &.date {
@@ -37,10 +35,9 @@
     }
 
     &.divider {
-      width: 1px;
-      height: 30px;
+      align-self: stretch;
 
-      background-color: colors.$grey150;
+      border-right: 1px solid colors.$grey150;
     }
   }
 }
@@ -48,6 +45,13 @@
 @include breakpoints.from667 {
   .vaccine-item {
     &__info-body {
+      font-size: 1.6rem;
+
+      &.title {
+        font-size: 1.6rem;
+        font-weight: fonts.$semiBold;
+      }
+
       &.date {
         margin-right: 0;
         margin-left: auto;
