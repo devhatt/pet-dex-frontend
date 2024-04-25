@@ -4,7 +4,7 @@ import PetCard from '../../../components/PetCard';
 // import ProgressBar from '../../../components/ProgressBar';
 import './index.scss';
 
-const events = ['select:card', 'submit-breed'];
+const events = ['select:card', 'submit'];
 
 const html = `
   <div>
@@ -62,7 +62,7 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   });
 
   $button.listen('click', () => {
-    this.emit('submit-breed', this.activeCard);
+    this.emit('submit', this.activeCard);
   });
 
   $button.selected.get('button').classList.add('pet-regirested-footer__button');
