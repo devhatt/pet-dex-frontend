@@ -19,6 +19,7 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   const $container = this.selected.get('container');
   const $btnContainer = this.selected.get('btn-container');
   this.activeCard = null;
+  this.breedSelect = [];
 
   const $button = new Button({
     text: 'Continuar',
@@ -41,28 +42,22 @@ export default function PetRegisterPage({ cards = [] } = {}) {
       if (!this.activeCard) $button.disable();
 
       this.activeCard = card;
+      this.breedSelect.push(card);
       this.emit('select:card', card);
       $button.enable();
     });
 
-    card.listen('desactive', () => {
-      this.desactive(this.activeCard);
-      $button.disable();
-    });
-
-    $button.listen('click', () => {
-      const cardSelect = card.selected
-        .get('pet-container')
-        .classList.contains('pet-card--active');
-
-      if (cardSelect) {
-        console.log('submit dados', cardSelect, card.selected.get('pet-card'));
+    card.listen('deactive', () => {
+      this.breedSelect.pop();
+      if (this.breedSelect.length === 0) {
+        $button.disable();
       }
     });
   });
 
   $button.listen('click', () => {
-    this.emit('submit', this.activeCard);
+    this.emit('submit', this.breedSelect);
+    console.log('submit', this.breedSelect);
   });
 
   $button.selected.get('button').classList.add('pet-regirested-footer__button');

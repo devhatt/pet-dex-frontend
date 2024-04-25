@@ -6,21 +6,24 @@
   overflow: auto;
 
   display: flex;
-  align-items: start;
-  justify-content: center;
 
   flex-wrap: wrap;
 
   gap: 1.6rem;
 
+  align-items: start;
+  justify-content: center;
+
   &__pet-card {
     aspect-ratio: auto;
+
     cursor: pointer;
   }
 }
 
 .pet-regirested-footer {
   display: flex;
+
   margin: 2rem;
 
   background-color: colors.$appContentColor;
