@@ -16,11 +16,11 @@ const html = `
 `;
 
 export default function TextInput({
-  placeholder,
+  placeholder = '',
   assetUrl,
   assetPosition,
-  variation,
-}) {
+  variation = 'standard',
+} = {}) {
   Component.call(this, { html, events });
   const input = this.selected.get('input-text');
   input.disabled = false;

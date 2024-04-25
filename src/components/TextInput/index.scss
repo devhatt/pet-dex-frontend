@@ -3,8 +3,11 @@
 
   &__input {
     width: 100%;
+    height: 100%;
 
     font-size: 1.5rem;
+
+    box-sizing: border-box;
 
     background-repeat: no-repeat;
     background-size: auto 60%;
@@ -15,23 +18,27 @@
     }
 
     &.standard {
-      padding: 0.65rem 1rem;
+      padding: 1rem;
       border: 1px solid rgb(163, 163, 163);
 
-      border-radius: 8px;
+      border-radius: 10px;
 
       transition: border-color 0.3s ease-in-out;
 
       &.prefix {
-        padding: 0.8rem 1rem 0.8rem 3.5rem;
+        padding: 1rem;
 
         background-position: 0.8rem center;
+
+        border-radius: 10px;
       }
 
       &.suffix {
-        padding: 0.8rem 3.5rem 0.8rem 1rem;
+        padding: 1rem;
 
         background-position: calc(100% - 0.8rem) center;
+
+        border-radius: 10px;
       }
 
       &:focus {
