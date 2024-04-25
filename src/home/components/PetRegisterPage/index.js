@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import Button from '../../../components/Button';
 import PetCard from '../../../components/PetCard';
-// import ProgressBar from '../../../components/ProgressBar';
 import './index.scss';
 
 const events = ['select:card', 'submit'];
@@ -49,15 +48,13 @@ export default function PetRegisterPage({ cards = [] } = {}) {
 
     card.listen('deactive', () => {
       this.breedSelect.pop();
-      if (this.breedSelect.length === 0) {
-        $button.disable();
-      }
+
+      if (this.breedSelect.length === 0) $button.disable();
     });
   });
 
   $button.listen('click', () => {
     this.emit('submit', this.breedSelect);
-    console.log('submit', this.breedSelect);
   });
 
   $button.selected.get('button').classList.add('pet-regirested-footer__button');
