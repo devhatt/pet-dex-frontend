@@ -71,7 +71,7 @@
   }
 
   &__button {
-    width: 95%;
+    width: 90%;
 
     margin-top: 1rem;
   }
@@ -79,7 +79,10 @@
 
 @include breakpoints.from1024 {
   .pet-weight-page {
+    align-items: flex-start;
+
     &__image-container {
+      margin-top: 3rem;
       margin-bottom: 3rem;
     }
 
@@ -96,16 +99,36 @@
       font-size: fonts.$xs;
     }
 
+    &__inputs {
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    &__input-container {
+      margin-right: 1rem;
+    }
+
+    &__input {
+      display: block;
+    }
+
+    &__radio {
+      margin-right: 2rem;
+    }
+
     &__button {
       width: 40%;
-
-      margin-top: 1rem;
     }
   }
 }
 
 @include breakpoints.from1280 {
   .pet-weight-page {
+    &__image-container {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
+
     &__title {
       font-size: fonts.$md;
       font-weight: fonts.$semiBold;
@@ -115,8 +138,14 @@
       font-size: fonts.$sm;
     }
 
+    &__input-container {
+      width: 20%;
+
+      margin-right: 2rem;
+    }
+
     &__button {
-      width: 35%;
+      width: 45%;
     }
   }
 }
