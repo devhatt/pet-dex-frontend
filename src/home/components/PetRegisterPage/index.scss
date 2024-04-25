@@ -2,28 +2,25 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .pet-regirested-page {
-  max-width: 100rem;
   max-height: 50rem;
   overflow: auto;
 
   display: flex;
-  flex-wrap: wrap;
-
-  gap: 1.4rem;
-
   align-items: start;
   justify-content: center;
 
+  flex-wrap: wrap;
+
+  gap: 1.6rem;
+
   &__pet-card {
     aspect-ratio: auto;
-
     cursor: pointer;
   }
 }
 
 .pet-regirested-footer {
   display: flex;
-
   margin: 2rem;
 
   background-color: colors.$appContentColor;
