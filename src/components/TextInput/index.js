@@ -7,7 +7,7 @@ const events = [
   'asset:changed',
   'disabled',
   'enabled',
-  'value:changed',
+  'value:change',
 ];
 
 const html = `
@@ -39,7 +39,7 @@ export default function TextInput({
   });
 
   input.addEventListener('input', () => {
-    this.emit('value:changed', input.value);
+    this.emit('value:change', input.value);
   });
 }
 
@@ -54,7 +54,7 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   },
   setValue(value) {
     this.selected.get('input-text').value = value;
-    this.emit('value:changed', value);
+    this.emit('value:change', value);
   },
   setAssetPosition(position) {
     this.selected.get('input-text').classList.remove('prefix', 'suffix');
