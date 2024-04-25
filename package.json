@@ -61,7 +61,6 @@
     "vitest": "^1.2.2"
   },
   "dependencies": {
-    "@commitlint/cz-commitlint": "^19.2.0",
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
     "vite": "^5.0.12",
