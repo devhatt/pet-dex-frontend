@@ -21,16 +21,17 @@ $success200: rgb(49, 138, 94);
 // error
 $error100: rgb(179, 38, 30);
 
-// neutrals (Grey)
-$grey100: rgb(236, 239, 242);
-$grey200: rgb(224, 224, 224);
-$grey300: rgb(179, 190, 205);
-$grey400: rgb(141, 141, 141);
-$grey500: rgb(96, 104, 115);
-$grey600: rgb(102, 116, 121);
-$grey700: rgb(128, 139, 154);
-$grey800: rgb(57, 67, 79);
-$grey900: rgb(32, 35, 38);
+// neutrals (Gray)
+$gray100: rgb(236, 239, 242);
+$gray150: rgb(236, 239, 242);
+$gray200: rgb(224, 224, 224);
+$gray300: rgb(179, 190, 205);
+$gray400: rgb(141, 141, 141);
+$gray500: rgb(96, 104, 115);
+$gray600: rgb(102, 116, 121);
+$gray700: rgb(6, 8, 9);
+$gray800: rgb(57, 67, 79);
+$gray900: rgb(32, 35, 38);
 
 // dark mode
 $dark100: rgb(30, 40, 51);
@@ -40,3 +41,7 @@ $dark300: rgb(0, 0, 0);
 // shades
 $shade50: rgb(255, 255, 255);
 $shade100: rgb(0, 0, 0);
+
+// custom
+
+$blue600: rgb(18, 104, 204);

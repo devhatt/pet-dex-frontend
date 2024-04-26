@@ -14,7 +14,7 @@
     opacity: 0;
 
     &:checked + .toggle-container__label {
-      background-color: colors.$blue500;
+      background-color: colors.$primary200;
 
       &::after {
         transform: translateX(100%);
@@ -44,7 +44,7 @@
       position: absolute;
       left: 10%;
 
-      background-color: colors.$appContentColor;
+      background-color: colors.$secondary100;
       border-radius: 50%;
 
       transition: transform 0.3s;
