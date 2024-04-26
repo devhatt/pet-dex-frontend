@@ -1,0 +1,53 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.day-button {
+  width: 4rem;
+  height: 4rem;
+
+  font-family: fonts.$primaryFont;
+  color: colors.$gray500;
+  font-size: 1.6rem;
+  font-weight: fonts.$medium;
+
+  padding: 0;
+  border: 0.1rem solid colors.$gray100;
+
+  background-color: colors.$secondary100;
+  border-radius: 1rem;
+
+  cursor: pointer;
+
+  &.prev-month,
+  &.next-month {
+    color: rgb(160, 174, 192);
+
+    background-color: rgb(247, 250, 252);
+  }
+
+  &:hover,
+  &.active {
+    color: colors.$primary200;
+    font-weight: fonts.$semiBold;
+
+    border: 0.1rem solid rgb(209, 230, 255);
+
+    background-color: rgba(209, 230, 255, 0.502);
+  }
+}
+
+@include breakpoints.from667 {
+  .day-button {
+    width: 5.4rem;
+    height: 5.4rem;
+
+    font-size: 1.8rem;
+
+    &:hover,
+    &.active {
+      border: 0.2rem solid rgb(209, 230, 255);
+    }
+  }
+}

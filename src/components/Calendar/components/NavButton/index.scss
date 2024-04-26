@@ -1,0 +1,41 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.nav-button {
+  display: none;
+}
+
+@include breakpoints.from667 {
+  .nav-button {
+    width: 4.6rem;
+    height: 4.6rem;
+
+    display: grid;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: Nato Sans;
+    color: colors.$gray300;
+    font-size: 2rem;
+
+    border: 0.1rem solid rgb(160, 174, 192);
+
+    background-color: transparent;
+    border-radius: 1.4rem;
+
+    cursor: pointer;
+  }
+
+  .prev {
+    grid-area: 1;
+  }
+
+  .next {
+    justify-self: end;
+
+    transform: rotate(180deg);
+  }
+}

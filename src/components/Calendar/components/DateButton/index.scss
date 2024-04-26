@@ -1,0 +1,63 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.date {
+  button {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray500;
+    font-size: 1.4rem;
+    font-weight: fonts.$medium;
+    line-height: 2rem;
+
+    border: 0;
+
+    background-color: transparent;
+
+    cursor: pointer;
+  }
+}
+
+.date.active {
+  button {
+    color: colors.$primary200;
+    font-size: 2.6rem;
+    font-weight: fonts.$bold;
+    line-height: 3.4rem;
+
+    padding: 0.6rem 1.2rem;
+    border: 0.1rem solid rgb(209, 230, 255);
+
+    background-color: rgba(209, 230, 255, 0.502);
+    border-radius: 1.4rem;
+  }
+}
+
+@include breakpoints.from667 {
+  .date {
+    display: none;
+
+    button {
+      width: 100%;
+
+      font-size: fonts.$md;
+      line-height: 34px;
+    }
+  }
+
+  .date.active {
+    display: flex;
+
+    button {
+      color: colors.$gray800;
+      font-size: 2.6rem;
+      font-weight: fonts.$regular;
+
+      padding: 0.6rem;
+      border: 0;
+
+      background-color: transparent;
+    }
+  }
+}
