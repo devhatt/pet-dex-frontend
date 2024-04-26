@@ -19,10 +19,5 @@ DateButton.prototype = Object.assign(
     active() {
       this.selected.get('date').classList.add('active');
     },
-
-    setYear(year) {
-      const $button = this.selected.get('date').children[0];
-      $button.innerText = year;
-    },
   },
 );
