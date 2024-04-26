@@ -10,7 +10,7 @@
   justify-content: space-between;
 
   padding: 1.5rem;
-  border: 1px solid colors.$grey150;
+  border: 1px solid colors.$gray150;
 
   border-radius: 14px;
 
@@ -37,7 +37,7 @@
     &.divider {
       align-self: stretch;
 
-      border-right: 1px solid colors.$grey150;
+      border-right: 1px solid colors.$gray150;
     }
   }
 }
