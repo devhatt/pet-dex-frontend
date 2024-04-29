@@ -43,9 +43,10 @@ export default function Drawer({ title, content }) {
   });
 
   this.listen('mount', () => {
-    requestAnimationFrame(() =>
-      drawerWrapper.classList.add('drawer__wrapper--open'),
-    );
+    requestAnimationFrame(() => {
+      drawerWrapper.classList.add('drawer__wrapper--open');
+      drawer.classList.add('drawer--open');
+    });
     window.addEventListener('keydown', this.onEscapeKey);
     drawer.addEventListener('click', this.onClickOutside);
   });
@@ -75,6 +76,7 @@ Drawer.prototype = Object.assign(Drawer.prototype, Component.prototype, {
   close() {
     if (this.isOpen) {
       const drawerWrapper = this.selected.get('drawer-wrapper');
+      this.selected.get('drawer').classList.remove('drawer--open');
       drawerWrapper.classList.remove('drawer__wrapper--open');
       drawerWrapper.addEventListener(
         'transitionend',
