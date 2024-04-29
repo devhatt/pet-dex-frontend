@@ -16,7 +16,7 @@
     top: 25%;
     z-index: 0;
 
-    background-color: colors.$grey150;
+    background-color: colors.$gray150;
     border-radius: 100000px;
   }
 
@@ -29,7 +29,7 @@
     position: relative;
     z-index: 1;
 
-    background-color: colors.$yellow500;
+    background-color: colors.$primary300;
     border-radius: 100000px;
 
     transition: width 1s ease-in-out;

@@ -7,24 +7,30 @@
   width: 200vw;
   height: 100dvh;
   overflow-x: hidden;
+
   display: grid;
   grid-template-areas:
     'sidemenu nav'
     'sidemenu content';
   grid-template-rows: 8.1rem 1fr;
   grid-template-columns: 100vw 100vw;
-  background-color: colors.$appColor;
+
+  background-color: colors.$primary600;
   transform: translateX(-100vw);
 
   &--open-menu {
     width: 100vw;
+
     transform: translateX(0);
+
     transition: transform 0.3s;
   }
 
   &--exit-menu {
     width: 200vw;
+
     transform: translateX(-100vw);
+
     transition: transform 0.3s;
   }
 
@@ -46,7 +52,7 @@
 
     grid-area: content;
 
-    background-color: colors.$appContentColor;
+    background-color: colors.$secondary100;
 
     padding-inline: 2rem;
     padding-block: 3.2rem;
@@ -56,12 +62,14 @@
 @include breakpoints.from1024 {
   .home {
     width: 100vw;
-    transform: translateX(0);
+
     grid-template-areas:
       'sidemenu nav'
       'sidemenu content';
     grid-template-rows: 8.1rem 1fr;
     grid-template-columns: 31.3rem 1fr;
+
+    transform: translateX(0);
 
     &__content {
       margin-inline: 2.4rem;

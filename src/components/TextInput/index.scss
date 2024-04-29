@@ -1,4 +1,4 @@
-@use '~styles/colors.scss' as colors;
+@use '~styles/colors' as colors;
 
 .input-text-container {
   position: relative;
@@ -21,7 +21,8 @@
 
     &.standard {
       padding: 1rem;
-      border: 1px solid colors.$grey200;
+      border: 1px solid colors.$gray200;
+      border: 1px solid colors.$gray400;
 
       border-radius: 10px;
 
@@ -31,6 +32,8 @@
         padding: 1rem;
 
         background-position: 0.8rem center;
+
+        border-radius: 10px;
       }
 
       &.suffix {
@@ -58,7 +61,8 @@
     &.outlined {
       padding: 0.5rem 0.35rem;
 
-      border-bottom: 1px solid colors.$grey200;
+      border-bottom: 1px solid colors.$gray200;
+      border-bottom: 1px solid colors.$gray200;
       border-color: transparent;
 
       outline: none;

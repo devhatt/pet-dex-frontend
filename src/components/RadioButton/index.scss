@@ -17,10 +17,10 @@
   cursor: pointer;
 
   &:focus-within {
-    border-color: colors.$blue500;
+    border-color: colors.$primary200;
 
     .radio-dot {
-      color: colors.$blue500;
+      color: colors.$primary200;
     }
   }
 
@@ -30,7 +30,7 @@
 
     margin: 0.8rem;
     border: 0.15rem solid colors.$gray600;
-    border-color: colors.$blue500;
+    border-color: colors.$primary200;
 
     border-radius: 50%;
 
@@ -39,7 +39,7 @@
     appearance: none;
 
     &:checked {
-      border-color: colors.$blue500;
+      border-color: colors.$primary200;
 
       background: url('./images/ellipse.svg') no-repeat center center/60%;
     }

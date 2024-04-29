@@ -4,13 +4,15 @@
 
 .side-menu-nav {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
+  justify-content: space-between;
   padding-inline: 2rem;
 
   &__logo-container {
     display: none;
     padding-block: 4rem 2rem;
+
     text-align: center;
   }
 
@@ -20,9 +22,10 @@
 
   &__icons {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 2.4rem;
+
+    align-items: center;
+    justify-content: center;
   }
 
   &__notifications {
@@ -31,9 +34,10 @@
   }
 
   &__perfil {
-    border-radius: 100%;
     width: 4.3rem;
     height: 4.3rem;
+
+    border-radius: 100%;
   }
 
   &__exit {
@@ -49,20 +53,24 @@
 
 .side-menu-content {
   width: 28rem;
-  margin: 0 auto;
-  gap: 4.2rem;
+
   display: flex;
   flex-direction: column;
+  gap: 4.2rem;
+
+  margin: 0 auto;
 
   &__line {
-    border: 0.1rem solid colors.$appContentColor;
     width: 100%;
+
+    border: 0.1rem solid colors.$secondary100;
   }
 
   &__lineinside {
-    margin: 4.2rem 0 4.2rem 0;
-    border: 0.1rem solid colors.$appContentColor;
     width: 100%;
+
+    margin: 4.2rem 0;
+    border: 0.1rem solid colors.$secondary100;
   }
 
   &__yourpet {
@@ -70,32 +78,36 @@
   }
 
   &__title-yourpet {
-    color: colors.$appContentColor;
+    color: colors.$secondary100;
     font-size: 1.6rem;
-    font-style: fonts.$normal;
     font-weight: fonts.$bold;
+    font-style: fonts.$normal;
   }
 
   &__itens {
-    color: colors.$appContentColor;
     font-family: fonts.$primaryFont;
+    color: colors.$secondary100;
     font-size: 1.6rem;
   }
 
   &__ul {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 0.8rem;
+
+    align-items: flex-start;
   }
 
   &__menuitens {
     display: flex;
-    padding: 1.2rem;
-    align-items: center;
     gap: 1.2rem;
+
+    align-items: center;
+
+    color: colors.$secondary100;
     text-decoration: none;
-    color: colors.$appContentColor;
+
+    padding: 1.2rem;
 
     &--active {
       background-color: rgb(0, 29, 49);
@@ -108,6 +120,7 @@
   .side-menu-nav {
     &__logo-container {
       display: block;
+
       margin: 0 auto;
     }
 

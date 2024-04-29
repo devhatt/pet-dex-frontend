@@ -71,12 +71,12 @@ $borderHeight: 0.3rem;
 
   position: relative;
 
-  background-color: colors.$appContentColor;
+  background-color: colors.$secondary100;
 
   cursor: pointer;
 
   &--active {
-    color: colors.$blue500;
+    color: colors.$primary200;
     font-weight: 700;
 
     &::after,
@@ -87,7 +87,7 @@ $borderHeight: 0.3rem;
       bottom: 0;
       z-index: 2;
 
-      background: colors.$blue500;
+      background: colors.$primary200;
 
       content: '';
     }
@@ -141,9 +141,9 @@ $borderHeight: 0.3rem;
     border-radius: 1.6rem;
 
     &--active {
-      color: colors.$appContentColor;
+      color: colors.$secondary100;
 
-      background-color: colors.$blue500;
+      background-color: colors.$primary200;
 
       &::after,
       &::before {
