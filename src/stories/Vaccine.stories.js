@@ -17,7 +17,7 @@ export default {
 
 export const Default = {
   args: {
-    vaccinesList: [
+    vaccines: [
       {
         id: '1',
         vet: 'Dr octopus',
@@ -26,7 +26,7 @@ export const Default = {
       },
       {
         id: '2',
-        vet: 'Dr Almeida',
+        vet: 'Dr Felipa',
         title: 'Raiva',
         date: new Date(2023, 5, 2).toISOString(),
       },

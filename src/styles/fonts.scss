@@ -76,12 +76,3 @@ $descriptionLineHeight: 2rem;
     font-style: $style
   );
 }
-
-@font-face {
-  font-family: 'Helvetica';
-  font-weight: normal;
-  font-style: normal;
-  src:
-    local('Helvetica'),
-    url('/helvetica.woff') format('woff');
-}

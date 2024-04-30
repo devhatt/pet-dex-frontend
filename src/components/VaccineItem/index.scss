@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 1.5rem;
+  padding: 2rem;
   border: 1px solid colors.$gray150;
 
   border-radius: 14px;
@@ -22,9 +22,7 @@
 
     &.title {
       color: colors.$gray800;
-      font-size: 1.2rem;
       font-weight: fonts.$semiBold;
-      line-height: 2.4;
     }
 
     &.date {
@@ -44,11 +42,12 @@
 
 @include breakpoints.from667 {
   .vaccine-item {
+    padding: 1.5rem;
+
     &__info-body {
       font-size: 1.6rem;
 
       &.title {
-        font-size: 1.6rem;
         font-weight: fonts.$semiBold;
       }
 

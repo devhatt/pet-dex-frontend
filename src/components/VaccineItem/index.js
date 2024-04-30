@@ -3,19 +3,19 @@ import dayjs from 'dayjs';
 import calendarUrl from './images/calendar.svg';
 import './index.scss';
 
-const events = ['change:date', 'change:title', 'change:vet'];
+const events = ['date:change', 'title:change', 'vet:change'];
 
 const html = `
-      <div class="vaccine-item">
-        <p class="vaccine-item__info-body title" data-select="body-title"></p>
-        <div class="vaccine-item__info-body date">
-        <hr class="vaccine-item__info-body divider"></hr>
-          <img src=${calendarUrl} alt="calendar">
-          <p data-select="body-date"></p>
-          <hr class="vaccine-item__info-body divider"></hr>
-        </div>
-        <p class="vaccine-item__info-body" data-select="body-vet"></p>
-      </div>
+  <div class="vaccine-item">
+    <p class="vaccine-item__info-body title" data-select="body-title"></p>
+    <div class="vaccine-item__info-body date">
+      <hr class="vaccine-item__info-body divider"></hr>
+      <img src=${calendarUrl} alt="calendar">
+      <p data-select="body-date"></p>
+      <hr class="vaccine-item__info-body divider"></hr>
+    </div>
+    <p class="vaccine-item__info-body vet" data-select="body-vet"></p>
+  </div>
 `;
 
 function formatDate(date) {

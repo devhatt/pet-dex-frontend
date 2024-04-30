@@ -4,7 +4,7 @@ import vaccineUrl from './images/vaccine.svg';
 import addVaccineUrl from './images/plus.svg';
 import './index.scss';
 
-const events = ['openDrawer', 'group:change', 'group:remove'];
+const events = ['drawer:open', 'group:change', 'group:remove'];
 
 const html = `
   <div class="vaccine-container" data-select="vaccine-container">
@@ -21,34 +21,35 @@ const html = `
       </div>
     </div>
     <div class="vaccine-container__list-group"> 
-    <div class="vaccine-container__sections" data-select="vaccine-list-group"> </div>
+    <div class="vaccine-container__sections" data-select="vaccine-group-container"> </div>
     </div>
   </div>
 `;
 
-export default function Vaccine({ vaccinesList = [] } = {}) {
+export default function Vaccine({ vaccines = [] } = {}) {
   Component.call(this, { html, events });
 
-  const $vaccineAddDiv = this.selected.get('vaccine-add-vaccine');
+  const $vaccineAddContainer = this.selected.get('vaccine-add-vaccine'); // mudar isso
   this.groups = new Map();
 
-  if (vaccinesList.length) this.loadVacina(vaccinesList);
+  if (vaccines.length) this.loadVaccines(vaccines);
 
-  $vaccineAddDiv.addEventListener('click', () => {
-    this.open();
+  $vaccineAddContainer.addEventListener('click', () => {
+    this.openDrawer();
   });
 }
 
 Vaccine.prototype = Object.assign(Vaccine.prototype, Component.prototype, {
-  openDrawer() {
-    // code to open drawer
+  getGroup(vaccine) {
+    const dateYear = new Date(vaccine.date).getFullYear();
+    return this.groups.get(dateYear);
   },
   createGroup(vaccine) {
     const dateYear = new Date(vaccine.date).getFullYear();
     const vaccineGroup = new VaccineGroup(dateYear, vaccine);
-    const $vaccineList = this.selected.get('vaccine-list-group');
+    const $groupContainer = this.selected.get('vaccine-group-container');
 
-    vaccineGroup.mount($vaccineList);
+    vaccineGroup.mount($groupContainer);
 
     this.groups.set(dateYear, vaccineGroup);
     this.emit('group:change', vaccine);
@@ -60,22 +61,21 @@ Vaccine.prototype = Object.assign(Vaccine.prototype, Component.prototype, {
     this.emit('group:remove', group);
     this.groups.delete(year);
   },
-  getGroup(vaccine) {
-    const dateYear = new Date(vaccine.date).getFullYear();
-    return this.groups.get(dateYear);
+  addVaccine(vaccine, group) {
+    group.addItem(vaccine);
+    this.emit('group:change', vaccine);
   },
-  addVaccine(vaccine) {
-    const group = this.getGroup(vaccine);
-    if (group) {
-      group.addItem(vaccine);
-      this.emit('group:change', vaccine);
-      return;
-    }
-    this.createGroup(vaccine);
-  },
-  loadVacina(vaccineList) {
-    vaccineList.forEach((vaccine) => {
-      this.addVaccine(vaccine);
+  loadVaccines(vaccines) {
+    vaccines.forEach((vaccine) => {
+      const group = this.getGroup(vaccine);
+      if (group) {
+        this.addVaccine(vaccine, group);
+        return;
+      }
+      this.createGroup(vaccine);
     });
+  },
+  openDrawer() {
+    this.emit('drawer:open');
   },
 });

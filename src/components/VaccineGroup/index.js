@@ -5,9 +5,9 @@ import './index.scss';
 const events = ['vaccineItem:change', 'title:change'];
 
 const html = `
-<div class="vaccine-group" data-select="vaccine-group">
-    <p class="vaccine-group__vaccine-title" data-select="vaccine-title"> </p>
-</div>`;
+  <div class="vaccine-group" data-select="vaccine-group">
+      <p class="vaccine-group__vaccine-title" data-select="vaccine-title"> </p>
+  </div>`;
 
 export default function VaccineGroup(year, vaccineItem) {
   Component.call(this, { html, events });
@@ -22,16 +22,16 @@ VaccineGroup.prototype = Object.assign(
   VaccineGroup.prototype,
   Component.prototype,
   {
-    setTitle(year) {
-      this.title = year;
-      this.selected.get('vaccine-title').textContent = year;
-      this.emit('change:title', year);
-    },
     getTitle() {
       return this.title;
     },
     getItem(itemId) {
       return this.items.get(itemId);
+    },
+    setTitle(year) {
+      this.title = year;
+      this.selected.get('vaccine-title').textContent = year;
+      this.emit('title:change', year);
     },
     addItem(item) {
       const $vaccineGroup = this.selected.get('vaccine-group');
@@ -39,7 +39,7 @@ VaccineGroup.prototype = Object.assign(
 
       vaccineItem.mount($vaccineGroup);
       this.items.set(item.id, vaccineItem);
-      this.emit('change:vaccineItem', vaccineItem);
+      this.emit('vaccineItem:change', vaccineItem);
     },
   },
 );
