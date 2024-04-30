@@ -10,12 +10,14 @@ const events = ['open', 'close', 'title:change', 'content:change'];
 const html = `
   <div class="drawer" data-select="drawer">
     <div class="drawer__wrapper" data-select="drawer-wrapper">
-      <div class="drawer__nav">
-        <span class="drawer__title" data-select="title"></span>
-        <button class="drawer__close" data-select="close">
-          <img class="drawer__close--icon" src="${close}">
-          <img class="drawer__close--line" src="${line}">
-        </button>
+      <div class="drawer__header">
+        <img class="drawer__close--line" src="${line}">
+        <div class="drawer__nav">
+          <span class="drawer__title" data-select="title"></span>
+          <button class="drawer__close" data-select="close">
+            <img class="drawer__close--icon" src="${close}">
+          </button>
+        </div>
       </div>
       <div class="drawer__content" data-select="content"></div>
     </div>

@@ -44,38 +44,45 @@
       bottom: 0;
     }
 
-    .drawer__nav {
+    .drawer__header {
       width: 100%;
 
       display: flex;
+      flex-direction: column;
 
       align-items: center;
-      justify-content: center;
 
-      padding-bottom: 1.2rem;
+      .drawer__nav {
+        width: 100%;
 
-      .drawer__title {
-        display: none;
-      }
+        display: flex;
+        gap: 2rem;
 
-      .drawer__close {
-        display: grid;
+        align-items: center;
 
-        place-items: center;
+        justify-content: space-between;
 
-        padding: 0.5rem;
-        border: 0;
+        margin: 3rem 0;
 
-        background: inherit;
+        .drawer__title {
+          display: block;
 
-        cursor: pointer;
-
-        .drawer__close--icon {
-          display: none;
+          font-family: fonts.$primaryFont;
+          color: colors.$gray500;
+          font-weight: 600;
         }
 
-        .drawer__close--line {
-          display: block;
+        .drawer__close {
+          display: grid;
+
+          place-items: center;
+
+          padding: 0.5rem;
+          border: 0;
+
+          background: inherit;
+
+          cursor: pointer;
         }
       }
     }
@@ -108,45 +115,32 @@
         right: 0;
       }
 
-      .drawer__nav {
+      .drawer__header {
         width: 100%;
 
-        display: flex;
-        gap: 2rem;
+        display: block;
 
-        align-items: center;
+        padding: 0;
 
-        justify-content: space-between;
+        .drawer__nav {
+          margin: 0 0 3rem;
 
-        margin-bottom: 3rem;
+          .drawer__close {
+            display: grid;
 
-        .drawer__title {
-          display: block;
+            place-items: center;
 
-          font-family: fonts.$primaryFont;
-          color: colors.$gray500;
-          font-weight: 600;
+            padding: 0.5rem;
+            border: 0;
+
+            background: inherit;
+
+            cursor: pointer;
+          }
         }
 
-        .drawer__close {
-          display: grid;
-
-          place-items: center;
-
-          padding: 0.5rem;
-          border: 0;
-
-          background: inherit;
-
-          cursor: pointer;
-
-          .drawer__close--icon {
-            display: block;
-          }
-
-          .drawer__close--line {
-            display: none;
-          }
+        .drawer__close--line {
+          display: none;
         }
       }
     }
