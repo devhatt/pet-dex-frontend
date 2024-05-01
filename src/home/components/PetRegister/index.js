@@ -4,6 +4,8 @@ import TextInput from '../../../components/TextInput';
 import UploadImage from '../../../components/UploadImage';
 import Button from '../../../components/Button';
 
+const events = ['submit'];
+
 const html = `
   <div class='pet-register'>
       <div class='pet-register__container'>
@@ -16,7 +18,7 @@ const html = `
 `;
 
 export default function PetRegister() {
-  Component.call(this, { html });
+  Component.call(this, { html, events });
 
   const $inputContainer = this.selected.get('input-container');
   const $uploadImage = this.selected.get('upload-image-container');
@@ -33,7 +35,25 @@ export default function PetRegister() {
     isFullWidth: true,
     isDisabled: false,
   });
-  // this.button.listen("click", () => this.emit("submit", ))
+
+  const updateButtonVisibility = () => {
+    const input = this.input.getValue();
+    const image = this.upload.getValue();
+    const validInput = input !== '' && input != null;
+    const validImage = image !== '' && image != null;
+
+    this.button.setIsDisabled(!validInput || !validImage);
+  };
+  updateButtonVisibility();
+
+  this.upload.listen('change:value', updateButtonVisibility);
+  this.input.listen('change:value', updateButtonVisibility);
+
+  this.button.listen('click', () => {
+    const image = this.upload.getValue();
+    const name = this.input.getValue();
+    this.emit('submit', { image, name });
+  });
 
   this.input.selected
     .get('input-text')
