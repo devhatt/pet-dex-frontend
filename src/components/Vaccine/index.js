@@ -29,12 +29,12 @@ const html = `
 export default function Vaccine({ vaccines = [] } = {}) {
   Component.call(this, { html, events });
 
-  const $vaccineAddContainer = this.selected.get('vaccine-add-vaccine'); // mudar isso
+  const $addVaccineContainer = this.selected.get('vaccine-add-vaccine');
   this.groups = new Map();
 
   if (vaccines.length) this.loadVaccines(vaccines);
 
-  $vaccineAddContainer.addEventListener('click', () => {
+  $addVaccineContainer.addEventListener('click', () => {
     this.openDrawer();
   });
 }
