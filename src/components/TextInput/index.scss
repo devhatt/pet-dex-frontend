@@ -6,7 +6,6 @@
 
   &__input {
     width: 100%;
-    height: 100%;
 
     color: colors.$gray600;
 
@@ -59,7 +58,7 @@
       &.input-error {
         border-color: colors.$error100;
 
-        background-color: rgba(238, 114, 126, 0.458);
+        background-color: colors.$error100;
         filter: opacity(0.75);
         outline-color: colors.$error100;
       }
