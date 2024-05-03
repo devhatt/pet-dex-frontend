@@ -1,0 +1,103 @@
+@use '~styles/colors.scss' as colors;
+
+.sliding {
+  width: max-content;
+
+  display: flex;
+  gap: 1rem;
+
+  align-items: center;
+  justify-content: space-between;
+
+  &__controls {
+    width: 5.4rem;
+    height: 5.4rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0 solid transparent;
+
+    z-index: 2;
+
+    background-color: rgb(255, 255, 255);
+
+    box-shadow: 0 0 3px 1px rgba(139, 158, 184, 0.2);
+
+    border-radius: 1.4rem;
+
+    transition: background-color 0.4s ease-in-out;
+
+    &:disabled {
+      opacity: 0.4;
+    }
+
+    &--removed {
+      display: none;
+    }
+
+    &:hover:not([disabled]) {
+      background-color: colors.$blue500;
+
+      cursor: pointer;
+
+      .sliding__controls__image {
+        &__path {
+          stroke: rgb(255, 255, 255);
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+
+    &__slide {
+      display: none;
+
+      z-index: 1;
+
+      &__animation--next {
+        animation: next 0.5s ease-in-out;
+      }
+
+      &__animation--prev {
+        animation: prev 0.5s ease-in-out;
+      }
+
+      &--selected {
+        display: block;
+      }
+    }
+  }
+}
+
+@keyframes prev {
+  from {
+    left: -50%;
+
+    opacity: 0;
+  }
+
+  to {
+    left: 0;
+
+    opacity: 1;
+  }
+}
+
+@keyframes next {
+  from {
+    left: 50%;
+
+    opacity: 0;
+  }
+
+  to {
+    left: 0;
+
+    opacity: 1;
+  }
+}
