@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import calendarUrl from './images/calendar.svg';
 import './index.scss';
 
-const events = ['date:change', 'title:change', 'vet:change'];
+const events = ['date:change', 'title:change', 'vet:change', 'id:change'];
 
 const html = `
   <div class="vaccine-item">
@@ -22,9 +22,10 @@ function formatDate(date) {
   return dayjs(date).format('MM/DD/YYYY');
 }
 
-export default function VaccineItem({ title, vet, date }) {
+export default function VaccineItem({ id, title, vet, date }) {
   Component.call(this, { html, events });
 
+  if (id) this.setId(id);
   if (title) this.setTitle(title);
   if (vet) this.setVet(vet);
   if (date) this.setDate(date);
@@ -34,6 +35,9 @@ VaccineItem.prototype = Object.assign(
   VaccineItem.prototype,
   Component.prototype,
   {
+    getId() {
+      return this.id;
+    },
     getTitle() {
       return this.title;
     },
@@ -43,21 +47,25 @@ VaccineItem.prototype = Object.assign(
     getDate() {
       return this.date;
     },
+    setId(id) {
+      this.id = id;
+      this.emit('id:change', id);
+    },
     setTitle(title) {
       this.title = title;
       this.selected.get('body-title').textContent = title;
-      this.emit('change:title', title);
+      this.emit('title:change', title);
     },
     setVet(vet) {
       this.vet = vet;
       this.selected.get('body-vet').textContent = vet;
-      this.emit('change:vet', vet);
+      this.emit('vet:change', vet);
     },
     setDate(date) {
+      this.date = date;
       const dateFormatted = formatDate(date);
-      this.date = dateFormatted;
       this.selected.get('body-date').textContent = dateFormatted;
-      this.emit('change:date', date);
+      this.emit('date:change', date);
     },
   },
 );
