@@ -57,6 +57,8 @@
     &__slide {
       display: none;
 
+      position: relative;
+
       z-index: 1;
 
       &__animation--next {

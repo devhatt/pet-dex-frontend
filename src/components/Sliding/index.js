@@ -32,7 +32,7 @@ const html = `
   </button>
 </div>`;
 
-export default function Slinding({
+export default function Sliding({
   items = [],
   loopMode = 'normal',
   controls = true,
@@ -108,7 +108,7 @@ export default function Slinding({
   };
 }
 
-Slinding.prototype = Object.assign(Slinding.prototype, Component.prototype, {
+Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
   addItem(item) {
     item.classList.add('sliding__content__slide');
     this.selected.get('sliding-content').appendChild(item);
@@ -118,26 +118,24 @@ Slinding.prototype = Object.assign(Slinding.prototype, Component.prototype, {
     this.emit('item:add', item);
   },
 
-  removeItem(itemForRemove) {
-    const itemExist = this.selected
-      .get('sliding-content')
-      .contains(itemForRemove);
+  removeItem(item) {
+    const itemExist = this.selected.get('sliding-content').contains(item);
 
     if (!itemExist) throw new Error('Item not exists');
 
-    this.selected.get('sliding-content').removeChild(itemForRemove);
+    this.selected.get('sliding-content').removeChild(item);
 
     this.updateItems();
 
-    this.emit('item:remove', itemForRemove);
+    this.emit('item:remove', item);
   },
 
   setSlide(item) {
-    this.items.forEach((item2) => {
-      if (item === item2) {
-        item2.classList.add('sliding__content__slide--selected');
+    this.items.forEach((i) => {
+      if (item === i) {
+        i.classList.add('sliding__content__slide--selected');
       } else {
-        item2.classList.remove('sliding__content__slide--selected');
+        i.classList.remove('sliding__content__slide--selected');
       }
     });
 
