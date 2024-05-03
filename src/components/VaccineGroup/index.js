@@ -7,7 +7,8 @@ const events = ['vaccineItem:change', 'title:change'];
 const html = `
   <div class="vaccine-group" data-select="vaccine-group">
       <p class="vaccine-group__vaccine-title" data-select="vaccine-title"> </p>
-  </div>`;
+  </div>
+`;
 
 export default function VaccineGroup(year, vaccineItem) {
   Component.call(this, { html, events });
