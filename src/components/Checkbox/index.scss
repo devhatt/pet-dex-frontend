@@ -23,9 +23,9 @@
     appearance: none;
 
     &:checked {
-      border-color: colors.$purple500;
+      border-color: colors.$primary500;
 
-      background: colors.$purple500 url('./images/check.svg') no-repeat center
+      background: colors.$primary500 url('./images/check.svg') no-repeat center
         center/70%;
     }
 

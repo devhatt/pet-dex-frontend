@@ -44,7 +44,8 @@ ProgressBar.prototype = Object.assign(
     setProgress(value) {
       if (!isValueValid(value, this.minimum, this.maximum)) return;
       this.currentProgress = value;
-      this.selected.get('progress-bar-foreground').style.width = getWidthFormated(this.currentProgress, this.minimum, this.maximum);
+      this.selected.get('progress-bar-foreground').style.width =
+        getWidthFormated(this.currentProgress, this.minimum, this.maximum);
       this.selected.get('progress-bar').ariaValueNow = this.currentProgress;
       this.emit('setProgress', this.currentProgress);
     },

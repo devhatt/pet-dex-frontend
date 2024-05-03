@@ -19,7 +19,6 @@ const propsMock = {
   ],
 
   placeholder: 'Selecione',
-
 };
 
 describe('Dropdown', () => {
@@ -40,25 +39,42 @@ describe('Dropdown', () => {
   it('opens the container when clicked', () => {
     dropdown.selected.get('dropdown-toggle').dispatchEvent(clickEvent);
 
-    expect(dropdown.selected.get('dropdown-container').classList).toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-container').classList).toContain(
+      'dropdown--open',
+    );
   });
 
   it('selects an item when clicking', () => {
-    const item = getByText(dropdown.selected.get('dropdown-options'), 'Soninho');
+    const item = getByText(
+      dropdown.selected.get('dropdown-options'),
+      'Soninho',
+    );
 
     fireEvent.click(item);
 
-    expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
-    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--placeholder');
-    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-selected').textContent).toBe(
+      'Soninho',
+    );
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain(
+      'dropdown__selected--placeholder',
+    );
+    expect(dropdown.selected.get('dropdown-container').classList).not.toContain(
+      'dropdown--open',
+    );
   });
 
   it('selects a item programmatically', () => {
     dropdown.setValue('soninho');
 
-    expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
-    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--placeholder');
-    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-selected').textContent).toBe(
+      'Soninho',
+    );
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain(
+      'dropdown__selected--placeholder',
+    );
+    expect(dropdown.selected.get('dropdown-container').classList).not.toContain(
+      'dropdown--open',
+    );
   });
 
   it('adds an element to the options', () => {
@@ -69,9 +85,13 @@ describe('Dropdown', () => {
 
     dropdown.addItem(mockAdditionalItem);
 
-    expect(dropdown.selected.get('dropdown-options').children[3].dataset.value).toBe(mockAdditionalItem.value);
+    expect(
+      dropdown.selected.get('dropdown-options').children[3].dataset.value,
+    ).toBe(mockAdditionalItem.value);
     expect(dropdown.selected.get('dropdown-options').children.length).toBe(4);
-    expect(() => dropdown.addItem(mockAdditionalItem)).toThrowError('Item already exists');
+    expect(() => dropdown.addItem(mockAdditionalItem)).toThrowError(
+      'Item already exists',
+    );
   });
 
   it('removes an element in options', () => {
@@ -85,32 +105,44 @@ describe('Dropdown', () => {
     dropdown.selected.get('dropdown-toggle').dispatchEvent(clickEvent);
     fireEvent.click(document.documentElement);
 
-    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-container').classList).not.toContain(
+      'dropdown--open',
+    );
   });
 
   it('closes when clicked in toggle', () => {
     dropdown.selected.get('dropdown-toggle').dispatchEvent(clickEvent);
     dropdown.selected.get('dropdown-toggle').dispatchEvent(clickEvent);
 
-    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-container').classList).not.toContain(
+      'dropdown--open',
+    );
   });
 
   it('has the placeholder', () => {
-    expect(dropdown.selected.get('dropdown-selected').textContent).toBe(propsMock.placeholder);
-    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--placeholder');
+    expect(dropdown.selected.get('dropdown-selected').textContent).toBe(
+      propsMock.placeholder,
+    );
+    expect(dropdown.selected.get('dropdown-selected').classList).toContain(
+      'dropdown__selected--placeholder',
+    );
   });
 
   it('opens programmatically', () => {
     dropdown.open();
 
-    expect(dropdown.selected.get('dropdown-container').classList).toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-container').classList).toContain(
+      'dropdown--open',
+    );
   });
 
   it('closes programmatically', () => {
     dropdown.open();
     dropdown.close();
 
-    expect(dropdown.selected.get('dropdown-container').classList).not.toContain('dropdown--open');
+    expect(dropdown.selected.get('dropdown-container').classList).not.toContain(
+      'dropdown--open',
+    );
   });
 
   it('get the value programmatically', () => {
@@ -119,38 +151,53 @@ describe('Dropdown', () => {
 
     fireEvent.click(item);
 
-    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(
+      'raiva',
+    );
   });
 
   it('has the value programmatically', () => {
     dropdown.setValue('raiva');
 
-    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('raiva');
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(
+      'raiva',
+    );
   });
 
   it('reset the value', () => {
     dropdown.setValue('soninho');
-    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe('soninho');
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(
+      'soninho',
+    );
 
     dropdown.reset();
-    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(undefined);
+    expect(dropdown.selected.get('dropdown-selected').dataset.value).toBe(
+      undefined,
+    );
   });
 
   it('has the text label programmatically', () => {
     dropdown.setText('Age');
 
     expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Age');
-    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain('dropdown__selected--placeholder');
+    expect(dropdown.selected.get('dropdown-selected').classList).not.toContain(
+      'dropdown__selected--placeholder',
+    );
   });
 
   it('get the text label programmatically', () => {
     dropdown.open();
-    const item = getByText(dropdown.selected.get('dropdown-options'), 'Soninho');
+    const item = getByText(
+      dropdown.selected.get('dropdown-options'),
+      'Soninho',
+    );
 
     fireEvent.click(item);
 
     dropdown.getText();
-    expect(dropdown.selected.get('dropdown-selected').textContent).toBe('Soninho');
+    expect(dropdown.selected.get('dropdown-selected').textContent).toBe(
+      'Soninho',
+    );
   });
 
   it('get the placeholder programmatically', () => {
@@ -162,8 +209,12 @@ describe('Dropdown', () => {
   it('has the placeholder programmatically', () => {
     dropdown.setPlaceholder('PetDex');
 
-    expect(dropdown.selected.get('dropdown-selected').textContent).toBe('PetDex');
-    expect(dropdown.selected.get('dropdown-selected').classList).toContain('dropdown__selected--placeholder');
+    expect(dropdown.selected.get('dropdown-selected').textContent).toBe(
+      'PetDex',
+    );
+    expect(dropdown.selected.get('dropdown-selected').classList).toContain(
+      'dropdown__selected--placeholder',
+    );
   });
 
   it('clear all itens', () => {
