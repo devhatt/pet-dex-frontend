@@ -25,7 +25,7 @@
   }
 }
 
-.pet-regirested-footer {
+.breed-page-container__footer {
   display: flex;
 
   margin: 2rem;
@@ -38,21 +38,21 @@
 }
 
 @include breakpoints.from1024 {
-  .pet-regirested-page {
-    &__pet-container {
+  .breed-page-container {
+    &__breed-grid {
       display: flex;
 
       align-items: center;
     }
   }
 
-  .pet-regirested-footer {
+  .breed-page-container__footer {
     margin: 1.2rem;
   }
 }
 
 @include breakpoints.from1280 {
-  .pet-regirested-footer {
+  .breed-page-container__footer {
     &__button {
       margin: 0 auto;
     }

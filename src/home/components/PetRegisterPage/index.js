@@ -8,7 +8,7 @@ const events = ['select:card', 'submit'];
 const html = `
   <div class="breed-page-container">
     <div data-select="container" class="breed-page-container__breed-grid"></div>
-    <div data-select="btn-container" class="pet-regirested-footer"></div>
+    <div data-select="btn-container" class="breed-page-container__footer"></div>
   </div>
 `;
 
@@ -30,10 +30,10 @@ export default function PetRegisterPage({ cards = [] } = {}) {
 
     card.selected
       .get('pet-container')
-      .classList.add('pet-regirested-page__pet-card');
+      .classList.add('breed-page-container__breed-grid__pet-card');
     card.selected
       .get('pet-container')
-      .classList.toggle('pet-regirested-page__pet-card--active');
+      .classList.toggle('breed-page-container__breed-grid__pet-card--active');
     card.mount($container);
 
     card.listen('active', () => {
@@ -54,7 +54,9 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     this.emit('submit', this.breedSelect);
   });
 
-  $button.selected.get('button').classList.add('pet-regirested-footer__button');
+  $button.selected
+    .get('button')
+    .classList.add('breed-page-container__footer__button');
   $button.mount($btnContainer);
 }
 
