@@ -9,15 +9,16 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 2rem;
-  border: 1px solid colors.$gray150;
-
-  border-radius: 14px;
-
   color: colors.$gray600;
   font-size: 1.2rem;
   font-weight: fonts.$medium;
   line-height: 2.4;
+
+  padding: 2rem;
+
+  border: 1px solid colors.$gray150;
+
+  border-radius: 14px;
 
   &__title {
     color: colors.$gray800;
@@ -44,9 +45,9 @@
 
 @include breakpoints.from667 {
   .vaccine-item {
-    padding: 1.5rem;
-
     font-size: 1.6rem;
+
+    padding: 1.5rem;
 
     &__title {
       font-weight: fonts.$semiBold;
