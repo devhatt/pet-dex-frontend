@@ -33,10 +33,13 @@
     }
 
     &.divider {
-      align-self: stretch;
-      border: none;
-      background: colors.$gray150;
       width: 1px;
+
+      align-self: stretch;
+
+      border: 0;
+
+      background: colors.$gray150;
     }
   }
 }
