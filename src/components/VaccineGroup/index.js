@@ -2,21 +2,20 @@ import { Component } from 'pet-dex-utilities';
 import VaccineItem from '../VaccineItem';
 import './index.scss';
 
-const events = ['vaccineItem:change', 'title:change'];
+const events = ['item:change', 'title:change'];
 
 const html = `
-  <div class="vaccine-group" data-select="vaccine-group">
-      <p class="vaccine-group__vaccine-title" data-select="vaccine-title"> </p>
+  <div class="vaccine-group" data-select="group">
+      <p class="vaccine-group__vaccine-title" data-select="title"> </p>
   </div>
 `;
 
-export default function VaccineGroup(year, vaccineItem) {
+export default function VaccineGroup({ year, vaccine } = {}) {
   Component.call(this, { html, events });
 
   this.items = new Map();
-
   if (year) this.setTitle(year);
-  if (vaccineItem) this.addItem(vaccineItem);
+  if (vaccine) this.setItem(vaccine);
 }
 
 VaccineGroup.prototype = Object.assign(
@@ -24,23 +23,22 @@ VaccineGroup.prototype = Object.assign(
   Component.prototype,
   {
     getTitle() {
-      return this.title;
+      return this.selected.get('title');
     },
     getItem(itemId) {
       return this.items.get(itemId);
     },
     setTitle(year) {
-      this.title = year;
-      this.selected.get('vaccine-title').textContent = year;
+      this.selected.get('title').textContent = year;
       this.emit('title:change', year);
     },
-    addItem(item) {
-      const $vaccineGroup = this.selected.get('vaccine-group');
+    setItem(item) {
+      const $vaccineGroup = this.selected.get('group');
       const vaccineItem = new VaccineItem(item);
 
       vaccineItem.mount($vaccineGroup);
       this.items.set(item.id, vaccineItem);
-      this.emit('vaccineItem:change', vaccineItem);
+      this.emit('item:change', vaccineItem);
     },
   },
 );

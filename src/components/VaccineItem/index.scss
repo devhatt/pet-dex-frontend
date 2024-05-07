@@ -14,33 +14,31 @@
 
   border-radius: 14px;
 
-  &__info-body {
-    color: colors.$gray600;
-    font-size: 1.2rem;
-    font-weight: fonts.$medium;
-    line-height: 2.4;
+  color: colors.$gray600;
+  font-size: 1.2rem;
+  font-weight: fonts.$medium;
+  line-height: 2.4;
 
-    &.title {
-      color: colors.$gray800;
-      font-weight: fonts.$semiBold;
-    }
+  &__title {
+    color: colors.$gray800;
+    font-weight: fonts.$semiBold;
+  }
 
-    &.date {
-      display: flex;
-      gap: 0.8rem;
+  &__date {
+    display: flex;
+    gap: 0.8rem;
 
-      align-items: center;
-    }
+    align-items: center;
+  }
 
-    &.divider {
-      width: 1px;
+  &__divider {
+    width: 1px;
 
-      align-self: stretch;
+    align-self: stretch;
 
-      border: 0;
+    border: 0;
 
-      background: colors.$gray150;
-    }
+    background: colors.$gray150;
   }
 }
 
@@ -48,17 +46,15 @@
   .vaccine-item {
     padding: 1.5rem;
 
-    &__info-body {
-      font-size: 1.6rem;
+    font-size: 1.6rem;
 
-      &.title {
-        font-weight: fonts.$semiBold;
-      }
+    &__title {
+      font-weight: fonts.$semiBold;
+    }
 
-      &.date {
-        margin-right: 0;
-        margin-left: auto;
-      }
+    &__date {
+      margin-right: 0;
+      margin-left: auto;
     }
   }
 }

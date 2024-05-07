@@ -2,7 +2,7 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.vaccine-container {
+.vaccine {
   display: flex;
   flex-direction: column;
 
@@ -13,7 +13,7 @@
   padding: 2rem;
   border: 1px solid colors.$gray150;
 
-  box-shadow: rgba(50, 50, 71, 0.04);
+  box-shadow: rgb(50, 50, 71);
   border-radius: 1.8rem;
 
   &__sections {
@@ -44,7 +44,7 @@
     align-items: center;
   }
 
-  &__add-vacine-container {
+  &__add-vacine {
     display: flex;
     gap: 1rem;
 
@@ -90,7 +90,7 @@
 }
 
 @include breakpoints.from667 {
-  .vaccine-container {
+  .vaccine {
     &__text {
       color: colors.$gray800;
       font-size: fonts.$sm;

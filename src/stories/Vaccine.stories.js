@@ -11,7 +11,7 @@ export default {
     return $container;
   },
   argTypes: {
-    vaccinesList: { control: 'array', default: [] },
+    vaccines: { control: 'array', default: [] },
   },
 };
 
@@ -20,19 +20,19 @@ export const Default = {
     vaccines: [
       {
         id: '1',
-        vet: 'Dr octopus',
+        veterinary: 'Dr octopus',
         title: 'Antirrábica',
         date: new Date().toISOString(),
       },
       {
         id: '2',
-        vet: 'Dr Felipa',
+        veterinary: 'Dr Felipa',
         title: 'Raiva',
         date: new Date(2023, 5, 2).toISOString(),
       },
       {
         id: '3',
-        vet: 'Dr octopus',
+        veterinary: 'Dr octopus',
         title: 'Raiva',
         date: new Date(2023, 2, 2).toISOString(),
       },
