@@ -44,13 +44,13 @@ VaccineItem.prototype = Object.assign(
       return this.id;
     },
     getTitle() {
-      return this.selected.get('title');
+      return this.selected.get('title').textContent;
     },
     getVeterinary() {
-      return this.selected.get('veterinary');
+      return this.selected.get('veterinary').textContent;
     },
     getDate() {
-      return this.selected.get('date');
+      return this.selected.get('date').textContent;
     },
     setId(id) {
       this.id = id;

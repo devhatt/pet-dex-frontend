@@ -23,7 +23,7 @@ VaccineGroup.prototype = Object.assign(
   Component.prototype,
   {
     getTitle() {
-      return this.selected.get('title');
+      return this.selected.get('title').textContent;
     },
     getItem(itemId) {
       return this.items.get(itemId);
