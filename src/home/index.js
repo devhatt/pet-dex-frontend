@@ -1,10 +1,11 @@
 import { extractElements } from 'pet-dex-utilities';
 import { initializeSwiper } from '../utils/swiper';
 import Navigation from './components/Navigation';
-import NoPetRegirestedPage from './components/NoPetRegirestedPage';
+// import NoPetRegirestedPage from './components/NoPetRegirestedPage';
 import SideMenu from './components/SideMenu';
 import './index.scss';
 import initializeScrollable from './utils/scrollable-sidemenu';
+import NoPetRegirestedPage from './components/NoPetRegirestedPage/index';
 
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);

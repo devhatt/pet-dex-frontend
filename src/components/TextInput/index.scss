@@ -34,17 +34,17 @@
 
       transition: border-color 0.3s ease-in-out;
 
-      &.prefix {
+      &.prefix,
+      &.suffix {
         padding: 1.8rem 1.6rem;
-
-        background-position: 0.8rem center;
-
         border-radius: 14px;
       }
 
-      &.suffix {
-        padding: 1.8rem 1.6rem;
+      &.prefix {
+        background-position: 0.8rem center;
+      }
 
+      &.suffix {
         background-position: calc(100% - 0.8rem) center;
       }
 
