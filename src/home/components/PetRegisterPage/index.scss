@@ -1,21 +1,27 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.pet-regirested-page {
-  max-height: 50rem;
-  overflow: auto;
+.breed-page-container {
+  height: 100%;
 
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.6rem;
+  flex-direction: column;
 
-  align-items: start;
-  justify-content: center;
+  &__breed-grid {
+    overflow: auto;
 
-  &__pet-card {
-    aspect-ratio: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
 
-    cursor: pointer;
+    align-items: start;
+    justify-content: center;
+
+    &__pet-card {
+      aspect-ratio: auto;
+
+      cursor: pointer;
+    }
   }
 }
 

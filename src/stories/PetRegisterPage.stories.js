@@ -67,6 +67,7 @@ export default {
   render: (args = {}) => {
     const card = new PetRegisterPage(args);
     const $container = document.createElement('div');
+    $container.style.height = '610px';
     card.mount($container);
 
     return $container;

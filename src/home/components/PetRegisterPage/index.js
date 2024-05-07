@@ -6,8 +6,8 @@ import './index.scss';
 const events = ['select:card', 'submit'];
 
 const html = `
-  <div>
-    <div data-select="container" class="pet-regirested-page"></div>
+  <div class="breed-page-container">
+    <div data-select="container" class="breed-page-container__breed-grid"></div>
     <div data-select="btn-container" class="pet-regirested-footer"></div>
   </div>
 `;
@@ -18,7 +18,6 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   const $container = this.selected.get('container');
   const $btnContainer = this.selected.get('btn-container');
   this.activeCard = null;
-  this.breedSelect = [];
 
   const $button = new Button({
     text: 'Continuar',
@@ -38,18 +37,16 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     card.mount($container);
 
     card.listen('active', () => {
-      if (!this.activeCard) $button.disable();
+      if (this.activeCard) this.activeCard.deactivate();
 
       this.activeCard = card;
-      this.breedSelect.push(card);
       this.emit('select:card', card);
       $button.enable();
     });
 
     card.listen('deactive', () => {
-      this.breedSelect.pop();
-
-      if (this.breedSelect.length === 0) $button.disable();
+      $button.disable();
+      this.activeCard = null;
     });
   });
 
