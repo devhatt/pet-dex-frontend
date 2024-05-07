@@ -34,8 +34,9 @@
 
     &.divider {
       align-self: stretch;
-
-      border-right: 1px solid colors.$gray150;
+      border: none;
+      background: colors.$gray150;
+      width: 1px;
     }
   }
 }
