@@ -1,0 +1,149 @@
+@use '~styles/colors' as colors;
+@use '~styles/fonts' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.drawer {
+  overflow: hidden;
+
+  position: fixed;
+
+  background: rgba(0, 0, 0, 0);
+  inset: 0;
+
+  transition: background 0.3s ease-in-out;
+
+  &--open {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &__wrapper {
+    width: 100%;
+    max-height: 90%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding: 1.2rem 2.4rem 2.4rem;
+    box-sizing: border-box;
+
+    position: absolute;
+    bottom: -100%;
+
+    background: colors.$secondary100;
+    border-top-left-radius: 2.4rem;
+    border-top-right-radius: 2.4rem;
+
+    transition:
+      right 0.3s ease-in-out,
+      bottom 0.3s ease-in-out;
+
+    &.drawer__wrapper--open {
+      right: unset;
+      bottom: 0;
+    }
+
+    .drawer__header {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      .drawer__nav {
+        width: 100%;
+
+        display: flex;
+        gap: 2rem;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin: 3rem 0;
+
+        .drawer__title {
+          display: block;
+
+          font-family: fonts.$primaryFont;
+          color: colors.$gray500;
+          font-weight: 600;
+        }
+
+        .drawer__close {
+          display: grid;
+
+          place-items: center;
+
+          padding: 0.5rem;
+          border: 0;
+
+          background: inherit;
+
+          cursor: pointer;
+        }
+      }
+    }
+
+    .drawer__content {
+      width: 100%;
+      overflow-y: auto;
+
+      flex-grow: 1;
+    }
+  }
+}
+
+@include breakpoints.from667 {
+  .drawer {
+    &__wrapper {
+      width: auto;
+      max-width: 60rem;
+      max-height: 100%;
+
+      padding: 3rem;
+
+      inset: 0 -100% 0 auto;
+
+      border-top-left-radius: 2.4rem;
+      border-top-right-radius: 0;
+
+      transition: right 0.3s ease-in-out;
+
+      &.drawer__wrapper--open {
+        right: 0;
+      }
+
+      .drawer__header {
+        width: 100%;
+
+        display: block;
+
+        padding: 0;
+
+        .drawer__nav {
+          margin: 0 0 3rem;
+
+          .drawer__close {
+            display: grid;
+
+            place-items: center;
+
+            padding: 0.5rem;
+            border: 0;
+
+            background: inherit;
+
+            cursor: pointer;
+          }
+        }
+
+        .drawer__close--line {
+          display: none;
+        }
+      }
+    }
+  }
+}
