@@ -2,8 +2,8 @@
 // vite.config.js
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
 import jsconfigPaths from 'vite-jsconfig-paths';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   root: resolve(__dirname, 'src'),
