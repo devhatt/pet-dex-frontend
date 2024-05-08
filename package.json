@@ -61,6 +61,8 @@
     "vitest": "^1.2.2"
   },
   "dependencies": {
+    "concurrently": "8.2.2",
+    "dayjs": "^1.11.10",
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
     "vite": "^5.0.12",

@@ -1,0 +1,61 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.vaccine-item {
+  display: flex;
+  gap: 1.2rem;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color: colors.$gray600;
+  font-size: 1.2rem;
+  font-weight: fonts.$medium;
+  line-height: 2.4;
+
+  padding: 2rem;
+
+  border: 1px solid colors.$gray150;
+
+  border-radius: 14px;
+
+  &__title {
+    color: colors.$gray800;
+    font-weight: fonts.$semiBold;
+  }
+
+  &__date {
+    display: flex;
+    gap: 0.8rem;
+
+    align-items: center;
+  }
+
+  &__divider {
+    width: 1px;
+
+    align-self: stretch;
+
+    border: 0;
+
+    background: colors.$gray150;
+  }
+}
+
+@include breakpoints.from667 {
+  .vaccine-item {
+    font-size: 1.6rem;
+
+    padding: 1.5rem;
+
+    &__title {
+      font-weight: fonts.$semiBold;
+    }
+
+    &__date {
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+}
