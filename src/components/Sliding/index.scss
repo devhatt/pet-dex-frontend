@@ -1,105 +1,31 @@
-@use '~styles/colors.scss' as colors;
-
 .sliding {
-  width: max-content;
+  max-width: 600px;
+  max-height: 500px;
+  overflow: hidden;
 
-  display: flex;
-  gap: 1rem;
+  margin: auto;
 
-  align-items: center;
-  justify-content: space-between;
-
-  &__controls {
-    width: 5.4rem;
-    height: 5.4rem;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 0 solid transparent;
-
-    z-index: 2;
-
-    background-color: rgb(255, 255, 255);
-
-    box-shadow: 0 0 3px 1px rgba(139, 158, 184, 0.2);
-
-    border-radius: 1.4rem;
-
-    transition: background-color 0.4s ease-in-out;
-
-    &:disabled {
-      opacity: 0.4;
-    }
-
-    &--removed {
-      display: none;
-    }
-
-    &:hover:not([disabled]) {
-      background-color: colors.$blue500;
-
-      cursor: pointer;
-
-      .sliding__controls__image {
-        &__path {
-          stroke: rgb(255, 255, 255);
-        }
-      }
-    }
-  }
+  position: relative;
 
   &__content {
+    width: max-content;
+    height: 200px;
+
     display: flex;
 
+    position: relative;
+
+    transform: translateX(0);
+
+    transition: 0.7s ease-in-out;
+
     &__slide {
-      display: none;
+      width: 600px;
+      height: 200px;
 
       position: relative;
 
-      z-index: 1;
-
-      &__animation--next {
-        animation: next 0.5s ease-in-out;
-      }
-
-      &__animation--prev {
-        animation: prev 0.5s ease-in-out;
-      }
-
-      &--selected {
-        display: block;
-      }
+      background-color: rgb(162, 0, 255);
     }
-  }
-}
-
-@keyframes prev {
-  from {
-    left: -50%;
-
-    opacity: 0;
-  }
-
-  to {
-    left: 0;
-
-    opacity: 1;
-  }
-}
-
-@keyframes next {
-  from {
-    left: 50%;
-
-    opacity: 0;
-  }
-
-  to {
-    left: 0;
-
-    opacity: 1;
   }
 }
