@@ -4,7 +4,7 @@ import './index.scss';
 const events = ['changeDay'];
 
 const html = `
-  <button data-select="day-button" class="day-button" type="button" aria-label="Dia do mês"></button>
+  <button data-select="day-button" class="day__button" type="button" aria-label="Dia do mês"></button>
 `;
 
 export default function Day(day, dayClass) {

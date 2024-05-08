@@ -3,7 +3,7 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.day-button {
+.day__button {
   width: 4rem;
   height: 4rem;
 
@@ -22,9 +22,9 @@
 
   &.prev-month,
   &.next-month {
-    color: rgb(160, 174, 192);
+    color: colors.$gray300;
 
-    background-color: rgb(247, 250, 252);
+    background-color: colors.$gray150;
   }
 
   &:hover,
@@ -32,14 +32,14 @@
     color: colors.$primary200;
     font-weight: fonts.$semiBold;
 
-    border: 0.1rem solid rgb(209, 230, 255);
+    border: 0.1rem solid colors.$blue100;
 
-    background-color: rgba(209, 230, 255, 0.502);
+    background-color: colors.$blue150;
   }
 }
 
 @include breakpoints.from667 {
-  .day-button {
+  .day__button {
     width: 5.4rem;
     height: 5.4rem;
 
@@ -47,7 +47,7 @@
 
     &:hover,
     &.active {
-      border: 0.2rem solid rgb(209, 230, 255);
+      border: 0.2rem solid colors.$blue100;
     }
   }
 }
