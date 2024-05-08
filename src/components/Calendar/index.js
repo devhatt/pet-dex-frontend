@@ -50,7 +50,7 @@ const html = `
         <p>Sex</p>
         <p>Sab</p>
       </div>
-    </section
+    </section>
   </article>
 `;
 

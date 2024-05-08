@@ -2,7 +2,7 @@ import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
 const html = `
-  <li data-select="date" class="date"><button></button></li>
+  <li data-select="date" class="date"><button class="date__button"></button></li>
 `;
 
 export default function DateButton(date) {

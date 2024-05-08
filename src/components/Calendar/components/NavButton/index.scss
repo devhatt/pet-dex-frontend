@@ -17,11 +17,11 @@
     align-items: center;
     justify-content: center;
 
-    font-family: Nato Sans;
+    font-family: fonts.$primaryFont;
     color: colors.$gray300;
     font-size: 2rem;
 
-    border: 0.1rem solid rgb(160, 174, 192);
+    border: 0.1rem solid colors.$gray500;
 
     background-color: transparent;
     border-radius: 1.4rem;
