@@ -1,0 +1,110 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.vaccine {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+
+  font-family: fonts.$primaryFont;
+
+  padding: 2rem;
+  border: 1px solid colors.$gray150;
+
+  box-shadow: rgb(50, 50, 71);
+  border-radius: 1.8rem;
+
+  &__sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    margin-right: 1rem;
+  }
+
+  &__header {
+    display: flex;
+
+    justify-content: space-between;
+  }
+
+  &__header-title {
+    display: flex;
+
+    gap: 2rem;
+
+    align-items: center;
+  }
+
+  &__add-vacine {
+    display: flex;
+
+    align-items: center;
+  }
+
+  &__add-vacine {
+    display: flex;
+    gap: 1rem;
+
+    font-family: fonts.$tertiaryFont;
+
+    color: colors.$primary200;
+    font-size: fonts.$xs;
+    font-weight: fonts.$bold;
+    line-height: 2.1;
+
+    cursor: pointer;
+  }
+
+  &__add-vaccine-img {
+    max-width: 1.2rem;
+  }
+
+  &__img {
+    min-width: 6rem;
+    min-height: 6rem;
+  }
+
+  &__add-vacine-text {
+    padding-right: 0.9rem;
+  }
+
+  &__text {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    font-size: fonts.$xs;
+    font-weight: fonts.$semiBold;
+
+    line-height: 2;
+  }
+
+  &__add-vacine-text {
+    display: none;
+  }
+
+  &__list-group {
+    overflow-y: auto;
+  }
+}
+
+@include breakpoints.from667 {
+  .vaccine {
+    &__text {
+      color: colors.$gray800;
+      font-size: fonts.$sm;
+      font-size: 1.8rem;
+      font-weight: fonts.$semiBold;
+      line-height: 2.4;
+    }
+
+    &__add-vacine-text {
+      display: block;
+    }
+
+    &__sections {
+      margin-right: 2rem;
+    }
+  }
+}
