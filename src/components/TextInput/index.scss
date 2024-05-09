@@ -1,59 +1,74 @@
+@use '~styles/colors' as colors;
+@use '~styles/fonts' as fonts;
+
 .input-text-container {
   position: relative;
 
   &__input {
     width: 100%;
 
-    font-size: 1.5rem;
+    color: colors.$gray600;
+
+    font-size: fonts.$sm;
+    font-weight: fonts.$bold;
+
+    box-sizing: border-box;
 
     background-repeat: no-repeat;
     background-size: auto 60%;
     filter: opacity(0.85);
+
+    &::placeholder {
+      font-weight: fonts.$regular;
+    }
 
     &:disabled {
       filter: opacity(0.55);
     }
 
     &.standard {
-      padding: 0.65rem 1rem;
-      border: 1px solid rgb(163, 163, 163);
+      padding: 1.8rem 1.6rem;
+      border: 1px solid colors.$gray200;
 
-      border-radius: 8px;
+      border-radius: 14px;
 
       transition: border-color 0.3s ease-in-out;
 
-      &.prefix {
-        padding: 0.8rem 1rem 0.8rem 3.5rem;
+      &.prefix,
+      &.suffix {
+        padding: 1.8rem 1.6rem;
 
+        border-radius: 14px;
+      }
+
+      &.prefix {
         background-position: 0.8rem center;
       }
 
       &.suffix {
-        padding: 0.8rem 3.5rem 0.8rem 1rem;
-
         background-position: calc(100% - 0.8rem) center;
       }
 
       &:focus {
-        border-color: rgb(0, 123, 255);
+        border-color: colors.$primary200;
 
         filter: opacity(1);
-        outline-color: rgb(0, 123, 255);
+        outline-color: colors.$primary200;
       }
 
       &.input-error {
-        border-color: rgb(220, 53, 69);
+        border-color: colors.$error100;
 
-        background-color: rgba(238, 114, 126, 0.458);
+        background-color: colors.$error100;
         filter: opacity(0.75);
-        outline-color: rgb(220, 53, 69);
+        outline-color: colors.$error100;
       }
     }
 
     &.outlined {
       padding: 0.5rem 0.35rem;
 
-      border-bottom: 1px solid rgb(184, 184, 184);
+      border-bottom: 1px solid colors.$gray200;
       border-color: transparent;
 
       outline: none;
@@ -61,16 +76,16 @@
       transition: border-color 0.3s ease-in-out;
 
       &:focus {
-        border-bottom-color: rgb(0, 123, 255);
+        border-bottom-color: colors.$primary200;
       }
 
       &.input-error {
-        border-bottom-color: rgb(220, 53, 69);
+        border-bottom-color: colors.$error100;
 
         filter: opacity(0.65);
 
         &::placeholder {
-          color: rgb(220, 53, 69);
+          color: colors.$error100;
         }
       }
 
