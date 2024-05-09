@@ -1,6 +1,5 @@
 .sliding {
-  max-width: 600px;
-  max-height: 500px;
+  width: 100%;
   overflow: hidden;
 
   margin: auto;
@@ -8,24 +7,14 @@
   position: relative;
 
   &__content {
-    width: max-content;
-    height: 200px;
-
     display: flex;
-
-    position: relative;
 
     transform: translateX(0);
 
-    transition: 0.7s ease-in-out;
+    transition: transform 0.6s ease-in-out;
 
     &__slide {
-      width: 600px;
-      height: 200px;
-
-      position: relative;
-
-      background-color: rgb(162, 0, 255);
+      width: 100%;
     }
   }
 }
