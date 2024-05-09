@@ -1,0 +1,25 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.vaccine-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__vaccine-title {
+    color: colors.$gray800;
+    font-size: 1.3rem;
+    font-weight: fonts.$semiBold;
+    line-height: 2.4;
+  }
+}
+
+@include breakpoints.from667 {
+  .vaccine-group {
+    &__vaccine-title {
+      font-size: 1.8rem;
+      font-weight: fonts.$semiBold;
+    }
+  }
+}

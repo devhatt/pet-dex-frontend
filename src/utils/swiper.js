@@ -9,21 +9,25 @@ export function makeSwipable($element) {
 
   const api = {
     left(callback) {
+      $element.removeEventListener(SWIPE_LEFT, callback);
       $element.addEventListener(SWIPE_LEFT, callback);
       return api;
     },
 
     right(callback) {
+      $element.removeEventListener(SWIPE_RIGHT, callback);
       $element.addEventListener(SWIPE_RIGHT, callback);
       return api;
     },
 
     up(callback) {
+      $element.removeEventListener(SWIPE_UP, callback);
       $element.addEventListener(SWIPE_UP, callback);
       return api;
     },
 
     down(callback) {
+      $element.removeEventListener(SWIPE_DOWN, callback);
       $element.addEventListener(SWIPE_DOWN, callback);
       return api;
     },
