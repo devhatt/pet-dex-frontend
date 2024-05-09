@@ -11,7 +11,6 @@ describe('PetWeightPage', () => {
   });
 
   it('returns an object', () => {
-    // console.log(new PetWeightPage(propsMock));
     expect(new PetWeightPage(propsMock)).toBeInstanceOf(Object);
   });
 });
