@@ -28,7 +28,7 @@ export default function PetWeightPage({ petPhoto }) {
   Component.call(this, { html });
   this.initializeComponents();
   this.setupEventListeners();
-  this.styleComponents();
+  this.applyCssClasses();
   this.petPhoto = petPhoto;
 }
 
@@ -81,7 +81,6 @@ PetWeightPage.prototype = Object.assign(
         isDisabled: false,
       });
 
-      // Mount components
       this.image.mount($imageContainer);
       this.slider.mount($sliderContainer);
       this.input.mount($inputsContainer);
@@ -90,44 +89,31 @@ PetWeightPage.prototype = Object.assign(
       this.button.mount($container);
     },
 
-    styleComponents() {
-      // Add classes to components
-      this.addClassToComponent(
-        this.image.selected.get('image-preview'),
-        'pet-weight-page__image',
-      );
-      this.addClassToComponent(
-        this.slider.selected.get('range-slider'),
-        'pet-weight-page__slider',
-      );
-      this.addClassToComponent(
-        this.slider.selected.get('range-slider-value'),
-        'pet-weight-page__value',
-      );
-      this.addClassToComponent(
-        this.input.selected.get('input-text'),
-        'pet-weight-page__input',
-      );
-      this.addClassToComponent(
-        this.input.selected.get('input-text-container'),
-        'pet-weight-page__input-container',
-      );
-      this.addClassToComponent(
-        this.radioKG.selected.get('radio-container'),
-        'pet-weight-page__radio',
-      );
-      this.addClassToComponent(
-        this.radioLB.selected.get('radio-container'),
-        'pet-weight-page__radio',
-      );
-      this.addClassToComponent(
-        this.button.selected.get('button'),
-        'pet-weight-page__button',
-      );
-    },
-
-    addClassToComponent(element, className) {
-      element.classList.add(className);
+    applyCssClasses() {
+      this.image.selected
+        .get('image-preview')
+        .classList.add('pet-weight-page__image');
+      this.slider.selected
+        .get('range-slider')
+        .classList.add('pet-weight-page__slider');
+      this.slider.selected
+        .get('range-slider-value')
+        .classList.add('pet-weight-page__value');
+      this.input.selected
+        .get('input-text')
+        .classList.add('pet-weight-page__input');
+      this.input.selected
+        .get('input-text-container')
+        .classList.add('pet-weight-page__input-container');
+      this.radioKG.selected
+        .get('radio-container')
+        .classList.add('pet-weight-page__radio');
+      this.radioLB.selected
+        .get('radio-container')
+        .classList.add('pet-weight-page__radio');
+      this.button.selected
+        .get('button')
+        .classList.add('pet-weight-page__button');
     },
 
     setupEventListeners() {
@@ -144,17 +130,17 @@ PetWeightPage.prototype = Object.assign(
         }
       });
 
-      function weightUnit() {
-        return this.radioKG.isChecked()
-          ? this.radioKG.getValue()
-          : this.radioLB.getValue();
-      }
-
       this.button.listen('click', () => {
-        const finalWeightUnit = weightUnit();
+        const finalWeightUnit = this.weightUnit();
         const finalWeight = this.weight;
         this.emit('weight', finalWeight, finalWeightUnit);
       });
+    },
+
+    weightUnit() {
+      return this.radioKG.isChecked()
+        ? this.radioKG.getValue()
+        : this.radioLB.getValue();
     },
   },
 );
