@@ -73,9 +73,6 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
   },
 
   remove(slide) {
-    const slideExist = this.selected.get('sliding-content').contains(slide);
-
-    if (!slideExist) throw new Error('Slide not exist');
     this.selected.get('sliding-content').removeChild(slide);
 
     this.updateSlides();

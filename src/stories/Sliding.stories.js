@@ -25,6 +25,16 @@ const button3 = new Button({
 const $button3Container = document.createElement('div');
 button3.mount($button3Container);
 
+const button4 = new Button({
+  text: '<',
+  isFullWidth: false,
+});
+
+const button5 = new Button({
+  text: '>',
+  isFullWidth: false,
+});
+
 export default {
   title: 'Components/Sliding',
   render: (args) => {
@@ -32,6 +42,15 @@ export default {
     const $container = document.createElement('div');
     window.sliding = sliding;
     sliding.mount($container);
+    button4.mount($container);
+    button5.mount($container);
+
+    $container.children[1].addEventListener('click', () => {
+      sliding.prev();
+    });
+    $container.children[2].addEventListener('click', () => {
+      sliding.next();
+    });
 
     return $container;
   },
