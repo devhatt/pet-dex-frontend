@@ -18,6 +18,7 @@ describe('Drawer', () => {
   describe('when mount', () => {
     it('renders the title', () => {
       const drawer = makeSut()
+
       drawer.open();
 
       expect(drawer.selected.get('title').textContent).toBe('Add dates');
@@ -25,7 +26,6 @@ describe('Drawer', () => {
 
     it('mount the content', () => {
       const drawer = makeSut();
-
       const mountSpy = vi.spyOn(drawer, 'mount')
 
       drawer.open()
@@ -52,6 +52,7 @@ describe('Drawer', () => {
 
   it('closes when Esc is pressed', () => {
     const drawer = makeSut()
+
     drawer.open();
 
     fireEvent.keyDown(document, { key: 'Escape' });
@@ -63,6 +64,7 @@ describe('Drawer', () => {
 
   it('closes when the close button is clicked', () => {
     const drawer = makeSut()
+
     drawer.open();
 
     fireEvent.click(drawer.selected.get('close'));
