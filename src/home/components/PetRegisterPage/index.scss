@@ -1,7 +1,7 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.breed-page-container {
+.breed-page {
   height: 100%;
 
   display: flex;
@@ -17,7 +17,7 @@
     align-items: start;
     justify-content: center;
 
-    &__pet-card {
+    .pet-card {
       aspect-ratio: auto;
 
       cursor: pointer;
@@ -25,12 +25,12 @@
   }
 }
 
-.breed-page-container__footer {
+.breed-page__footer {
   display: flex;
 
   margin: 2rem;
 
-  &__button {
+  .breed-page__button {
     width: min(100%, 42rem);
 
     margin: 0 auto;
@@ -38,7 +38,7 @@
 }
 
 @include breakpoints.from1024 {
-  .breed-page-container {
+  .breed-page {
     &__breed-grid {
       display: flex;
 
@@ -46,13 +46,13 @@
     }
   }
 
-  .breed-page-container__footer {
+  .breed-page__footer {
     margin: 1.2rem;
   }
 }
 
 @include breakpoints.from1280 {
-  .breed-page-container__footer {
+  .breed-page__footer {
     &__button {
       margin: 0 auto;
     }

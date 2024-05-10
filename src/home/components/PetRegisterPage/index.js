@@ -6,9 +6,9 @@ import './index.scss';
 const events = ['select:card', 'submit'];
 
 const html = `
-  <div class="breed-page-container">
-    <div data-select="container" class="breed-page-container__breed-grid"></div>
-    <div data-select="btn-container" class="breed-page-container__footer"></div>
+  <div class="breed-page">
+    <div data-select="container" class="breed-page__breed-grid"></div>
+    <div data-select="footer-container" class="breed-page__footer"></div>
   </div>
 `;
 
@@ -16,7 +16,7 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
-  const $btnContainer = this.selected.get('btn-container');
+  const $footerContainer = this.selected.get('footer-container');
   this.activeCard = null;
 
   const $button = new Button({
@@ -28,12 +28,8 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   cards.forEach((data) => {
     const card = new PetCard(data);
 
-    card.selected
-      .get('pet-container')
-      .classList.add('breed-page-container__breed-grid__pet-card');
-    card.selected
-      .get('pet-container')
-      .classList.toggle('breed-page-container__breed-grid__pet-card--active');
+    card.selected.get('pet-container').classList.add('pet-card');
+    card.selected.get('pet-container').classList.toggle('pet-card--active');
     card.mount($container);
 
     card.listen('active', () => {
@@ -54,10 +50,8 @@ export default function PetRegisterPage({ cards = [] } = {}) {
     this.emit('submit', this.breedSelect);
   });
 
-  $button.selected
-    .get('button')
-    .classList.add('breed-page-container__footer__button');
-  $button.mount($btnContainer);
+  $button.selected.get('button').classList.add('breed-page__button');
+  $button.mount($footerContainer);
 }
 
 PetRegisterPage.prototype = Object.assign(
