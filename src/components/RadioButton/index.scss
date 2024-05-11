@@ -6,7 +6,6 @@
 
   align-items: center;
 
-  margin: 1rem;
   padding: 1rem 8rem 1rem 1rem;
   border: 0.15rem solid colors.$gray600;
 
@@ -36,7 +35,6 @@
 
     cursor: pointer;
     appearance: none;
-    appearance: none;
 
     &:checked {
       border-color: colors.$primary200;
@@ -58,10 +56,6 @@
   &__dot {
     font-family: fonts.$primaryFont;
     color: colors.$gray600;
-    text-align: left;
     font-size: fonts.$xs;
-    font-weight: fonts.$medium;
-    line-height: 2;
-    letter-spacing: 0;
   }
 }

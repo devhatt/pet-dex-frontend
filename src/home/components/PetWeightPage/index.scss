@@ -1,0 +1,150 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
+
+.pet-weight-page {
+  min-height: 100%;
+
+  display: grid;
+
+  place-items: center;
+
+  &__content {
+    width: 100%;
+
+    text-align: center;
+  }
+
+  &__image-container {
+    width: max-content;
+
+    display: inline-block;
+
+    margin-bottom: 4rem;
+  }
+
+  &__description {
+    font-family: fonts.$primaryFont;
+  }
+
+  &__title {
+    color: colors.$gray800;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+  }
+
+  &__hint {
+    color: colors.$gray800;
+    font-size: 1.1rem;
+    font-weight: fonts.$regular;
+
+    margin-top: 1.6rem;
+  }
+
+  &__slider-container {
+    max-width: 100%;
+
+    margin-top: 3rem;
+  }
+
+  &__value {
+    margin-bottom: 0;
+  }
+
+  &__inputs {
+    display: flex;
+
+    justify-content: center;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__radio {
+    margin-right: 1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__button {
+    width: 90%;
+
+    margin-top: 1rem;
+  }
+}
+
+@include breakpoints.from1024 {
+  .pet-weight-page {
+    align-items: flex-start;
+
+    &__image-container {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    &__slider-container {
+      margin-top: 2rem;
+    }
+
+    &__title {
+      font-size: fonts.$sm;
+      font-weight: fonts.$medium;
+    }
+
+    &__hint {
+      font-size: fonts.$xs;
+    }
+
+    &__inputs {
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    &__input-container {
+      margin-right: 1rem;
+    }
+
+    &__input {
+      display: block;
+    }
+
+    &__radio {
+      margin-right: 1rem;
+    }
+
+    &__button {
+      width: 40%;
+    }
+  }
+}
+
+@include breakpoints.from1280 {
+  .pet-weight-page {
+    &__image-container {
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    &__title {
+      font-size: fonts.$md;
+      font-weight: fonts.$semiBold;
+    }
+
+    &__hint {
+      font-size: fonts.$sm;
+    }
+
+    &__input-container {
+      width: 20%;
+
+      margin-right: 2rem;
+    }
+
+    &__button {
+      width: 45%;
+    }
+  }
+}

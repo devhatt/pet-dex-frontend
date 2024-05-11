@@ -6,8 +6,6 @@
 
   align-items: center;
 
-  margin: 1rem;
-
   cursor: pointer;
 
   &__input {
@@ -39,10 +37,7 @@
   &__checkboxText {
     font-family: fonts.$primaryFont;
     color: colors.$gray800;
-    text-align: left;
     font-size: fonts.$xs;
     font-weight: fonts.$semiBold;
-    line-height: 2;
-    letter-spacing: 0;
   }
 }
