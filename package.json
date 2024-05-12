@@ -36,6 +36,7 @@
     "@storybook/test": "8.0.0-alpha.16",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "6.4.2",
+    "@testing-library/user-event": "14.5.2",
     "@vitest/coverage-v8": "1.5.3",
     "@vitest/ui": "1.5.3",
     "commitizen": "^4.3.0",
@@ -44,8 +45,10 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-jsconfig": "1.1.0",
+    "eslint-import-resolver-node": "0.3.9",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-only-warn": "1.1.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.15",
@@ -65,9 +68,8 @@
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.0",
     "stylelint-scss": "^6.1.0",
-    "@testing-library/user-event": "14.5.2",
     "vite-jsconfig-paths": "2.0.1",
-    "vitest": "^1.5.3"
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "concurrently": "8.2.2",

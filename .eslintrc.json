@@ -3,8 +3,10 @@
   "env": {
     "browser": true
   },
+  "plugins": ["only-warn"],
   "settings": {
     "import/resolver": {
+      "node": true,
       "jsconfig": {
         "config": "jsconfig.json"
       }
@@ -33,6 +35,17 @@
         "plugin:vitest/recommended",
         "plugin:vitest-globals/recommended"
       ],
+      "rules": {
+        "testing-library/prefer-user-event": ["warn"],
+        "no-restricted-syntax": [
+          "warn",
+          {
+            "message": "Use screen 'methods' imported from '@testing-library/vanilla' instead.",
+            "selector":
+            "MemberExpression > Identifier[name=\"selected\"]"
+          }
+        ]
+      },
       "globals": {
         "vi": true
       }
