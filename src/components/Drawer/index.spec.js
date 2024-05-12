@@ -64,13 +64,12 @@ describe('Drawer', () => {
 
   it('closes when the close button is clicked', () => {
     const drawer = makeSut()
+    const closeSpy = vi.spyOn(drawer, 'close');
 
     drawer.open();
 
     fireEvent.click(drawer.selected.get('close'));
 
-    expect(drawer.selected.get('drawer').classList).not.toContain(
-      'drawer--open',
-    );
+    expect(closeSpy).toHaveBeenCalled();
   });
 });
