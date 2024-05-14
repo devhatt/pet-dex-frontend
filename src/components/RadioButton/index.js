@@ -34,7 +34,10 @@ export default function RadioButton({
   const $radioButton = this.selected.get('radio-button');
 
   $radioButton.addEventListener('change', (e) => {
-    this.setChecked(e.target.checked);
+    this.setCheck(e.target.checked);
+    if (e.target.checked) {
+      this.setClassActive();
+    }
   });
 }
 
@@ -85,6 +88,10 @@ RadioButton.prototype = Object.assign(
       const $radioButton = this.selected.get('radio-button');
       $radioButton.name = name;
       this.emit('name:change', name);
+    },
+    setClassActive() {
+      const $radioContainer = this.selected.get('radio-container');
+      $radioContainer.classList.add('active');
     },
   },
 );

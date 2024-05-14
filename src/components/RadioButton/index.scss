@@ -15,6 +15,10 @@
 
   cursor: pointer;
 
+  &.active {
+    border-color: colors.$primary200;
+  }
+
   &__input {
     width: 1.6rem;
     height: 1.6rem;
