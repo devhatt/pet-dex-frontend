@@ -10,7 +10,7 @@ const events = [
 ];
 
 const html = `
-<label class="radio-container">
+<label class="radio-container" data-select="radio-container">
     <input data-select="radio-button" type="radio" class="radio-container__input" name="" value="">
     <span data-select="radio-button-text" class="radio-container__dot"></span>
 </label>
