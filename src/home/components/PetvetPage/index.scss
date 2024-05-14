@@ -3,201 +3,116 @@
 @use '~styles/breakpoints' as breakpoints;
 
 .petvet-page {
-  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  display: grid;
-  place-items: center;
+  align-items: center;
 
-  &__content {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
+  &__card {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    font-size: 1.4rem;
+    font-weight: fonts.$semiBold;
+    line-height: 2rem;
+
+    box-shadow: 0 0 2px 2px rgba(12, 26, 75, 0.08);
+    border-radius: 1.4rem;
   }
 
   &__header {
     text-align: center;
 
-    &--head {
+    margin-bottom: 2.4rem;
+
+    &--text {
+      font-family: fonts.$primaryFont;
       color: colors.$gray800;
       font-size: 1.8rem;
-      line-height: 2.6rem;
       font-weight: fonts.$medium;
-      font-family: fonts.$primaryFont;
+
+      line-height: 2.6;
     }
 
-    &--subhead {
-      margin-top: 0.7rem;
-      color: colors.$grey700;
-      font-size: fonts.$xs;
-      line-height: 2.2rem;
-      font-weight: fonts.$regular;
+    &--subtext {
       font-family: fonts.$notoSansFont;
-    }
-  }
-
-  &__card {
-    border: 0.1rem;
-    padding: 20px;
-
-    color: colors.$gray800;
-    font-family: fonts.$primaryFont;
-    font-weight: fonts.$semiBold;
-    line-height: 2.4rem;
-
-    &--label {
+      color: colors.$gray700;
       font-size: fonts.$xs;
-      line-height: 2rem;
-      margin-right: 20%;
+      font-weight: fonts.$regular;
+
+      line-height: 2.2;
     }
   }
-  &__card-text {
-    font-family: fonts.$notoSansFont;
-    color: colors.$gray800;
-    font-weight: fonts.$regular;
-  }
 
-  &__input-text {
-    border: none;
-    border-bottom: 1px solid rgba(141, 141, 141, 1);
-    min-height: 3.151rem;
-
-    font-weight: fonts.$regular;
-    font-size: fonts.$xs;
-    line-height: 2rem;
-    font-family: fonts.$poppinsFont; 
-  }
-  &__checkbox-group {
+  &__card-group {
     display: flex;
-    margin-top: 0.1rem;
-  }
-  &__button {
-    width: 85%;
-    margin-top: 3.2rem;
-  }
-  &__card-content {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 10% 90%;
-    gap: 2rem;
-  }
-  &__input-text {
-    grid-column: 1/-1;
+    flex-direction: column;
+
+    gap: 2.4rem;
   }
 
-  &__input {
-    flex: 1;
-    display: flex;
-    align-items: center;
-
-    * {
-      box-sizing: border-box;
-      &::before,
-      &::after {
-        box-sizing: border-box;
-      }
-    }
-  }
-  
-  &__input input[type='checkbox'] {
-    position: relative;
-    width: 1.65rem;
-    height: 1.65rem;
-    color: black;
-    border: 1px solid gray;
-    border-radius: 4px;
-    appearance: none;
-    outline: 0;
-    cursor: pointer;
-    transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
-    &::before {
-      position: absolute;
-      content: '';
-      display: block;
-      top: 1px;
-      left: 4.5px;
-      width: 5.5px;
-      height: 9px;
-      border-style: solid;
-      border-color: white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      opacity: 0;
-    }
-    &:checked {
-      color: white;
-      border-color: rgba(172, 172, 181, 1);
-      background: rgba(86, 73, 228, 1);
-      &::before {
-        opacity: 1;
-      }
-      ~ label::before {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      }
-    }
-  }
-
-  &__input label {
-    margin-left: 1rem;
-  }
-  &__text-and-form{
-    margin-left: 2rem;
-  }
   &__img {
-    width: 42px;
-    height: 42px;
+    max-width: 5.4rem;
+    max-height: 5.4rem;
+
     display: flex;
+
     align-items: center;
   }
-
-}
-
-@include breakpoints.from320 {
-  .petvet-page{ 
-    &__checkbox-group {
-      max-width: 70%;
-    }
-  }
- 
 }
 
 @include breakpoints.from667 {
   .petvet-page {
-    &__card-group {
-      margin-top: 1.5rem;
+    &__img {
+      min-width: 6rem;
+      min-height: 6rem;
+
+      display: flex;
+
+      align-items: center;
     }
-    &__header {
-      max-width: 94rem;
-      min-height: 5.6rem;
+
+    &__icon {
+      background-color: colors.$yellow100;
+      border: 1px solid rgb(255, 238, 198);
+      border-radius: 1.2rem;
+    }
+
+    &__card-text-icon {
+      display: flex;
+      gap: 2rem;
+
+      align-items: center;
+
+      font-family: fonts.$primaryFont;
+      color: colors.$gray800;
+      font-size: 1.8rem;
+      font-weight: fonts.$semiBold;
+    }
+
+    &__vaccine {
+      min-width: 63rem;
+
+      box-sizing: border-box;
+    }
+
+    &__button {
+      max-width: 42rem;
     }
 
     &__card {
-      max-width: 63rem;
-      min-width: 63rem;
-    }
-    &__img {
-      margin-right: 5rem;
-      width: 52px;
-      height: 52px;
-    }
-    &__button {
-      width: 30rem;
-    }
-    &__text-and-form{
       display: flex;
-      justify-content: space-between;
-    }
+      gap: 2rem;
 
-    &__card-text {
-      font-family: fonts.$primaryFont;
-      color: colors.$gray800;
-      font-weight: fonts.$semiBold;
-    }
-    &__input input[type='checkbox'] {
-      width: 3.2rem;
-      height: 1.5rem;
-     }
-     &__checkbox-group {
-      max-width: none;
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 20px;
+
+      border: 1px solid colors.$gray150;
+
+      box-shadow: none;
+      border-radius: 1.8rem;
     }
   }
 }
