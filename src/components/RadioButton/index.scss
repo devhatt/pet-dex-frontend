@@ -28,7 +28,7 @@
     height: 1.6rem;
 
     margin: 0.8rem;
-    border: 1.5px solid colors.$gray200;
+    border: 1px solid colors.$gray200;
 
     border-radius: 50%;
 
@@ -50,7 +50,6 @@
 
   &__dot {
     font-family: fonts.$primaryFont;
-
     font-size: fonts.$xs;
   }
 }

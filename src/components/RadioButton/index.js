@@ -30,7 +30,6 @@ export default function RadioButton({
   this.setValue(value);
   this.setName(name);
   this.setDisabled(disabled);
-  window.self = this;
   const $radioButton = this.selected.get('radio-button');
 
   $radioButton.addEventListener('change', (e) => {
