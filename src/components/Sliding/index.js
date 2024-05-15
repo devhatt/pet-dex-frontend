@@ -93,9 +93,7 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
 
     this.selected.get('sliding-content').style.transform =
       `translateX(${-this.slideIndex * slideWidth}px)`;
-
     this.setSlide(slide);
-
     this.emit('slide:next', slide);
   },
 
@@ -111,9 +109,7 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
 
     this.selected.get('sliding-content').style.transform =
       `translateX(${-this.slideIndex * slideWidth}px)`;
-
     this.setSlide(slide);
-
     this.emit('slide:prev', slide);
   },
 
