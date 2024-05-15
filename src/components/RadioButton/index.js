@@ -30,14 +30,11 @@ export default function RadioButton({
   this.setValue(value);
   this.setName(name);
   this.setDisabled(disabled);
-
+  window.self = this;
   const $radioButton = this.selected.get('radio-button');
 
   $radioButton.addEventListener('change', (e) => {
     this.setCheck(e.target.checked);
-    if (e.target.checked) {
-      this.setClassActive();
-    }
   });
 }
 
@@ -53,6 +50,7 @@ RadioButton.prototype = Object.assign(
       const $radioButton = this.selected.get('radio-button');
       $radioButton.checked = check;
       this.emit('change', check);
+      // if (check === true) this.onActive();
     },
 
     setText(text = '') {
@@ -89,9 +87,9 @@ RadioButton.prototype = Object.assign(
       $radioButton.name = name;
       this.emit('name:change', name);
     },
-    setClassActive() {
-      const $radioContainer = this.selected.get('radio-container');
-      $radioContainer.classList.add('active');
-    },
+    // onActive() {
+    //   const $radioContainer = this.selected.get('radio-container');
+    //   $radioContainer.classList.add('active');
+    // },
   },
 );

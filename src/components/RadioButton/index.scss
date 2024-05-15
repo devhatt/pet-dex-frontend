@@ -6,6 +6,8 @@
 
   align-items: center;
 
+  color: colors.$gray600;
+
   padding: 1rem 8rem 1rem 1rem;
   border: 0.15rem solid colors.$gray200;
 
@@ -15,7 +17,9 @@
 
   cursor: pointer;
 
-  &.active {
+  &:has(&__input:checked) {
+    color: colors.$primary200;
+
     border-color: colors.$primary200;
   }
 
@@ -41,23 +45,12 @@
       border-color: colors.$gray200;
 
       cursor: not-allowed;
-
-      + .checkmark {
-        color: colors.$gray200;
-      }
     }
   }
 
   &__dot {
     font-family: fonts.$primaryFont;
+
     font-size: fonts.$xs;
-
-    .radio-container__input:checked + & {
-      color: colors.$primary200;
-    }
-
-    .radio-container__input:not(checked) + & {
-      color: colors.$gray600;
-    }
   }
 }
