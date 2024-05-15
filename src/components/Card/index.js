@@ -18,7 +18,6 @@ export default function Card() {
   this.selected.get('card-button').addEventListener('click', () => {
     if (!this.enable) return;
     this.purchase();
-    console.log('purchase padrao do componente');
   });
 }
 

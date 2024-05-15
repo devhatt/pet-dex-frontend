@@ -22,6 +22,6 @@ export const Default = {
   args: {
     title: 'akita',
     imgAlt: 'breed alt description',
-    imgSrc:  akita
+    imgSrc: akita,
   },
 };
