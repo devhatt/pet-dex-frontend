@@ -50,7 +50,6 @@ RadioButton.prototype = Object.assign(
       const $radioButton = this.selected.get('radio-button');
       $radioButton.checked = check;
       this.emit('change', check);
-      // if (check === true) this.onActive();
     },
 
     setText(text = '') {
@@ -87,9 +86,5 @@ RadioButton.prototype = Object.assign(
       $radioButton.name = name;
       this.emit('name:change', name);
     },
-    // onActive() {
-    //   const $radioContainer = this.selected.get('radio-container');
-    //   $radioContainer.classList.add('active');
-    // },
   },
 );
