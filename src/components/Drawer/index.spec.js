@@ -16,22 +16,14 @@ const makeSut = () => render(new Drawer({
 
 describe('Drawer', () => {
   describe('when mount', () => {
-    it('renders the title', () => {
+    it('renders', () => {
       const drawer = makeSut()
 
       drawer.open();
 
       expect(drawer.selected.get('title').textContent).toBe('Add dates');
+      expect(drawer.selected.get('content').textContent).toBe('Cadastrar pet');
     });
-
-    it('mount the content', () => {
-      const drawer = makeSut();
-      const mountSpy = vi.spyOn(drawer, 'mount')
-
-      drawer.open()
-
-      expect(mountSpy).toHaveBeenCalled();
-    })
   });
 
   describe('when unmount', () => {
