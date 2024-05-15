@@ -15,7 +15,7 @@ const makeSut = () => render(new Drawer({
 
 
 describe('Drawer', () => {
-  describe('when mount', () => {
+  describe('on mount', () => {
     it('renders', () => {
       const drawer = makeSut()
 
@@ -26,7 +26,7 @@ describe('Drawer', () => {
     });
   });
 
-  describe('when unmount', () => {
+  describe('on unmount', () => {
     it('remove event listeners', () => {
       const drawer = makeSut()
       const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
@@ -36,9 +36,6 @@ describe('Drawer', () => {
       drawer.emit('unmount');
 
       expect(removeEventListenerSpy).toHaveBeenCalledWith('keydown', onEscapeKeySpy);
-
-      removeEventListenerSpy.mockRestore();
-      onEscapeKeySpy.mockRestore();
     });
   });
 
