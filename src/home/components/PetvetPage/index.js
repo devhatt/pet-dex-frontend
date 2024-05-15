@@ -1,107 +1,100 @@
 import { Component } from 'pet-dex-utilities';
-import TextInput from '../../../components/TextInput';
+// import TextInput from '../../../components/TextInput';
 import Button from '../../../components/Button';
+import Radio from '../../../components/RadioButton';
 
 import estetoscopio from './images/estetoscopio.svg';
 import cuidadosEspeciais from './images/cuidadosEspeciais.svg';
-import vacina from './images/vacina.svg';
+import { listenBreakpoint } from '../../../utils/breakpoints/breakpoints';
 
 import './index.scss';
 
 const html = `
 <div data-select="container" class="petvet-page">
-    <div class="petvet-page__content">
-        <div class="petvet-page__header">
-            <p class="petvet-page__header--head">Conte-nos um pouco mais do seu animal</p>
-            <p class="petvet-page__header--subhead"> Seu pet já foi vacinado? Conta pra gente que mês ou ano que você
-                costuma comemorar o aniversário dele! </p>
-        </div>
-        <div class="petvet-page__card-group">
-            <div class="petvet-page__card">
-                <div class="petvet-page__card-content">
-                    <a href="#"><img class="petvet-page__img" src="${estetoscopio}" alt="estetoscopio"></a>
-                    <div class="petvet-page__text-and-form">
-                        <p class="petvet-page__card-text">O seu pet amigo foi castrado?</p>
-                        <div class="petvet-page__checkbox-group">
-                            <div class="petvet-page__input">
-                                <input name="isRegisteredNo" type="checkbox">
-                                <label for="isRegisteredNo" class="petvet-page__card--label"> Não </label>
-                            </div>
-                            <div class="petvet-page__input">
-                                <input name="isRegisteredYes" type="checkbox">
-                                <label for="isRegisteredYes" class="petvet-page__card--label"> Sim </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="petvet-page__card">
-                <div class="petvet-page__card-content cuidados-especiais">
-                    <a href="#"><img class="petvet-page__img" src="${cuidadosEspeciais}" alt="cuidados especiais"></a>
-                    <div class="petvet-page__text-and-form">
-                        <p class="petvet-page__card-text">Cuidados especiais</p>
-                        <div class="petvet-page__checkbox-group">
-                            <div class="petvet-page__input">
-                                <input name="specialCareNo" value="specialCare" type="checkbox">
-                                <label for="specialCareNo" class="petvet-page__card--label"> Não </label>
-                            </div>
-                            <div class="petvet-page__input">
-                                <input name="specialCareYes" value="specialCare" type="checkbox">
-                                <label for="specialCareYes" class="petvet-page__card--label"> Sim </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="petvet-page__card">
-                <div class="petvet-page__card-content">
-                    <a href="#"><img class="petvet-page__img" src="${vacina}" alt="vacina"></a>
-                    <div class="petvet-page__text-and-form">
-                        <p class="petvet-page__card-text">Vacinas</p>
-                    </div>
-                </div>
+   <div class="petvet-page__header">
+      <p class="petvet-page__header--text">Conte-nos um pouco mais do seu animal</p>
+      <p class="petvet-page__header--subtext">Seu pet já foi vacinado? Conta pra gente que mês ou ano que você costuma comemorar o aniversário dele! </p>
+   </div>
+   <div class="petvet-page__card-group">
+      <div class="petvet-page__card">
+        <div class="petvet-page__card-header">
+            <a href="#"><img class="petvet-page__img" src="${estetoscopio}" alt="estetoscopio"></a>
+            <p class="petvet-page__card-text">O seu pet amigo foi castrado?</p>
+            <div class="petvet-page__radio-group" data-select="special-care">
             </div>
         </div>
-    </div>
-</div>
+      </div>
+      <div class="petvet-page__card">
+        <div class="petvet-page__card-header">
+          <div>
+            <a href="#"><img class="petvet-page__img" src="${cuidadosEspeciais}" alt="cuidados especiais"></a>
+          </div>
+          <div>
+            <p class="petvet-page__card-text">Cuidados especiais</p>
+            <div class="petvet-page__radio-group" data-select="registered">
+          </div>
+          </div>
+        </div>
+      </div>
+   </div>
 </div>
 `;
 
 const events = ['value'];
 
+function createAndMount({ name, text, mountTo }) {
+  const radio = new Radio({ name, text });
+  radio.mount(mountTo);
+  return radio;
+}
+
 export default function PetVetPage() {
   Component.call(this, { html, events });
-
   const $container = this.selected.get('container');
+  const $specialCare = this.selected.get('special-care');
+  const $registered = this.selected.get('registered');
 
-  this.textInput = new TextInput({
-    placeholder: 'Escreva o cuidado especial',
+  const form = {
+    isRegistered: undefined,
+    isSpecialCare: undefined,
+    specialCareText: false,
+  };
+
+  const specialCare = [
+    createAndMount({ name: 'specialCare', text: 'Yes', mountTo: $specialCare }),
+    createAndMount({ name: 'specialCare', text: 'No', mountTo: $specialCare }),
+  ];
+  const registered = [
+    createAndMount({ name: 'registered', text: 'Yes', mountTo: $registered }),
+    createAndMount({ name: 'registered', text: 'No', mountTo: $registered }),
+  ];
+
+  registered.forEach((radio) => {
+    radio.listen('change', (value) => {
+      const text = radio.getText();
+      form.isRegistered = text === 'Yes' ? value : !value;
+    });
   });
+
+  specialCare.forEach((radio) => {
+    radio.listen('change', (value) => {
+      const text = radio.getText();
+      form.isSpecialCare = text === 'Yes' ? value : !value;
+    });
+  });
+
   this.button = new Button({
     text: 'Concluir',
-    isFullWidth: false,
+    isFullWidth: true,
     isDisabled: false,
   });
-  this.textInput.mount($container);
   this.button.mount($container);
 
-  const $inputText = this.textInput.selected.get('input-text');
   const $button = this.button.selected.get('button');
-
-  $inputText.classList.add('petvet-page__input-text');
   $button.classList.add('petvet-page__button');
-  $container
-    .querySelector('.petvet-page__card-content.cuidados-especiais')
-    .appendChild($inputText);
 
   const emitForm = () => {
-    const formValue = {
-      specialCareText: $inputText.value,
-      isSpecialCare: false,
-      isRegistered: false,
-      // aguardando componente de input
-    };
-    this.emit('value', formValue);
+    this.emit('value', form);
   };
 
   this.button.listen('click', emitForm);
