@@ -41,8 +41,7 @@
           "warn",
           {
             "message": "Use screen 'methods' imported from '@testing-library/vanilla' instead.",
-            "selector":
-            "MemberExpression > Identifier[name=\"selected\"]"
+            "selector": "MemberExpression > Identifier[name=\"selected\"]"
           }
         ]
       },
