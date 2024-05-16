@@ -14,7 +14,7 @@
     transition: transform 0.6s ease-in-out;
 
     &__slide {
-      width: 100%;
+      flex: 0 0 100%;
     }
   }
 }

@@ -11,7 +11,7 @@ const events = [
 ];
 
 const html = `
-<div class="sliding">
+<div class="sliding" data-select="sliding">
   <div class="sliding__content" data-select="sliding-content">
   </div>
 </div>`;
@@ -24,11 +24,6 @@ export default function Sliding({ slides = [] }) {
 
   this.updateSlides = () => {
     this.slides = Array.from(this.selected.get('sliding-content').children);
-  };
-
-  this.updateWidth = () => {
-    this.selected.get('sliding-content').style.width =
-      `${this.slides.length * 100}%`;
   };
 
   slides.forEach((item) => this.add(item));
@@ -67,7 +62,6 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
     this.selected.get('sliding-content').appendChild(slide);
 
     this.updateSlides();
-    this.updateWidth();
 
     this.emit('slide:add', slide);
   },
@@ -76,7 +70,6 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
     this.selected.get('sliding-content').removeChild(slide);
 
     this.updateSlides();
-    this.updateWidth();
 
     this.emit('slide:remove', slide);
   },
@@ -88,11 +81,9 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
 
     const slide =
       this.selected.get('sliding-content').children[this.slideIndex];
-    const slideWidth =
-      this.selected.get('sliding-content').clientWidth / this.slides.length;
-
+    const container = this.selected.get('sliding').clientWidth;
     this.selected.get('sliding-content').style.transform =
-      `translateX(${-this.slideIndex * slideWidth}px)`;
+      `translateX(${-this.slideIndex * container}px)`;
     this.setSlide(slide);
     this.emit('slide:next', slide);
   },
@@ -104,11 +95,10 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
 
     const slide =
       this.selected.get('sliding-content').children[this.slideIndex];
-    const slideWidth =
-      this.selected.get('sliding-content').clientWidth / this.slides.length;
+    const container = this.selected.get('sliding').clientWidth;
 
     this.selected.get('sliding-content').style.transform =
-      `translateX(${-this.slideIndex * slideWidth}px)`;
+      `translateX(${-this.slideIndex * container}px)`;
     this.setSlide(slide);
     this.emit('slide:prev', slide);
   },
