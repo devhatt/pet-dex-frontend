@@ -17,6 +17,9 @@ dependencies:
   reset-css:
     specifier: ^5.0.2
     version: 5.0.2
+  vanilla-routing:
+    specifier: 0.0.4
+    version: 0.0.4
   vite:
     specifier: ^5.2.10
     version: 5.2.11(@types/node@20.12.10)(sass@1.77.0)
@@ -9726,6 +9729,10 @@ packages:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
     dev: true
+
+  /vanilla-routing@0.0.4:
+    resolution: {integrity: sha512-I+9E+HLN4EsGsPwFBRPkQe94f1+uEHOSFnnWaRbI5CdM3nwXy6RSERhXPzLxmNNCBTxpfAeQTRJAApd7ODY/gQ==}
+    dev: false
 
   /vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
