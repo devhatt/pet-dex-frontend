@@ -1,189 +1,97 @@
 import { describe, expect, it, beforeEach } from 'vitest';
-import Button from '../Button';
 import Slinding from '.';
 
-const button = new Button({
-  text: 'Bom dia',
-  isFullWidth: true,
-});
+const $slide1 = document.createElement('div');
+$slide1.style.height = '200px';
+$slide1.style.backgroundColor = 'red';
 
-const $buttonContainer = document.createElement('div');
-button.mount($buttonContainer);
+const $slide2 = document.createElement('div');
+$slide2.style.height = '200px';
+$slide2.style.backgroundColor = 'pink';
 
-const button2 = new Button({
-  text: 'Tamo ai',
-  isFullWidth: true,
-});
+const $slide3 = document.createElement('div');
+$slide3.style.height = '200px';
+$slide3.style.backgroundColor = 'green';
 
-const $button2Container = document.createElement('div');
-button2.mount($button2Container);
-
-const button3 = new Button({
-  text: 'oi',
-  isFullWidth: true,
-});
-
-const $button3Container = document.createElement('div');
-button3.mount($button3Container);
+const $slide4 = document.createElement('div');
+$slide4.style.height = '200px';
+$slide4.style.backgroundColor = 'black';
 
 const propsMock = {
-  items: [$buttonContainer, $button2Container, $button3Container],
-  controls: true,
-  loopMode: 'normal',
+  slides: [$slide1, $slide2, $slide3],
 };
 
-describe('Slidinng', () => {
+describe('Sliding', () => {
   let sliding;
-  let clickEvent;
   const $container = document.createElement('div');
 
   beforeEach(() => {
     sliding = new Slinding(propsMock);
-    clickEvent = new Event('click');
     sliding.mount($container);
   });
 
-  it('has three items', () => {
+  it('has three slides', () => {
     expect(sliding.selected.get('sliding-content').children.length).toBe(3);
   });
 
-  it('previous item when clicked', () => {
-    sliding.setLoopMode('infinite');
-
-    expect(sliding.getSlide()).toBe(
-      sliding.selected.get('sliding-content').children[0],
-    );
-
-    sliding.selected.get('previous-button').dispatchEvent(clickEvent);
-
-    expect(sliding.getSlide()).toBe(
-      sliding.selected.get('sliding-content').children[2],
-    );
-  });
-
-  it('next item when clicked', () => {
-    expect(sliding.getSlide()).toBe(
-      sliding.selected.get('sliding-content').children[0],
-    );
-
-    sliding.selected.get('next-button').dispatchEvent(clickEvent);
-
-    expect(sliding.getSlide()).toBe(
-      sliding.selected.get('sliding-content').children[1],
-    );
-  });
-
-  it('has the slide programmatically', () => {
-    sliding.setSlide($button2Container);
-
-    expect(sliding.getSlide()).toBe($button2Container);
-  });
-
-  it('get the slide programmatically', () => {
-    expect(sliding.getSlide()).toBe($buttonContainer);
-  });
-
-  it('set loop mode programmatically', () => {
-    sliding.setLoopMode('infinite');
-
-    expect(sliding.getLoopMode()).toBe('infinite');
-  });
-
-  it('get loop mode programmatically', () => {
-    expect(sliding.getLoopMode()).toBe('normal');
-  });
-
-  it('controls are disabled when in normal loop mode', () => {
-    expect(sliding.selected.get('previous-button').disabled).toBe(true);
-
-    sliding.setSlide($button3Container);
-
-    expect(sliding.selected.get('next-button').disabled).toBe(true);
-  });
-
-  it('next slide programmatically', () => {
-    sliding.next();
-
-    expect(sliding.getSlide()).toBe($button2Container);
-
-    sliding.setSlide($button3Container);
-
-    expect(() => sliding.next()).toThrowError('There are no next items');
-  });
-
-  it('prev slide programmatically', () => {
-    expect(() => sliding.prev()).toThrowError('There are no prev items');
-
-    sliding.setSlide($button3Container);
-
-    sliding.prev();
-
-    expect(sliding.getSlide()).toBe($button2Container);
-  });
-
-  it('adds an elemenet to the sliding', () => {
-    const button4 = new Button({
-      text: 'Oi',
-      isFullWidth: true,
-    });
-
-    const $button4Container = document.createElement('div');
-    button4.mount($button4Container);
-
-    sliding.addItem($button4Container);
+  it('add slide programmatically', () => {
+    sliding.add($slide4);
 
     expect(sliding.selected.get('sliding-content').children.length).toBe(4);
+    expect(sliding.selected.get('sliding-content').children).toContain($slide4);
     expect(
-      sliding.selected.get('sliding-content').contains($button4Container),
-    ).toBe(true);
+      sliding.selected.get('sliding-content').children[3].classList,
+    ).toContain('sliding__content__slide');
   });
 
-  it('removes an element to the sliding', () => {
-    sliding.removeItem($buttonContainer);
+  it('remove slide programmatically', () => {
+    sliding.remove($slide3);
 
     expect(sliding.selected.get('sliding-content').children.length).toBe(2);
-    expect(
-      sliding.selected.get('sliding-content').contains($buttonContainer),
-    ).toBe(false);
-    expect(() => sliding.removeItem($buttonContainer)).toThrowError(
-      'Item not exists',
+    expect(sliding.selected.get('sliding-content').children).not.toContain(
+      $slide3,
     );
   });
 
-  it('set controls programmatically', () => {
-    sliding.setControls(true);
+  it('move to the next slide programmatically', () => {
+    const startingPosition =
+      sliding.selected.get('sliding-content').style.transform;
 
-    const $previousButton = sliding.selected.get('previous-button');
-    const $nextButton = sliding.selected.get('next-button');
+    sliding.next();
 
-    expect(sliding.getControls()).toBe(true);
+    const currentPosition =
+      sliding.selected.get('sliding-content').style.transform;
+
+    expect(currentPosition).toEqual(expect.stringContaining('translateX'));
+    expect(startingPosition).not.toBe(currentPosition);
     expect(
-      $previousButton.classList.contains('sliding__controls--removed'),
-    ).toBe(false);
-    expect($nextButton.classList.contains('sliding__controls--removed')).toBe(
-      false,
-    );
-
-    sliding.setControls(false);
-
-    expect(sliding.getControls()).toBe(false);
+      sliding.selected.get('sliding-content').children[0].classList,
+    ).not.toContain('sliding__content__slide--active');
     expect(
-      $previousButton.classList.contains('sliding__controls--removed'),
-    ).toBe(true);
-    expect($nextButton.classList.contains('sliding__controls--removed')).toBe(
-      true,
-    );
+      sliding.selected.get('sliding-content').children[1].classList,
+    ).toContain('sliding__content__slide--active');
   });
 
-  it('get controls programmatically', () => {
-    expect(sliding.getControls()).toBe(true);
+  it('move to the previous slide programmatically', () => {
+    const startingPosition =
+      sliding.selected.get('sliding-content').style.transform;
+    sliding.prev();
+    const currentPosition =
+      sliding.selected.get('sliding-content').style.transform;
+
+    expect(currentPosition).toEqual(expect.stringContaining('translateX'));
+    expect(startingPosition).not.toBe(currentPosition);
+    expect(
+      sliding.selected.get('sliding-content').children[0].classList,
+    ).not.toContain('sliding__content__slide--active');
+    expect(
+      sliding.selected.get('sliding-content').children[2].classList,
+    ).toContain('sliding__content__slide--active');
   });
 
-  it('clear all items', () => {
-    sliding.clearItems();
+  it('clear slides programmatically', () => {
+    sliding.clear();
 
-    expect(sliding.selected.get('sliding-content').children.lenght).toBe(
-      undefined,
-    );
+    expect(sliding.selected.get('sliding-content').children.length).toBe(0);
   });
 });

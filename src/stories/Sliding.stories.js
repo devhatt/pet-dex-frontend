@@ -1,17 +1,17 @@
 import Sliding from '../components/Sliding';
 import Button from '../components/Button';
 
-const $buttonContainer = document.createElement('div');
-$buttonContainer.style.height = '200px';
-$buttonContainer.style.backgroundColor = 'red';
+const $slide1 = document.createElement('div');
+$slide1.style.height = '200px';
+$slide1.style.backgroundColor = 'red';
 
-const $button2Container = document.createElement('div');
-$button2Container.style.height = '200px';
-$button2Container.style.backgroundColor = 'pink';
+const $slide2 = document.createElement('div');
+$slide2.style.height = '200px';
+$slide2.style.backgroundColor = 'pink';
 
-const $button3Container = document.createElement('div');
-$button3Container.style.height = '200px';
-$button3Container.style.backgroundColor = 'green';
+const $slide3 = document.createElement('div');
+$slide3.style.height = '200px';
+$slide3.style.backgroundColor = 'green';
 
 const button4 = new Button({
   text: '<',
@@ -49,6 +49,6 @@ export default {
 
 export const Default = {
   args: {
-    slides: [$buttonContainer, $button2Container, $button3Container],
+    slides: [$slide1, $slide2, $slide3],
   },
 };

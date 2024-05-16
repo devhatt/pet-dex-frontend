@@ -26,6 +26,16 @@ export default function Sliding({ slides = [] }) {
     this.slides = Array.from(this.selected.get('sliding-content').children);
   };
 
+  this.setSlide = (slide) => {
+    this.slides.forEach((item) => {
+      if (item === slide) {
+        item.classList.add('sliding__content__slide--active');
+      } else {
+        item.classList.remove('sliding__content__slide--active');
+      }
+    });
+  };
+
   slides.forEach((item) => this.add(item));
 
   makeSwipable(this.selected.get('sliding-content'));
@@ -44,16 +54,6 @@ export default function Sliding({ slides = [] }) {
   this.listen('unmount', () =>
     document.addEventListener('click', this.clearItems()),
   );
-
-  this.setSlide = (slide) => {
-    this.slides.forEach((item) => {
-      if (item === slide) {
-        item.classList.add('sliding__content__slide--active');
-      } else {
-        item.classList.remove('sliding__content__slide--active');
-      }
-    });
-  };
 }
 
 Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
