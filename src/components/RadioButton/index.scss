@@ -6,30 +6,29 @@
 
   align-items: center;
 
-  padding: 1rem 8rem 1rem 1rem;
-  border: 0.15rem solid colors.$gray600;
+  color: colors.$gray600;
 
-  border-radius: 2rem;
+  padding: 1rem 8rem 1rem 1rem;
+  border: 0.15rem solid colors.$gray200;
+
+  border-radius: 1.5rem;
 
   transition: border-color 0.3s;
 
   cursor: pointer;
 
-  &:focus-within {
-    border-color: colors.$primary200;
+  &:has(&__input:checked) {
+    color: colors.$primary200;
 
-    .radio-dot {
-      color: colors.$primary200;
-    }
+    border-color: colors.$primary200;
   }
 
   &__input {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 1.6rem;
+    height: 1.6rem;
 
     margin: 0.8rem;
-    border: 0.15rem solid colors.$gray600;
-    border-color: colors.$primary200;
+    border: 1px solid colors.$gray200;
 
     border-radius: 50%;
 
@@ -39,23 +38,18 @@
     &:checked {
       border-color: colors.$primary200;
 
-      background: url('./images/ellipse.svg') no-repeat center center/60%;
+      background: url('./images/ellipse.svg') no-repeat center center/70% 70%;
     }
 
     &:disabled {
       border-color: colors.$gray200;
 
       cursor: not-allowed;
-
-      + .checkmark {
-        color: colors.$gray200;
-      }
     }
   }
 
   &__dot {
     font-family: fonts.$primaryFont;
-    color: colors.$gray600;
     font-size: fonts.$xs;
   }
 }
