@@ -62,6 +62,36 @@ Agora nosso componente já está pronto para ser parametrizado:
 
 <img src={Example2PNG} alt="Example preview 2" />
 
+## Para criar paginas com dados "Mockados"
+
+Para 'mockar' dados em um stories necessita criar uma estrutura
+igual para simular os dados buscados em uma API, como a seguir:
+
+- criar os dados:
+
+```
+const dados = [
+  {
+    id: '000-0123',
+    title: 'name'
+  },
+  ...
+]
+```
+
+- No story, apos parametrizar como o component ira ser usado, passamos os dados
+  para o argumento ARGS
+
+```
+export const Default = {
+  args: {
+    dados,
+  },
+};
+```
+
+Assim os componentes serao renderizados no Storybook.
+
 # Saiba mais
 
 - [Documentação do Storybook](https://storybook.js.org)
