@@ -61,6 +61,7 @@ Em nosso [servidor do discord](http://discord.gg/3gsMAEumEd), temos várias opç
 - **`Bolha `** → Dev influente e conhecido da bolha dev e participa do servidor;
 - **`Dono do parquinho `** → Auto-explicativo. Idealizador do projeto e com poderes especiais.
 
+
 ## **Código de Conduta**
 
 O PetDex segue um Código de Conduta para garantir um ambiente respeitoso e inclusivo para todos os contribuidores. Leia e entenda o nosso **[Código de Conduta](https://github.com/Alecell/octopost/blob/master/CODE_OF_CONDUCT.md)**.
