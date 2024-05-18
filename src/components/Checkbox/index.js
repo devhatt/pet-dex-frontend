@@ -28,7 +28,7 @@ export default function Checkbox({
   const $checkbox = this.selected.get('checkbox');
 
   $checkbox.addEventListener('change', (e) => {
-    this.setChecked(e.target.checked);
+    this.setCheck(e.target.checked);
   });
 }
 
