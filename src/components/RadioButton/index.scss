@@ -17,6 +17,10 @@
 
   cursor: pointer;
 
+  &--borderless {
+    border: 0;
+  }
+
   &:has(&__input:checked) {
     color: colors.$primary200;
 
