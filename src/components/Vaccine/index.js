@@ -20,8 +20,8 @@ const html = `
         </div>
       </div>
     </div>
-    <div class="vaccine__list-group"> 
-    <div class="vaccine__sections" data-select="group"> </div>
+    <div class="vaccine__scroll">
+      <div class="vaccine__sections" data-select="group"> </div>
     </div>
   </div>
 `;

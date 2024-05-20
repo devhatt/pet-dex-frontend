@@ -3,6 +3,8 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .vaccine {
+  overflow: auto;
+
   display: flex;
   flex-direction: column;
 
@@ -15,14 +17,6 @@
 
   box-shadow: rgb(50, 50, 71);
   border-radius: 1.8rem;
-
-  &__sections {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    margin-right: 1rem;
-  }
 
   &__header {
     display: flex;
@@ -84,8 +78,12 @@
     display: none;
   }
 
-  &__list-group {
+  &__scroll {
     overflow-y: auto;
+  }
+
+  &__sections {
+    margin-right: 2rem;
   }
 }
 
@@ -101,10 +99,6 @@
 
     &__add-vacine-text {
       display: block;
-    }
-
-    &__sections {
-      margin-right: 2rem;
     }
   }
 }
