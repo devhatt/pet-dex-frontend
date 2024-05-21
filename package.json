@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest",
+    "test:coverage": "vitest --ui --coverage",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
     "prepare": "husky install",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
+    "@commitlint/cz-commitlint": "19.2.0",
     "@faker-js/faker": "8.4.1",
     "@storybook/addon-essentials": "8.0.0-alpha.16",
     "@storybook/addon-interactions": "8.0.0-alpha.16",

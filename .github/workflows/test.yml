@@ -15,7 +15,7 @@ jobs:
         uses: ./.github/actions/install-deps
 
       - name: Run unit Tests
-        run: pnpm vitest --coverage --silent
+        run: pnpm vitest --silent
 
       - name: 'Report Coverage'
         uses: davelosert/vitest-coverage-report-action@v2
