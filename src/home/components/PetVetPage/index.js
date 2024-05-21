@@ -57,10 +57,14 @@ export default function PetVetPage() {
   const $registeredRadio = this.selected.get('registered-radio');
   const $cardGroup = this.selected.get('card-group');
 
+  this.vaccine = new Vaccine();
+  this.vaccine.mount($cardGroup);
+
   const form = {
     isRegistered: undefined,
     isSpecialCare: undefined,
-    specialCareText: false,
+    specialCareText: '',
+    vaccines: undefined,
   };
 
   const specialCare = [
@@ -102,20 +106,17 @@ export default function PetVetPage() {
     });
   });
 
-  this.vaccine = new Vaccine();
-  this.vaccine.mount($cardGroup);
-
   this.button = new Button({
     text: 'Concluir',
     isFullWidth: false,
     isDisabled: false,
   });
+
+  this.button.selected.get('button').classList.add('petvet-page__button');
   this.button.mount($container);
 
-  const $button = this.button.selected.get('button');
-  $button.classList.add('petvet-page__button');
-
   const emitForm = () => {
+    form.vaccines = this.vaccine.listVaccines();
     this.emit('value', form);
   };
 
