@@ -1,8 +1,28 @@
 {
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
+  "name": "pet-dex-frontend",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "engines": {
+    "node": "^20",
+    "pnpm": "^8"
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest",
+    "test:coverage": "vitest --ui --coverage",
+    "build": "vite build --emptyOutDir",
+    "build-storybook": "storybook build",
+    "code-style": "concurrently \"pnpm lint\" \"pnpm stylelint\" \"pnpm prettier\"",
+    "commit": "git-cz",
+    "lint": "eslint --ext .js .",
+    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "prepare": "husky install",
+    "prettier": "prettier . --check --ignore-unknown",
+    "prettier:fix": "prettier . --write --ignore-unknown",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "stylelint": "stylelint \"**/*.scss\""
   },
   "dependencies": {
     "concurrently": "8.2.2",
@@ -62,29 +82,9 @@
     "stylelint-scss": "^6.2.1",
     "vitest": "^1.6.0"
   },
-  "engines": {
-    "node": "^20",
-    "pnpm": "^8"
-  },
-  "name": "pet-dex-frontend",
-  "private": true,
-  "scripts": {
-    "build": "vite build --emptyOutDir",
-    "build-storybook": "storybook build",
-    "code-style": "concurrently \"pnpm lint\" \"pnpm stylelint\" \"pnpm prettier\"",
-    "commit": "git-cz",
-    "dev": "vite",
-    "lint": "eslint --ext .js .",
-    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
-    "prepare": "husky install",
-    "prettier": "prettier . --check --ignore-unknown",
-    "prettier:fix": "prettier . --write --ignore-unknown",
-    "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "stylelint": "stylelint \"**/*.scss\"",
-    "test": "vitest",
-    "test:coverage": "vitest --ui --coverage"
-  },
-  "type": "module",
-  "version": "0.0.0"
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  }
 }
