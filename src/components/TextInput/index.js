@@ -21,6 +21,7 @@ export default function TextInput({
   assetUrl,
   assetPosition,
   variation = 'standard',
+  value = '',
 } = {}) {
   Component.call(this, { html, events });
   const input = this.selected.get('input-text');

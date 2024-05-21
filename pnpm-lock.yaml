@@ -18,21 +18,21 @@ dependencies:
     specifier: ^5.0.2
     version: 5.0.2
   vite:
-    specifier: ^5.0.12
+    specifier: ^5.2.10
     version: 5.2.11(@types/node@20.12.10)(sass@1.77.0)
   vite-jsconfig-paths:
     specifier: 2.0.1
     version: 2.0.1(vite@5.2.11)
   vite-plugin-pwa:
-    specifier: ^0.19.0
+    specifier: ^0.19.8
     version: 0.19.8(vite@5.2.11)(workbox-build@7.1.0)(workbox-window@7.1.0)
 
 devDependencies:
   '@commitlint/cli':
-    specifier: ^19.2.0
+    specifier: ^19.2.2
     version: 19.3.0(@types/node@20.12.10)(typescript@5.4.5)
   '@commitlint/config-conventional':
-    specifier: ^19.1.0
+    specifier: ^19.2.2
     version: 19.2.2
   '@commitlint/cz-commitlint':
     specifier: 19.2.0
@@ -83,7 +83,7 @@ devDependencies:
     specifier: ^7.0.3
     version: 7.0.3
   eslint:
-    specifier: ^8.56.0
+    specifier: ^8.57.0
     version: 8.57.0
   eslint-config-airbnb:
     specifier: ^19.0.4
@@ -106,8 +106,11 @@ devDependencies:
   eslint-plugin-only-warn:
     specifier: 1.1.0
     version: 1.1.0
+  eslint-plugin-prettier:
+    specifier: ^5.1.3
+    version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
   eslint-plugin-react:
-    specifier: ^7.33.2
+    specifier: ^7.34.1
     version: 7.34.1(eslint@8.57.0)
   eslint-plugin-react-hooks:
     specifier: ^4.6.0
@@ -125,25 +128,25 @@ devDependencies:
     specifier: 1.5.0
     version: 1.5.0
   husky:
-    specifier: ^8.0.0
+    specifier: ^8.0.3
     version: 8.0.3
   jsdom:
     specifier: ^23.2.0
     version: 23.2.0
   lint-staged:
-    specifier: ^15.2.0
+    specifier: ^15.2.2
     version: 15.2.2
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
   sass:
-    specifier: ^1.70.0
+    specifier: ^1.75.0
     version: 1.77.0
   storybook:
     specifier: 8.0.0-alpha.16
     version: 8.0.0-alpha.16(react-dom@18.3.1)(react@18.3.1)
   stylelint:
-    specifier: ^16.2.0
+    specifier: ^16.3.1
     version: 16.5.0(typescript@5.4.5)
   stylelint-color-format:
     specifier: ^1.1.0
@@ -158,7 +161,7 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0(prettier@3.2.5)(stylelint@16.5.0)
   stylelint-scss:
-    specifier: ^6.1.0
+    specifier: ^6.2.1
     version: 6.3.0(stylelint@16.5.0)
   vitest:
     specifier: ^1.6.0
@@ -2184,6 +2187,11 @@ packages:
     engines: {node: '>=14'}
     requiresBuild: true
     optional: true
+
+  /@pkgr/core@0.1.1:
+    resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
+    engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+    dev: true
 
   /@polka/url@1.0.0-next.25:
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
@@ -5395,6 +5403,27 @@ packages:
   /eslint-plugin-only-warn@1.1.0:
     resolution: {integrity: sha512-2tktqUAT+Q3hCAU0iSf4xAN1k9zOpjK5WO8104mB0rT/dGhOa09582HN5HlbxNbPRZ0THV7nLGvzugcNOSjzfA==}
     engines: {node: '>=6'}
+    dev: true
+
+  /eslint-plugin-prettier@5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5):
+    resolution: {integrity: sha512-C9GCVAs4Eq7ZC/XFQHITLiHJxQngdtraXaM+LoUFoFp/lHNl2Zn8f3WQbe9HvTBBQ9YnKFB0/2Ajdqwo5D1EAw==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      '@types/eslint': '>=8.0.0'
+      eslint: '>=8.0.0'
+      eslint-config-prettier: '*'
+      prettier: '>=3.0.0'
+    peerDependenciesMeta:
+      '@types/eslint':
+        optional: true
+      eslint-config-prettier:
+        optional: true
+    dependencies:
+      eslint: 8.57.0
+      eslint-config-prettier: 9.1.0(eslint@8.57.0)
+      prettier: 3.2.5
+      prettier-linter-helpers: 1.0.0
+      synckit: 0.8.8
     dev: true
 
   /eslint-plugin-react-hooks@4.6.2(eslint@8.57.0):
@@ -9175,6 +9204,14 @@ packages:
 
   /symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+    dev: true
+
+  /synckit@0.8.8:
+    resolution: {integrity: sha512-HwOKAP7Wc5aRGYdKH+dw0PRRpbO841v2DENBtjnR5HFWoiNByAl7vrx3p0G/rCyYXQsrxqtX48TImFtPcIHSpQ==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    dependencies:
+      '@pkgr/core': 0.1.1
+      tslib: 2.6.2
     dev: true
 
   /table@6.8.2:
