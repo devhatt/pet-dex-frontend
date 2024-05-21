@@ -25,9 +25,11 @@ Card.prototype = Object.assign(Card.prototype, Component.prototype, {
   setTitle(text) {
     this.selected.get('card-title').textContent = text;
   },
+
   purchase() {
     this.emit('purchase');
   },
+
   disable() {
     this.enable = false;
   },

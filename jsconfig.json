@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@testing-library/vanilla": ["src/__tests__/index.js"]
+    }
+  }
+}

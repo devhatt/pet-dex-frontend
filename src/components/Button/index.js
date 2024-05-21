@@ -19,8 +19,17 @@ export default function Button({
   this.setIsDisabled(isDisabled);
 
   const $button = this.selected.get('button');
-  $button.addEventListener('click', () => {
+
+  const handleClick = () => {
     this.click();
+  };
+
+  this.listen('mount', () => {
+    $button.addEventListener('click', handleClick);
+  });
+
+  this.listen('unmount', () => {
+    $button.removeEventListener('click', handleClick);
   });
 }
 
