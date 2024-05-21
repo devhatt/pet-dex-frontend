@@ -1,18 +1,13 @@
-import { Router, routeLocation } from 'vanilla-routing';
 import NoPetRegirestedPage from '../../../../home/components/NoPetRegirestedPage';
 
 export default {
-  pathname: '/configuracoes',
+  pathname: '/pets',
   element: () => {
-    console.log('Configuracoes', routeLocation());
     const $content = document.createElement('div');
     $content.classList.add('home__content-page');
-    $content.style.backgroundColor = 'orange';
+    $content.style.backgroundColor = 'red';
     const noPetRegirestedPage = new NoPetRegirestedPage();
     noPetRegirestedPage.mount($content);
-    Router.dispose(() => {
-      console.log('Bye Configuracoes Page');
-    });
     return $content;
   },
 };
