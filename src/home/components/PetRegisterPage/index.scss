@@ -1,0 +1,60 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.breed-page {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  &__breed-grid {
+    overflow: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+
+    align-items: start;
+    justify-content: center;
+
+    .pet-card {
+      aspect-ratio: auto;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.breed-page__footer {
+  display: flex;
+
+  margin: 2rem;
+
+  .breed-page__button {
+    width: min(100%, 42rem);
+
+    margin: 0 auto;
+  }
+}
+
+@include breakpoints.from1024 {
+  .breed-page {
+    &__breed-grid {
+      display: flex;
+
+      align-items: center;
+    }
+  }
+
+  .breed-page__footer {
+    margin: 1.2rem;
+  }
+}
+
+@include breakpoints.from1280 {
+  .breed-page__footer {
+    &__button {
+      margin: 0 auto;
+    }
+  }
+}

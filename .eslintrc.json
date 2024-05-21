@@ -1,13 +1,53 @@
 {
-  "plugins": ["prettier"],
   "extends": ["airbnb-base", "plugin:storybook/recommended", "prettier"],
   "env": {
     "browser": true
   },
+  "plugins": ["only-warn"],
+  "settings": {
+    "import/resolver": {
+      "node": true,
+      "jsconfig": {
+        "config": "jsconfig.json"
+      }
+    }
+  },
   "rules": {
-    "prettier/prettier": "error",
-    "no-console": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn"]
+      }
+    ],
     "object-curly-newline": "off",
     "import/prefer-default-export": "off"
-  }
+  },
+  "overrides": [
+    {
+      "env": {
+        "node": true,
+        "jest": true
+      },
+      "plugins": ["vitest", "testing-library"],
+      "files": ["**/*.spec.js", "**/*.test.js"],
+      "extends": [
+        "plugin:testing-library/dom",
+        "plugin:vitest/recommended",
+        "plugin:vitest-globals/recommended"
+      ],
+      "rules": {
+        "testing-library/prefer-user-event": ["warn"],
+        "no-restricted-syntax": [
+          "warn",
+          {
+            "message": "Use screen 'methods' imported from '@testing-library/vanilla' instead.",
+            "selector": "MemberExpression > Identifier[name=\"selected\"]"
+          }
+        ]
+      },
+      "globals": {
+        "vi": true
+      }
+    }
+  ]
 }

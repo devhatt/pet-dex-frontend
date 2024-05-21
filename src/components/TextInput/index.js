@@ -21,6 +21,7 @@ export default function TextInput({
   assetUrl,
   assetPosition,
   variation = 'standard',
+  value = '',
 } = {}) {
   Component.call(this, { html, events });
   const input = this.selected.get('input-text');
@@ -30,6 +31,7 @@ export default function TextInput({
   input.classList.add(variation);
   input.style.backgroundImage = `url(${assetUrl})`;
   input.classList.add(assetPosition);
+  // eslint-disable-next-line no-undef
   this.setValue(value);
 
   input.addEventListener('focus', () => {

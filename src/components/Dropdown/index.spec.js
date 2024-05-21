@@ -1,4 +1,5 @@
-import { describe, expect, it, beforeEach } from 'vitest';
+/* eslint-disable testing-library/no-node-access,testing-library/prefer-screen-queries,no-restricted-syntax,testing-library/prefer-user-event */
+import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, getByText } from '@testing-library/dom';
 import Dropdown from './index';
 
