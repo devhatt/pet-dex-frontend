@@ -12,7 +12,7 @@ const events = [
 
 const html = `
 <div class="sliding" data-select="sliding">
-  <div class="sliding__content" data-select="sliding-content">
+  <div class="sliding__content" data-select="sliding-content" data-testid="sliding-content">
   </div>
 </div>`;
 
@@ -38,22 +38,21 @@ export default function Sliding({ slides = [] }) {
 
   slides.forEach((item) => this.add(item));
 
-  makeSwipable(this.selected.get('sliding-content'));
+  const $sliding = this.selected.get('sliding-content');
+
+  makeSwipable($sliding);
   initializeSwiper();
 
-  this.selected
-    .get('sliding-content')
-    .addEventListener('swipe-left', () => this.next());
-  this.selected
-    .get('sliding-content')
-    .addEventListener('swipe-right', () => this.prev());
-
-  this.listen('mount', () =>
-    document.addEventListener('click', this.setSlide(this.slides[0])),
-  );
-  this.listen('unmount', () =>
-    document.addEventListener('click', this.clearItems()),
-  );
+  this.listen('mount', () => {
+    $sliding.addEventListener('swipe-left', () => this.next());
+    $sliding.addEventListener('swipe-right', () => this.prev());
+    $sliding.addEventListener('click', this.setSlide(this.slides[0]));
+  });
+  this.listen('unmount', () => {
+    $sliding.removeEventListener('swipe-left', () => this.next());
+    $sliding.removeEventListener('swipe-right', () => this.prev());
+    $sliding.removeEventListener('click', this.setSlide(this.slides[0]));
+  });
 }
 
 Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
