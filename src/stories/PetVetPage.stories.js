@@ -9,7 +9,28 @@ export default {
 
     return $container;
   },
-  args: {},
+  args: {
+    vaccines: [
+      {
+        id: '1',
+        veterinary: 'Dr octopus',
+        title: 'Antirrábica',
+        date: new Date().toISOString(),
+      },
+      {
+        id: '2',
+        veterinary: 'Dr Felipa',
+        title: 'Raiva',
+        date: new Date(2023, 5, 2).toISOString(),
+      },
+      {
+        id: '3',
+        veterinary: 'Dr octopus',
+        title: 'Raiva',
+        date: new Date(2023, 2, 2).toISOString(),
+      },
+    ],
+  },
   component: PetVetPage,
 };
 
