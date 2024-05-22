@@ -4,7 +4,7 @@ import placeholderImage from './img/placeholder.svg';
 import plusIcon from './img/plus-icon.svg';
 import photoIcon from './img/photo-icon.svg';
 
-const events = ['change:value'];
+const events = ['value:change'];
 
 const html = `
   <div class="container-upload-image">
@@ -40,7 +40,7 @@ export default function UploadImage() {
       previewImage.src = readerTarget.result;
       previewImage.classList.remove('hidden');
       buttonIcon.src = photoIcon;
-      this.emit('change:value', readerTarget.result);
+      this.emit('value:change', readerTarget.result);
     });
 
     this.reader.readAsDataURL(file);
@@ -60,7 +60,7 @@ UploadImage.prototype = Object.assign(
   UploadImage.prototype,
   Component.prototype,
   {
-    getValue() {
+    getImage() {
       return this.reader.result;
     },
   },

@@ -1,8 +1,8 @@
 import { Component } from 'pet-dex-utilities';
-import './index.scss';
 import TextInput from '../../../components/TextInput';
 import UploadImage from '../../../components/UploadImage';
 import Button from '../../../components/Button';
+import './index.scss';
 
 const events = ['submit'];
 
@@ -46,8 +46,8 @@ export default function PetRegister() {
   };
   updateButtonVisibility();
 
-  this.upload.listen('change:value', updateButtonVisibility);
-  this.input.listen('change:value', updateButtonVisibility);
+  this.upload.listen('value:change', updateButtonVisibility);
+  this.input.listen('value:change', updateButtonVisibility);
 
   this.button.listen('click', () => {
     const image = this.upload.getValue();

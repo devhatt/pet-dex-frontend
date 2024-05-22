@@ -7,7 +7,7 @@ const events = [
   'asset:changed',
   'disabled',
   'enabled',
-  'change:value',
+  'value:change',
 ];
 
 const html = `
@@ -80,7 +80,7 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   },
   setValue(value) {
     this.selected.get('input-text').value = value;
-    this.emit('change:value', value);
+    this.emit('value:change', value);
   },
   getValue() {
     return this.selected.get('input-text').value;
