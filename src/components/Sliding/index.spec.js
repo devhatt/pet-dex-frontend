@@ -28,9 +28,9 @@ const propsMock = {
 
 const makeSut = (parameters) => render(new Slinding(parameters));
 
-describe('Sliding', () => {
-  describe('when mount', () => {
-    it('render with 3 itens', async () => {
+describe('Slide', () => {
+  describe('on mount', () => {
+    it('renders with items passed by props', async () => {
       makeSut(propsMock);
       const slide1 = await screen.findByText('slide 1');
       const slide2 = await screen.findByText('slide 2');
@@ -42,64 +42,64 @@ describe('Sliding', () => {
     });
   });
 
-  describe('when call functions', () => {
-    it('add item programmatically', async () => {
-      const sliding = makeSut(propsMock);
-      sliding.add($slide4);
+  it('add item programmatically', async () => {
+    const sliding = makeSut(propsMock);
+    const slidingSpy = vi.spyOn(sliding, 'emit');
 
-      const slide4 = await screen.findByText('slide 4');
+    sliding.add($slide4);
 
-      expect(slide4).toBeInTheDocument();
-    });
+    const slide4 = await screen.findByText('slide 4');
 
-    it('remove item programmatically', async () => {
-      const sliding = makeSut(propsMock);
-      sliding.remove($slide2);
-
-      const slide2 = screen.queryByText('slide 2');
-
-      expect(slide2).not.toBeInTheDocument();
-    });
-
-    it('next item programmatically', async () => {
-      const sliding = makeSut(propsMock);
-
-      const slide1 = await screen.findByText('slide 1');
-      expect(slide1).toHaveClass('sliding__content__slide--active');
-
-      sliding.next();
-
-      const slide2 = await screen.findByText('slide 2');
-      expect(slide2).toHaveClass('sliding__content__slide--active');
-    });
-
-    it('previous item programmatically', async () => {
-      const sliding = makeSut(propsMock);
-
-      const slide1 = await screen.findByText('slide 1');
-      expect(slide1).toHaveClass('sliding__content__slide--active');
-
-      sliding.prev();
-
-      const slide3 = await screen.findByText('slide 3');
-      expect(slide3).toHaveClass('sliding__content__slide--active');
-    });
-
-    it('clear items programmatically', () => {
-      const sliding = makeSut(propsMock);
-      sliding.clear();
-
-      const slide1 = screen.queryByText('slide 1');
-      const slide2 = screen.queryByText('slide 2');
-      const slide3 = screen.queryByText('slide 3');
-
-      expect(slide1).not.toBeInTheDocument();
-      expect(slide2).not.toBeInTheDocument();
-      expect(slide3).not.toBeInTheDocument();
-    });
+    expect(slidingSpy).toHaveBeenCalledWith('slide:add', $slide4);
+    expect(slide4).toBeInTheDocument();
   });
 
-  describe('when unmount', () => {
+  it('remove item programmatically', () => {
+    const sliding = makeSut(propsMock);
+    const slidingSpy = vi.spyOn(sliding, 'emit');
+    sliding.remove($slide2);
+
+    const slide2 = screen.queryByText('slide 2');
+
+    expect(slide2).not.toBeInTheDocument();
+    expect(slidingSpy).toHaveBeenCalledWith('slide:remove', $slide2);
+  });
+
+  it('next item programmatically', () => {
+    const sliding = makeSut(propsMock);
+    const slidingSpy = vi.spyOn(sliding, 'emit');
+
+    sliding.next();
+
+    expect(slidingSpy).toHaveBeenCalledWith('slide:next', $slide2);
+  });
+
+  it('previous item programmatically', () => {
+    const sliding = makeSut(propsMock);
+    const slidingSpy = vi.spyOn(sliding, 'emit');
+
+    sliding.prev();
+
+    expect(slidingSpy).toHaveBeenCalledWith('slide:prev', $slide3);
+  });
+
+  it('clear items programmatically', () => {
+    const sliding = makeSut(propsMock);
+    const slidingSpy = vi.spyOn(sliding, 'emit');
+
+    sliding.clear();
+
+    const slide1 = screen.queryByText('slide 1');
+    const slide2 = screen.queryByText('slide 2');
+    const slide3 = screen.queryByText('slide 3');
+
+    expect(slidingSpy).toHaveBeenCalledWith('slides:clear');
+    expect(slide1).not.toBeInTheDocument();
+    expect(slide2).not.toBeInTheDocument();
+    expect(slide3).not.toBeInTheDocument();
+  });
+
+  describe('on unmount', () => {
     it('clear items', () => {
       const element = makeSut(propsMock);
       const sliding = screen.getByTestId('sliding-content');
