@@ -44,7 +44,7 @@ export default function PetRegister() {
 
     this.button.setIsDisabled(!validInput || !validImage);
   };
-  updateButtonVisibility();
+  // updateButtonVisibility();
 
   this.upload.listen('value:change', updateButtonVisibility);
   this.input.listen('value:change', updateButtonVisibility);
