@@ -1,6 +1,8 @@
+/// <reference types="vitest" />
 // vite.config.js
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
+import jsconfigPaths from 'vite-jsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
@@ -12,7 +14,20 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     root: resolve(__dirname, ''),
+    coverage: {
+      include: ['src/**/*.js'],
+      exclude: ['src/**/*.spec.js'],
+      reportOnFailure: true,
+      thresholds: {
+        lines: 30,
+        statements: 30,
+        branches: 30,
+        functions: 30,
+      },
+      reporter: ['text', 'lcov', 'html', 'json', 'json-summary'],
+    },
     include: ['src/**/*.spec.js'],
+    setupFiles: ['src/__tests__/setup.js'],
   },
   build: {
     outDir: resolve(__dirname, 'dist'),
@@ -70,5 +85,6 @@ export default defineConfig({
         display: 'standalone',
       },
     }),
+    jsconfigPaths(),
   ],
 });

@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['active'];
+const events = ['active', 'deactive'];
 
 const html = `
   <div class="pet-container" data-select="pet-container">
@@ -19,7 +19,6 @@ export default function PetCard({ title, imgSrc, imgAlt }) {
 
   petContainer.addEventListener('click', () => {
     this.toggle();
-    this.active();
   });
 
   petContainer.addEventListener('mouseenter', () => {
@@ -58,11 +57,23 @@ PetCard.prototype = Object.assign(PetCard.prototype, Component.prototype, {
   setImgAlt(alt) {
     this.selected.get('pet-image').alt = alt;
   },
+  isActive() {
+    return this.selected
+      .get('pet-container')
+      .classList.contains('pet-container--active');
+  },
   toggle() {
+    if (this.isActive()) this.deactivate();
+    else this.activate();
+  },
+  activate() {
     const petContainer = this.selected.get('pet-container');
     petContainer.classList.add('pet-container--active');
-  },
-  active() {
     this.emit('active');
+  },
+  deactivate() {
+    const petContainer = this.selected.get('pet-container');
+    petContainer.classList.remove('pet-container--active');
+    this.emit('deactive');
   },
 });
