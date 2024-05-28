@@ -44,56 +44,62 @@ describe('Slide', () => {
 
   it('add item programmatically', async () => {
     const sliding = makeSut(propsMock);
-    const slidingSpy = vi.spyOn(sliding, 'emit');
 
+    const callback = vi.fn();
+    sliding.listen('slide:add', callback);
     sliding.add($slide4);
 
     const slide4 = await screen.findByText('slide 4');
 
-    expect(slidingSpy).toHaveBeenCalledWith('slide:add', $slide4);
+    expect(callback).toBeCalledWith($slide4);
     expect(slide4).toBeInTheDocument();
   });
 
   it('remove item programmatically', () => {
     const sliding = makeSut(propsMock);
-    const slidingSpy = vi.spyOn(sliding, 'emit');
+
+    const callback = vi.fn();
+    sliding.listen('slide:remove', callback);
     sliding.remove($slide2);
 
     const slide2 = screen.queryByText('slide 2');
 
     expect(slide2).not.toBeInTheDocument();
-    expect(slidingSpy).toHaveBeenCalledWith('slide:remove', $slide2);
+    expect(callback).toHaveBeenCalledWith($slide2);
   });
 
   it('next item programmatically', () => {
     const sliding = makeSut(propsMock);
-    const slidingSpy = vi.spyOn(sliding, 'emit');
 
+    const callback = vi.fn();
+    sliding.listen('slide:next', callback);
     sliding.next();
 
-    expect(slidingSpy).toHaveBeenCalledWith('slide:next', $slide2);
+    expect(callback).toBeCalledWith($slide2);
   });
 
   it('previous item programmatically', () => {
     const sliding = makeSut(propsMock);
-    const slidingSpy = vi.spyOn(sliding, 'emit');
 
+    const callback = vi.fn();
+    sliding.listen('slide:prev', callback);
     sliding.prev();
 
-    expect(slidingSpy).toHaveBeenCalledWith('slide:prev', $slide3);
+    expect(callback).toBeCalledWith($slide3);
   });
 
   it('clear items programmatically', () => {
     const sliding = makeSut(propsMock);
-    const slidingSpy = vi.spyOn(sliding, 'emit');
 
+    const callback = vi.fn();
+    sliding.listen('slides:clear', callback);
     sliding.clear();
 
     const slide1 = screen.queryByText('slide 1');
     const slide2 = screen.queryByText('slide 2');
     const slide3 = screen.queryByText('slide 3');
 
-    expect(slidingSpy).toHaveBeenCalledWith('slides:clear');
+    expect(callback).toBeCalledWith();
     expect(slide1).not.toBeInTheDocument();
     expect(slide2).not.toBeInTheDocument();
     expect(slide3).not.toBeInTheDocument();
