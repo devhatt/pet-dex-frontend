@@ -15,7 +15,8 @@
   padding: 2rem;
   border: 1px solid colors.$gray150;
 
-  box-shadow: rgb(50, 50, 71);
+  box-shadow: 0 0 2px 2px rgba(50, 50, 71, 0.04);
+
   border-radius: 1.8rem;
 
   &__header {
