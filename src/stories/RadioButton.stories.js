@@ -32,3 +32,10 @@ export const Disabled = {
     disabled: true,
   },
 };
+
+export const Borderless = {
+  args: {
+    ...Default.args,
+    borderless: true,
+  },
+};

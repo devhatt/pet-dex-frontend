@@ -10,7 +10,7 @@ const events = [
 ];
 
 const html = `
-<label class="radio-container">
+<label class="radio-container" data-select="radio-container">
     <input data-select="radio-button" type="radio" class="radio-container__input" name="" value="">
     <span data-select="radio-button-text" class="radio-container__dot"></span>
 </label>
@@ -22,6 +22,7 @@ export default function RadioButton({
   value = '',
   name = '',
   disabled = false,
+  borderless = false,
 } = {}) {
   Component.call(this, { html, events });
 
@@ -30,11 +31,11 @@ export default function RadioButton({
   this.setValue(value);
   this.setName(name);
   this.setDisabled(disabled);
-
+  this.setBorderless(borderless);
   const $radioButton = this.selected.get('radio-button');
 
   $radioButton.addEventListener('change', (e) => {
-    this.setChecked(e.target.checked);
+    this.setCheck(e.target.checked);
   });
 }
 
@@ -85,6 +86,15 @@ RadioButton.prototype = Object.assign(
       const $radioButton = this.selected.get('radio-button');
       $radioButton.name = name;
       this.emit('name:change', name);
+    },
+
+    setBorderless(borderless = false) {
+      const $radioContainer = this.selected.get('radio-container');
+      if (borderless) {
+        $radioContainer.classList.add('radio-container--borderless');
+      } else {
+        $radioContainer.classList.remove('radio-container--borderless');
+      }
     },
   },
 );

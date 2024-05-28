@@ -6,8 +6,6 @@
 
   align-items: center;
 
-  margin: 1rem;
-
   cursor: pointer;
 
   &__input {
@@ -15,7 +13,7 @@
     height: 2.2rem;
 
     margin: 0.8rem;
-    border: 0.2rem solid colors.$gray500;
+    border: 2px solid colors.$gray250;
 
     border-radius: 0.5rem;
 
@@ -23,15 +21,13 @@
     appearance: none;
 
     &:checked {
-      border-color: colors.$primary500;
+      border-color: colors.$primary200;
 
-      background: colors.$primary500 url('./images/check.svg') no-repeat center
+      background: colors.$primary200 url('./images/check.svg') no-repeat center
         center/70%;
     }
 
     &:disabled {
-      border-color: colors.$gray500;
-
       cursor: not-allowed;
     }
   }
@@ -39,10 +35,7 @@
   &__checkboxText {
     font-family: fonts.$primaryFont;
     color: colors.$gray800;
-    text-align: left;
     font-size: fonts.$xs;
     font-weight: fonts.$semiBold;
-    line-height: 2;
-    letter-spacing: 0;
   }
 }

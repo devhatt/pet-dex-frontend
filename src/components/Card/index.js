@@ -18,7 +18,6 @@ export default function Card() {
   this.selected.get('card-button').addEventListener('click', () => {
     if (!this.enable) return;
     this.purchase();
-    console.log('purchase padrao do componente');
   });
 }
 
@@ -26,9 +25,11 @@ Card.prototype = Object.assign(Card.prototype, Component.prototype, {
   setTitle(text) {
     this.selected.get('card-title').textContent = text;
   },
+
   purchase() {
     this.emit('purchase');
   },
+
   disable() {
     this.enable = false;
   },
