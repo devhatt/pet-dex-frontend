@@ -12,7 +12,7 @@ const events = [
 
 const html = `
 <div class="sliding" data-select="sliding">
-  <div class="sliding__content" data-select="sliding-content" data-testid="sliding-content">
+  <div class="sliding__content" data-select="sliding-content">
   </div>
 </div>`;
 
@@ -38,7 +38,7 @@ export default function Sliding({ slides = [] }) {
 
   slides.forEach((item) => this.add(item));
 
-  const $sliding = this.selected.get('sliding-content');
+  const $sliding = this.selected.get('sliding');
 
   makeSwipable($sliding);
   initializeSwiper();

@@ -42,6 +42,26 @@ describe('Slide', () => {
     });
   });
 
+  describe('on unmount', () => {
+    it('clear items', () => {
+      const element = makeSut(propsMock);
+
+      const callback = vi.fn();
+      element.listen('unmount', callback);
+
+      const slide1 = screen.queryByText('slide 1');
+      const slide2 = screen.queryByText('slide 2');
+      const slide3 = screen.queryByText('slide 3');
+
+      element.unmount();
+
+      expect(callback).toBeCalledWith();
+      expect(slide1).not.toBeInTheDocument();
+      expect(slide2).not.toBeInTheDocument();
+      expect(slide3).not.toBeInTheDocument();
+    });
+  });
+
   it('add item programmatically', async () => {
     const sliding = makeSut(propsMock);
 
@@ -103,18 +123,5 @@ describe('Slide', () => {
     expect(slide1).not.toBeInTheDocument();
     expect(slide2).not.toBeInTheDocument();
     expect(slide3).not.toBeInTheDocument();
-  });
-
-  describe('on unmount', () => {
-    it('clear items', () => {
-      const element = makeSut(propsMock);
-      const sliding = screen.getByTestId('sliding-content');
-
-      const slidingSpy = vi.spyOn(sliding, 'removeEventListener');
-
-      element.unmount();
-
-      expect(slidingSpy).toHaveBeenCalled();
-    });
   });
 });
