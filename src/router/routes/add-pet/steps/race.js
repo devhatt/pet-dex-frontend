@@ -1,4 +1,4 @@
-import NoPetRegirestedPage from '../../../../home/components/NoPetRegirestedPage';
+import NoPetRegirestedPage from '../../../../pages/layouts/NoPetRegirestedPage';
 
 export default {
   pathname: '/pet-race',

@@ -1,4 +1,4 @@
-import PetWeightPage from '../home/components/PetWeightPage';
+import PetWeightPage from '../pages/layouts/PetWeightPage';
 
 export default {
   title: 'Pages/PetWeightPage',
