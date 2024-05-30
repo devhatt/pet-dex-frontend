@@ -6,7 +6,7 @@ import jsconfigPaths from 'vite-jsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  root: resolve(__dirname, 'src/home/'),
+  root: resolve(__dirname, 'src/'),
   define: {
     __isBrowser__: true,
   },
