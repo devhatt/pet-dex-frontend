@@ -1,3 +1,4 @@
+import { initializeSwiper } from '../utils/swiper';
 import Sliding from '../components/Sliding';
 import Button from '../components/Button';
 
@@ -28,17 +29,14 @@ export default {
   render: (args) => {
     const sliding = new Sliding(args);
     const $container = document.createElement('div');
+    initializeSwiper();
     window.sliding = sliding;
     sliding.mount($container);
     button4.mount($container);
     button5.mount($container);
 
-    $container.children[1].addEventListener('click', () => {
-      sliding.prev();
-    });
-    $container.children[2].addEventListener('click', () => {
-      sliding.next();
-    });
+    button4.listen('click', () => sliding.previous());
+    button5.listen('click', () => sliding.next());
 
     return $container;
   },

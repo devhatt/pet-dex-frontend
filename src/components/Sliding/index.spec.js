@@ -102,8 +102,8 @@ describe('Slide', () => {
     const sliding = makeSut(propsMock);
 
     const callback = vi.fn();
-    sliding.listen('slide:prev', callback);
-    sliding.prev();
+    sliding.listen('slide:previous', callback);
+    sliding.previous();
 
     expect(callback).toBeCalledWith($slide3);
   });

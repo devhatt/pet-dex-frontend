@@ -1,66 +1,56 @@
 import { Component } from 'pet-dex-utilities';
-import { initializeSwiper, makeSwipable } from '../../utils/swiper';
+import { makeSwipable } from '../../utils/swiper';
 import './index.scss';
 
 const events = [
   'slide:add',
   'slide:next',
-  'slide:prev',
+  'slide:previous',
   'slide:remove',
   'slides:clear',
 ];
 
+const activeSlide = (slides, slide) => {
+  Array.from(slides).forEach((item) => {
+    item.classList.toggle('sliding__slide--active', item === slide);
+  });
+};
+
 const html = `
-<div class="sliding" data-select="sliding">
-  <div class="sliding__content" data-select="sliding-content">
-  </div>
-</div>`;
+  <div class="sliding" data-select="sliding">
+    <div class="sliding__content" data-select="sliding-content">
+    </div>
+  </div>`;
 
 export default function Sliding({ slides = [] }) {
   Component.call(this, { html, events });
 
   this.slideIndex = 0;
-  this.slides = [];
-
-  this.updateSlides = () => {
-    this.slides = Array.from(this.selected.get('sliding-content').children);
-  };
-
-  this.setSlide = (slide) => {
-    this.slides.forEach((item) => {
-      if (item === slide) {
-        item.classList.add('sliding__content__slide--active');
-      } else {
-        item.classList.remove('sliding__content__slide--active');
-      }
-    });
-  };
 
   slides.forEach((item) => this.add(item));
 
   const $sliding = this.selected.get('sliding');
 
   makeSwipable($sliding);
-  initializeSwiper();
 
   this.listen('mount', () => {
+    activeSlide(
+      Array.from(this.selected.get('sliding-content').children),
+      this.selected.get('sliding-content').children[0],
+    );
     $sliding.addEventListener('swipe-left', () => this.next());
-    $sliding.addEventListener('swipe-right', () => this.prev());
-    $sliding.addEventListener('click', this.setSlide(this.slides[0]));
+    $sliding.addEventListener('swipe-right', () => this.previous());
   });
   this.listen('unmount', () => {
     $sliding.removeEventListener('swipe-left', () => this.next());
-    $sliding.removeEventListener('swipe-right', () => this.prev());
-    $sliding.removeEventListener('click', this.setSlide(this.slides[0]));
+    $sliding.removeEventListener('swipe-right', () => this.previous());
   });
 }
 
 Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
   add(slide) {
-    slide.classList.add('sliding__content__slide');
+    slide.classList.add('sliding__slide');
     this.selected.get('sliding-content').appendChild(slide);
-
-    this.updateSlides();
 
     this.emit('slide:add', slide);
   },
@@ -68,42 +58,42 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
   remove(slide) {
     this.selected.get('sliding-content').removeChild(slide);
 
-    this.updateSlides();
-
     this.emit('slide:remove', slide);
   },
 
   next() {
     this.slideIndex += 1;
+    const slides = this.selected.get('sliding-content').children;
 
-    if (this.slideIndex > this.slides.length - 1) this.slideIndex = 0;
+    if (this.slideIndex > slides.length - 1) this.slideIndex = 0;
 
-    const slide =
-      this.selected.get('sliding-content').children[this.slideIndex];
+    const slide = slides[this.slideIndex];
     const container = this.selected.get('sliding').clientWidth;
     this.selected.get('sliding-content').style.transform =
       `translateX(${-this.slideIndex * container}px)`;
-    this.setSlide(slide);
+    activeSlide(slides, slide);
     this.emit('slide:next', slide);
   },
 
-  prev() {
+  previous() {
     this.slideIndex -= 1;
+    const slides = this.selected.get('sliding-content').children;
 
-    if (this.slideIndex < 0) this.slideIndex = this.slides.length - 1;
+    if (this.slideIndex < 0) this.slideIndex = slides.length - 1;
 
-    const slide =
-      this.selected.get('sliding-content').children[this.slideIndex];
+    const slide = slides[this.slideIndex];
     const container = this.selected.get('sliding').clientWidth;
 
     this.selected.get('sliding-content').style.transform =
       `translateX(${-this.slideIndex * container}px)`;
-    this.setSlide(slide);
-    this.emit('slide:prev', slide);
+    activeSlide(slides, slide);
+    this.emit('slide:previous', slide);
   },
 
   clear() {
-    this.slides.forEach((slide) => this.remove(slide));
+    Array.from(this.selected.get('sliding-content').children).forEach((slide) =>
+      this.remove(slide),
+    );
 
     this.emit('slides:clear');
   },
