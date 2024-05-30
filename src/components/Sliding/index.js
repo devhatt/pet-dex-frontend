@@ -33,17 +33,25 @@ export default function Sliding({ slides = [] }) {
 
   makeSwipable($sliding);
 
+  this.swipeLeft = () => {
+    this.next();
+  };
+
+  this.swipeRight = () => {
+    this.previous();
+  };
+
   this.listen('mount', () => {
     activeSlide(
       Array.from(this.selected.get('sliding-content').children),
       this.selected.get('sliding-content').children[0],
     );
-    $sliding.addEventListener('swipe-left', () => this.next());
-    $sliding.addEventListener('swipe-right', () => this.previous());
+    $sliding.addEventListener('swipe-left', this.swipeLeft());
+    $sliding.addEventListener('swipe-right', this.swipeRight());
   });
   this.listen('unmount', () => {
-    $sliding.removeEventListener('swipe-left', () => this.next());
-    $sliding.removeEventListener('swipe-right', () => this.previous());
+    $sliding.removeEventListener('swipe-left', this.swipeLeft());
+    $sliding.removeEventListener('swipe-right', this.swipeRight());
   });
 }
 
