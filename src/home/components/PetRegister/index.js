@@ -38,13 +38,11 @@ export default function PetRegister() {
 
   const updateButtonVisibility = () => {
     const input = this.input.getValue();
-    const image = this.upload.getValue();
-    const validInput = input !== '' && input != null;
-    const validImage = image !== '' && image != null;
+    const image = this.upload.getImage();
 
-    this.button.setIsDisabled(!validInput || !validImage);
+    this.button.setIsDisabled(!(input && image));
   };
-  // updateButtonVisibility();
+  updateButtonVisibility();
 
   this.upload.listen('value:change', updateButtonVisibility);
   this.input.listen('value:change', updateButtonVisibility);

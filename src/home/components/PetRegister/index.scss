@@ -5,22 +5,16 @@
 .pet-register {
   display: flex;
   flex-direction: column;
-
-  align-items: center;
-  justify-content: space-between;
-
-  margin-top: 14.2rem;
+  margin-top: 12.7rem;
 
   &__container {
     width: 100%;
   }
 
   &__image {
-    max-width: fit-content;
+    max-width: 18.6rem;
 
     margin: 5rem auto;
-
-    transform: scale(1.2);
   }
 
   &__title {
@@ -39,22 +33,6 @@
     margin: 0 auto;
   }
 
-  &--inputStyle {
-    font-size: fonts.$xs;
-
-    padding: 1.5rem;
-    border: 1px solid rgb(163, 163, 163);
-    border-color: rgb(217, 223, 230);
-
-    box-sizing: border-box;
-
-    background-repeat: no-repeat;
-    background-size: auto 60%;
-    border-radius: 14px;
-
-    transition: border-color 0.3s ease-in-out;
-  }
-
   &__button {
     width: 100%;
 
@@ -68,9 +46,7 @@
 
 @include breakpoints.from1024 {
   .pet-register {
-    &__image {
-      transform: scale(1.5);
-    }
+    align-items: center;
 
     &__title {
       font-size: fonts.$sm;
