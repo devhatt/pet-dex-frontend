@@ -1,0 +1,45 @@
+@use '~styles/colors' as colors;
+@use '~styles/fonts' as fonts;
+
+.pet-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  align-items: center;
+  aspect-ratio: 1/1;
+
+  &__img {
+    min-width: 6rem;
+    height: 100%;
+    min-height: 6rem;
+
+    outline: 0.15rem solid colors.$gray500;
+
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+
+    &--active {
+      outline: 0.3rem solid colors.$primary200;
+    }
+  }
+
+  &__title {
+    height: 100%;
+    min-height: 2.2rem;
+    max-height: 2.2rem;
+    overflow: hidden;
+
+    font-family: fonts.$secondaryFont;
+
+    color: colors.$gray200;
+    text-align: center;
+    font-weight: fonts.$regular;
+
+    &--active {
+      color: colors.$primary200;
+      font-weight: fonts.$semiBold;
+    }
+  }
+}
