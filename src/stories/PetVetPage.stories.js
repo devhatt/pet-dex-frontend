@@ -5,6 +5,7 @@ export default {
   render: (args) => {
     const petVetPage = new PetVetPage(args);
     const $container = document.createElement('div');
+    $container.style.height = '826px';
     petVetPage.mount($container);
 
     return $container;
