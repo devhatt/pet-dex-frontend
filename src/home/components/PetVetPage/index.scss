@@ -53,6 +53,7 @@
     padding: 1.6rem;
 
     box-shadow: 0 0 2px 2px rgba(50, 50, 71, 0.04);
+
     border-radius: 1.4rem;
   }
 
@@ -131,9 +132,17 @@
     }
 
     &__card-group {
-      overflow: auto;
-
       gap: 2.4rem;
+    }
+  }
+}
+
+@container (min-height: 790px) {
+  @include breakpoints.from667 {
+    .petvet-page {
+      &__card-group {
+        overflow: auto;
+      }
     }
   }
 }

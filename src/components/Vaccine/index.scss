@@ -3,8 +3,6 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .vaccine {
-  overflow: auto;
-
   display: flex;
   flex-direction: column;
 
@@ -79,10 +77,6 @@
     display: none;
   }
 
-  &__scroll {
-    overflow-y: auto;
-  }
-
   &__sections {
     margin-right: 2rem;
   }
@@ -100,6 +94,18 @@
 
     &__add-vacine-text {
       display: block;
+    }
+  }
+}
+
+@container (min-height: 790px) {
+  @include breakpoints.from667 {
+    .vaccine {
+      overflow: auto;
+
+      &__scroll {
+        overflow: auto;
+      }
     }
   }
 }
