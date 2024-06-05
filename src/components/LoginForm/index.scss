@@ -169,7 +169,9 @@
       }
     }
   }
+}
 
+.login-form-container {
   @include breakpoints.from667 {
     padding: 6.2rem 8rem;
   }
