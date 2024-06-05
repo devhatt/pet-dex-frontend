@@ -1,4 +1,4 @@
-import NoPetRegirestedPage from '../../../../pages/layouts/NoPetRegirestedPage';
+import NoPetRegirestedPage from '../../../../layouts/pages/NoPetRegirestedPage';
 
 export default {
   pathname: '/settings',

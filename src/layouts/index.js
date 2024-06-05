@@ -2,8 +2,8 @@ import { extractElements } from 'pet-dex-utilities';
 import mainRouter from '../router/main-router';
 import { initializeSwiper } from '../utils/swiper';
 import './index.scss';
-import Navigation from './layouts/Navigation';
-import SideMenu from './layouts/SideMenu';
+import Navigation from './pages/Navigation';
+import SideMenu from './pages/SideMenu';
 import initializeScrollable from './utils/scrollable-sidemenu';
 
 document.addEventListener('DOMContentLoaded', () => {
