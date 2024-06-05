@@ -27,34 +27,6 @@
           "favLang": "pt-br",
           "receiveNews": true
         }
-      },
-      {
-        "id": "2",
-        "name": "fulano da silva",
-        "email": "fulano@email.com",
-        "password": "12345678",
-        "phone": "(11) 92112-3355",
-        "local": "São Paulo",
-        "pets": [
-          {
-            "id": "1",
-            "breed": "Xitzu",
-            "name": "Belinha",
-            "size": {
-              "small": "X",
-              "medium": "",
-              "large": ""
-            },
-            "weight": 10,
-            "birthday": "20-05-2020",
-            "castrated": true,
-            "specialNeeds": false
-          }
-        ],
-        "preferences": {
-          "favLang": "pt-br",
-          "receiveNews": true
-        }
       }
     ],
     "breed": [
