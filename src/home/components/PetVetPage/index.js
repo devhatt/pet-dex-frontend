@@ -38,6 +38,7 @@ const html = `
         </div>
       </div>
     </div>
+    <div class="petvet-page__footer" data-select="footer"></div>
   </div>
 `;
 
@@ -52,7 +53,7 @@ function createAndMount({ name, text, mountTo }) {
 export default function PetVetPage({ vaccines = [] } = {}) {
   Component.call(this, { html, events });
 
-  const $container = this.selected.get('container');
+  const $footer = this.selected.get('footer');
   const $specialCareRadio = this.selected.get('special-care-radio');
   const $neuteredRadio = this.selected.get('neutered-radio');
   const $cardGroup = this.selected.get('card-group');
@@ -113,7 +114,7 @@ export default function PetVetPage({ vaccines = [] } = {}) {
   });
 
   this.button.selected.get('button').classList.add('petvet-page__button');
-  this.button.mount($container);
+  this.button.mount($footer);
 
   const emitForm = () => {
     form.vaccines = this.vaccine.listVaccines();

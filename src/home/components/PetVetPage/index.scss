@@ -39,8 +39,6 @@
     flex-direction: column;
 
     gap: 1.6rem;
-
-    margin-bottom: 1rem;
   }
 
   &__card {
@@ -83,10 +81,18 @@
     align-items: center;
   }
 
+  &__footer {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+  }
+
   &__button {
     width: min(100%, 42rem);
 
-    margin-top: auto;
+    margin-top: 2rem;
   }
 }
 
@@ -133,6 +139,10 @@
 
     &__card-group {
       gap: 2.4rem;
+    }
+
+    &__button {
+      margin-top: 3rem;
     }
   }
 }
