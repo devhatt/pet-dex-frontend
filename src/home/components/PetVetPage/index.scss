@@ -92,7 +92,8 @@
   &__button {
     width: min(100%, 42rem);
 
-    margin-top: 2rem;
+    margin-top: 2.4rem;
+    margin-bottom: 2.4rem;
   }
 }
 
@@ -142,7 +143,7 @@
     }
 
     &__button {
-      margin-top: 3rem;
+      margin-bottom: 0;
     }
   }
 }
