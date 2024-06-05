@@ -32,7 +32,11 @@ const html = `
       <a href="#" class="signup-link">Inscreva-se</a>
     </span>
 
-    <div class="login-form-container__separator"></div>
+    <div class="login-form-container__separator">
+      <hr class="divisor" />
+      <span class="separator-text">Ou</span>
+      <hr class="divisor" />
+    </div>
 
     <div data-select="provider-container" class="login-form-container__provider-container">
       <button class="provider-button"><img src="${googleIcon}" class="icon"/ >Google</button>

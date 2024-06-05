@@ -115,22 +115,17 @@
   }
 
   &__separator {
-    width: 100%;
+    display: flex;
 
-    border: 0.1rem solid colors.$gray200;
+    .divisor {
+      width: 100%;
 
-    position: relative;
+      border: unset;
+      border-top: 0.1rem solid colors.$gray200;
+    }
 
-    &::after {
-      padding: 0 2.8rem;
-
-      position: absolute;
-      left: 50%;
-
-      background-color: rgb(255, 255, 255);
-      transform: translateY(-50%) translateX(-50%);
-
-      content: 'Ou';
+    .separator-text {
+      margin: 0 2.8rem;
     }
   }
 
