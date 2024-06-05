@@ -1,5 +1,5 @@
 {
-    "users": [
+    "user": [
       {
         "id": "1",
         "name": "Edward Elrick",
@@ -38,7 +38,7 @@
         "pets": [
           {
             "id": "1",
-            "breed": "Xitsu",
+            "breed": "Xitzu",
             "name": "Belinha",
             "size": {
               "small": "X",
@@ -67,6 +67,11 @@
         "id": "2",
         "img": "https://img.freepik.com/fotos-gratis/cachorro-beagle-tricolor-posando_155003-31772.jpg",
         "breed": "Beagle"
+      },
+      {
+        "id": "3",
+        "img": "https://img.freepik.com/fotos-premium/retrato-de-um-husky-siberiano-feliz-ao-ar-livre-em-um-dia-de-inverno_392895-29885.jpg",
+        "breed": "Husky Siberiano"
       }
     ]
   }
