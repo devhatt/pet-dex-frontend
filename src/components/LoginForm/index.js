@@ -55,7 +55,7 @@ export default function LoginForm() {
     assetPosition: 'suffix',
   });
   const toggle = new Toggle({ checked: false });
-  const buttonSubmit = new Button({
+  const submitButton = new Button({
     text: 'Entrar',
     isFullWidth: true,
     isDisabled: true,
@@ -63,40 +63,42 @@ export default function LoginForm() {
 
   emailInput.mount($inputContainer);
   passwordInput.mount($inputContainer);
-  buttonSubmit.mount($loginForm);
+  submitButton.mount($loginForm);
   toggle.mount($rememberOption);
 
   emailInput.selected.get('input-text').type = 'email';
   emailInput.selected.get('input-text').id = 'email';
   passwordInput.selected.get('input-text').type = 'password';
 
-  const checkInputs = () => {
-    const emailValue = emailInput.selected.get('input-text').value;
-    const passwordValue = passwordInput.selected.get('input-text').value;
-    if (emailValue.trim() !== '' && passwordValue !== '') {
-      buttonSubmit.enable();
+  const validateFields = () => {
+    const email = emailInput.selected.get('input-text').value;
+    const password = passwordInput.selected.get('input-text').value;
+    if (email.trim() !== '' && password !== '') {
+      submitButton.enable();
       return;
     }
-    buttonSubmit.disable();
+    submitButton.disable();
   };
 
-  emailInput.selected.get('input-text').addEventListener('input', checkInputs);
+  emailInput.selected
+    .get('input-text')
+    .addEventListener('input', validateFields);
   passwordInput.selected
     .get('input-text')
-    .addEventListener('input', checkInputs);
+    .addEventListener('input', validateFields);
 
-  buttonSubmit.listen('click', () => {
-    const emailValue = emailInput.selected.get('input-text').value;
-    const passwordValue = passwordInput.selected.get('input-text').value;
+  submitButton.listen('click', () => {
+    const email = emailInput.selected.get('input-text').value;
+    const password = passwordInput.selected.get('input-text').value;
 
-    if (!this.validateEmail(emailValue)) {
+    if (!this.validateEmail(email)) {
       $errorMessage.style.display = 'block';
       $errorMessage.innerText = 'E-mail inválido';
       emailInput.inputError();
       return;
     }
 
-    if (!this.validatePassword(passwordValue)) {
+    if (!this.validatePassword(password)) {
       $errorMessage.style.display = 'block';
       $errorMessage.innerText =
         'Senha inválida. Sua senha deve conter no mínimo 10 caracteres, incluindo pelo menos um caractere especial e uma letra maiúscula.';
