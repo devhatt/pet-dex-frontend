@@ -28,9 +28,9 @@ const html = `
       </div>
     </form>
 
-    <p class="login-form-container__signup">Não tem uma conta? 
+    <span class="login-form-container__signup">Não tem uma conta? 
       <a href="#" class="signup-link">Inscreva-se</a>
-    </p>
+    </span>
 
     <div class="login-form-container__separator"></div>
 
