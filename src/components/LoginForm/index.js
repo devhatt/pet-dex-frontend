@@ -1,8 +1,8 @@
 import { Component } from 'pet-dex-utilities';
 import TextInput from '../TextInput';
-import './index.scss';
 import Button from '../Button';
 import Toggle from '../Toggle';
+import './index.scss';
 
 import pawIcon from './images/paw-form-icon.svg';
 import eyeSlashIcon from './images/eye-slash.svg';
