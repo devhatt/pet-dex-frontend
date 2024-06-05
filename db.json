@@ -1,0 +1,49 @@
+{
+  "user": [
+    {
+      "id": "1",
+      "name": "Edward Elrick",
+      "email": "edward@email.com",
+      "password": "12345678",
+      "phone": "(11) 92112-3355",
+      "local": "São Paulo",
+      "pets": [
+        {
+          "id": "1",
+          "breed": "Spitz",
+          "name": "Mel",
+          "size": {
+            "small": "X",
+            "medium": "",
+            "large": ""
+          },
+          "weight": 10,
+          "birthday": "20-05-2022",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "pt-br",
+        "receiveNews": true
+      }
+    }
+  ],
+  "breed": [
+    {
+      "id": "1",
+      "img": "https://img.freepik.com/fotos-gratis/vista-frontal-bonito-cao-sentado_23-2148423631.jpg",
+      "breed": "Border collie"
+    },
+    {
+      "id": "2",
+      "img": "https://img.freepik.com/fotos-gratis/cachorro-beagle-tricolor-posando_155003-31772.jpg",
+      "breed": "Beagle"
+    },
+    {
+      "id": "3",
+      "img": "https://img.freepik.com/fotos-premium/retrato-de-um-husky-siberiano-feliz-ao-ar-livre-em-um-dia-de-inverno_392895-29885.jpg",
+      "breed": "Husky Siberiano"
+    }
+  ]
+}
