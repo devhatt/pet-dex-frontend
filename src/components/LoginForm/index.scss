@@ -2,36 +2,39 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
+$pawIconSize: 128px;
+
 .login-form-container {
   font-family: 'Poppins', sans-serif;
 
   padding: 6.2rem 4rem;
 
-  position: relative;
-
   background-color: rgb(255, 255, 255);
   border-radius: 1.5rem;
 
   &__container-paw-icon {
-    width: 12.8rem;
-    height: 12.8rem;
+    width: 100%;
+    max-width: $pawIconSize;
+    height: $pawIconSize;
 
     display: flex;
 
     justify-content: center;
 
-    position: absolute;
-    top: -7rem;
-    left: 50%;
+    margin: 0 auto;
+    margin-bottom: calc($pawIconSize / -2);
+
+    position: relative;
+    z-index: 1;
 
     background-color: rgb(255, 255, 255);
-    transform: translateX(-50%);
     border-radius: 100%;
 
     .paw-icon {
-      max-width: 5.8rem;
+      width: 100%;
 
-      transform: translateY(-2rem);
+      margin-bottom: 4.5rem;
+      padding: 1.6rem;
     }
   }
 

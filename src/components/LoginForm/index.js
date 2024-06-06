@@ -10,37 +10,39 @@ import googleIcon from './images/google-icon.svg';
 import facebookIcon from './images/facebook-icon.svg';
 
 const html = `
-  <div class="login-form-container">
+  <div>
     <div class="login-form-container__container-paw-icon">
-      <img class="paw-icon" src="${pawIcon}" />
+      <img class="paw-icon" src="${pawIcon}" alt="Ícone de uma pata de animal" />
     </div>
-
-    <h2 class="login-form-container__title">Sua petconta</h2>
-    <form data-select="login-form" class="login-form-container__login-form" action="submit">
-      <div data-select="input-container" class="input-container"></div>
-      <span data-select="error-message" class="error-message">Error Message</span>
     
-      <div class="login-form-container__login-options">
-        <div data-select="remember-option" class="remember-option">
-          <p>Remember me</P>
+    <div class="login-form-container">
+      <h2 class="login-form-container__title">Sua petconta</h2>
+      <form data-select="login-form" class="login-form-container__login-form" action="submit">
+        <div data-select="input-container" class="input-container"></div>
+        <span data-select="error-message" class="error-message">Error Message</span>
+      
+        <div class="login-form-container__login-options">
+          <div data-select="remember-option" class="remember-option">
+            <p>Remember me</P>
+          </div>
+          <a href="#" class="forgot-password">Esqueceu a senha?</a>
         </div>
-        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+      </form>
+
+      <span class="login-form-container__signup">Não tem uma conta? 
+        <a href="#" class="signup-link">Inscreva-se</a>
+      </span>
+
+      <div class="login-form-container__separator">
+        <hr class="divisor" />
+        <span class="separator-text">Ou</span>
+        <hr class="divisor" />
       </div>
-    </form>
 
-    <span class="login-form-container__signup">Não tem uma conta? 
-      <a href="#" class="signup-link">Inscreva-se</a>
-    </span>
-
-    <div class="login-form-container__separator">
-      <hr class="divisor" />
-      <span class="separator-text">Ou</span>
-      <hr class="divisor" />
-    </div>
-
-    <div data-select="provider-container" class="login-form-container__provider-container">
-      <button class="provider-button"><img src="${googleIcon}" class="icon"/ >Google</button>
-      <button class="provider-button"><img src="${facebookIcon}" class="icon"/ >Facebook</button>
+      <div data-select="provider-container" class="login-form-container__provider-container">
+        <button class="provider-button"><img src="${googleIcon}" class="icon"/ >Google</button>
+        <button class="provider-button"><img src="${facebookIcon}" class="icon"/ >Facebook</button>
+      </div>
     </div>
   </div>
 `;
