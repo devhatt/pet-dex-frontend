@@ -9,6 +9,7 @@ export default {
     $container.style.height = '826px';
     $container.style.containerType = 'size';
     $container.style.overflow = 'auto';
+
     petVetPage.mount($container);
 
     return $container;
