@@ -31,12 +31,12 @@ const html = `
       <div class="side-menu-content__line"></div>
       <div class="side-menu-content__itens" alt="itens-um">
         <ul class="side-menu-content__ul" data-select="menuitens">
-          <li><a class="side-menu-content__menuitens" href="#"><img src="${meusPets}" alt="Meus Pets">Meus Pets</a></li>
-          <li><a class="side-menu-content__menuitens" href="#"><img src="${petdex}" alt="Pet Dex">Pet Dex</a></li>
-          <li><a class="side-menu-content__menuitens" href="#"><img src="${doacoes}" alt="Doacoes">Doações</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/pets"><img src="${meusPets}" alt="Meus Pets">Meus Pets</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/pet-dex"><img src="${petdex}" alt="Pet Dex">Pet Dex</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/donates"><img src="${doacoes}" alt="Doacoes">Doações</a></li>
           <hr class="side-menu-content__lineinside"/>
-          <li><a class="side-menu-content__menuitens" href="#"><img src="${conta}" alt="conta">Conta</a></li>
-          <li><a class="side-menu-content__menuitens" href="#"><img src="${configuracoes}" alt="configuracoes">Configurações</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/account"><img src="${conta}" alt="conta">Conta</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/settings"><img src="${configuracoes}" alt="configuracoes">Configurações</a></li>
         </ul>
       </div>
     </div>

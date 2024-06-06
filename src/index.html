@@ -1,12 +1,96 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Wix+Madefor+Display:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pet Hat</title>
+    <script src="./home/index.js" type="module"></script>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="192x192"
+      href="/favicon/android-icon-192x192.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/favicon/apple-touch-icon-57x57.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/favicon/apple-touch-icon-60x60.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/favicon/apple-touch-icon-72x72.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/favicon/apple-touch-icon-76x76.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="96x96"
+      href="/favicon/apple-touch-icon-96x96.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/favicon/apple-touch-icon-114x114.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/favicon/apple-touch-icon-120x120.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/favicon/apple-touch-icon-144x144.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/favicon/apple-touch-icon-152x152.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon-180x180.ico"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.ico"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.ico"
+    />
   </head>
 
   <body>
-    <a href="/home/">Ir para Home</a>
+    <div data-select="home" class="root home">
+      <nav data-select="navigation" class="home__navigation"></nav>
+      <aside data-select="sidemenu" class="home__sidemenu"></aside>
+      <main
+        data-select="content"
+        class="home__content"
+        data-vanilla-route-ele="router-wrap"
+      ></main>
+    </div>
   </body>
 </html>

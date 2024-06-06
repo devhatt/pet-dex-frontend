@@ -57,6 +57,11 @@
     padding-inline: 2rem;
     padding-block: 3.2rem;
   }
+
+  &__content-page {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @include breakpoints.from1024 {
