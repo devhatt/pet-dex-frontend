@@ -13,16 +13,9 @@
   padding: 2rem;
   border: 1px solid colors.$gray150;
 
-  box-shadow: rgb(50, 50, 71);
+  box-shadow: 0 0 2px 2px rgba(50, 50, 71, 0.04);
+
   border-radius: 1.8rem;
-
-  &__sections {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    margin-right: 1rem;
-  }
 
   &__header {
     display: flex;
@@ -84,8 +77,8 @@
     display: none;
   }
 
-  &__list-group {
-    overflow-y: auto;
+  &__sections {
+    margin-right: 2rem;
   }
 }
 
@@ -102,9 +95,17 @@
     &__add-vacine-text {
       display: block;
     }
+  }
+}
 
-    &__sections {
-      margin-right: 2rem;
+@container (min-height: 790px) {
+  @include breakpoints.from667 {
+    .vaccine {
+      overflow: auto;
+
+      &__scroll {
+        overflow: auto;
+      }
     }
   }
 }

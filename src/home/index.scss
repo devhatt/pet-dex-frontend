@@ -8,6 +8,8 @@
   height: 100dvh;
   overflow-x: hidden;
 
+  container-type: size;
+
   display: grid;
   grid-template-areas:
     'sidemenu nav'
