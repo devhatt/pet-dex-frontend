@@ -5,6 +5,7 @@
 .pet-register {
   display: flex;
   flex-direction: column;
+
   margin-top: 12.7rem;
 
   &__container {
@@ -38,6 +39,7 @@
 
     margin-top: 16.8rem;
     padding: 2rem;
+    box-sizing: border-box;
 
     box-shadow: 0 -3px 8px 0 rgba(73, 77, 90, 0.12156862745098039);
     border-radius: 1.7rem;
@@ -60,14 +62,11 @@
       margin: 0 auto;
     }
 
-    &--inputRemake {
-      width: 100%;
-    }
-
     &__button {
-      width: 30%;
+      width: 43%;
 
       margin-top: 4rem;
+      padding: unset;
 
       box-shadow: unset;
     }

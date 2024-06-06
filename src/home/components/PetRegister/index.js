@@ -8,12 +8,12 @@ const events = ['submit'];
 
 const html = `
   <div class='pet-register'>
-      <div class='pet-register__container'>
-        <div class='pet-register__image' data-select='upload-image-container'></div>
-        <h1 class='pet-register__title'>Qual o nome do seu bichinho?</h1>
-        <div class='pet-register__input' data-select='input-container'></div>
-      </div>
-      <div class='pet-register__button' data-select='button-container'></div>
+    <div class='pet-register__container'>
+      <div class='pet-register__image' data-select='upload-image-container'></div>
+      <h1 class='pet-register__title'>Qual o nome do seu bichinho?</h1>
+      <div class='pet-register__input' data-select='input-container'></div>
+    </div>
+    <div class='pet-register__button' data-select='button-container'></div>
   </div>
 `;
 
@@ -26,7 +26,6 @@ export default function PetRegister() {
 
   this.input = new TextInput({
     placeholder: 'Nome do Pet',
-    variation: '--inputStyle',
   });
 
   this.upload = new UploadImage();
