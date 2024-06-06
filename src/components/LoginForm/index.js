@@ -98,21 +98,21 @@ export default function LoginForm() {
     const password = passwordInput.selected.get('input-text').value;
 
     if (!this.validateEmail(email)) {
-      $errorMessage.style.display = 'block';
+      $errorMessage.classList.add('show-error');
       $errorMessage.innerText = 'E-mail inválido';
       emailInput.inputError();
       return;
     }
 
     if (!this.validatePassword(password)) {
-      $errorMessage.style.display = 'block';
+      $errorMessage.classList.add('show-error');
       $errorMessage.innerText =
         'Senha inválida. Sua senha deve conter no mínimo 10 caracteres, incluindo pelo menos um caractere especial e uma letra maiúscula.';
       passwordInput.inputError();
       return;
     }
 
-    $errorMessage.style.display = 'none';
+    $errorMessage.classList.remove('show-error');
     this.login();
   });
 }

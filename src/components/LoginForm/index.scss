@@ -71,6 +71,10 @@ $pawIconSize: 128px;
       color: colors.$error100;
 
       margin-bottom: 2rem;
+
+      &.show-error {
+        display: block;
+      }
     }
   }
 
