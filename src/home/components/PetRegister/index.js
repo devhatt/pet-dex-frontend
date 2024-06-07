@@ -52,10 +52,6 @@ export default function PetRegister() {
     this.emit('submit', { image, name });
   });
 
-  this.input.selected
-    .get('input-text')
-    .classList.add('pet-register--inputStyle');
-  this.button.selected.get('button').classList.add('pet-register-button');
   this.upload.mount($uploadImage);
   this.input.mount($inputContainer);
   this.button.mount($buttonContainer);
