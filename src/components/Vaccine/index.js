@@ -20,8 +20,8 @@ const html = `
         </div>
       </div>
     </div>
-    <div class="vaccine__list-group"> 
-    <div class="vaccine__sections" data-select="group"> </div>
+    <div class="vaccine__scroll">
+      <div class="vaccine__sections" data-select="group"> </div>
     </div>
   </div>
 `;
@@ -73,6 +73,15 @@ Vaccine.prototype = Object.assign(Vaccine.prototype, Component.prototype, {
       }
       this.setGroup(vaccine);
     });
+  },
+  listVaccines() {
+    const vaccines = [];
+
+    this.groups.values().forEach((group) => {
+      const items = group.listItems();
+      vaccines.push(...items);
+    });
+    return vaccines;
   },
   openDrawer() {
     this.emit('drawer:open');

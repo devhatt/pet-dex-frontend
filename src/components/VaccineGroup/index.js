@@ -40,5 +40,18 @@ VaccineGroup.prototype = Object.assign(
       this.items.set(item.id, vaccineItem);
       this.emit('item:change', vaccineItem);
     },
+    listItems() {
+      const items = [];
+
+      this.items.values().forEach((item) => {
+        items.push({
+          id: item.id,
+          title: item.getTitle(),
+          veterinary: item.getVeterinary(),
+          date: item.getDate(),
+        });
+      });
+      return items;
+    },
   },
 );
