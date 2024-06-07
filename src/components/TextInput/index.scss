@@ -8,18 +8,20 @@
     width: 100%;
     height: 100%;
 
-    color: colors.$gray600;
+    font-size: fonts.$xs;
 
-    font-size: fonts.$sm;
-    font-weight: fonts.$bold;
-
-    box-sizing: border-box;
+    padding: 1.5rem;
+    border: colors.$gray250;
+    border-color: colors.$gray150;
 
     box-sizing: border-box;
 
     background-repeat: no-repeat;
     background-size: auto 60%;
     filter: opacity(0.85);
+    border-radius: 14px;
+
+    transition: border-color 0.3s ease-in-out;
 
     &::placeholder {
       font-weight: fonts.$regular;
