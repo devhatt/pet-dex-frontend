@@ -39,8 +39,9 @@ export default function TextInput({
     input.classList.remove('input-error');
   });
 
-  input.addEventListener('input', () => {
-    this.emit('value:change', input.value);
+  input.addEventListener('input', (e) => {
+    const { value } = e.target;
+    this.setValue(value);
   });
 }
 
@@ -76,6 +77,13 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   enable() {
     this.selected.get('input-text').disabled = false;
     this.emit('enabled');
+  },
+  setValue(value) {
+    this.selected.get('input-text').value = value;
+    this.emit('value:change', value);
+  },
+  getValue() {
+    return this.selected.get('input-text').value;
   },
   toggle() {
     if (this.selected.get('input-text').disabled) {
