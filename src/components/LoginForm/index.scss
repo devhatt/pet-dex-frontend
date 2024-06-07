@@ -43,15 +43,17 @@ $pawIconSize: 128px;
     text-align: center;
     font-size: fonts.$xl2;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.6;
 
     margin-bottom: 4rem;
   }
 
   &__login-form {
-    .input-text-container {
-      margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
+    .input-text-container {
       &__input {
         background-size: auto 40%;
 
@@ -69,8 +71,6 @@ $pawIconSize: 128px;
       display: none;
 
       color: colors.$error100;
-
-      margin-bottom: 2rem;
 
       &.show-error {
         display: block;
