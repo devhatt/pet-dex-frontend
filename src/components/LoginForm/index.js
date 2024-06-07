@@ -83,11 +83,12 @@ export default function LoginForm() {
   const validateFields = () => {
     const email = emailInput.selected.get('input-text').value;
     const password = passwordInput.selected.get('input-text').value;
-    if (email.trim() !== '' && password !== '') {
+
+    if (email.trim() && password) {
       submitButton.enable();
-      return;
+    } else {
+      submitButton.disable();
     }
-    submitButton.disable();
   };
 
   emailInput.selected
