@@ -12,6 +12,7 @@ export default {
     return $container;
   },
   argTypes: {
+    id: { control: 'text', description: 'Pet id' },
     title: { control: 'text', description: 'Pet name' },
     imgSrc: { control: 'text', description: 'url source for a image pet' },
     imgAlt: { control: 'text', description: 'Pet name alt description' },
@@ -20,6 +21,7 @@ export default {
 
 export const Default = {
   args: {
+    id: '1',
     title: 'Carlos',
     imgSrc: akita,
     imgAlt: 'breed alt description',

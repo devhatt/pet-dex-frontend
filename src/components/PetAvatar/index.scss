@@ -4,7 +4,7 @@
 .pet-container {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 1rem;
 
   align-items: center;
   aspect-ratio: 1/1;
@@ -31,10 +31,11 @@
     max-height: 2.2rem;
     overflow: hidden;
 
-    font-family: fonts.$secondaryFont;
+    font-family: fonts.$quaternaryFont;
 
     color: colors.$gray200;
     text-align: center;
+    font-size: 1.4rem;
     font-weight: fonts.$regular;
 
     &--active {

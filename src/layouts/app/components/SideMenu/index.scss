@@ -84,6 +84,15 @@
     font-style: fonts.$normal;
   }
 
+  &__avatar-yourpet {
+    display: grid;
+    grid-auto-columns: 6rem;
+    grid-auto-flow: column;
+    grid-gap: 2rem;
+
+    padding-top: 2rem;
+  }
+
   &__itens {
     font-family: fonts.$primaryFont;
     color: colors.$secondary100;
