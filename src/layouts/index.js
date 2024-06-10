@@ -1,10 +1,10 @@
 import { extractElements } from 'pet-dex-utilities';
 import mainRouter from '../router/main-router';
 import { initializeSwiper } from '../utils/swiper';
+import Navigation from './PetDexApp/components/Navigation';
+import SideMenu from './PetDexApp/components/SideMenu';
+import initializeScrollable from './PetDexApp/pages/utils/scrollable-sidemenu';
 import './index.scss';
-import Navigation from './pages/Navigation';
-import SideMenu from './pages/SideMenu';
-import initializeScrollable from './utils/scrollable-sidemenu';
 
 document.addEventListener('DOMContentLoaded', () => {
   const selected = extractElements([document.body]);

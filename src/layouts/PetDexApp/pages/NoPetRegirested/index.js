@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import Button from '../../../components/Button';
+import Button from '../../../../components/Button';
 import petUrl from './images/no-pet-regirested-page.png';
 import './index.scss';
 
@@ -15,7 +15,7 @@ const html = `
   </div>;
 `;
 
-export default function NoPetRegirestedPage() {
+export default function NoPetRegirested() {
   Component.call(this, { html });
 
   const $container = this.selected.get('container');
@@ -32,7 +32,7 @@ export default function NoPetRegirestedPage() {
   this.button.mount($container);
 }
 
-NoPetRegirestedPage.prototype = Object.assign(
-  NoPetRegirestedPage.prototype,
+NoPetRegirested.prototype = Object.assign(
+  NoPetRegirested.prototype,
   Component.prototype,
 );

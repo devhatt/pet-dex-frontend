@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import petUrl from '../../images/pet-dex.svg';
+import petUrl from '../../../../images/pet-dex.svg';
 import configuracoes from './images/configuracoes.svg';
 import conta from './images/conta.svg';
 import doacoes from './images/doacoes.svg';
