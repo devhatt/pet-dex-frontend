@@ -3,7 +3,7 @@ import mainRouter from '../router/main-router';
 import { initializeSwiper } from '../utils/swiper';
 import Navigation from './PetDexApp/components/Navigation';
 import SideMenu from './PetDexApp/components/SideMenu';
-import initializeScrollable from './PetDexApp/pages/utils/scrollable-sidemenu';
+import initializeScrollable from './PetDexApp/utils/scrollable-sidemenu';
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
