@@ -1,4 +1,4 @@
-import NoPetRegirestedPage from '../../../../home/components/NoPetRegirestedPage';
+import NoPetRegirestedPage from '../../../../layouts/PetDexApp/pages/NoPetRegirested';
 
 export default {
   pathname: '/donates',

@@ -1,14 +1,14 @@
 import { Component } from 'pet-dex-utilities';
-import petUrl from '../../images/pet-dex.svg';
-import meusPets from './images/meuspets.svg';
-import petdex from './images/petdex.svg';
-import doacoes from './images/doacoes.svg';
-import conta from './images/conta.svg';
+import petUrl from '../../../../images/pet-dex.svg';
 import configuracoes from './images/configuracoes.svg';
+import conta from './images/conta.svg';
+import doacoes from './images/doacoes.svg';
 import exit from './images/exit.svg';
+import exitMenu from './images/exitmenu.svg';
+import meusPets from './images/meuspets.svg';
 import notificacoes from './images/notifications.svg';
 import perfil from './images/perfil.svg';
-import exitMenu from './images/exitmenu.svg';
+import petdex from './images/petdex.svg';
 import './index.scss';
 
 const html = `

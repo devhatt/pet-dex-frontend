@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-import petUrl from '../../images/pet-dex.svg';
+import petUrl from '../../../../images/pet-dex.svg';
 import avatarUrl from './images/avatar.svg';
 import bellUrl from './images/bell.svg';
 import exitUrl from './images/exit.svg';
