@@ -1,7 +1,7 @@
-import NoPetRegirestedPage from '../../../../home/components/NoPetRegirestedPage';
+import NoPetRegirestedPage from '../../../../layouts/app/pages/NoPetRegirested';
 
 export default {
-  pathname: '/pet-size',
+  pathname: '/app/pet-size',
   element: () => {
     const $content = document.createElement('div');
     $content.classList.add('home__content-page');

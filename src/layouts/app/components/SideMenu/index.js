@@ -1,14 +1,14 @@
 import { Component } from 'pet-dex-utilities';
-import petUrl from '../../images/pet-dex.svg';
-import meusPets from './images/meuspets.svg';
-import petdex from './images/petdex.svg';
-import doacoes from './images/doacoes.svg';
-import conta from './images/conta.svg';
+import petUrl from '../../../../images/pet-dex.svg';
 import configuracoes from './images/configuracoes.svg';
+import conta from './images/conta.svg';
+import doacoes from './images/doacoes.svg';
 import exit from './images/exit.svg';
+import exitMenu from './images/exitmenu.svg';
+import meusPets from './images/meuspets.svg';
 import notificacoes from './images/notifications.svg';
 import perfil from './images/perfil.svg';
-import exitMenu from './images/exitmenu.svg';
+import petdex from './images/petdex.svg';
 import './index.scss';
 
 const html = `
@@ -31,12 +31,12 @@ const html = `
       <div class="side-menu-content__line"></div>
       <div class="side-menu-content__itens" alt="itens-um">
         <ul class="side-menu-content__ul" data-select="menuitens">
-          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/pets"><img src="${meusPets}" alt="Meus Pets">Meus Pets</a></li>
-          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/pet-dex"><img src="${petdex}" alt="Pet Dex">Pet Dex</a></li>
-          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/donates"><img src="${doacoes}" alt="Doacoes">Doações</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/app/pets"><img src="${meusPets}" alt="Meus Pets">Meus Pets</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/app/pet-dex"><img src="${petdex}" alt="Pet Dex">Pet Dex</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/app/donates"><img src="${doacoes}" alt="Doacoes">Doações</a></li>
           <hr class="side-menu-content__lineinside"/>
-          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/account"><img src="${conta}" alt="conta">Conta</a></li>
-          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/settings"><img src="${configuracoes}" alt="configuracoes">Configurações</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/app/account"><img src="${conta}" alt="conta">Conta</a></li>
+          <li><a data-vanilla-route-link="spa" class="side-menu-content__menuitens" href="/app/settings"><img src="${configuracoes}" alt="configuracoes">Configurações</a></li>
         </ul>
       </div>
     </div>

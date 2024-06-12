@@ -1,6 +1,6 @@
 import { Component } from 'pet-dex-utilities';
-import Button from '../../../components/Button';
-import PetCard from '../../../components/PetCard';
+import Button from '../../../../components/Button';
+import PetCard from '../../../../components/PetCard';
 import './index.scss';
 
 const events = ['select:card', 'submit'];
@@ -12,7 +12,7 @@ const html = `
   </div>
 `;
 
-export default function PetRegisterPage({ cards = [] } = {}) {
+export default function PetRegister({ cards = [] } = {}) {
   Component.call(this, { html, events });
 
   const $container = this.selected.get('container');
@@ -54,7 +54,7 @@ export default function PetRegisterPage({ cards = [] } = {}) {
   $button.mount($footerContainer);
 }
 
-PetRegisterPage.prototype = Object.assign(
-  PetRegisterPage.prototype,
+PetRegister.prototype = Object.assign(
+  PetRegister.prototype,
   Component.prototype,
 );

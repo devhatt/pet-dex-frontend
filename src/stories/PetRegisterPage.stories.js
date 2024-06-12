@@ -1,13 +1,13 @@
-import PetRegisterPage from '../home/components/PetRegisterPage';
+import PetRegisterPage from '../pages/layouts/PetRegisterPage';
 
-import afghanHound from '../home/components/PetRegisterPage/images/afghanHound.svg';
-import akita from '../home/components/PetRegisterPage/images/akita.svg';
-import beagle from '../home/components/PetRegisterPage/images/beagle.svg';
-import bichonFrise from '../home/components/PetRegisterPage/images/bichonFrise.svg';
-import borderCollie from '../home/components/PetRegisterPage/images/borderCollie.svg';
-import boxer from '../home/components/PetRegisterPage/images/boxer.svg';
-import chowChow from '../home/components/PetRegisterPage/images/chowChow.svg';
-import mixedBreed from '../home/components/PetRegisterPage/images/mixedBreed.svg';
+import afghanHound from './assets/petRegisterPage/afghanHound.svg';
+import akita from './assets/petRegisterPage/akita.svg';
+import beagle from './assets/petRegisterPage/beagle.svg';
+import bichonFrise from './assets/petRegisterPage/bichonFrise.svg';
+import borderCollie from './assets/petRegisterPage/borderCollie.svg';
+import boxer from './assets/petRegisterPage/boxer.svg';
+import chowChow from './assets/petRegisterPage/chowChow.svg';
+import mixedBreed from './assets/petRegisterPage/mixedBreed.svg';
 
 const cards = [
   {
