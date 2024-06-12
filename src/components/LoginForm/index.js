@@ -101,28 +101,28 @@ export default function LoginForm() {
   submitButton.listen('click', () => {
     const email = emailInput.selected.get('input-text').value;
     const password = passwordInput.selected.get('input-text').value;
-    let validFields = true;
+    let validEmail = true;
+    let validPassword = true;
 
     if (!this.validateEmail(email)) {
-      validFields = false;
+      validEmail = false;
       $emailErrorMessage.classList.add('show-error');
       $emailErrorMessage.innerText = 'E-mail inválido';
       emailInput.inputError();
-    } else {
-      $emailErrorMessage.classList.remove('show-error');
     }
 
     if (!this.validatePassword(password)) {
-      validFields = false;
+      validPassword = false;
       $passwordErrorMessage.classList.add('show-error');
       $passwordErrorMessage.innerText =
         'Senha inválida. Sua senha deve conter no mínimo 10 caracteres, incluindo pelo menos um caractere especial e uma letra maiúscula.';
       passwordInput.inputError();
-    } else {
-      $passwordErrorMessage.classList.remove('show-error');
     }
 
-    if (validFields) {
+    if (validEmail) $emailErrorMessage.classList.remove('show-error');
+    if (validPassword) $passwordErrorMessage.classList.remove('show-error');
+
+    if (validEmail && validPassword) {
       this.login();
     }
   });
