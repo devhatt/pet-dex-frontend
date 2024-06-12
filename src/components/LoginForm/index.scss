@@ -182,8 +182,8 @@ $pawIconSize: 128px;
   }
 }
 
-.login-form-container {
-  @include breakpoints.from667 {
+@include breakpoints.from667 {
+  .login-form-container {
     padding: 6.2rem 8rem;
   }
 }
