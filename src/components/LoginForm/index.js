@@ -9,6 +9,8 @@ import eyeSlashIcon from './images/eye-slash.svg';
 import googleIcon from './images/google-icon.svg';
 import facebookIcon from './images/facebook-icon.svg';
 
+const events = ['login'];
+
 const html = `
   <div>
     <div class="login-form-container__container-paw-icon">
@@ -50,7 +52,7 @@ const html = `
 `;
 
 export default function LoginForm() {
-  Component.call(this, { html });
+  Component.call(this, { html, events });
   const $loginForm = this.selected.get('login-form');
   const $emailInputContainer = this.selected.get('email-input-container');
   const $passwordInputContainer = this.selected.get('password-input-container');
@@ -129,7 +131,9 @@ export default function LoginForm() {
 }
 
 LoginForm.prototype = Object.assign(LoginForm.prototype, Component.prototype, {
-  login() {},
+  login() {
+    this.emit('login');
+  },
   validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
