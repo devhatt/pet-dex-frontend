@@ -107,4 +107,25 @@
       }
     }
   }
+
+  &__icon {
+    position: absolute;
+    height: 20px;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: 0;
+    opacity: 0.3;
+    cursor: pointer;
+
+    &.hidden {
+      display: none;
+    }
+
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
