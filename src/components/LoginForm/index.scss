@@ -1,0 +1,189 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+$pawIconSize: 128px;
+
+.login-form-container {
+  font-family: 'Poppins', sans-serif;
+
+  padding: 6.2rem 4rem;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 1.5rem;
+
+  &__container-paw-icon {
+    width: 100%;
+    max-width: $pawIconSize;
+    height: $pawIconSize;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin: 0 auto;
+    margin-bottom: calc($pawIconSize / -2);
+
+    position: relative;
+    z-index: 1;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+
+    .paw-icon {
+      width: 100%;
+
+      margin-bottom: 4.5rem;
+      padding: 1.6rem;
+    }
+  }
+
+  &__title {
+    color: colors.$gray800;
+    text-align: center;
+    font-size: fonts.$xl2;
+    font-weight: 700;
+    line-height: 1.6;
+
+    margin-bottom: 4rem;
+  }
+
+  &__login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .input-text-container {
+      &__input {
+        background-size: auto 40%;
+
+        &.input-error {
+          color: rgb(255, 255, 255);
+        }
+      }
+    }
+
+    .button {
+      margin-top: 3rem;
+    }
+
+    .error-message {
+      display: none;
+
+      color: colors.$error100;
+
+      &.show-error {
+        display: block;
+      }
+    }
+  }
+
+  &__login-options {
+    display: flex;
+    gap: 0.6rem;
+
+    align-items: center;
+    justify-content: space-between;
+
+    .remember-option {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 1rem;
+
+      align-items: center;
+    }
+
+    .forgot-password {
+      color: colors.$blue600;
+      text-align: right;
+      text-decoration: none;
+    }
+  }
+
+  &__signup {
+    display: block;
+
+    text-align: center;
+    line-height: 2.4rem;
+
+    margin: 3rem 0;
+
+    .signup-link {
+      color: colors.$blue600;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+
+  &__error-message {
+    display: block;
+
+    color: colors.$error100;
+
+    margin-top: 0.8rem;
+
+    user-select: all;
+  }
+
+  &__separator {
+    display: flex;
+
+    .divisor {
+      width: 100%;
+
+      border: unset;
+      border-top: 0.1rem solid colors.$gray200;
+    }
+
+    .separator-text {
+      margin: 0 2.8rem;
+    }
+  }
+
+  &__provider-container {
+    display: flex;
+    gap: 1.6rem;
+
+    justify-content: space-between;
+
+    margin-top: 3rem;
+
+    .provider-button {
+      width: 100%;
+
+      display: flex;
+      gap: 1.6rem;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 1.6rem;
+
+      padding: 1.6rem;
+
+      border: unset;
+
+      background-color: colors.$secondary100;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.084);
+      border-radius: 1.4rem;
+
+      transition: 0.3s ease-in-out;
+
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        background-color: colors.$gray200;
+      }
+
+      .icon {
+        max-width: 2.4rem;
+      }
+    }
+  }
+}
+
+@include breakpoints.from667 {
+  .login-form-container {
+    padding: 6.2rem 8rem;
+  }
+}
