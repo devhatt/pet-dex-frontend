@@ -1,11 +1,12 @@
 import PetAvatar from '../components/PetAvatar';
 
-import akita from '../home/components/PetRegisterPage/images/akita.svg';
+import akita from './assets/petRegisterPage/akita.svg';
 
 export default {
   title: 'Components/PetAvatar',
   render: (args) => {
     const $container = document.createElement('div');
+    $container.style.width = '6rem';
     const petAvatar = new PetAvatar(args);
     petAvatar.mount($container);
 

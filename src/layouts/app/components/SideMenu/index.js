@@ -10,7 +10,7 @@ import notificacoes from './images/notifications.svg';
 import perfil from './images/perfil.svg';
 import petdex from './images/petdex.svg';
 import './index.scss';
-import PetAvatar from '../../../components/PetAvatar';
+import PetAvatar from '../../../../components/PetAvatar';
 
 const html = `
   <nav class="side-menu-nav">
@@ -71,6 +71,20 @@ export default function SideMenu() {
       imgSrc:
         'https://images.unsplash.com/photo-1632165258904-21ca36a01ee0?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       imgAlt: 'Tobias',
+    },
+    {
+      id: '4',
+      title: 'Francis',
+      imgSrc:
+        'https://images.unsplash.com/photo-1596921825946-d738194fac80?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imgAlt: 'Francis',
+    },
+    {
+      id: '5',
+      title: 'Toyota',
+      imgSrc:
+        'https://images.unsplash.com/photo-1694185643879-536f8d785fa6?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      imgAlt: 'Toyota',
     },
   ];
 

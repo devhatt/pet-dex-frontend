@@ -7,12 +7,12 @@
   gap: 1rem;
 
   align-items: center;
+
+  text-decoration: none;
   aspect-ratio: 1/1;
 
   &__img {
-    min-width: 6rem;
     height: 100%;
-    min-height: 6rem;
 
     outline: 0.15rem solid colors.$gray500;
 
@@ -26,9 +26,6 @@
   }
 
   &__title {
-    height: 100%;
-    min-height: 2.2rem;
-    max-height: 2.2rem;
     overflow: hidden;
 
     font-family: fonts.$fourthFont;
