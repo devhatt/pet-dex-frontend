@@ -42,7 +42,6 @@ export default function TextInput({
   input.classList.add(variation);
   input.style.backgroundImage = `url(${assetUrl})`;
   input.classList.add(assetPosition);
-  // eslint-disable-next-line no-undef
   this.setValue(value);
   this.setType(type);
 
