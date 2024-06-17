@@ -41,7 +41,7 @@ export default function TextInput({
   input.classList.add(assetPosition);
   // eslint-disable-next-line no-undef
   this.setValue(value);
-  this.getType(placeholder);
+  this.setType(type);
 
   if (type === 'password') {
     iconBtn.classList.remove('hidden');
@@ -106,7 +106,7 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
       this.disable();
     }
   },
-  getType(type) {
+  setType(type) {
     this.selected.get('input-text').type = type;
   },
 });
