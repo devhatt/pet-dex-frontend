@@ -109,15 +109,19 @@
   }
 
   &__icon {
-    position: absolute;
-    background-color: colors.$shade50;
-    border-radius: 14px;
     height: 90%;
-    right: 2px;
-    top: 50%;
-    transform: translateY(-50%);
+
     display: flex;
+
     align-items: center;
+
+    position: absolute;
+    top: 50%;
+    right: 2px;
+
+    background-color: colors.$shade50;
+    transform: translateY(-50%);
+    border-radius: 14px;
 
     &--hidden {
       display: none;
@@ -125,12 +129,16 @@
   }
 
   &__button {
-    background-color: transparent;
-    border: 0;
-    opacity: 0.3;
-    cursor: pointer;
     display: flex;
+
     align-items: center;
+
+    border: 0;
+
+    background-color: transparent;
+    opacity: 0.3;
+
+    cursor: pointer;
     padding-inline: 1rem;
   }
 
