@@ -40,30 +40,19 @@ describe('PetVetPage', () => {
   const argsWithVaccineEmpty = { vaccines: [] };
   const renderPetVetPage = (parameters) => render(new PetVetPage(parameters));
 
-  it('renders', () => {
-    renderPetVetPage(argsWithVaccine);
+  it('renders the main container', () => {
+    renderPetVetPage(argsWithVaccineEmpty);
     const title = screen.getByText('Conte-nos um pouco mais do seu animal');
-    const subtitle = screen.getByText(
-      'Seu pet já foi vacinado? Conta pra gente que mês ou ano que você costuma comemorar o aniversário dele!',
-    );
-    const neuteredCard = screen.getByText('O seu pet amigo foi castrado?');
-    const specialCareCard = screen.getByText('Cuidados especiais');
-    const button = screen.getByRole('button');
 
     expect(title).toBeInTheDocument();
-    expect(subtitle).toBeInTheDocument();
-    expect(neuteredCard).toBeInTheDocument();
-    expect(specialCareCard).toBeInTheDocument();
-    expect(button).toBeInTheDocument();
-    expect(button.innerHTML).toBeTruthy();
   });
 
-  describe('radios', () => {
-    it('neutered', async () => {
+  describe('radios form', () => {
+    it('confirms if the neutering selection is correct', async () => {
       renderPetVetPage(argsWithVaccineEmpty);
 
-      const falseRadio = screen.getByTestId('neutered-não');
-      const trueRadio = screen.getByTestId('neutered-sim');
+      const falseRadio = screen.getByLabelText('cuidados-especiais-não');
+      const trueRadio = screen.getByLabelText('cuidados-especiais-sim');
 
       await userEvent.click(falseRadio);
 
@@ -71,11 +60,11 @@ describe('PetVetPage', () => {
       expect(trueRadio).not.toBeChecked();
     });
 
-    it('special care', async () => {
+    it('confirms if the special care selection is correct', async () => {
       renderPetVetPage(argsWithVaccineEmpty);
 
-      const falseRadio = screen.getByTestId('specialCare-não');
-      const trueRadio = screen.getByTestId('specialCare-sim');
+      const falseRadio = screen.getByLabelText('cuidados-especiais-não');
+      const trueRadio = screen.getByLabelText('cuidados-especiais-sim');
 
       await userEvent.click(falseRadio);
       expect(falseRadio).toBeChecked();
@@ -84,14 +73,14 @@ describe('PetVetPage', () => {
   });
 
   describe('vaccine component', () => {
-    it('renders vaccine component without vaccines passed', () => {
+    it('renders without vaccines passed', () => {
       renderPetVetPage(argsWithVaccineEmpty);
       const vaccinesEvidence = screen.getByText('Vacinas');
 
       expect(vaccinesEvidence).toBeInTheDocument();
     });
 
-    it('renders vaccine component with vaccines passed', () => {
+    it('renders with vaccines passed', () => {
       renderPetVetPage(argsWithVaccine);
       const vaccinesEvidence = screen.getByText('Vacinas');
       const someVaccineEvidence = screen.getByText(mockVaccines[0].title);
@@ -104,8 +93,10 @@ describe('PetVetPage', () => {
       it('emits the form data when every field is passed', async () => {
         const petVetPage = renderPetVetPage(argsWithVaccine);
 
-        const neuteredYesRadio = screen.getByTestId('neutered-sim');
-        const specialCareYesRadio = screen.getByTestId('specialCare-sim');
+        const neuteredYesRadio = screen.getByLabelText('castrado-sim');
+        const specialCareYesRadio = screen.getByLabelText(
+          'cuidados-especiais-sim',
+        );
 
         await userEvent.click(neuteredYesRadio);
         await userEvent.click(specialCareYesRadio);

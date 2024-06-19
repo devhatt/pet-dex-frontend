@@ -22,7 +22,9 @@ const html = `
           </div>
           <div class="petvet-page__card-content">
             <p>O seu pet amigo foi castrado?</p>
-            <div data-select="neutered-radio"></div>
+             <form>
+            <fieldset data-select="neutered-radio"></fieldset>
+            </form>
           </div>
         </div>
       </div>
@@ -33,7 +35,9 @@ const html = `
           </div>
           <div class="petvet-page__card-content">
             <p>Cuidados especiais</p>
-            <div data-select="special-care-radio"></div>
+            <form >
+            <fieldset data-select="special-care-radio"></fieldset>
+            </form>
           </div>
         </div>
       </div>
@@ -44,11 +48,27 @@ const html = `
 
 const events = ['submit'];
 
-function createAndMount({ name, text, mountTo }) {
-  const radio = new Radio({ name, text });
+function getAriaLabel(radioName) {
+  const arias = {
+    specialCare: 'cuidados-especiais',
+    neutered: 'castrado',
+  };
+  return arias[radioName];
+}
+
+function getBooleanValue(value) {
+  const radiosValue = {
+    specialCare: true,
+    neutered: true,
+  };
+  return value in radiosValue ? radiosValue[value] : false;
+}
+
+function createAndMount({ name, text, mountTo, value }) {
+  const radio = new Radio({ name, text, value });
   radio.selected
     .get('radio-button')
-    .setAttribute('data-testid', `${name}-${text.toLowerCase()}`);
+    .setAttribute('aria-label', `${getAriaLabel(name)}-${text.toLowerCase()}`);
   radio.mount(mountTo);
   return radio;
 }
@@ -64,51 +84,29 @@ export default function PetVetPage({ vaccines = [] } = {}) {
   this.vaccine = new Vaccine({ vaccines });
   this.vaccine.mount($cardGroup);
 
-  const form = {
-    isNeutered: undefined,
-    isSpecialCare: undefined,
-    specialCareText: '',
-    vaccines: undefined,
-  };
-
-  const specialCare = [
-    createAndMount({
-      name: 'specialCare',
-      text: 'Não',
-      mountTo: $specialCareRadio,
-    }),
-    createAndMount({
-      name: 'specialCare',
-      text: 'Sim',
-      mountTo: $specialCareRadio,
-    }),
-  ];
-
-  const neutered = [
-    createAndMount({
-      name: 'neutered',
-      text: 'Não',
-      mountTo: $neuteredRadio,
-    }),
-    createAndMount({
-      name: 'neutered',
-      text: 'Sim',
-      mountTo: $neuteredRadio,
-    }),
-  ];
-
-  neutered.forEach((radio) => {
-    radio.listen('change', (value) => {
-      const text = radio.getText();
-      form.isNeutered = text === 'Sim' ? value : !value;
-    });
+  createAndMount({
+    name: 'specialCare',
+    text: 'Não',
+    mountTo: $specialCareRadio,
+    value: 'notSpecialCare',
   });
-
-  specialCare.forEach((radio) => {
-    radio.listen('change', (value) => {
-      const text = radio.getText();
-      form.isSpecialCare = text === 'Sim' ? value : !value;
-    });
+  createAndMount({
+    name: 'specialCare',
+    text: 'Sim',
+    mountTo: $specialCareRadio,
+    value: 'specialCare',
+  });
+  createAndMount({
+    name: 'neutered',
+    text: 'Não',
+    mountTo: $neuteredRadio,
+    value: 'notNeutered',
+  });
+  createAndMount({
+    name: 'neutered',
+    text: 'Sim',
+    mountTo: $neuteredRadio,
+    value: 'neutered',
   });
 
   this.button = new Button({
@@ -120,10 +118,21 @@ export default function PetVetPage({ vaccines = [] } = {}) {
   this.button.selected.get('button').classList.add('petvet-page__button');
   this.button.mount($footer);
 
+  const form = {
+    isNeutered: undefined,
+    isSpecialCare: undefined,
+    specialCareText: '',
+    vaccines: undefined,
+  };
+
   const emitForm = () => {
-    if (form.isSpecialCare === undefined || form.isNeutered === undefined) {
-      return;
-    }
+    const neuteredValue = document.forms[0].elements.neutered.value;
+    const specialCareValue = document.forms[1].elements.specialCare.value;
+
+    if (!neuteredValue || !specialCareValue) return;
+
+    form.isNeutered = getBooleanValue(neuteredValue);
+    form.isSpecialCare = getBooleanValue(specialCareValue);
 
     form.vaccines = this.vaccine.listVaccines();
     this.emit('submit', form);
