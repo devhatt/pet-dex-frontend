@@ -1,0 +1,148 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.register-component-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+
+  width: 94.5rem;
+  height: 91.8rem;
+
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+
+  font-family: fonts.$primaryFont;
+
+  .form-title {
+    width: 62rem;
+    height: 4.2rem;
+
+    font-size: fonts.$xl2;
+    font-weight: fonts.$bold;
+
+    color: colors.$gray800;
+
+    margin: 10.8rem 15.3rem 0 17.2rem;
+  }
+
+  .social-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    gap: 3.2em;
+
+    width: 45rem;
+    height: 12.3rem;
+
+    margin: 3.2rem 32.3rem 0 17.2rem;
+  }
+
+  .social-btn-layout,
+  .other-option-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-btn-layout {
+    gap: 1.6rem;
+
+    .google-social-btn,
+    .facebook-social-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+
+      width: 21.7rem;
+      height: 6.4rem;
+
+      font-size: fonts.$sm;
+      font-weight: fonts.$semiBold;
+      font-family: fonts.$fifthFont;
+
+      background-color: colors.$secondary100;
+
+      border-radius: 1rem;
+
+      box-shadow: 0rem 0.4rem 1rem rgba(0, 0, 0, 8%);
+
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.02);
+        transition: all 0.4s ease-in-out;
+      }
+
+      .social-image {
+        width: 2.4rem;
+        height: 2.4rem;
+
+        margin: 0 1.6rem 0 3.2rem;
+      }
+    }
+  }
+
+  .divisor-line {
+    width: 18.1rem;
+
+    border: solid 1px colors.$gray200;
+  }
+
+  .divisor-text {
+    font-size: fonts.$sm;
+
+    margin: 0 2.9rem;
+  }
+}
+
+.register-form-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 3fr);
+
+  width: 76rem;
+
+  margin: 3.7rem 5.3rem 6.6rem 15.5rem;
+
+  .form-fields-container {
+    margin-bottom: 2rem;
+
+    .form-label {
+      font-size: fonts.$xs;
+      margin-left: 3rem;
+    }
+
+    .form-text-input,
+    .form-dropdown-input {
+      width: 34.6rem;
+      height: 5.4rem;
+
+      border-radius: 1.4rem;
+
+      padding: 0.3rem 1.6rem 1.2rem 1.6rem;
+    }
+
+    .form-dropdown-input {
+      .dropdown-form {
+        width: 34.6rem;
+        height: 5.4rem;
+
+        align-items: center;
+
+        box-shadow: none;
+
+        border: 1px solid colors.$gray200;
+      }
+    }
+  }
+}
+
+.register-button {
+  width: 45rem;
+  margin: 6.6rem 32.7rem 13.3rem 17rem;
+}

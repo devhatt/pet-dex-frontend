@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import PetWeightPage from '../layouts/app/pages/PetWeight';
+=======
+import PetWeightPage from '../layouts/app/pages/PetWeight/index';
+>>>>>>> fa9dbb9 (feat: create register component initial structure)
 
 export default {
   title: 'Pages/PetWeightPage',

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import PetRegister from '../layouts/app/pages/PetRegister';
+=======
+import PetRegister from '../layouts/app/pages/PetRegister/index';
+>>>>>>> fa9dbb9 (feat: create register component initial structure)
 
 export default {
   title: 'Pages/PetProfile',
