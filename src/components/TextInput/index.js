@@ -16,11 +16,9 @@ const events = [
 const html = `
   <div class="input-text-container" data-select="input-text-container">
     <input class="input-text-container__input"  data-select="input-text" type="text" placeholder="">
-    <div class="input-text-container__icon input-text-container__icon--hidden" data-select="show-text-container">
-      <button type="button" class="input-text-container__button" data-select="show-text">
-        <img class="input-text-container__image" data-select="show-text-img" src=${eyeIconDisable} alt="Toggle">
-      </button>
-    </div>
+    <button type="button" class="input-text-container__button input-text-container__button--hidden" data-select="show-text">
+      <img class="input-text-container__image" data-select="show-text-img" src=${eyeIconDisable} alt="Toggle">
+    </button>
   </div>
 `;
 
@@ -34,7 +32,6 @@ export default function TextInput({
 } = {}) {
   Component.call(this, { html, events });
   const input = this.selected.get('input-text');
-  const icon = this.selected.get('show-text-container');
   const iconBtn = this.selected.get('show-text');
   const iconImg = this.selected.get('show-text-img');
   input.disabled = false;
@@ -47,7 +44,7 @@ export default function TextInput({
   this.setType(type);
 
   if (type === 'password') {
-    icon.classList.remove('input-text-container__icon--hidden');
+    iconBtn.classList.remove('input-text-container__button--hidden');
   }
 
   input.addEventListener('focus', () => {
