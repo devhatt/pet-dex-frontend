@@ -22,17 +22,19 @@
     "prettier:fix": "prettier . --write --ignore-unknown",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "stylelint": "stylelint \"**/*.scss\""
+    "stylelint": "stylelint \"**/*.scss\"",
+    "mock-api": "json-server db.json"
   },
   "dependencies": {
     "concurrently": "8.2.2",
     "dayjs": "^1.11.10",
+    "json-server": "1.0.0-beta.1",
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
-    "vite-jsconfig-paths": "2.0.1",
-    "vite-plugin-pwa": "^0.19.8",
+    "vanilla-routing": "0.0.4",
     "vite": "^5.2.10",
-    "vanilla-routing": "0.0.4"
+    "vite-jsconfig-paths": "2.0.1",
+    "vite-plugin-pwa": "^0.19.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.2",
