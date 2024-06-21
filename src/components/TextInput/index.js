@@ -10,7 +10,7 @@ const events = [
   'disabled',
   'enabled',
   'value:change',
-  'type:changed',
+  'type:change',
 ];
 
 const html = `
@@ -108,6 +108,6 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   },
   setType(type) {
     this.selected.get('input-text').type = type;
-    this.emit('type:changed', type);
+    this.emit('type:change', type);
   },
 });
