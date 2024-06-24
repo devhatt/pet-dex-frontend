@@ -15,11 +15,18 @@ export default {
     assetUrl: {},
     assetPosition: {},
     variation: {},
+    type: { control: 'text', default: '' },
   },
 };
 
 export const Default = {
   args: {
     placeholder: 'email@petdex.com.br',
+  },
+};
+
+export const Password = {
+  args: {
+    type: 'password',
   },
 };
