@@ -1,0 +1,55 @@
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/colors.scss' as colors;
+
+.textarea-container {
+  position: relative;
+
+  &__textarea,
+  &__resize-trigger {
+    width: 100%;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: fonts.$sm;
+    line-height: 1;
+  }
+
+  &__textarea {
+    position: relative;
+    z-index: 1;
+
+    padding-bottom: 1.4rem;
+
+    outline-color: transparent;
+
+    border: unset;
+    border-bottom: 0.1rem solid colors.$gray400;
+
+    overflow: hidden;
+
+    resize: none;
+
+    transition: 0.2s ease-in-out outline;
+
+    &::placeholder {
+      color: colors.$gray400;
+    }
+
+    &:focus {
+      outline-color: colors.$primary200;
+    }
+
+    &.error {
+      background: colors.$error100;
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  &__resize-trigger {
+    position: absolute;
+    top: 0;
+
+    display: block;
+
+    visibility: hidden;
+  }
+}
