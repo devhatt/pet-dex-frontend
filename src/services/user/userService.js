@@ -4,7 +4,7 @@ export const UserService = {
       const response = await fetch(`http://localhost:3000/user/${userId}`);
 
       if (!response.ok) {
-        throw new Error('Ocorreu um erro');
+        throw new Error('Ocorreu um erro na requisição');
       }
 
       const data = await response.json();

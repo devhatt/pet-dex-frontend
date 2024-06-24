@@ -29,10 +29,11 @@
     "concurrently": "8.2.2",
     "dayjs": "^1.11.10",
     "json-server": "1.0.0-beta.1",
+    "npm": "10.8.1",
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
     "vanilla-routing": "0.0.4",
-    "vite": "^5.2.10",
+    "vite": "^5.2.11",
     "vite-jsconfig-paths": "2.0.1",
     "vite-plugin-pwa": "^0.19.8"
   },
