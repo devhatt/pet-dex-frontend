@@ -48,19 +48,26 @@ describe('PetVetPage', () => {
   });
 
   describe('radios form', () => {
-    it('confirms if the neutering selection is correct', async () => {
+    it('confirms that neutered "no" radio will be selected when clicked', async () => {
       renderPetVetPage(argsWithVaccineEmpty);
 
-      const falseRadio = screen.getByLabelText('cuidados-especiais-não');
-      const trueRadio = screen.getByLabelText('cuidados-especiais-sim');
+      const falseRadio = screen.getByLabelText('castrado-não');
 
       await userEvent.click(falseRadio);
 
       expect(falseRadio).toBeChecked();
-      expect(trueRadio).not.toBeChecked();
     });
 
-    it('confirms if the special care selection is correct', async () => {
+    it('confirms that special care "yes" radio will be selected when clicked', async () => {
+      renderPetVetPage(argsWithVaccineEmpty);
+
+      const trueRadio = screen.getByLabelText('cuidados-especiais-sim');
+
+      await userEvent.click(trueRadio);
+      expect(trueRadio).toBeChecked();
+    });
+
+    it('confirms that both special care radios cannot be selected at the same time', async () => {
       renderPetVetPage(argsWithVaccineEmpty);
 
       const falseRadio = screen.getByLabelText('cuidados-especiais-não');
@@ -69,18 +76,37 @@ describe('PetVetPage', () => {
       await userEvent.click(falseRadio);
       expect(falseRadio).toBeChecked();
       expect(trueRadio).not.toBeChecked();
+
+      await userEvent.click(trueRadio);
+      expect(trueRadio).toBeChecked();
+      expect(falseRadio).not.toBeChecked();
+    });
+
+    it('confirms that both neutered radios cannot be selected at the same time', async () => {
+      renderPetVetPage(argsWithVaccineEmpty);
+
+      const falseRadio = screen.getByLabelText('castrado-não');
+      const trueRadio = screen.getByLabelText('castrado-sim');
+
+      await userEvent.click(falseRadio);
+      expect(falseRadio).toBeChecked();
+      expect(trueRadio).not.toBeChecked();
+
+      await userEvent.click(trueRadio);
+      expect(trueRadio).toBeChecked();
+      expect(falseRadio).not.toBeChecked();
     });
   });
 
   describe('vaccine component', () => {
-    it('renders without vaccines passed', () => {
+    it('renders without vaccines list', () => {
       renderPetVetPage(argsWithVaccineEmpty);
       const vaccinesEvidence = screen.getByText('Vacinas');
 
       expect(vaccinesEvidence).toBeInTheDocument();
     });
 
-    it('renders with vaccines passed', () => {
+    it('renders with vaccines list', () => {
       renderPetVetPage(argsWithVaccine);
       const vaccinesEvidence = screen.getByText('Vacinas');
       const someVaccineEvidence = screen.getByText(mockVaccines[0].title);
@@ -90,7 +116,7 @@ describe('PetVetPage', () => {
     });
 
     describe('emits', () => {
-      it('emits the form data when every field is passed', async () => {
+      it('emits the form data when every field is validated', async () => {
         const petVetPage = renderPetVetPage(argsWithVaccine);
 
         const neuteredYesRadio = screen.getByLabelText('castrado-sim');
@@ -117,7 +143,39 @@ describe('PetVetPage', () => {
         expect(callBackEmit).toHaveBeenCalledWith(formExpected);
       });
 
-      it('does not emit the form data when radios are not check', async () => {
+      it('does not emit the form data when special care radio are not check', async () => {
+        const petVetPage = renderPetVetPage(argsWithVaccine);
+
+        const callBackEmit = vi.fn();
+        petVetPage.listen('submit', callBackEmit);
+
+        const neuteredYesRadio = screen.getByLabelText('castrado-sim');
+        await userEvent.click(neuteredYesRadio);
+
+        const button = screen.getByRole('button');
+        await userEvent.click(button);
+
+        expect(callBackEmit).not.toHaveBeenCalled();
+      });
+
+      it('does not emit the form data when neutered radio are not check', async () => {
+        const petVetPage = renderPetVetPage(argsWithVaccine);
+
+        const callBackEmit = vi.fn();
+        petVetPage.listen('submit', callBackEmit);
+
+        const neuteredYesRadio = screen.getByLabelText(
+          'cuidados-especiais-sim',
+        );
+        await userEvent.click(neuteredYesRadio);
+
+        const button = screen.getByRole('button');
+        await userEvent.click(button);
+
+        expect(callBackEmit).not.toHaveBeenCalled();
+      });
+
+      it('does not emit the form data when no radio button is selected', async () => {
         const petVetPage = renderPetVetPage(argsWithVaccine);
 
         const callBackEmit = vi.fn();
