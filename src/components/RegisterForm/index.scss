@@ -1,7 +1,7 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/fonts.scss' as fonts;
 
-.register-component-container {
+.register-form-container {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -15,7 +15,7 @@
 
   font-family: fonts.$primaryFont;
 
-  .form-title {
+  &__title {
     width: 62rem;
     height: 4.2rem;
 
@@ -39,44 +39,45 @@
     height: 12.3rem;
 
     margin: 3.2rem 32.3rem 0 17.2rem;
-  }
 
-  .social-btn-layout,
-  .other-option-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .social-btn-layout {
-    gap: 1.6rem;
-
-    .google-social-btn,
-    .facebook-social-btn {
+    &__btn-layout,
+    &__separator {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: start;
+      justify-content: center;
+    }
 
-      width: 21.7rem;
-      height: 6.4rem;
+    &__btn-layout {
+      gap: 1.6rem;
 
-      font-size: fonts.$sm;
-      font-weight: fonts.$semiBold;
-      font-family: fonts.$fifthFont;
+      &--google-btn,
+      &--facebook-btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
 
-      background-color: colors.$secondary100;
+        width: 21.7rem;
+        height: 6.4rem;
 
-      border-radius: 1rem;
+        font-size: fonts.$sm;
+        font-weight: fonts.$semiBold;
+        font-family: fonts.$fifthFont;
 
-      box-shadow: 0rem 0.4rem 1rem rgba(0, 0, 0, 8%);
+        background-color: colors.$secondary100;
 
-      cursor: pointer;
+        border: unset;
+        border-radius: 1rem;
 
-      &:hover {
-        transform: scale(1.02);
-        transition: all 0.4s ease-in-out;
+        box-shadow: 0rem 0.4rem 1rem rgba(0, 0, 0, 8%);
+
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.02);
+          transition: all 0.4s ease-in-out;
+        }
       }
 
       .social-image {
@@ -86,18 +87,20 @@
         margin: 0 1.6rem 0 3.2rem;
       }
     }
-  }
 
-  .divisor-line {
-    width: 18.1rem;
+    &__separator {
+      .divisor-line {
+        width: 18.1rem;
 
-    border: solid 1px colors.$gray200;
-  }
+        border: solid 1px colors.$gray200;
+      }
 
-  .divisor-text {
-    font-size: fonts.$sm;
+      .divisor-text {
+        font-size: fonts.$sm;
 
-    margin: 0 2.9rem;
+        margin: 0 2.9rem;
+      }
+    }
   }
 }
 
@@ -112,13 +115,14 @@
   .form-fields-container {
     margin-bottom: 2rem;
 
-    .form-label {
+    &--form-label {
       font-size: fonts.$xs;
+
       margin-left: 3rem;
     }
 
-    .form-text-input,
-    .form-dropdown-input {
+    &--text-input,
+    &--dropdown-input {
       width: 34.6rem;
       height: 5.4rem;
 
@@ -127,7 +131,7 @@
       padding: 0.3rem 1.6rem 1.2rem 1.6rem;
     }
 
-    .form-dropdown-input {
+    &--dropdown-input {
       .dropdown-form {
         width: 34.6rem;
         height: 5.4rem;
@@ -140,9 +144,22 @@
       }
     }
   }
+
+  .error-message {
+    display: none;
+
+    color: colors.$error100;
+
+    &.show-error {
+      display: block;
+      margin-left: 2rem;
+      text-align: justify;
+      width: 34rem;
+    }
+  }
 }
 
 .register-button {
   width: 45rem;
-  margin: 6.6rem 32.7rem 13.3rem 17rem;
+  margin: 6.6rem 32.7rem 13.3rem 17.5rem;
 }

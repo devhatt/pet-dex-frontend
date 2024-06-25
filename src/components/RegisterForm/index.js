@@ -1,6 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import TextInput from '../TextInput/index';
 import DropDown from '../Dropdown/index';
+import DropdownItem from '../Dropdown/components/DropdownItem';
 import Button from '../Button/index';
 import googleIcon from './images/google-icon.png';
 import facebookIcon from './images/facebook-icon.png';
@@ -9,58 +10,68 @@ import './index.scss';
 const events = ['register'];
 
 const html = `
-    <div data-select="component-container" class="register-component-container">
-        <h1 data-select="register-form-title" class="form-title">Crie sua petconta</h1>
-        <div data-select="social-area" class="social-container">
-            <div class="social-btn-layout">
-                <button class="google-social-btn">
+    <div class="register-form-container">
+        <h1 class="register-form-container__title">Crie sua petconta</h1>
+        <div class="social-container">
+            <div class="social-container__btn-layout">
+                <button class="social-container__btn-layout--google-btn">
                     <img class="social-image" src=${googleIcon} >
                     Google
                 </button>
-                <button class="facebook-social-btn">
+                <button class="social-container__btn-layout--facebook-btn">
                     <img class="social-image" src=${facebookIcon} >
                     Facebook
                 </button>
             </div>
-            <div class="other-option-container">
+            <div class="social-container__separator">
                 <hr class="divisor-line">
                 <p class="divisor-text">Ou</p>
                 <hr class="divisor-line">
             </div>
         </div>
-        <form action="submit">
+        <form action="submit" data-select="register-form">
                 <div class="register-form-layout">
                     <div class="form-fields-container">
-                        <label class="form-label" for="first-name">Nome</label>
-                        <div class="form-text-input" data-select="first-name-input"></div>
+                        <label class="form-fields-container--form-label" for="first-name">Nome</label>
+                        <div class="form-fields-container--text-input" data-select="first-name-input"></div>
+                        <span class="error-message" data-select="name-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="last-name">Sobrenome</label>
-                        <div class="form-text-input" data-select="last-name-input"></div>
+                        <label class="form-fields-container--form-label" for="surname">Sobrenome</label>
+                        <div class="form-fields-container--text-input" data-select="surname-input"></div>
+                        <span class="error-message" data-select="surname-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="birthday">Data de nascimento</label>
-                        <div class="form-text-input" data-select="birthday-input"></div>
+                        <label class="form-fields-container--form-label" for="birthday">Data de nascimento</label>
+                        <div class="form-fields-container--text-input" data-select="birthday-input"></div>
+                        <span class="error-message" data-select="birthday-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="local">Local</label>
-                        <div class="form-dropdown-input" data-select="dropdown-input"></div>
+                        <label class="form-fields-container--form-label" for="local">Local</label>
+                        <div class="form-fields-container--dropdown-input" data-select="dropdown-input">
+                          <ul data-select="dropdown-options" class="dropdown-input__options"></ul>
+                        </div>
+                        <span class="error-message" data-select="dropdown-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="email">E-mail</label>
-                        <div class="form-text-input" data-select="email-input"></div>
+                        <label class="form-fields-container--form-label" for="email">E-mail</label>
+                        <div class="form-fields-container--text-input" data-select="email-input"></div>
+                        <span class="error-message" data-select="email-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="phone">Celular</label>
-                        <div class="form-text-input" data-select="phone-input"></div>
+                        <label class="form-fields-container--form-label" for="phone">Celular</label>
+                        <div class="form-fields-container--text-input" data-select="phone-input"></div>
+                        <span class="error-message" data-select="phone-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="password">Senha</label>
-                        <div class="form-text-input" data-select="password-input"></div>
+                        <label class="form-fields-container--form-label" for="password">Senha</label>
+                        <div class="form-fields-container--text-input" data-select="password-input"></div>
+                        <span class="error-message" data-select="password-error-message"></span>
                     </div>
                     <div class="form-fields-container">
-                        <label class="form-label" for="confirm-password">Confirmar senha</label>
-                        <div class="form-text-input" data-select="confirm-password-input"></div>
+                        <label class="form-fields-container--form-label" for="confirm-password">Confirmar senha</label>
+                        <div class="form-fields-container--text-input" data-select="confirm-password-input"></div>
+                        <span class="error-message" data-select="confirm-password-error-message"></span>
                     </div>
                 </div>
                 <div class="register-button" data-select="form-button"></div>
@@ -72,15 +83,34 @@ export default function RegisterForm() {
   Component.call(this, { html, events });
 
   const $firstNameInputContainer = this.selected.get('first-name-input');
-  const $lastNameInputContainer = this.selected.get('last-name-input');
+  const $firstNameErrorMessage = this.selected.get('name-error-message');
+
+  const $surnameInputContainer = this.selected.get('surname-input');
+  const $surnameErrorMessage = this.selected.get('surname-error-message');
+
   const $birthdayInputContainer = this.selected.get('birthday-input');
+  const $birthdayErrorMessage = this.selected.get('birthday-error-message');
+
   const $emailInputContainer = this.selected.get('email-input');
+  const $emailErrorMessage = this.selected.get('email-error-message');
+
   const $phoneInputContainer = this.selected.get('phone-input');
+  const $phoneErrorMessage = this.selected.get('phone-error-message');
+
   const $passwordInputContainer = this.selected.get('password-input');
+  const $passwordErrorMessage = this.selected.get('password-error-message');
+
   const $confirmPasswordInputContainer = this.selected.get(
     'confirm-password-input',
   );
+  const $confirmPasswordErrorMessage = this.selected.get(
+    'confirm-password-error-message',
+  );
+
   const $dropdownInputContainer = this.selected.get('dropdown-input');
+
+  const $dropdownItemInputContainer = this.selected.get('dropdown-options');
+
   const $registerButtonContainer = this.selected.get('form-button');
 
   const firstNameInput = new TextInput({
@@ -88,7 +118,7 @@ export default function RegisterForm() {
     variation: 'standard',
   });
 
-  const lastNameInput = new TextInput({
+  const surnameInput = new TextInput({
     placeholder: 'DevHat',
     variation: 'standard',
   });
@@ -99,8 +129,13 @@ export default function RegisterForm() {
   });
 
   const dropdownInput = new DropDown({
-    items: [],
+    items: [''],
     placeholder: 'São Paulo, SP',
+  });
+
+  const dropdownOptions = new DropdownItem({
+    text: '',
+    value: '',
   });
 
   const emailInput = new TextInput({
@@ -114,12 +149,12 @@ export default function RegisterForm() {
   });
 
   const passwordInput = new TextInput({
-    placeholder: '******',
+    placeholder: '*********',
     variation: 'standard',
   });
 
   const confirmPasswordInput = new TextInput({
-    placeholder: '******',
+    placeholder: '*********',
     variation: 'standard',
   });
 
@@ -129,36 +164,192 @@ export default function RegisterForm() {
     isDisabled: false,
   });
 
-  firstNameInput.selected.get('input-text');
+  firstNameInput.selected.get('input-text').type = 'text';
+  firstNameInput.selected.get('input-text').id = 'first-name';
   firstNameInput.mount($firstNameInputContainer);
 
-  lastNameInput.selected.get('input-text');
-  lastNameInput.mount($lastNameInputContainer);
+  surnameInput.selected.get('input-text').type = 'text';
+  surnameInput.selected.get('input-text').id = 'surname';
+  surnameInput.mount($surnameInputContainer);
 
-  birthdayInput.selected.get('input-text');
+  birthdayInput.selected.get('input-text').type = 'text';
+  birthdayInput.selected.get('input-text').id = 'birthday';
   birthdayInput.mount($birthdayInputContainer);
 
   dropdownInput.selected.get('dropdown-toggle').classList.add('dropdown-form');
+  dropdownInput.selected.get('dropdown-toggle').id = 'local';
   dropdownInput.mount($dropdownInputContainer);
 
-  emailInput.selected.get('input-text');
+  dropdownOptions.selected.get('options');
+  dropdownOptions.mount($dropdownItemInputContainer);
+
+  emailInput.selected.get('input-text').type = 'email';
+  emailInput.selected.get('input-text').id = 'email';
   emailInput.mount($emailInputContainer);
 
-  phoneInput.selected.get('input-text');
+  phoneInput.selected.get('input-text').type = 'text';
+  phoneInput.selected.get('input-text').id = 'phone';
   phoneInput.mount($phoneInputContainer);
 
-  passwordInput.selected.get('input-text');
+  passwordInput.selected.get('input-text').type = 'password';
+  passwordInput.selected.get('input-text').id = 'password';
   passwordInput.mount($passwordInputContainer);
 
-  confirmPasswordInput.selected.get('input-text');
+  confirmPasswordInput.selected.get('input-text').type = 'password';
+  confirmPasswordInput.selected.get('input-text').id = 'confirm-password';
   confirmPasswordInput.mount($confirmPasswordInputContainer);
 
   registerButton.selected.get('button');
   registerButton.mount($registerButtonContainer);
+
+  registerButton.listen('click', () => {
+    const firstNameValue = firstNameInput.selected.get('input-text').value;
+    const surnameValue = surnameInput.selected.get('input-text').value;
+    const birthdayValue = birthdayInput.selected.get('input-text').value;
+    const emailValue = emailInput.selected.get('input-text').value;
+    const phoneValue = phoneInput.selected.get('input-text').value;
+    const passwordValue = passwordInput.selected.get('input-text').value;
+    const confirmPasswordValue =
+      confirmPasswordInput.selected.get('input-text').value;
+
+    let nameValid = true;
+    let surnameValid = true;
+    let birthdayValid = true;
+    let emailValid = true;
+    let phoneValid = true;
+    let passwordValid = true;
+    let confirmPasswordValid = true;
+
+    if (!this.isNameValid(firstNameValue)) {
+      nameValid = false;
+      $firstNameErrorMessage.classList.add('show-error');
+      $firstNameErrorMessage.innerText = 'Informe seu nome';
+      firstNameInput.inputError();
+    }
+
+    if (!this.isSurnameValid(surnameValue)) {
+      surnameValid = false;
+      $surnameErrorMessage.classList.add('show-error');
+      $surnameErrorMessage.innerText = 'Informe seu sobrenome';
+      surnameInput.inputError();
+    }
+
+    if (!this.isBirthdayValid(birthdayValue)) {
+      birthdayValid = false;
+      $birthdayErrorMessage.classList.add('show-error');
+      $birthdayErrorMessage.innerText = 'Informe sua data de nascimento';
+      birthdayInput.inputError();
+    }
+
+    if (!this.isEmailValid(emailValue)) {
+      emailValid = false;
+      $emailErrorMessage.classList.add('show-error');
+      $emailErrorMessage.innerText = 'Informe um e-mail válido';
+      emailInput.inputError();
+    }
+
+    if (!this.isPhoneValid(phoneValue)) {
+      phoneValid = false;
+      $phoneErrorMessage.classList.add('show-error');
+      $phoneErrorMessage.innerText = 'Informe um número de telefone válido';
+      phoneInput.inputError();
+    }
+
+    if (!this.isPasswordValid(passwordValue)) {
+      passwordValid = false;
+      $passwordErrorMessage.classList.add('show-error');
+      $passwordErrorMessage.innerText =
+        'Senha inválida. Sua senha deve conter no mínimo 10 caracteres, incluindo pelo menos um caractere especial e uma letra maiúscula.';
+      passwordInput.inputError();
+    }
+
+    if (
+      !this.isConfirmPasswordValid(confirmPasswordValue) ||
+      passwordValue !== confirmPasswordValue
+    ) {
+      confirmPasswordValid = false;
+      $confirmPasswordErrorMessage.classList.add('show-error');
+      $confirmPasswordErrorMessage.innerText = 'Senhas diferentes';
+      confirmPasswordInput.inputError();
+    }
+
+    if (nameValid) $firstNameErrorMessage.classList.remove('show-error');
+    if (surnameValid) $surnameErrorMessage.classList.remove('show-error');
+    if (birthdayValid) $birthdayErrorMessage.classList.remove('show-error');
+    if (emailValid) $emailErrorMessage.classList.remove('show-error');
+    if (phoneValid) $phoneErrorMessage.classList.remove('show-error');
+    if (passwordValid) $passwordErrorMessage.classList.remove('show-error');
+    if (confirmPasswordValid)
+      $confirmPasswordErrorMessage.classList.remove('show-error');
+
+    if (
+      nameValid &&
+      surnameValid &&
+      birthdayValid &&
+      emailValid &&
+      phoneValid &&
+      passwordValid &&
+      confirmPasswordValid
+    ) {
+      this.register();
+    }
+  });
 }
 
 RegisterForm.prototype = Object.assign(
   RegisterForm.prototype,
   Component.prototype,
-  {},
+  {
+    register() {
+      this.emit('register');
+    },
+
+    isNameValid(name) {
+      const nameRegex = /[a-zA-Z]$/;
+
+      return nameRegex.test(name);
+    },
+
+    isSurnameValid(surname) {
+      const surnameRegex = /[a-zA-Z]$/;
+
+      return surnameRegex.test(surname);
+    },
+
+    isBirthdayValid(birthday) {
+      const birthdayRegex = /(\d{2})\/?(\d{2})\/?(\d{4})$/;
+
+      return birthdayRegex.test(birthday);
+    },
+
+    isEmailValid(email) {
+      const emailRegex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-z]{2,}/;
+
+      return emailRegex.test(email);
+    },
+
+    isPhoneValid(phone) {
+      const phoneRegex = /\(?(\d{2})\)? \d{5}-?\d{4}/;
+
+      return phoneRegex.test(phone);
+    },
+
+    isPasswordValid(password) {
+      const minLength = password.length >= 10;
+      const uppercase = /[A-Z]/g;
+      const number = /[0-9]/g;
+      const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g;
+
+      return minLength && uppercase && number && specialCharacter;
+    },
+
+    isConfirmPasswordValid(confirmPassword) {
+      const minLength = confirmPassword.length >= 10;
+      const uppercase = /[A-Z]/g;
+      const number = /[0-9]/g;
+      const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g;
+
+      return minLength && uppercase && number && specialCharacter;
+    },
+  },
 );
