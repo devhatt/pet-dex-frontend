@@ -14,21 +14,21 @@
   }
 
   &__textarea {
-    position: relative;
-    z-index: 1;
+    overflow: hidden;
 
     padding-bottom: 1.4rem;
-
-    outline-color: transparent;
 
     border: unset;
     border-bottom: 0.1rem solid colors.$gray400;
 
-    overflow: hidden;
+    position: relative;
+    z-index: 1;
 
-    resize: none;
+    outline-color: transparent;
 
     transition: 0.2s ease-in-out outline;
+
+    resize: none;
 
     &::placeholder {
       color: colors.$gray400;
@@ -39,16 +39,17 @@
     }
 
     &.error {
+      color: colors.$secondary100;
+
       background: colors.$error100;
-      color: rgb(255, 255, 255);
     }
   }
 
   &__resize-trigger {
+    display: block;
+
     position: absolute;
     top: 0;
-
-    display: block;
 
     visibility: hidden;
   }
