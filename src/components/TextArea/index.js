@@ -37,7 +37,7 @@ export default function TextArea({
   window.addEventListener('resize', () => this.autoResize());
 }
 
-TextArea.prototype = Object.assign(TextArea, Component.prototype, {
+TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
   setName(name = '') {
     this.selected.get('textarea').name = name;
     this.emit('setName', name);
