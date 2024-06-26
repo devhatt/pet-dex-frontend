@@ -10,9 +10,9 @@ const events = [
 ];
 
 const html = `
-  <div class="textarea-container">
-    <textarea class="textarea-container__textarea" data-select="textarea" rows="1" cols="1"></textarea>
-    <span class="textarea-container__resize-trigger" data-select="resize-trigger" contenteditable></span>
+  <div class="textarea">
+    <textarea class="textarea__input" data-select="textarea" rows="1" cols="1"></textarea>
+    <span class="textarea__trigger" data-select="resize-trigger" contenteditable></span>
   </div>
 `;
 
