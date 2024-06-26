@@ -16,7 +16,12 @@ const html = `
   </div>
 `;
 
-export default function TextArea({ name, placeholder, maxLength, required }) {
+export default function TextArea({
+  name = '',
+  placeholder = '',
+  maxLength = 524288,
+  required = false,
+}) {
   Component.call(this, { html, events });
   const $textarea = this.selected.get('textarea');
 
