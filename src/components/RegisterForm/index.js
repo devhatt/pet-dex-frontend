@@ -211,17 +211,14 @@ export default function RegisterForm() {
   registerButton.mount($registerButtonContainer);
 
   registerButton.listen('click', () => {
-    // USAR MÉTODO GET VALUE DO TEXTINPUT E DO DROPDOWN
-    const firstNameValue = firstNameInput.selected.get('input-text').value;
-    const surnameValue = surnameInput.selected.get('input-text').value;
-    const birthdayValue = birthdayInput.selected.get('input-text').value;
-    const dropdownValue =
-      dropdownInput.selected.get('dropdown-selected').dataset;
-    const emailValue = emailInput.selected.get('input-text').value;
-    const phoneValue = phoneInput.selected.get('input-text').value;
-    const passwordValue = passwordInput.selected.get('input-text').value;
-    const confirmPasswordValue =
-      confirmPasswordInput.selected.get('input-text').value;
+    const firstNameValue = firstNameInput.getValue();
+    const surnameValue = surnameInput.getValue();
+    const birthdayValue = birthdayInput.getValue();
+    const dropdownValue = dropdownInput.getValue();
+    const emailValue = emailInput.getValue();
+    const phoneValue = phoneInput.getValue();
+    const passwordValue = passwordInput.getValue();
+    const confirmPasswordValue = confirmPasswordInput.getValue();
 
     let nameValid = true;
     let surnameValid = true;
@@ -253,12 +250,12 @@ export default function RegisterForm() {
       birthdayInput.inputError();
     }
 
-    if (!dropdownValue.value) {
+    if (!dropdownValue) {
       dropdownValid = false;
       $dropdownErrorMessage.classList.add('show-error');
       dropdownInput.selected
         .get('dropdown-toggle')
-        .classList.toggle('dropdown-form__show-error-dropdown');
+        .classList.add('dropdown-form__show-error-dropdown');
       $dropdownErrorMessage.innerText = 'Selecione sua cidade';
     }
 
