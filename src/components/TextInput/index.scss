@@ -85,6 +85,8 @@
       &.input-error {
         background-color: colors.$error100;
         filter: opacity(0.75);
+
+        color: colors.$secondary100;
       }
     }
 

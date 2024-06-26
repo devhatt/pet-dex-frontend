@@ -111,17 +111,17 @@ export default function RegisterForm() {
 
   const firstNameInput = new TextInput({
     placeholder: 'Devhat',
-    variation: 'standard',
+    type: 'text',
   });
 
   const surnameInput = new TextInput({
     placeholder: 'DevHat',
-    variation: 'standard',
+    type: 'text',
   });
 
   const birthdayInput = new TextInput({
     placeholder: '13/12/1995',
-    variation: 'standard',
+    type: 'text',
   });
 
   const dropdownInput = new DropDown({
@@ -152,39 +152,38 @@ export default function RegisterForm() {
 
   const emailInput = new TextInput({
     placeholder: 'dev@devhat.com.br',
-    variation: 'standard',
+    type: 'email',
   });
 
   const phoneInput = new TextInput({
     placeholder: '(11) 92875-3356',
-    variation: 'standard',
+    type: 'text',
   });
 
   const passwordInput = new TextInput({
     placeholder: '*********',
-    variation: 'standard',
+    type: 'password',
   });
 
   const confirmPasswordInput = new TextInput({
     placeholder: '*********',
-    variation: 'standard',
+    type: 'password',
   });
 
   const registerButton = new Button({
     text: 'Cadastrar',
     isFullWidth: true,
-    isDisabled: false,
   });
 
-  firstNameInput.selected.get('input-text').type = 'text';
+  firstNameInput.selected.get('input-text');
   firstNameInput.selected.get('input-text').id = 'first-name';
   firstNameInput.mount($firstNameInputContainer);
 
-  surnameInput.selected.get('input-text').type = 'text';
+  surnameInput.selected.get('input-text');
   surnameInput.selected.get('input-text').id = 'surname';
   surnameInput.mount($surnameInputContainer);
 
-  birthdayInput.selected.get('input-text').type = 'text';
+  birthdayInput.selected.get('input-text');
   birthdayInput.selected.get('input-text').id = 'birthday';
   birthdayInput.mount($birthdayInputContainer);
 
@@ -192,19 +191,19 @@ export default function RegisterForm() {
   dropdownInput.selected.get('dropdown-toggle').id = 'local';
   dropdownInput.mount($dropdownInputContainer);
 
-  emailInput.selected.get('input-text').type = 'email';
+  emailInput.selected.get('input-text');
   emailInput.selected.get('input-text').id = 'email';
   emailInput.mount($emailInputContainer);
 
-  phoneInput.selected.get('input-text').type = 'text';
+  phoneInput.selected.get('input-text');
   phoneInput.selected.get('input-text').id = 'phone';
   phoneInput.mount($phoneInputContainer);
 
-  passwordInput.selected.get('input-text').type = 'password';
+  passwordInput.selected.get('input-text');
   passwordInput.selected.get('input-text').id = 'password';
   passwordInput.mount($passwordInputContainer);
 
-  confirmPasswordInput.selected.get('input-text').type = 'password';
+  confirmPasswordInput.selected.get('input-text');
   confirmPasswordInput.selected.get('input-text').id = 'confirm-password';
   confirmPasswordInput.mount($confirmPasswordInputContainer);
 
@@ -212,6 +211,7 @@ export default function RegisterForm() {
   registerButton.mount($registerButtonContainer);
 
   registerButton.listen('click', () => {
+    // USAR MÉTODO GET VALUE DO TEXTINPUT E DO DROPDOWN
     const firstNameValue = firstNameInput.selected.get('input-text').value;
     const surnameValue = surnameInput.selected.get('input-text').value;
     const birthdayValue = birthdayInput.selected.get('input-text').value;
@@ -239,7 +239,7 @@ export default function RegisterForm() {
       firstNameInput.inputError();
     }
 
-    if (!this.isSurnameValid(surnameValue)) {
+    if (!this.isNameValid(surnameValue)) {
       surnameValid = false;
       $surnameErrorMessage.classList.add('show-error');
       $surnameErrorMessage.innerText = 'Informe seu sobrenome';
@@ -258,7 +258,7 @@ export default function RegisterForm() {
       $dropdownErrorMessage.classList.add('show-error');
       dropdownInput.selected
         .get('dropdown-toggle')
-        .classList.add('dropdown-form__show-error-dropdown');
+        .classList.toggle('dropdown-form__show-error-dropdown');
       $dropdownErrorMessage.innerText = 'Selecione sua cidade';
     }
 
@@ -285,7 +285,7 @@ export default function RegisterForm() {
     }
 
     if (
-      !this.isConfirmPasswordValid(confirmPasswordValue) ||
+      !this.isPasswordValid(confirmPasswordValue) ||
       passwordValue !== confirmPasswordValue
     ) {
       confirmPasswordValid = false;
@@ -297,12 +297,11 @@ export default function RegisterForm() {
     if (nameValid) $firstNameErrorMessage.classList.remove('show-error');
     if (surnameValid) $surnameErrorMessage.classList.remove('show-error');
     if (birthdayValid) $birthdayErrorMessage.classList.remove('show-error');
-    if (dropdownValid) {
-      $dropdownErrorMessage.classList.remove('show-error');
+    if (dropdownValid) $dropdownErrorMessage.classList.remove('show-error');
+    if (dropdownValid)
       dropdownInput.selected
         .get('dropdown-toggle')
         .classList.remove('dropdown-form__show-error-dropdown');
-    }
     if (emailValid) $emailErrorMessage.classList.remove('show-error');
     if (phoneValid) $phoneErrorMessage.classList.remove('show-error');
     if (passwordValid) $passwordErrorMessage.classList.remove('show-error');
@@ -338,12 +337,6 @@ RegisterForm.prototype = Object.assign(
       return nameRegex.test(name);
     },
 
-    isSurnameValid(surname) {
-      const surnameRegex = /[a-zA-Z]$/;
-
-      return surnameRegex.test(surname);
-    },
-
     isBirthdayValid(birthday) {
       const birthdayRegex = /(\d{2})\/?(\d{2})\/?(\d{4})$/;
 
@@ -351,31 +344,22 @@ RegisterForm.prototype = Object.assign(
     },
 
     isEmailValid(email) {
-      const emailRegex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-z]{2,}/;
+      const emailRegex = /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-z]{2,}/g;
 
       return emailRegex.test(email);
     },
 
     isPhoneValid(phone) {
-      const phoneRegex = /\(?(\d{2})\)? \d{5}-?\d{4}/;
+      const phoneRegex = /(\d{2})\d{5}\d{4}/g;
 
       return phoneRegex.test(phone);
     },
 
     isPasswordValid(password) {
       const minLength = password.length >= 10;
-      const uppercase = /[A-Z]/g;
-      const number = /[0-9]/g;
-      const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g;
-
-      return minLength && uppercase && number && specialCharacter;
-    },
-
-    isConfirmPasswordValid(confirmPassword) {
-      const minLength = confirmPassword.length >= 10;
-      const uppercase = /[A-Z]/g;
-      const number = /[0-9]/g;
-      const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g;
+      const uppercase = /[A-Z]/g.test(password);
+      const number = /[0-9]/g.test(password);
+      const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g.test(password);
 
       return minLength && uppercase && number && specialCharacter;
     },
