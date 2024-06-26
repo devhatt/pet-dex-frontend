@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import TextInput from '../TextInput/index';
 import DropDown from '../Dropdown/index';
-import DropdownItem from '../Dropdown/components/DropdownItem';
 import Button from '../Button/index';
 import googleIcon from './images/google-icon.png';
 import facebookIcon from './images/facebook-icon.png';
@@ -48,9 +47,7 @@ const html = `
                     </div>
                     <div class="form-fields-container">
                         <label class="form-fields-container--form-label" for="local">Local</label>
-                        <div class="form-fields-container--dropdown-input" data-select="dropdown-input">
-                          <ul data-select="dropdown-options" class="dropdown-input__options"></ul>
-                        </div>
+                        <div class="form-fields-container--dropdown-input" data-select="dropdown-input"></div>
                         <span class="error-message" data-select="dropdown-error-message"></span>
                     </div>
                     <div class="form-fields-container">
@@ -108,8 +105,7 @@ export default function RegisterForm() {
   );
 
   const $dropdownInputContainer = this.selected.get('dropdown-input');
-
-  const $dropdownItemInputContainer = this.selected.get('dropdown-options');
+  const $dropdownErrorMessage = this.selected.get('dropdown-error-message');
 
   const $registerButtonContainer = this.selected.get('form-button');
 
@@ -129,13 +125,29 @@ export default function RegisterForm() {
   });
 
   const dropdownInput = new DropDown({
-    items: [''],
-    placeholder: 'São Paulo, SP',
-  });
-
-  const dropdownOptions = new DropdownItem({
-    text: '',
-    value: '',
+    items: [
+      {
+        text: 'São Paulo',
+        value: 'SP',
+      },
+      {
+        text: 'Fortaleza',
+        value: 'FOR',
+      },
+      {
+        text: 'Rio de Janeiro',
+        value: 'RJ',
+      },
+      {
+        text: 'Bahia',
+        value: 'BA',
+      },
+      {
+        text: 'Pernambuco',
+        value: 'PE',
+      },
+    ],
+    placeholder: 'Cidade',
   });
 
   const emailInput = new TextInput({
@@ -180,9 +192,6 @@ export default function RegisterForm() {
   dropdownInput.selected.get('dropdown-toggle').id = 'local';
   dropdownInput.mount($dropdownInputContainer);
 
-  dropdownOptions.selected.get('options');
-  dropdownOptions.mount($dropdownItemInputContainer);
-
   emailInput.selected.get('input-text').type = 'email';
   emailInput.selected.get('input-text').id = 'email';
   emailInput.mount($emailInputContainer);
@@ -206,6 +215,8 @@ export default function RegisterForm() {
     const firstNameValue = firstNameInput.selected.get('input-text').value;
     const surnameValue = surnameInput.selected.get('input-text').value;
     const birthdayValue = birthdayInput.selected.get('input-text').value;
+    const dropdownValue =
+      dropdownInput.selected.get('dropdown-selected').dataset;
     const emailValue = emailInput.selected.get('input-text').value;
     const phoneValue = phoneInput.selected.get('input-text').value;
     const passwordValue = passwordInput.selected.get('input-text').value;
@@ -215,6 +226,7 @@ export default function RegisterForm() {
     let nameValid = true;
     let surnameValid = true;
     let birthdayValid = true;
+    let dropdownValid = true;
     let emailValid = true;
     let phoneValid = true;
     let passwordValid = true;
@@ -239,6 +251,15 @@ export default function RegisterForm() {
       $birthdayErrorMessage.classList.add('show-error');
       $birthdayErrorMessage.innerText = 'Informe sua data de nascimento';
       birthdayInput.inputError();
+    }
+
+    if (!dropdownValue.value) {
+      dropdownValid = false;
+      $dropdownErrorMessage.classList.add('show-error');
+      dropdownInput.selected
+        .get('dropdown-toggle')
+        .classList.add('dropdown-form__show-error-dropdown');
+      $dropdownErrorMessage.innerText = 'Selecione sua cidade';
     }
 
     if (!this.isEmailValid(emailValue)) {
@@ -276,6 +297,12 @@ export default function RegisterForm() {
     if (nameValid) $firstNameErrorMessage.classList.remove('show-error');
     if (surnameValid) $surnameErrorMessage.classList.remove('show-error');
     if (birthdayValid) $birthdayErrorMessage.classList.remove('show-error');
+    if (dropdownValid) {
+      $dropdownErrorMessage.classList.remove('show-error');
+      dropdownInput.selected
+        .get('dropdown-toggle')
+        .classList.remove('dropdown-form__show-error-dropdown');
+    }
     if (emailValid) $emailErrorMessage.classList.remove('show-error');
     if (phoneValid) $phoneErrorMessage.classList.remove('show-error');
     if (passwordValid) $passwordErrorMessage.classList.remove('show-error');
@@ -286,6 +313,7 @@ export default function RegisterForm() {
       nameValid &&
       surnameValid &&
       birthdayValid &&
+      dropdownValid &&
       emailValid &&
       phoneValid &&
       passwordValid &&

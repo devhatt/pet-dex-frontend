@@ -141,6 +141,14 @@
         box-shadow: none;
 
         border: 1px solid colors.$gray200;
+
+        &__show-error-dropdown {
+          display: flex;
+
+          width: 34rem;
+
+          background-color: colors.$error100;
+        }
       }
     }
   }
@@ -152,9 +160,12 @@
 
     &.show-error {
       display: block;
-      margin-left: 2rem;
-      text-align: justify;
+
       width: 34rem;
+
+      margin-left: 2rem;
+
+      text-align: justify;
     }
   }
 }
