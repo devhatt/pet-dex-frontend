@@ -24,26 +24,34 @@ export default function TextArea({
 }) {
   Component.call(this, { html, events });
   const $textarea = this.selected.get('textarea');
+  const $resizeTrigger = this.selected.get('resize-trigger');
 
   this.setName(name);
   this.setPlaceholder(placeholder);
   this.setMaxLength(maxLength);
   this.setRequired(required);
 
+  function autoResize() {
+    $resizeTrigger.innerText = $textarea.value;
+
+    $textarea.style.height = 'auto';
+    $textarea.style.height = `${$resizeTrigger.offsetHeight}px`;
+  }
+
   this.listen('mount', () => {
     $textarea.addEventListener('focus', () =>
       $textarea.classList.remove('textarea__input--error'),
     );
-    $textarea.addEventListener('input', () => this.autoResize());
-    window.addEventListener('resize', () => this.autoResize());
+    $textarea.addEventListener('input', autoResize);
+    window.addEventListener('resize', autoResize);
   });
 
   this.listen('unmount', () => {
     $textarea.removeEventListener('focus', () =>
       $textarea.classList.remove('textarea__input--error'),
     );
-    $textarea.removeEventListener('input', () => this.autoResize());
-    window.removeEventListener('resize', () => this.autoResize());
+    $textarea.removeEventListener('input', autoResize);
+    window.removeEventListener('resize', autoResize);
   });
 }
 
@@ -69,14 +77,5 @@ TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
   error() {
     this.selected.get('textarea').classList.add('textarea__input--error');
     this.emit('error');
-  },
-  autoResize() {
-    const { value } = this.selected.get('textarea');
-
-    this.selected.get('resize-trigger').innerText = value;
-
-    this.selected.get('textarea').style.height = 'auto';
-    this.selected.get('textarea').style.height =
-      `${this.selected.get('resize-trigger').offsetHeight}px`;
   },
 });
