@@ -56,7 +56,7 @@ TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
     this.selected.get('textarea').placeholder = placeholder;
     this.emit('setPlaceholder', placeholder);
   },
-  setMaxLength(maxLength) {
+  setMaxLength(maxLength = 524288) {
     if (maxLength) {
       this.selected.get('textarea').maxLength = maxLength;
     }
