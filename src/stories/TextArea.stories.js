@@ -12,7 +12,7 @@ export default {
   argTypes: {
     name: { control: 'text', default: '' },
     placeholder: { control: 'text', default: '' },
-    maxLength: { control: 'number', default: '' },
+    maxLength: { control: 'number', default: 524288 },
     required: { control: 'boolean', default: false },
   },
 };
