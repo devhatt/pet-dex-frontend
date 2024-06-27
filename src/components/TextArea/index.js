@@ -32,7 +32,7 @@ export default function TextArea({
 
   this.listen('mount', () => {
     $textarea.addEventListener('focus', () =>
-      $textarea.classList.remove('error'),
+      $textarea.classList.remove('textarea__input--error'),
     );
     $textarea.addEventListener('input', () => this.autoResize());
     window.addEventListener('resize', () => this.autoResize());
@@ -40,7 +40,7 @@ export default function TextArea({
 
   this.listen('unmount', () => {
     $textarea.removeEventListener('focus', () =>
-      $textarea.classList.remove('error'),
+      $textarea.classList.remove('textarea__input--error'),
     );
     $textarea.removeEventListener('input', () => this.autoResize());
     window.removeEventListener('resize', () => this.autoResize());
@@ -67,7 +67,7 @@ TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
     this.emit('required:change', required);
   },
   error() {
-    this.selected.get('textarea').classList.add('error');
+    this.selected.get('textarea').classList.add('textarea__input--error');
     this.emit('error');
   },
   autoResize() {
