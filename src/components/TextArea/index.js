@@ -2,10 +2,10 @@ import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
 const events = [
-  'setName',
-  'setPlaceholder',
-  'setMaxLength',
-  'setRequired',
+  'name:change',
+  'placeholder:change',
+  'maxLength:change',
+  'required:change',
   'error',
 ];
 
@@ -50,21 +50,21 @@ export default function TextArea({
 TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
   setName(name = '') {
     this.selected.get('textarea').name = name;
-    this.emit('setName', name);
+    this.emit('name:change', name);
   },
   setPlaceholder(placeholder = '') {
     this.selected.get('textarea').placeholder = placeholder;
-    this.emit('setPlaceholder', placeholder);
+    this.emit('placeholder:change', placeholder);
   },
   setMaxLength(maxLength = 524288) {
     if (maxLength) {
       this.selected.get('textarea').maxLength = maxLength;
     }
-    this.emit('setMaxLength', maxLength);
+    this.emit('maxLength:change', maxLength);
   },
   setRequired(required = false) {
     this.selected.get('textarea').required = required;
-    this.emit('setRequired', required);
+    this.emit('required:change', required);
   },
   error() {
     this.selected.get('textarea').classList.add('error');
