@@ -30,11 +30,21 @@ export default function TextArea({
   this.setMaxLength(maxLength);
   this.setRequired(required);
 
-  $textarea.addEventListener('focus', () =>
-    $textarea.classList.remove('error'),
-  );
-  $textarea.addEventListener('input', () => this.autoResize());
-  window.addEventListener('resize', () => this.autoResize());
+  this.listen('mount', () => {
+    $textarea.addEventListener('focus', () =>
+      $textarea.classList.remove('error'),
+    );
+    $textarea.addEventListener('input', () => this.autoResize());
+    window.addEventListener('resize', () => this.autoResize());
+  });
+
+  this.listen('unmount', () => {
+    $textarea.removeEventListener('focus', () =>
+      $textarea.classList.remove('error'),
+    );
+    $textarea.removeEventListener('input', () => this.autoResize());
+    window.removeEventListener('resize', () => this.autoResize());
+  });
 }
 
 TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
