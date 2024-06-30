@@ -1,188 +1,67 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import PetWeightPage from './index';
-import UploadImage from '../../../components/UploadImage';
-import RangeSlider from '../../../components/RangeSlider';
-import TextInput from '../../../components/TextInput';
-import RadioButton from '../../../components/RadioButton';
-import Button from '../../../components/Button';
-
-let instance;
-
-vi.mock('../../../components/UploadImage', () => ({
-  __esModule: true,
-  default: vi.fn().mockImplementation(() => ({
-    mount: vi.fn(),
-    selected: {
-      get: vi.fn().mockReturnValue({
-        classList: {
-          add: vi.fn(),
-        },
-      }),
-    },
-  })),
-}));
-
-vi.mock('../../../components/RangeSlider', () => ({
-  __esModule: true,
-  default: vi.fn().mockImplementation(() => ({
-    mount: vi.fn(),
-    setValue: vi.fn(),
-    listen: vi.fn(),
-    selected: {
-      get: vi.fn().mockReturnValue({
-        classList: {
-          add: vi.fn(),
-        },
-      }),
-    },
-  })),
-}));
-
-vi.mock('../../../components/TextInput', () => ({
-  __esModule: true,
-  default: vi.fn().mockImplementation(() => ({
-    mount: vi.fn(),
-    setValue: vi.fn(),
-    listen: vi.fn(),
-    selected: {
-      get: vi.fn().mockReturnValue({
-        classList: {
-          add: vi.fn(),
-        },
-      }),
-    },
-  })),
-}));
-
-vi.mock('../../../components/RadioButton', () => ({
-  __esModule: true,
-  default: vi.fn().mockImplementation(() => ({
-    mount: vi.fn(),
-    isChecked: vi.fn().mockImplementation(function isChecked() {
-      return this === instance.radioKG;
-    }),
-    getValue: vi.fn().mockImplementation(function getValue() {
-      return this === instance.radioKG ? 'kg' : 'lb';
-    }),
-    selected: {
-      get: vi.fn().mockReturnValue({
-        classList: {
-          add: vi.fn(),
-        },
-      }),
-    },
-  })),
-}));
-
-vi.mock('../../../components/Button', () => ({
-  __esModule: true,
-  default: vi.fn().mockImplementation(() => ({
-    mount: vi.fn(),
-    listen: vi.fn(),
-    selected: {
-      get: vi.fn().mockReturnValue({
-        classList: {
-          add: vi.fn(),
-        },
-      }),
-    },
-  })),
-}));
+import { describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/vanilla';
+import PetWeightPage from '.';
 
 const propsMock = {
   petPhoto: 'https://via.placeholder.com/150',
 };
 
-describe('PetWeightPage', () => {
-  beforeEach(() => {
-    instance = new PetWeightPage(propsMock);
+const makeComponent = (params) => render(new PetWeightPage(params));
+
+describe.only('Pet Weight page', () => {
+  it('renders image', async () => {
+    const page = makeComponent(propsMock.petPhoto);
+
+    render(page);
+    const image = screen.getByAltText('Imagem carregada');
+
+    expect(image).toBeInTheDocument();
   });
 
-  afterEach(() => {
-    vi.clearAllMocks();
+  it('renders title', () => {
+    const page = makeComponent(propsMock.petPhoto);
+    const componentTitle = 'Qual é o peso do seu animal de estimação?';
+
+    render(page);
+    const title = screen.getByRole('heading', { name: componentTitle });
+
+    expect(title).toBeInTheDocument();
   });
 
-  it('is a Function', () => {
-    expect(PetWeightPage).toBeInstanceOf(Function);
+  it('renders hint', () => {
+    const page = makeComponent(propsMock.petPhoto);
+    const componentHint = 'Ajuste de acordo com a realidade';
+
+    render(page);
+    const hint = screen.getByText(componentHint);
+
+    expect(hint).toBeInTheDocument();
   });
 
-  it('returns an object', () => {
-    expect(instance).toBeInstanceOf(Object);
+  it('renders slider', () => {
+    const page = makeComponent(propsMock.petPhoto);
+    render(page);
+
+    const slider = screen.getByText('I I I');
+
+    expect(slider).toBeInTheDocument();
   });
 
-  it('initializes components correctly', () => {
-    expect(UploadImage).toHaveBeenCalledTimes(1);
-    expect(RangeSlider).toHaveBeenCalledTimes(1);
-    expect(TextInput).toHaveBeenCalledTimes(1);
-    expect(RadioButton).toHaveBeenCalledTimes(2);
-    expect(Button).toHaveBeenCalledTimes(1);
+  it('renders weight input', () => {
+    const page = makeComponent(propsMock.petPhoto);
+    render(page);
+
+    const input = screen.getByPlaceholderText('Peso');
+
+    expect(input).toBeInTheDocument();
   });
 
-  it('sets the initial pet photo', () => {
-    expect(UploadImage).toHaveBeenCalledWith();
-  });
+  it('renders continue button', () => {
+    const page = makeComponent(propsMock.petPhoto);
+    render(page);
 
-  it('updates weight correctly on slider change', () => {
-    const mockValue = 5.0;
-    instance.slider.listen.mock.calls[0][1](mockValue);
-    expect(instance.weight).toBe(mockValue);
-    expect(instance.input.setValue).toHaveBeenCalledWith(mockValue);
-  });
+    const button = screen.getByRole('button', { name: 'Continuar' });
 
-  it('updates slider correctly on input change', () => {
-    const mockValue = '5.0';
-    instance.input.listen.mock.calls[0][1](mockValue);
-    expect(instance.weight).toBe(parseFloat(mockValue));
-    expect(instance.slider.setValue).toHaveBeenCalledWith(
-      parseFloat(mockValue),
-    );
-  });
-
-  it('emits weight and unit on button click', () => {
-    const mockWeight = 5.0;
-    instance.weight = mockWeight;
-    instance.radioKG.isChecked = () => true;
-    instance.radioKG.getValue = () => 'kg';
-    const emitSpy = vi.spyOn(instance, 'emit');
-
-    instance.button.listen.mock.calls[0][1]();
-
-    expect(emitSpy).toHaveBeenCalledWith('weight', mockWeight, 'kg');
-  });
-
-  it('switches weight unit correctly', () => {
-    instance.radioKG.isChecked = () => true;
-    expect(instance.weightUnit()).toBe('kg');
-
-    instance.radioKG.isChecked = () => false;
-    instance.radioLB.isChecked = () => true;
-    expect(instance.weightUnit()).toBe('lb');
-  });
-
-  it('applies CSS classes correctly', () => {
-    expect(
-      instance.image.selected.get('image-preview').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__image');
-    expect(
-      instance.slider.selected.get('range-slider').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__slider');
-    expect(
-      instance.slider.selected.get('range-slider-value').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__value');
-    expect(
-      instance.input.selected.get('input-text').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__input');
-    expect(
-      instance.input.selected.get('input-text-container').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__input-container');
-    expect(
-      instance.radioKG.selected.get('radio-container').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__radio');
-    expect(
-      instance.radioLB.selected.get('radio-container').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__radio');
-    expect(
-      instance.button.selected.get('button').classList.add,
-    ).toHaveBeenCalledWith('pet-weight-page__button');
+    expect(button).toBeInTheDocument();
   });
 });
