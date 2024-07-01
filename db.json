@@ -273,14 +273,40 @@
           "birthday": "20-07-2018",
           "castrated": true,
           "specialNeeds": false
+        },
+        {
+          "id": "11",
+          "breed": "Turkey Shepherd",
+          "name": "Jadd",
+          "size": {
+            "small": "X",
+            "medium": "",
+            "large": ""
+          },
+          "weight": 32,
+          "birthday": "20-07-2017",
+          "castrated": false,
+          "specialNeeds": true
         }
       ],
       "preferences": {
         "favLang": "en-us",
         "receiveNews": true
       }
-    }    
-    
+    },
+    {
+      "id": "11",
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "password": "SecurePass123!",
+      "phone": "(21) 91234-5678",
+      "local": "Rio de Janeiro",
+      "pets": [],
+      "preferences": {
+        "favLang": "pt-br",
+        "receiveNews": false
+      }
+    }
   ],
   "breed": [
     {

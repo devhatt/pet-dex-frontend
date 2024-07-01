@@ -7,8 +7,12 @@ export const UserService = {
         throw new Error('Ocorreu um erro na requisição');
       }
 
-      const data = await response.json();
-      return data.pets[0];
+      const { name, pets } = await response.json();
+
+      if (pets && pets.length > 0) {
+        return pets;
+      }
+      return `${name} não possui pets.`;
     } catch (error) {
       if (error instanceof Error) {
         return {
