@@ -13,7 +13,7 @@ export default {
     name: { control: 'text', default: '' },
     placeholder: { control: 'text', default: '' },
     maxLength: { control: 'number', default: 524288 },
-    required: { control: 'boolean', default: false },
+    required: { control: 'boolean', default: true },
   },
 };
 

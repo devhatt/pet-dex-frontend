@@ -20,7 +20,7 @@ export default function TextArea({
   name = '',
   placeholder = '',
   maxLength = 524288,
-  required = false,
+  required = true,
 }) {
   Component.call(this, { html, events });
   const $textarea = this.selected.get('textarea');
@@ -68,7 +68,7 @@ TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
     this.selected.get('textarea').maxLength = maxLength;
     this.emit('maxLength:change', maxLength);
   },
-  setRequired(required = false) {
+  setRequired(required = true) {
     this.selected.get('textarea').required = required;
     this.emit('required:change', required);
   },
