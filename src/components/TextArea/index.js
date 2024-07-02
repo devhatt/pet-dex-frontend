@@ -19,7 +19,7 @@ const html = `
 export default function TextArea({
   name = '',
   placeholder = '',
-  maxLength = 524288,
+  maxLength,
   required = true,
 }) {
   Component.call(this, { html, events });
@@ -28,8 +28,8 @@ export default function TextArea({
 
   this.setName(name);
   this.setPlaceholder(placeholder);
-  this.setMaxLength(maxLength);
   this.setRequired(required);
+  if (maxLength) this.setMaxLength(maxLength);
 
   function autoResize() {
     $resizeTrigger.innerText = $textarea.value;
@@ -64,9 +64,11 @@ TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
     this.selected.get('textarea').placeholder = placeholder;
     this.emit('placeholder:change', placeholder);
   },
-  setMaxLength(maxLength = 524288) {
-    this.selected.get('textarea').maxLength = maxLength;
-    this.emit('maxLength:change', maxLength);
+  setMaxLength(maxLength = Infinity) {
+    if (maxLength) {
+      this.selected.get('textarea').maxLength = maxLength;
+      this.emit('maxLength:change', maxLength);
+    }
   },
   setRequired(required = true) {
     this.selected.get('textarea').required = required;
