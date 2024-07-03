@@ -77,10 +77,11 @@ Vaccine.prototype = Object.assign(Vaccine.prototype, Component.prototype, {
   listVaccines() {
     const vaccines = [];
 
-    this.groups.values().forEach((group) => {
+    Array.from(this.groups.values()).forEach((group) => {
       const items = group.listItems();
       vaccines.push(...items);
     });
+
     return vaccines;
   },
   openDrawer() {
