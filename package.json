@@ -28,8 +28,6 @@
   "dependencies": {
     "concurrently": "8.2.2",
     "dayjs": "^1.11.10",
-    "json-server": "1.0.0-beta.1",
-    "npm": "10.8.1",
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
     "vanilla-routing": "0.0.4",
@@ -84,7 +82,8 @@
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.0",
     "stylelint-scss": "^6.2.1",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "json-server": "1.0.0-beta.1"
   },
   "config": {
     "commitizen": {

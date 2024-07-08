@@ -1,5 +1,5 @@
 export const UserService = {
-  getUser: async (userId) => {
+  getPet: async (userId) => {
     try {
       const response = await fetch(`http://localhost:3000/user/${userId}`);
 
@@ -7,12 +7,8 @@ export const UserService = {
         throw new Error('Ocorreu um erro na requisição');
       }
 
-      const { name, pets } = await response.json();
-
-      if (pets && pets.length > 0) {
-        return pets;
-      }
-      return `${name} não possui pets.`;
+      const { pets } = await response.json();
+      return pets;
     } catch (error) {
       if (error instanceof Error) {
         return {
