@@ -11,6 +11,10 @@
   text-decoration: none;
   aspect-ratio: 1/1;
 
+  opacity: 0.85;
+
+  transition: 0.3s ease-in-out;
+
   &__img {
     height: 100%;
 
@@ -28,8 +32,6 @@
   }
 
   &__title {
-    overflow: hidden;
-
     font-family: fonts.$fourthFont;
 
     color: colors.$gray200;
@@ -47,9 +49,6 @@
 
   &:hover {
     transform: scale(1.02);
-  }
-
-  &:not(:hover) {
-    opacity: 0.9;
+    opacity: 1;
   }
 }

@@ -9,8 +9,8 @@ import meusPets from './images/meuspets.svg';
 import notificacoes from './images/notifications.svg';
 import perfil from './images/perfil.svg';
 import petdex from './images/petdex.svg';
-import './index.scss';
 import PetAvatar from '../../../../components/PetAvatar';
+import './index.scss';
 
 const html = `
   <nav class="side-menu-nav">
@@ -28,7 +28,7 @@ const html = `
       <div class="side-menu-content__line"></div>
       <div class="side-menu-content__yourpet">
         <h2 class="side-menu-content__title-yourpet">Seu Pet</h2>
-        <div class="side-menu-content__avatar-yourpet"  data-select="avatar-container"></div>
+        <div class="side-menu-content__avatars-yourpet"  data-select="avatar-container"></div>
       </div>
       <div class="side-menu-content__line"></div>
       <div class="side-menu-content__itens" alt="itens-um">

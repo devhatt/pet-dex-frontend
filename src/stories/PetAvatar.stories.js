@@ -6,7 +6,9 @@ export default {
   title: 'Components/PetAvatar',
   render: (args) => {
     const $container = document.createElement('div');
-    $container.style.width = '6rem';
+    $container.style.width = '60px';
+    $container.style.height = '90px';
+    $container.style.overflow = 'visible';
     const petAvatar = new PetAvatar(args);
     petAvatar.mount($container);
 
