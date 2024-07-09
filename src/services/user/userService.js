@@ -1,5 +1,5 @@
 export const UserService = {
-  getPet: async (userId) => {
+  getPets: async (userId) => {
     try {
       const response = await fetch(`http://localhost:3000/user/${userId}`);
 
