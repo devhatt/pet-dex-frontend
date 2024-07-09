@@ -12,6 +12,9 @@
       }
     }
   },
+  "parserOptions": {
+    "ecmaVersion": 2024
+  },
   "rules": {
     "no-console": [
       "warn",
