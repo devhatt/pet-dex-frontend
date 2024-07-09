@@ -65,12 +65,12 @@ TextArea.prototype = Object.assign(TextArea.prototype, Component.prototype, {
     this.emit('placeholder:change', placeholder);
   },
   setMaxLength(maxLength) {
-    if (!maxLength) {
-      this.selected.get('textarea').removeAttribute('maxlength');
-    }
+    const $textArea = this.selected.get('textarea');
 
-    this.selected.get('textarea').maxLength = maxLength;
-    this.emit('maxLength:change', maxLength);
+    if (maxLength) $textArea.maxLength = maxLength;
+    else $textArea.removeAttribute('maxlength');
+
+    this.emit('maxLength:change', maxLength ?? Infinity);
   },
   setRequired(required = true) {
     this.selected.get('textarea').required = required;
