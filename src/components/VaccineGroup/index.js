@@ -43,7 +43,7 @@ VaccineGroup.prototype = Object.assign(
     listItems() {
       const items = [];
 
-      this.items.values().forEach((item) => {
+      Array.from(this.items.values()).forEach((item) => {
         items.push({
           id: item.id,
           title: item.getTitle(),
@@ -51,6 +51,7 @@ VaccineGroup.prototype = Object.assign(
           date: item.getDate(),
         });
       });
+
       return items;
     },
   },

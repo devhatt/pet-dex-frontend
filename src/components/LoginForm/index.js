@@ -5,7 +5,6 @@ import Toggle from '../Toggle';
 import './index.scss';
 
 import pawIcon from './images/paw-form-icon.svg';
-import eyeSlashIcon from './images/eye-slash.svg';
 import googleIcon from './images/google-icon.svg';
 import facebookIcon from './images/facebook-icon.svg';
 
@@ -63,8 +62,8 @@ export default function LoginForm() {
   const emailInput = new TextInput({ placeholder: 'E-mail' });
   const passwordInput = new TextInput({
     placeholder: 'Senha',
-    assetUrl: eyeSlashIcon,
     assetPosition: 'suffix',
+    type: 'password',
   });
   const toggle = new Toggle({ checked: false });
   const submitButton = new Button({
