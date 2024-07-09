@@ -60,7 +60,7 @@ export default function SizeSelector() {
   const addEventListeners = (card, index) => {
     card.addEventListener('click', () => {
       this.selectCard(card, index);
-      this.getCardActiveEvent('click', card, index);
+      this.emitCardEvent('click', card, index);
     });
 
     card.addEventListener('keydown', (key) => {
@@ -81,7 +81,7 @@ SizeSelector.prototype = Object.assign(
         nextIndex = this.$cards.indexOf(next);
         next.focus();
         this.selectCard(next, nextIndex);
-        this.getCardActiveEvent('keydown', next, nextIndex);
+        this.emitCardEvent('keydown', next, nextIndex);
       }
     },
 
@@ -130,7 +130,7 @@ SizeSelector.prototype = Object.assign(
       element.setAttribute('aria-checked', 'true');
     },
 
-    getCardActiveEvent(eventName, card, index) {
+    emitCardEvent(eventName, card, index) {
       if (eventName === 'click') {
         this.emit('event', card, index);
       }
@@ -139,7 +139,7 @@ SizeSelector.prototype = Object.assign(
       }
     },
 
-    getCardActive() {
+    getActiveCard() {
       const $activeCard = this.$cards.find((element) =>
         element.classList.contains('container-size-selector__card--active'),
       );

@@ -92,24 +92,21 @@
       }
 
       .container-size-selector__container-img {
-        width: 4.5rem;
-        height: 4.5rem;
-
         background-color: rgb(209, 230, 255);
+        transform: scale(1.1);
       }
     }
   }
 
   &__card-size {
-    width: 9.4rem;
-    height: 10.6rem;
-
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 
     align-items: center;
     justify-content: center;
+
+    padding: 1rem 1.5rem;
   }
 
   &__container-img {
@@ -134,6 +131,8 @@
     align-items: center;
 
     justify-content: center;
+
+    white-space: nowrap;
   }
 
   &__title {
