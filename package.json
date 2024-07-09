@@ -26,12 +26,13 @@
     "mock-api": "json-server db.json"
   },
   "dependencies": {
+    "axios": "1.7.2",
     "concurrently": "8.2.2",
     "dayjs": "^1.11.10",
     "pet-dex-utilities": "^1.0.1",
     "reset-css": "^5.0.2",
     "vanilla-routing": "0.0.4",
-    "vite": "^5.2.11",
+    "vite": "^5.2.10",
     "vite-jsconfig-paths": "2.0.1",
     "vite-plugin-pwa": "^0.19.8"
   },
