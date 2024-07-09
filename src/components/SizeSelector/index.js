@@ -75,48 +75,39 @@ SizeSelector.prototype = Object.assign(
   SizeSelector.prototype,
   Component.prototype,
   {
-    setText(index, title, subtitle) {
-      const h3 = this.$cards[index].querySelector('h3');
-      const span = this.$cards[index].querySelector('span');
-      h3.textContent = title;
-      span.textContent = subtitle;
+    nextElement(next) {
+      let nextIndex;
+      if (next) {
+        nextIndex = this.$cards.indexOf(next);
+        next.focus();
+        this.selectCard(next, nextIndex);
+        this.getCardActiveEvent('keydown', next, nextIndex);
+      }
     },
 
     handleKeyDown(event, card) {
       let next;
-      let prev;
-      let nextIndex;
-      let prevIndex;
       if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
         next = card.nextElementSibling;
-        if (next) {
-          nextIndex = this.$cards.indexOf(next);
-          next.focus();
-          this.selectCard(next, nextIndex);
-          this.getCardActiveEvent('keydown', next, nextIndex);
-        }
+        this.nextElement(next);
       }
       if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-        prev = card.previousElementSibling;
-        if (prev) {
-          prevIndex = this.$cards.indexOf(prev);
-          prev.focus();
-          this.selectCard(prev, prevIndex);
-          this.getCardActiveEvent('keydown', prev, prevIndex);
-        }
+        next = card.previousElementSibling;
+        this.nextElement(next);
       }
     },
 
     selectCard(selected, index) {
-      this.addActive(selected, 'container-size-selector__card--active');
+      this.setActiveCard(selected, 'container-size-selector__card--active');
       this.centerCard(selected, index);
     },
 
     centerCard(card, index) {
-      if (index === 0)
+      if (index === 0) {
         this.$sizeList.classList.add(
           'container-size-selector__size-list--active-padding',
         );
+      }
 
       const cardRect = card.getBoundingClientRect();
       const listRect = this.$sizeList.getBoundingClientRect();
@@ -130,7 +121,7 @@ SizeSelector.prototype = Object.assign(
       });
     },
 
-    addActive(element, className) {
+    setActiveCard(element, className) {
       this.$cards.forEach((card) => {
         card.setAttribute('aria-checked', 'false');
         card.classList.remove(className);

@@ -4,7 +4,6 @@ export default {
   title: 'Components/SizeSelector',
   render: (args) => {
     const sizeselector = new SizeSelector();
-    sizeselector.setText(args.card, args.titleCard, args.subtitleCard);
     sizeselector.selectCard(
       sizeselector.$cards[args.selectCard],
       args.selectCard,
@@ -19,8 +18,6 @@ export default {
   },
   argTypes: {
     card: { control: 'number', default: 1 },
-    titleCard: { control: 'text', default: 'Medium' },
-    subtitleCard: { control: 'text', default: 'under 14kg' },
     selectCard: { control: 'number', default: 1 },
   },
 };
@@ -28,8 +25,6 @@ export default {
 export const Default = {
   args: {
     card: 1,
-    titleCard: 'Medium',
-    subtitleCard: 'under 14kg',
     selectCard: 1,
   },
 };
@@ -38,8 +33,6 @@ export const CardText = {
   args: {
     ...Default.args,
     card: 1,
-    titleCard: 'Medium',
-    subtitleCard: 'under 14kg',
   },
 };
 
