@@ -5,10 +5,6 @@ import { userEvent } from '@testing-library/user-event';
 import afghanHound from '../../../../stories/assets/petRegisterPage/afghanHound.svg';
 import akita from '../../../../stories/assets/petRegisterPage/akita.svg';
 import beagle from '../../../../stories/assets/petRegisterPage/beagle.svg';
-import bichonFrise from '../../../../stories/assets/petRegisterPage/bichonFrise.svg';
-import borderCollie from '../../../../stories/assets/petRegisterPage/borderCollie.svg';
-import boxer from '../../../../stories/assets/petRegisterPage/boxer.svg';
-import chowChow from '../../../../stories/assets/petRegisterPage/chowChow.svg';
 import mixedBreed from '../../../../stories/assets/petRegisterPage/mixedBreed.svg';
 
 import PetRegisterPage from './index';
@@ -27,21 +23,7 @@ const mockCards = [
     imgSrc: akita,
     imgAlt: 'akita',
   },
-  {
-    title: 'Boxer',
-    imgSrc: boxer,
-    imgAlt: 'boxer',
-  },
-  {
-    title: 'Akita',
-    imgSrc: akita,
-    imgAlt: 'akita',
-  },
-  {
-    title: 'Boxer',
-    imgSrc: boxer,
-    imgAlt: 'boxer',
-  },
+
   {
     title: 'Beagle',
     imgSrc: beagle,
@@ -51,21 +33,6 @@ const mockCards = [
     title: 'Afghan Hound',
     imgSrc: afghanHound,
     imgAlt: 'afghan hound',
-  },
-  {
-    title: 'Bichon Frise',
-    imgSrc: bichonFrise,
-    imgAlt: 'bichon frise',
-  },
-  {
-    title: 'Chow Chow',
-    imgSrc: chowChow,
-    imgAlt: 'chow chow',
-  },
-  {
-    title: 'Border Collie',
-    imgSrc: borderCollie,
-    imgAlt: 'border collie',
   },
 ];
 
