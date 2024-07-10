@@ -1,0 +1,56 @@
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/colors.scss' as colors;
+
+.textarea {
+  position: relative;
+
+  &__input,
+  &__trigger {
+    width: 100%;
+
+    font-family: fonts.$fifthFont;
+    font-size: fonts.$sm;
+    line-height: 1;
+  }
+
+  &__input {
+    overflow: hidden;
+
+    padding-bottom: 1.4rem;
+
+    border: unset;
+    border-bottom: 0.1rem solid colors.$gray400;
+
+    position: relative;
+    z-index: 1;
+
+    outline-color: transparent;
+
+    transition: 0.2s ease-in-out outline;
+
+    resize: none;
+
+    &::placeholder {
+      color: colors.$gray400;
+    }
+
+    &:focus {
+      outline-color: colors.$primary200;
+    }
+
+    &--error {
+      color: colors.$secondary100;
+
+      background: colors.$error100;
+    }
+  }
+
+  &__trigger {
+    display: block;
+
+    position: absolute;
+    top: 0;
+
+    visibility: hidden;
+  }
+}
