@@ -1,4 +1,4 @@
-import PetRegisterPage from '../pages/layouts/PetRegisterPage';
+import PetRegisterPage from '../layouts/app/pages/PetRegister';
 
 import afghanHound from './assets/petRegisterPage/afghanHound.svg';
 import akita from './assets/petRegisterPage/akita.svg';
