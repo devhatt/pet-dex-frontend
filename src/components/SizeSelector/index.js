@@ -86,14 +86,11 @@ SizeSelector.prototype = Object.assign(
     },
 
     handleKeyDown(event, card) {
-      let next;
       if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-        next = card.nextElementSibling;
-        this.nextElement(next);
+        this.nextElement(card.nextElementSibling);
       }
       if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-        next = card.previousElementSibling;
-        this.nextElement(next);
+        this.nextElement(card.previousElementSibling);
       }
     },
 
