@@ -48,39 +48,54 @@ describe('PetRegisterPage', () => {
   });
 
   it('selects the pet when it is clicked', async () => {
-    renderPetRegisterPage({ cards: mockCards });
+    const petRegister = renderPetRegisterPage({ cards: mockCards });
+    const callback = vi.fn();
+
+    petRegister.listen('select:card', callback);
 
     const card = screen.getByLabelText(/mixed breed/i);
     await userEvent.click(card);
 
-    expect(card).toHaveClass('pet-container--active');
+    expect(callback).toHaveBeenCalled();
+    expect(petRegister.activeCard).not.toBeNull();
   });
 
   it('deselects the pet when it is clicked again', async () => {
-    renderPetRegisterPage({ cards: mockCards });
+    const petRegister = renderPetRegisterPage({ cards: mockCards });
+
+    const callback = vi.fn();
+
+    petRegister.listen('select:card', callback);
 
     const card = screen.getByLabelText(/mixed breed/i);
     await userEvent.click(card);
     await userEvent.click(card);
 
-    expect(card).not.toHaveClass('pet-container--active');
+    expect(petRegister.activeCard).toBeNull();
   });
 
   it('deselects any previously selected card and selects the clicked one', async () => {
-    renderPetRegisterPage({ cards: mockCards });
+    const petRegister = renderPetRegisterPage({ cards: mockCards });
 
-    const mixedBreedCard = screen.getByLabelText(/mixed breed/i);
-    const afghanHoundCard = screen.getByLabelText(/afghan hound/i);
-    await userEvent.click(mixedBreedCard);
+    const selectCard = vi.fn();
 
-    await userEvent.click(afghanHoundCard);
+    petRegister.listen('select:card', selectCard);
 
-    expect(mixedBreedCard).not.toHaveClass('pet-container--active');
-    expect(afghanHoundCard).toHaveClass('pet-container--active');
+    const $afghanHoundCard = screen.getByLabelText(/afghan hound/i);
+    const $mixedBreedCard = screen.getByLabelText(/mixed breed/i);
+
+    await userEvent.click($afghanHoundCard);
+    const mockAfghanHoundCard = petRegister.activeCard;
+
+    await userEvent.click($mixedBreedCard);
+    const mixedBreedCard = petRegister.activeCard;
+
+    expect(petRegister.activeCard).not.toBe(mockAfghanHoundCard);
+    expect(petRegister.activeCard).toBe(mixedBreedCard);
   });
 
   describe('emits', () => {
-    it('emits the form data when every field is validated', async () => {
+    it('form data when every field is validated', async () => {
       const petRegisterPage = renderPetRegisterPage({ cards: mockCards });
       const callBackEmit = vi.fn();
       petRegisterPage.listen('submit', callBackEmit);
@@ -94,7 +109,7 @@ describe('PetRegisterPage', () => {
       expect(callBackEmit).toHaveBeenCalledWith('Mixed Breed');
     });
 
-    it('does not emit the form data when does not have card select', async () => {
+    it('does not happen when theres no card selected when theres no card selected', async () => {
       const petRegisterPage = renderPetRegisterPage({ cards: mockCards });
       const callBackEmit = vi.fn();
       petRegisterPage.listen('submit', callBackEmit);
