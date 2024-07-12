@@ -119,9 +119,12 @@ export default function PetVetPage({ vaccines = [] } = {}) {
     required: true,
   });
 
-  specialCare.listen('change', () =>
-    this.specialCareText.mount($specialCareText),
-  );
+  specialCare.listen('change', () => {
+    this.specialCareText.mount($specialCareText);
+    this.specialCareText.selected
+      .get('textarea')
+      .classList.add('petvet-page__textarea');
+  });
   notSpecialCare.listen('change', () => {
     this.specialCareText.selected.get('textarea').value = '';
     this.specialCareText.unmount($specialCareText);
