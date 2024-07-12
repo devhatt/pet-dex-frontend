@@ -10,13 +10,7 @@ export const UserService = {
       const { pets } = await response.json();
       return pets;
     } catch (error) {
-      if (error instanceof Error) {
-        return {
-          message: 'Status Error',
-          issue: error.message,
-        };
-      }
-      return error;
+      return `Ocorreu o seguinte erro: ${error}`;
     }
   },
 };
