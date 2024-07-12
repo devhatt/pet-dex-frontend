@@ -27,6 +27,285 @@
         "favLang": "pt-br",
         "receiveNews": true
       }
+    },
+    {
+      "id": "2",
+      "name": "Alice N. Hawking",
+      "email": "alice.hawking@email.com",
+      "password": "s3cur3P@ssw0rd!",
+      "phone": "(21) 98765-4321",
+      "local": "Rio de Janeiro",
+      "pets": [
+        {
+          "id": "2",
+          "breed": "Labrador Retriever",
+          "name": "Einstein",
+          "size": {
+            "small": "",
+            "medium": "X",
+            "large": ""
+          },
+          "weight": 30,
+          "birthday": "15-03-2020",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-us",
+        "receiveNews": false
+      }
+    },
+    {
+      "id": "3",
+      "name": "Michael T. Dyson",
+      "email": "michael.dyson@astroresearch.net",
+      "password": "AstroPh1sic$2024",
+      "phone": "(31) 99876-5432",
+      "local": "Belo Horizonte",
+      "pets": [
+        {
+          "id": "3",
+          "breed": "Beagle",
+          "name": "Newton",
+          "size": {
+            "small": "X",
+            "medium": "",
+            "large": ""
+          },
+          "weight": 12,
+          "birthday": "10-11-2019",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-us",
+        "receiveNews": true
+      }
+    },
+    {
+      "id": "4",
+      "name": "Dr. Marie L. Curie",
+      "email": "marie.curie@chemistrylab.org",
+      "password": "Ch3m!$tryP@ss",
+      "phone": "(41) 91234-5678",
+      "local": "Curitiba",
+      "pets": [
+        {
+          "id": "4",
+          "breed": "Golden Retriever",
+          "name": "Curie",
+          "size": {
+            "small": "",
+            "medium": "",
+            "large": "X"
+          },
+          "weight": 35,
+          "birthday": "22-07-2018",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "fr-fr",
+        "receiveNews": true
+      }
+    },
+    {
+      "id": "5",
+      "name": "Dr. Alan M. Turing",
+      "email": "alan.turing@computingpioneers.edu",
+      "password": "C0mpuT!ngG3n1u$",
+      "phone": "(51) 98765-4321",
+      "local": "Porto Alegre",
+      "pets": [
+        {
+          "id": "5",
+          "breed": "Siberian Husky",
+          "name": "Turing",
+          "size": {
+            "small": "",
+            "medium": "X",
+            "large": ""
+          },
+          "weight": 25,
+          "birthday": "12-01-2021",
+          "castrated": false,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-gb",
+        "receiveNews": false
+      }
+    },
+    {
+      "id": "6",
+      "name": "Dr. Rosalind E. Franklin",
+      "email": "rosalind.franklin@biostructure.com",
+      "password": "DnaD1sc0verer!",
+      "phone": "(61) 98765-4321",
+      "local": "Brasília",
+      "pets": [
+        {
+          "id": "6",
+          "breed": "Dalmatian",
+          "name": "Rosie",
+          "size": {
+            "small": "",
+            "medium": "X",
+            "large": ""
+          },
+          "weight": 22,
+          "birthday": "30-04-2019",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-gb",
+        "receiveNews": true
+      }
+    },
+    {
+      "id": "7",
+      "name": "Dr. Richard P. Feynman",
+      "email": "richard.feynman@quantumphysics.org",
+      "password": "QuntumM3ch@nic$",
+      "phone": "(71) 92345-6789",
+      "local": "Salvador",
+      "pets": [
+        {
+          "id": "7",
+          "breed": "Border Collie",
+          "name": "Feynman",
+          "size": {
+            "small": "",
+            "medium": "X",
+            "large": ""
+          },
+          "weight": 18,
+          "birthday": "05-09-2020",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-us",
+        "receiveNews": false
+      }
+    },
+    {
+      "id": "8",
+      "name": "Dr. Katherine G. Johnson",
+      "email": "katherine.johnson@nasaresearch.gov",
+      "password": "Sp@ceC@lculat0r",
+      "phone": "(81) 93456-7890",
+      "local": "Recife",
+      "pets": [
+        {
+          "id": "8",
+          "breed": "Poodle",
+          "name": "Kathy",
+          "size": {
+            "small": "X",
+            "medium": "",
+            "large": ""
+          },
+          "weight": 8,
+          "birthday": "11-02-2021",
+          "castrated": true,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-us",
+        "receiveNews": true
+      }
+    },
+    {
+      "id": "9",
+      "name": "Dr. Jane M. Goodall",
+      "email": "jane.goodall@primateinstitute.org",
+      "password": "Pr!m@teC0nservat1on",
+      "phone": "(91) 94567-8901",
+      "local": "Belém",
+      "pets": [
+        {
+          "id": "9",
+          "breed": "Cocker Spaniel",
+          "name": "Chimp",
+          "size": {
+            "small": "",
+            "medium": "X",
+            "large": ""
+          },
+          "weight": 14,
+          "birthday": "22-06-2020",
+          "castrated": false,
+          "specialNeeds": false
+        }
+      ],
+      "preferences": {
+        "favLang": "en-gb",
+        "receiveNews": false
+      }
+    },
+    {
+      "id": "10",
+      "name": "Dr. Neil A. Armstrong",
+      "email": "neil.armstrong@moonlanding.org",
+      "password": "MoonL@nd1ng1969",
+      "phone": "(11) 97654-3210",
+      "local": "São Paulo",
+      "pets": [
+        {
+          "id": "10",
+          "breed": "German Shepherd",
+          "name": "Apollo",
+          "size": {
+            "small": "",
+            "medium": "",
+            "large": "X"
+          },
+          "weight": 32,
+          "birthday": "20-07-2018",
+          "castrated": true,
+          "specialNeeds": false
+        },
+        {
+          "id": "11",
+          "breed": "Turkey Shepherd",
+          "name": "Jadd",
+          "size": {
+            "small": "X",
+            "medium": "",
+            "large": ""
+          },
+          "weight": 32,
+          "birthday": "20-07-2017",
+          "castrated": false,
+          "specialNeeds": true
+        }
+      ],
+      "preferences": {
+        "favLang": "en-us",
+        "receiveNews": true
+      }
+    },
+    {
+      "id": "11",
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "password": "SecurePass123!",
+      "phone": "(21) 91234-5678",
+      "local": "Rio de Janeiro",
+      "pets": [],
+      "preferences": {
+        "favLang": "pt-br",
+        "receiveNews": false
+      }
     }
   ],
   "breed": [
