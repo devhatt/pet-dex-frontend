@@ -27,7 +27,7 @@ dependencies:
     specifier: 0.0.4
     version: 0.0.4
   vite:
-    specifier: ^5.2.11
+    specifier: ^5.2.10
     version: 5.2.11(@types/node@20.12.10)(sass@1.77.0)
   vite-jsconfig-paths:
     specifier: 2.0.1
@@ -142,9 +142,6 @@ devDependencies:
   jsdom:
     specifier: ^23.2.0
     version: 23.2.0
-  json-server:
-    specifier: 1.0.0-beta.1
-    version: 1.0.0-beta.1
   lint-staged:
     specifier: ^15.2.2
     version: 15.2.2
@@ -5438,11 +5435,6 @@ packages:
       is-callable: 1.2.7
       is-date-object: 1.0.5
       is-symbol: 1.0.4
-
-  /es-vary@0.1.2:
-    resolution: {integrity: sha512-pLqqZoOutAXQXyBJrUYVNM5fZngiOJYi1Xl4svQMrluTsqDUOQlBMw9EYgLrsWL6niDYn/Yd1y2Pj6GC+j/yjA==}
-    engines: {node: '>=12.x'}
-    dev: true
 
   /esbuild-plugin-alias@0.2.1:
     resolution: {integrity: sha512-jyfL/pwPqaFXyKnj8lP8iLk6Z0m099uXR45aSN8Av1XD4vhvQutxxPzgA2bTcAwQpa1zCXDcWOlhFgyP3GKqhQ==}
