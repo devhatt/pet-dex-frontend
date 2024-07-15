@@ -12,7 +12,7 @@ export const BreedsService = {
           message: response.statusText,
         });
       }
-      return await response.json();
+      return response.json();
     } catch (error) {
       console.error(`An error occurred: ${error}`);
       return error;
