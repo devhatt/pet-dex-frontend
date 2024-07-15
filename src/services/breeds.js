@@ -2,7 +2,7 @@
 import { url } from './api';
 
 export const BreedsService = {
-  getBreeds: async () => {
+  list: async () => {
     try {
       const response = await fetch(`${url}/breed`);
 
