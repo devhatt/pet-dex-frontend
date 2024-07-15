@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const url = 'http://localhost:3000';
+import { url } from './api';
 
 export const BreedsService = {
   getBreeds: async () => {
@@ -7,11 +7,14 @@ export const BreedsService = {
       const response = await fetch(`${url}/breed`);
 
       if (!response.ok) {
-        throw new Error('Ocorreu um erro na requisição');
+        throw new Error({
+          status: response.status,
+          message: response.statusText,
+        });
       }
       return await response.json();
     } catch (error) {
-      console.error(`Ocorreu o seguinte erro: ${error}`);
+      console.error(`An error occurred: ${error}`);
       return error;
     }
   },
