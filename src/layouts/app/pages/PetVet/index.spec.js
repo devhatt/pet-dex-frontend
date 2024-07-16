@@ -96,6 +96,56 @@ describe('PetVetPage', () => {
       expect(trueRadio).toBeChecked();
       expect(falseRadio).not.toBeChecked();
     });
+
+    it('shows the text area when special care "yes" radio is selected', async () => {
+      renderPetVetPage(argsWithVaccineEmpty);
+
+      const specialCareYesRadio = screen.getByLabelText(
+        'cuidados-especiais-sim',
+      );
+      await userEvent.click(specialCareYesRadio);
+
+      const textArea = screen.getByPlaceholderText(
+        'Escreva o cuidado especial',
+      );
+      expect(textArea).toBeInTheDocument();
+    });
+
+    it('hides the text area when special care "no" radio is selected', async () => {
+      renderPetVetPage(argsWithVaccineEmpty);
+
+      const specialCareYesRadio = screen.getByLabelText(
+        'cuidados-especiais-sim',
+      );
+      const specialCareNoRadio = screen.getByLabelText(
+        'cuidados-especiais-não',
+      );
+
+      await userEvent.click(specialCareYesRadio);
+      const textArea = screen.getByPlaceholderText(
+        'Escreva o cuidado especial',
+      );
+      expect(textArea).toBeInTheDocument();
+
+      await userEvent.click(specialCareNoRadio);
+      expect(textArea).not.toBeInTheDocument();
+    });
+
+    it('allows text input in the text area', async () => {
+      renderPetVetPage(argsWithVaccineEmpty);
+
+      const specialCareYesRadio = screen.getByLabelText(
+        'cuidados-especiais-sim',
+      );
+      await userEvent.click(specialCareYesRadio);
+
+      const textArea = screen.getByPlaceholderText(
+        'Escreva o cuidado especial',
+      );
+      await userEvent.type(textArea, 'Necessita de cuidados especiais');
+
+      expect(textArea).toHaveValue('Necessita de cuidados especiais');
+    });
   });
 
   describe('vaccine component', () => {
@@ -127,10 +177,15 @@ describe('PetVetPage', () => {
         await userEvent.click(neuteredYesRadio);
         await userEvent.click(specialCareYesRadio);
 
+        const textArea = screen.getByPlaceholderText(
+          'Escreva o cuidado especial',
+        );
+        await userEvent.type(textArea, 'Necessita de cuidados especiais');
+
         const formExpected = {
           isNeutered: true,
           isSpecialCare: true,
-          specialCareText: '',
+          specialCareText: 'Necessita de cuidados especiais',
           vaccines: mockVaccines.map(mapVaccine),
         };
 
@@ -151,6 +206,26 @@ describe('PetVetPage', () => {
 
         const neuteredYesRadio = screen.getByLabelText('castrado-sim');
         await userEvent.click(neuteredYesRadio);
+
+        const button = screen.getByRole('button');
+        await userEvent.click(button);
+
+        expect(callBackEmit).not.toHaveBeenCalled();
+      });
+
+      it('does not emit the form data when special care "yes" radio is selected but the text area is empty', async () => {
+        const petVetPage = renderPetVetPage(argsWithVaccineEmpty);
+
+        const neuteredYesRadio = screen.getByLabelText('castrado-sim');
+        const specialCareYesRadio = screen.getByLabelText(
+          'cuidados-especiais-sim',
+        );
+
+        await userEvent.click(neuteredYesRadio);
+        await userEvent.click(specialCareYesRadio);
+
+        const callBackEmit = vi.fn();
+        petVetPage.listen('submit', callBackEmit);
 
         const button = screen.getByRole('button');
         await userEvent.click(button);
