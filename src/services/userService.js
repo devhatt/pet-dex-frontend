@@ -1,4 +1,4 @@
-import { url } from '../api';
+import { url } from './api';
 
 export const UserService = {
   getPets: async (userId) => {
@@ -9,8 +9,7 @@ export const UserService = {
         throw new Error('Ocorreu um erro na requisição');
       }
 
-      const { pets } = await response.json();
-      return pets;
+      return response.json();
     } catch (error) {
       return `Ocorreu o seguinte erro: ${error}`;
     }
