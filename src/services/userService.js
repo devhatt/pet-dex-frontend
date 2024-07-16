@@ -9,7 +9,8 @@ export const UserService = {
         throw new Error('Ocorreu um erro na requisição');
       }
 
-      return response.json();
+      const { pets } = await response.json();
+      return pets;
     } catch (error) {
       return `Ocorreu o seguinte erro: ${error}`;
     }
