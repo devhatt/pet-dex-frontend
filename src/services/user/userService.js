@@ -1,7 +1,9 @@
+import { url } from '../api';
+
 export const UserService = {
   getPets: async (userId) => {
     try {
-      const response = await fetch(`http://localhost:3000/user/${userId}`);
+      const response = await fetch(`${url}/${userId}`);
 
       if (!response.ok) {
         throw new Error('Ocorreu um erro na requisição');

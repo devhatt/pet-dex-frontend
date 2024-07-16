@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { url } from './api';
 
 export const BreedsService = {
