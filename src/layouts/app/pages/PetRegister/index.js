@@ -36,6 +36,8 @@ export default function PetRegister({ cards = [] } = {}) {
       if (this.activeCard) this.activeCard.deactivate();
 
       this.activeCard = card;
+      this.breedSelected = this.activeCard.getTitle();
+
       this.emit('select:card', card);
       $button.enable();
     });
@@ -47,7 +49,7 @@ export default function PetRegister({ cards = [] } = {}) {
   });
 
   $button.listen('click', () => {
-    this.emit('submit', this.breedSelect);
+    this.emit('submit', this.breedSelected);
   });
 
   $button.selected.get('button').classList.add('breed-page__button');
