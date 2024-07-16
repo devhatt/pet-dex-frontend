@@ -109,7 +109,7 @@ describe('PetRegisterPage', () => {
       expect(callBackEmit).toHaveBeenCalledWith('Mixed Breed');
     });
 
-    it('does not happen when theres no card selected when theres no card selected', async () => {
+    it('does not happen when theres no card selected', async () => {
       const petRegisterPage = renderPetRegisterPage({ cards: mockCards });
       const callBackEmit = vi.fn();
       petRegisterPage.listen('submit', callBackEmit);
