@@ -5,9 +5,9 @@ import { routeLocation } from 'vanilla-routing';
 const events = ['active'];
 
 const html = `
-  <a class="pet-container" data-select="pet-container" href="/petperfil/">
-    <img class="pet-container__img" data-select="pet-image" src="" alt=""/>
-    <p class="pet-container__title" data-select="pet-title"></p>
+  <a class="pet-avatar" data-select="pet-avatar" href="/petperfil/">
+    <img class="pet-avatar__img" data-select="pet-image" src="" alt=""/>
+    <p class="pet-avatar__title" data-select="pet-title"></p>
   </a>
 `;
 
@@ -35,13 +35,13 @@ PetAvatar.prototype = Object.assign(PetAvatar.prototype, Component.prototype, {
     this.selected.get('pet-image').alt = alt;
   },
   setHref(id) {
-    this.selected.get('pet-container').href += id;
+    this.selected.get('pet-avatar').href += id;
   },
   activate() {
     const image = this.selected.get('pet-image');
     const title = this.selected.get('pet-title');
-    image.classList.add('pet-container__img--active');
-    title.classList.add('pet-container__title--active');
+    image.classList.add('pet-avatar__img--active');
+    title.classList.add('pet-avatar__title--active');
     this.emit('active');
   },
 });
