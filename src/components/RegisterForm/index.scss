@@ -1,76 +1,68 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
 
-.register-form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-
-  width: 94.5rem;
+.container {
+  width: 80%;
+  max-width: 72.5rem;
   height: 91.8rem;
 
-  border-top-left-radius: 3rem;
-  border-bottom-left-radius: 3rem;
+  margin: 0 auto;
 
   font-family: fonts.$primaryFont;
 
   &__title {
-    width: 62rem;
-    height: 4.2rem;
-
     font-size: fonts.$xl2;
     font-weight: fonts.$bold;
 
-    color: colors.$gray800;
+    margin-bottom: 3.2rem;
 
-    margin: 10.8rem 15.3rem 0 17.2rem;
+    color: colors.$gray800;
   }
 
   .social-container {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
 
-    gap: 3.2em;
+    max-width: max-content;
 
-    width: 45rem;
-    height: 12.3rem;
+    margin-bottom: 3.7rem;
 
-    margin: 3.2rem 32.3rem 0 17.2rem;
-
-    &__btn-layout,
-    &__separator {
+    .social-wrapper,
+    .divisor-container {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
     }
 
-    &__btn-layout {
+    .social-wrapper {
       gap: 1.6rem;
 
-      &--google-btn,
-      &--facebook-btn {
+      margin-bottom: 3.2rem;
+
+      .social-login {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: start;
+        justify-content: left;
 
-        width: 21.7rem;
-        height: 6.4rem;
+        gap: 1.8rem;
+
+        max-width: min-content;
+
+        padding: 2rem 6rem;
 
         font-size: fonts.$sm;
-        font-weight: fonts.$semiBold;
+        font-weight: fonts.$medium;
         font-family: fonts.$fifthFont;
 
         background-color: colors.$secondary100;
 
-        border: unset;
-        border-radius: 1rem;
+        border: 0;
+        border-radius: 10px;
 
-        box-shadow: 0rem 0.4rem 1rem rgba(0, 0, 0, 8%);
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 8%);
 
         cursor: pointer;
 
@@ -78,21 +70,24 @@
           transform: scale(1.02);
           transition: all 0.4s ease-in-out;
         }
-      }
 
-      .social-image {
-        width: 2.4rem;
-        height: 2.4rem;
-
-        margin: 0 1.6rem 0 3.2rem;
+        .social-img {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
       }
     }
 
-    &__separator {
-      .divisor-line {
-        width: 18.1rem;
+    .divisor-container {
+      width: 100%;
 
-        border: solid 1px colors.$gray200;
+      .divisor {
+        width: 100%;
+        height: 1px;
+
+        border: 0;
+
+        background-color: colors.$gray200;
       }
 
       .divisor-text {
@@ -104,53 +99,43 @@
   }
 }
 
-.register-form-layout {
+.register-form {
   display: grid;
-  grid-template-columns: repeat(2, 3fr);
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3.3rem;
+  row-gap: 3.6rem;
 
-  width: 76rem;
+  .label {
+    display: block;
 
-  margin: 3.7rem 5.3rem 6.6rem 15.5rem;
+    width: 100%;
 
-  .form-fields-container {
-    margin-bottom: 2rem;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
 
-    &--form-label {
-      font-size: fonts.$xs;
+    padding-left: 0.5rem;
+  }
 
-      margin-left: 3rem;
-    }
+  .input-text,
+  .dropdown-input {
+    height: 100%;
+    font-size: 1.6rem;
 
-    &--text-input,
-    &--dropdown-input {
-      width: 34.6rem;
-      height: 5.4rem;
+    outline: 1px solid colors.$gray200;
+    border-radius: 14px;
 
-      border-radius: 1.4rem;
+    padding: 1.8rem 1.6rem;
+  }
 
-      padding: 0.3rem 1.6rem 1.2rem 1.6rem;
-    }
+  .dropdown {
+    width: 100%;
+  }
 
-    &--dropdown-input {
-      .dropdown-form {
-        width: 34.6rem;
-        height: 5.4rem;
+  .register-button {
+    max-width: 45rem;
+    width: 100%;
 
-        align-items: center;
-
-        box-shadow: none;
-
-        border: 1px solid colors.$gray200;
-
-        &__show-error-dropdown {
-          display: flex;
-
-          width: 34rem;
-
-          background-color: colors.$error100;
-        }
-      }
-    }
+    grid-column: span 2;
   }
 
   .error-message {
@@ -161,16 +146,11 @@
     &.show-error {
       display: block;
 
-      width: 34rem;
+      padding: 0.8rem 0 0 1rem;
 
-      margin-left: 2rem;
+      color: colors.$error100;
 
       text-align: justify;
     }
   }
-}
-
-.register-button {
-  width: 45rem;
-  margin: 6.6rem 32.7rem 13.3rem 17.5rem;
 }
