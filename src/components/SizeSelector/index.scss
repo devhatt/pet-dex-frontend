@@ -4,25 +4,25 @@
 
 .container-size-selector {
   width: 100%;
-  max-width: 60rem;
+  max-width: 15rem;
 
   display: flex;
 
+  justify-content: center;
+
   &__size-list {
-    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
 
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    flex-shrink: 0;
+    gap: 4rem;
 
-    padding: 5rem 40% 5rem 0;
+    padding: 5rem 20rem;
 
-    transition: padding 0.4s;
-
-    &--active-padding {
-      padding: 5rem 40%;
-    }
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
   }
 
   &__card:focus {
@@ -30,14 +30,14 @@
   }
 
   &__card {
+    max-width: 12rem;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    margin: 0 0.7rem;
-
-    padding: 1rem 0;
+    padding: 4rem 3rem;
 
     box-sizing: border-box;
 
@@ -45,7 +45,8 @@
     box-shadow: 0 0 0.3rem 0.3rem colors.$gray150;
     border-radius: 1.8rem;
 
-    transition: transform 0.3s;
+    transition: transform 0.2s ease;
+    scroll-snap-align: center;
 
     &:focus {
       outline: 0.3rem solid colors.$primary200;
@@ -75,7 +76,7 @@
       transform: scale(1.3);
       outline: 0.3rem solid colors.$primary200;
 
-      transition: transform 0.3s;
+      transition: transform 0.2s ease;
 
       .container-size-selector__svg path {
         fill: colors.$primary200;
@@ -105,8 +106,6 @@
 
     align-items: center;
     justify-content: center;
-
-    padding: 1rem 1.5rem;
   }
 
   &__container-img {
@@ -124,6 +123,8 @@
   }
 
   &__container-text {
+    min-width: max-content;
+
     display: flex;
     flex-direction: column;
     gap: 0.3em;
@@ -131,8 +132,6 @@
     align-items: center;
 
     justify-content: center;
-
-    white-space: nowrap;
   }
 
   &__title {
@@ -150,40 +149,40 @@
   }
 }
 
-@include breakpoints.from360 {
-  .container-size-selector {
-    &__size-list {
-      gap: 1.5rem;
-    }
+// @include breakpoints.from360 {
+//   .container-size-selector {
+//     &__size-list {
+//       gap: 1.5rem;
+//     }
 
-    &__card {
-      padding: 1rem 0;
-    }
-  }
-}
+//     &__card {
+//       padding: 1rem 0;
+//     }
+//   }
+// }
 
-@include breakpoints.from667 {
-  .container-size-selector {
-    &__size-list {
-      gap: 5rem;
-    }
+// @include breakpoints.from667 {
+//   .container-size-selector {
+//     &__size-list {
+//       gap: 3rem;
+//     }
 
-    &__card {
-      padding: 4rem 2rem;
+//     &__card {
+//       padding: 4rem 2rem;
 
-      &--active {
-        .container-size-selector__title {
-          font-size: fonts.$sm;
-        }
+//       &--active {
+//         .container-size-selector__title {
+//           font-size: fonts.$sm;
+//         }
 
-        .container-size-selector__text {
-          font-size: fonts.$xs;
-        }
-      }
-    }
+//         .container-size-selector__text {
+//           font-size: fonts.$xs;
+//         }
+//       }
+//     }
 
-    &__text {
-      font-size: fonts.$xs;
-    }
-  }
-}
+//     &__text {
+//       font-size: fonts.$xs;
+//     }
+//   }
+// }

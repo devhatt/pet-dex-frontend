@@ -9,7 +9,7 @@ const events = ['event'];
 
 const html = `
 <div class="container-size-selector" role="radiogroup">
-  <ul class="container-size-selector__size-list" data-select="sizelist">
+  <ul class="container-size-selector__size-list" data-select="size-list">
     <li class="container-size-selector__card" role="radio" aria-checked="false" tabindex="0">
       <div class="container-size-selector__card-size">
         <div class="container-size-selector__container-img">
@@ -22,7 +22,7 @@ const html = `
       </div>
     </li>
 
-    <li class="container-size-selector__card container-size-selector__card--active" data-select="card-active" role="radio" aria-checked="true" tabindex="0">
+    <li class="container-size-selector__card container-size-selector__card--active" data-select="initial-card" role="radio" aria-checked="true" tabindex="0">
       <div class="container-size-selector__card-size">
         <div class="container-size-selector__container-img">
           ${medium}
@@ -41,7 +41,7 @@ const html = `
         </div>
         <div class="container-size-selector__container-text">
           <h3 class="container-size-selector__title">Large</h3>
-          <span class="container-size-selector__text">over 25kg</span>
+          <span class="container-size-selector__text">under 25kg</span>
         </div>
       </div>
     </li>
@@ -52,23 +52,32 @@ const html = `
 export default function SizeSelector() {
   Component.call(this, { html, events });
 
-  this.$sizeList = this.selected.get('sizelist');
-  this.$cards = Array.from(
-    this.$sizeList.querySelectorAll('.container-size-selector__card'),
+  this.$sizeList = this.selected.get('size-list');
+  this.$cards = this.$sizeList.querySelectorAll(
+    '.container-size-selector__card',
   );
+  this.$initialCard = this.selected.get('initial-card');
 
-  const addEventListeners = (card, index) => {
-    card.addEventListener('click', () => {
-      this.selectCard(card, index);
-      this.emitCardEvent('click', card, index);
+  this.listen('mount', () => {
+    requestAnimationFrame(() => {
+      this.$initialCard.scrollIntoView({
+        inline: 'center',
+        behavior: 'instant',
+      });
+    });
+  });
+
+  this.$cards.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      this.setScroll(item);
+      this.scrollEnd(item);
+      this.emitCardEvent('click', item, index);
     });
 
-    card.addEventListener('keydown', (key) => {
-      this.handleKeyDown(key, card);
+    item.addEventListener('keydown', (event) => {
+      this.handleKeyDown(event, item);
     });
-  };
-
-  this.$cards.forEach((card, index) => addEventListeners(card, index));
+  });
 }
 
 SizeSelector.prototype = Object.assign(
@@ -78,52 +87,38 @@ SizeSelector.prototype = Object.assign(
     nextElement(next) {
       let nextIndex;
       if (next) {
-        nextIndex = this.$cards.indexOf(next);
-        next.focus();
-        this.selectCard(next, nextIndex);
+        nextIndex = Array.from(this.$cards).indexOf(next);
+        this.scrollEnd(next);
         this.emitCardEvent('keydown', next, nextIndex);
       }
     },
 
     handleKeyDown(event, card) {
-      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      if (event.key === 'ArrowRight') {
         this.nextElement(card.nextElementSibling);
       }
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      if (event.key === 'ArrowLeft') {
         this.nextElement(card.previousElementSibling);
       }
     },
 
-    selectCard(selected, index) {
-      this.setActiveCard(selected, 'container-size-selector__card--active');
-      this.centerCard(selected, index);
+    setScroll(card) {
+      card.scrollIntoView({ inline: 'center' });
     },
 
-    centerCard(card, index) {
-      if (index === 0) {
-        this.$sizeList.classList.add(
-          'container-size-selector__size-list--active-padding',
-        );
-      }
-
-      const cardRect = card.getBoundingClientRect();
-      const listRect = this.$sizeList.getBoundingClientRect();
-      const cardCenter = cardRect.left + cardRect.width / 2;
-      const listCenter = listRect.left + listRect.width / 2;
-      const offset = cardCenter - listCenter;
-
-      this.$sizeList.scrollBy({
-        left: offset,
-        behavior: 'smooth',
+    scrollEnd(card) {
+      this.$sizeList.addEventListener('scrollend', () => {
+        this.setActiveCard(card);
+        card.focus();
       });
     },
 
-    setActiveCard(element, className) {
+    setActiveCard(element) {
       this.$cards.forEach((card) => {
         card.setAttribute('aria-checked', 'false');
-        card.classList.remove(className);
+        card.classList.remove('container-size-selector__card--active');
       });
-      element.classList.add(className);
+      element.classList.add('container-size-selector__card--active');
       element.setAttribute('aria-checked', 'true');
     },
 
@@ -136,11 +131,11 @@ SizeSelector.prototype = Object.assign(
       }
     },
 
-    getActiveCard() {
-      const $activeCard = this.$cards.find((element) =>
+    activeCardInit() {
+      const $activeCard = Array.from(this.$cards).find((element) =>
         element.classList.contains('container-size-selector__card--active'),
       );
-      const indexCard = this.$cards.findIndex((element) =>
+      const indexCard = Array.from(this.$cards).findIndex((element) =>
         element.classList.contains('container-size-selector__card--active'),
       );
       return {
