@@ -51,6 +51,12 @@
       "globals": {
         "vi": true
       }
+    },
+    {
+      "files": ["src/services/*.js"],
+      "rules": {
+        "no-console": "off"
+      }
     }
   ]
 }
