@@ -1,7 +1,7 @@
 import NoPetRegirestedPage from '../../../../layouts/app/pages/NoPetRegirested';
 
 export default {
-  pathname: '/app/settings',
+  pathname: '/settings',
   element: () => {
     const $content = document.createElement('div');
     $content.classList.add('home__content-page');
