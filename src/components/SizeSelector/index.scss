@@ -17,9 +17,9 @@
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    gap: 4rem;
+    gap: 2.5rem;
 
-    padding: 5rem 20rem;
+    padding: 5rem 10rem;
 
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
@@ -37,7 +37,7 @@
     align-items: center;
     justify-content: center;
 
-    padding: 4rem 3rem;
+    padding: 2rem 1.5rem;
 
     box-sizing: border-box;
 
@@ -75,8 +75,6 @@
     &--active {
       transform: scale(1.3);
       outline: 0.3rem solid colors.$primary200;
-
-      transition: transform 0.2s ease;
 
       .container-size-selector__svg path {
         fill: colors.$primary200;
@@ -149,40 +147,30 @@
   }
 }
 
-// @include breakpoints.from360 {
-//   .container-size-selector {
-//     &__size-list {
-//       gap: 1.5rem;
-//     }
+@include breakpoints.from667 {
+  .container-size-selector {
+    &__size-list {
+      gap: 4rem;
 
-//     &__card {
-//       padding: 1rem 0;
-//     }
-//   }
-// }
+      padding: 5rem 20rem;
+    }
 
-// @include breakpoints.from667 {
-//   .container-size-selector {
-//     &__size-list {
-//       gap: 3rem;
-//     }
+    &__card {
+      padding: 4rem 3rem;
 
-//     &__card {
-//       padding: 4rem 2rem;
+      &--active {
+        .container-size-selector__title {
+          font-size: fonts.$sm;
+        }
 
-//       &--active {
-//         .container-size-selector__title {
-//           font-size: fonts.$sm;
-//         }
+        .container-size-selector__text {
+          font-size: fonts.$xs;
+        }
+      }
+    }
 
-//         .container-size-selector__text {
-//           font-size: fonts.$xs;
-//         }
-//       }
-//     }
-
-//     &__text {
-//       font-size: fonts.$xs;
-//     }
-//   }
-// }
+    &__text {
+      font-size: fonts.$xs;
+    }
+  }
+}
