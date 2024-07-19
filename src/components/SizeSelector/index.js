@@ -5,7 +5,7 @@ import large from './images/large';
 
 import './index.scss';
 
-const events = ['event'];
+const events = ['size:change'];
 
 const html = `
 <div class="container-size-selector" role="radiogroup">
@@ -124,10 +124,10 @@ SizeSelector.prototype = Object.assign(
 
     emitCardEvent(eventName, card, index) {
       if (eventName === 'click') {
-        this.emit('event', card, index);
+        this.emit('size:change', card, index);
       }
       if (eventName === 'keydown') {
-        this.emit('event', card, index);
+        this.emit('size:change', card, index);
       }
     },
 
