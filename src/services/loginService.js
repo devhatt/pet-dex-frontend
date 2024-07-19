@@ -11,12 +11,12 @@ export const LoginService = {
         body: JSON.stringify({ email, password }),
       });
 
-      if (!response.ok) throw new Error('Erro ao fazer o login');
+      if (!response.ok) throw new Error('Failed to login');
 
-      const data = await response.json();
+      const { token } = await response.json();
       return {
         success: true,
-        token: data.token,
+        token,
       };
     } catch (error) {
       console.error(`An error occurred: ${error}`);
