@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, screen } from '@testing-library/vanilla';
+import { render, screen, userEvent, waitFor } from '@testing-library/vanilla';
 import PetWeightPage from '.';
 
 const propsMock = {
@@ -18,50 +18,75 @@ describe.only('Pet Weight page', () => {
     expect(image).toBeInTheDocument();
   });
 
-  it('renders title', () => {
-    const page = makeComponent(propsMock.petPhoto);
-    const componentTitle = 'Qual é o peso do seu animal de estimação?';
-
-    render(page);
-    const title = screen.getByRole('heading', { name: componentTitle });
-
-    expect(title).toBeInTheDocument();
-  });
-
-  it('renders hint', () => {
-    const page = makeComponent(propsMock.petPhoto);
-    const componentHint = 'Ajuste de acordo com a realidade';
-
-    render(page);
-    const hint = screen.getByText(componentHint);
-
-    expect(hint).toBeInTheDocument();
-  });
-
-  it('renders slider', () => {
+  it('KG radio is checked by default', () => {
     const page = makeComponent(propsMock.petPhoto);
     render(page);
 
-    const slider = screen.getByText('I I I');
+    const radioKG = screen.getByLabelText('KG');
 
-    expect(slider).toBeInTheDocument();
+    expect(radioKG.checked).toBe(true);
   });
 
-  it('renders weight input', () => {
+  it('selects radio buttons when clicked and desselects the other', async () => {
+    const page = makeComponent(propsMock.petPhoto);
+    render(page);
+
+    const radioButtonKG = screen.getByLabelText('KG');
+    const radioButtonLB = screen.getByLabelText('LB');
+
+    await userEvent.click(radioButtonKG);
+    expect(radioButtonKG).toBeChecked();
+    expect(radioButtonLB).not.toBeChecked();
+
+    await userEvent.click(radioButtonLB);
+    expect(radioButtonLB).toBeChecked();
+    expect(radioButtonKG).not.toBeChecked();
+  });
+
+  it('allows typing in the input field', async () => {
     const page = makeComponent(propsMock.petPhoto);
     render(page);
 
     const input = screen.getByPlaceholderText('Peso');
 
-    expect(input).toBeInTheDocument();
+    await userEvent.type(input, '5');
+
+    expect(input).toHaveValue('5');
   });
 
-  it('renders continue button', () => {
+  it('shows right value in slider when value changes in the input field', async () => {
     const page = makeComponent(propsMock.petPhoto);
     render(page);
 
-    const button = screen.getByRole('button', { name: 'Continuar' });
+    const input = screen.getByPlaceholderText('Peso');
+    const slider = screen.getByText('10.0');
 
-    expect(button).toBeInTheDocument();
+    await userEvent.clear(input);
+    await userEvent.type(input, '5');
+
+    await waitFor(() => {
+      expect(slider).toHaveTextContent('5.0');
+    });
+  });
+
+  it('emits data when continue button is clicked', async () => {
+    const page = makeComponent(propsMock.petPhoto);
+    render(page);
+
+    const input = screen.getByPlaceholderText('Peso');
+    const radioKG = screen.getByLabelText('KG');
+    const continueButton = screen.getByRole('button', { name: 'Continuar' });
+
+    await userEvent.clear(input);
+    await userEvent.type(input, '5');
+    await userEvent.click(radioKG);
+
+    const mockEmit = vi.spyOn(page, 'emit');
+
+    await userEvent.click(continueButton);
+
+    await waitFor(() => {
+      expect(mockEmit).toHaveBeenCalledWith('weight', 5.0, 'kg');
+    });
   });
 });
