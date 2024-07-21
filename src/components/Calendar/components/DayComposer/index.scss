@@ -1,0 +1,7 @@
+.day-composer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.8rem;
+
+  list-style: none;
+}

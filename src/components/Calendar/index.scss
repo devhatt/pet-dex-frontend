@@ -1,0 +1,12 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.calendar {
+  &__controls {
+    display: flex;
+
+    justify-content: space-between;
+  }
+}
