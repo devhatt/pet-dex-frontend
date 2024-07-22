@@ -3,14 +3,9 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.calendar {
-  &__controls {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 2.4rem;
-  }
+.selector-item {
+  font-family: fonts.$primaryFont;
+  color: colors.$gray700;
+  font-size: fonts.$xs;
+  font-weight: fonts.$medium;
 }
