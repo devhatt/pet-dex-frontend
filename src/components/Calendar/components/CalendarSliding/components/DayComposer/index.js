@@ -4,13 +4,13 @@ import DayButton from './components/DayButton';
 
 import './index.scss';
 
-const events = ['day:change', 'month:next', 'month:previous'];
+const events = ['day:change'];
 
 const html = `
     <div class="day-composer" data-select="day-composer"></div>
 `;
 
-export default function DayComposer(day, month, year) {
+export default function DayComposer({ day, month, year }) {
   Component.call(this, { html, events });
 
   this.day = day;
@@ -57,15 +57,9 @@ DayComposer.prototype = Object.assign(
 
       dayButton.mount(this.$dayComposer);
       dayButton.setState(state);
-      dayButton.listen('day:active', (activeDay) => {
-        if (state === 'previousMonth') {
-          this.emit('month:previous', activeDay);
-        } else if (state === 'nextMonth') {
-          this.emit('month:next', activeDay);
-        } else {
-          this.handleDayActive(dayButton, activeDay);
-        }
-      });
+      dayButton.listen('day:active', (activeDay) =>
+        this.handleDayActive(dayButton, activeDay),
+      );
     },
 
     handleDayActive(dayButton, activeDay) {

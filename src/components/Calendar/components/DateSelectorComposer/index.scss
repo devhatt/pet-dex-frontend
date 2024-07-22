@@ -3,14 +3,14 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.calendar {
-  &__controls {
-    display: flex;
+.date-selector {
+  width: 100%;
 
-    align-items: center;
+  position: relative;
+}
 
-    justify-content: space-between;
-
-    margin-bottom: 2.4rem;
+@include breakpoints.from667 {
+  .date-selector {
+    width: max-content;
   }
 }

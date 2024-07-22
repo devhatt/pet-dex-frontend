@@ -11,4 +11,10 @@ export default {
   },
 };
 
-export const Default = {};
+export const Default = {
+  args: {
+    day: 1,
+    month: 1,
+    year: 2024,
+  },
+};
