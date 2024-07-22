@@ -8,14 +8,14 @@
   gap: 2rem;
 
   font-family: fonts.$primaryFont;
-  //line-height: fonts.$headerLineHeight;
+  line-height: fonts.$lg;
 
   background-color: colors.$secondary100;
 
   &__title {
     color: colors.$gray600;
-    font-size: 1.8rem;
-    //font-weight: fonts.$headerFontWeight;
+    font-size: fonts.$sm;
+    font-weight: fonts.$bold;
   }
 
   &__error {
@@ -30,7 +30,7 @@
 
   &__tips {
     color: colors.$gray500;
-    //font-weight: fonts.$footerFontWeight;
+    font-weight: fonts.$regular;
 
     list-style-type: disc;
     padding-inline-start: 3rem;

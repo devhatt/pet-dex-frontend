@@ -15,7 +15,7 @@ export default {
 
     const changePassword = new ChangePassword(args);
     const drawer = new Drawer({
-      title: 'ChangePassword',
+      title: 'Alterar Senha',
       content: changePassword,
     });
 
