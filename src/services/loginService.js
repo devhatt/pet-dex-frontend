@@ -5,9 +5,6 @@ export const LoginService = {
     try {
       const response = await fetch(`${url}/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, password }),
       });
 
