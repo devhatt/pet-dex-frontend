@@ -49,7 +49,7 @@ export default function PetRegister({ cards = [] } = {}) {
   });
 
   $button.listen('click', () => {
-    this.emit('submit', this.breedSelected);
+    this.emit('submit', { breedSelected: this.breedSelected });
   });
 
   $button.selected.get('button').classList.add('breed-page__button');

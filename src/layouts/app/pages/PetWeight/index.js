@@ -6,6 +6,8 @@ import TextInput from '../../../../components/TextInput';
 import UploadImage from '../../../../components/UploadImage';
 import './index.scss';
 
+const events = ['submit'];
+
 const html = `
   <div class="pet-weight-page">
     <div class="pet-weight-page__content" data-select="container">
@@ -25,11 +27,12 @@ const html = `
 `;
 
 export default function PetWeight({ petPhoto }) {
-  Component.call(this, { html });
+  Component.call(this, { html, events });
   this.initializeComponents();
   this.setupEventListeners();
   this.applyCssClasses();
   this.petPhoto = petPhoto;
+  this.weight = 10;
 }
 
 PetWeight.prototype = Object.assign(PetWeight.prototype, Component.prototype, {
@@ -128,7 +131,7 @@ PetWeight.prototype = Object.assign(PetWeight.prototype, Component.prototype, {
     this.button.listen('click', () => {
       const finalWeightUnit = this.weightUnit();
       const finalWeight = this.weight;
-      this.emit('weight', finalWeight, finalWeightUnit);
+      this.emit('submit', { weight: finalWeight, weightUnit: finalWeightUnit });
     });
   },
 
