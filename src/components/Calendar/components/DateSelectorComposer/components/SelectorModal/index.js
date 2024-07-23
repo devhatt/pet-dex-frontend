@@ -17,6 +17,7 @@ export default function SelectorModal(dateArray) {
   for (let i = 0; i < this.dateArray.length; i += 1) {
     const modalItem = new ModalItem(this.dateArray[i]);
     modalItem.mount(this.selectorModal);
+    if (i === 2) modalItem.active();
   }
 }
 
