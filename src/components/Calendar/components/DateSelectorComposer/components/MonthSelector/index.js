@@ -2,7 +2,7 @@ import { Component } from 'pet-dex-utilities';
 import './index.scss';
 import SelectorItem from '../SelectorItem';
 
-const events = [];
+const events = ['selector:click'];
 
 const html = `
     <div class="month-selector" data-select="month-selector">
@@ -34,6 +34,10 @@ export default function MonthSelector(monthArray) {
       selectorItem.mount(this.$nextMonths);
     }
   }
+
+  this.$currentMonth.addEventListener('click', () =>
+    this.emit('selector:click'),
+  );
 }
 
 MonthSelector.prototype = Object.assign(

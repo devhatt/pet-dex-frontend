@@ -4,13 +4,7 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .date-selector {
-  width: 100%;
+  width: 300px;
 
   position: relative;
-}
-
-@include breakpoints.from667 {
-  .date-selector {
-    width: max-content;
-  }
 }

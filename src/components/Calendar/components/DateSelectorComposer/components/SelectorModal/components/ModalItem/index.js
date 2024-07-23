@@ -15,8 +15,8 @@ export default function ModalItem(item) {
   this.$modalItem.innerText = this.item;
 }
 
-ModalItem.prototype = Object.assign(
-  ModalItem.prototype,
-  Component.prototype,
-  {},
-);
+ModalItem.prototype = Object.assign(ModalItem.prototype, Component.prototype, {
+  active() {
+    this.$modalItem.classList.add('selector-modal__item--active');
+  },
+});
