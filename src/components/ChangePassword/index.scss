@@ -3,6 +3,8 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .change-password {
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -39,7 +41,7 @@
   }
 
   &__button {
-    align-self: end;
+    margin-top: auto;
   }
 
   &__separator {
