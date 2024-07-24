@@ -31,8 +31,12 @@ export default function Calendar({ day, month, year }) {
   this.previousButton.mount(this.$calendarControls);
   this.previousButton.listen('button:click', () => this.previousMonth());
 
-  this.dateSelector = new DateSelectorComposer(this.month, this.year);
+  this.dateSelector = new DateSelectorComposer(this.month - 1, this.year);
   this.dateSelector.mount(this.$calendarControls);
+  this.dateSelector.listen('month:change', (newMonth) =>
+    this.setMonth(newMonth + 1),
+  );
+  this.dateSelector.listen('year:change', (newYear) => this.setYear(newYear));
 
   this.nextButton = new NavigationButton('next');
   this.nextButton.mount(this.$calendarControls);
@@ -50,6 +54,22 @@ export default function Calendar({ day, month, year }) {
   };
 
   this.mountCalendarSliding();
+
+  this.slidingMonths = (monthForSliding) => {
+    if (this.month < monthForSliding) {
+      const monthDifference = monthForSliding - this.month;
+      for (let i = 0; i < monthDifference; i += 1) {
+        this.calendarSliding.next();
+      }
+    }
+    if (this.month > monthForSliding) {
+      const monthDifference = this.month - monthForSliding;
+      for (let i = 0; i < monthDifference; i += 1) {
+        this.calendarSliding.previous();
+      }
+    }
+  };
+
   this.setDate(this.day, this.month, this.year);
 }
 
@@ -80,16 +100,34 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     return this.day;
   },
 
+  setMonth(month) {
+    this.slidingMonths(month);
+    this.month = month;
+    this.setDate(this.day, this.month, this.year);
+  },
+
+  getMonth() {
+    return this.month;
+  },
+
+  setYear(year) {
+    this.year = year;
+    this.mountCalendarSliding();
+    this.dateSelector.setYear(this.year);
+    this.setDate(this.day, this.month, this.year);
+  },
+
+  getYear() {
+    return this.year;
+  },
+
   nextMonth(day) {
     this.day = day || this.day;
-    this.month += 1;
+    this.setMonth(this.month + 1);
 
     if (this.month > 12) {
-      this.month = 1;
-      this.year += 1;
-      this.mountCalendarSliding();
-    } else {
-      this.calendarSliding.next();
+      this.setMonth(1);
+      this.setYear(this.year + 1);
     }
 
     const totalDaysInMonth = dayjs(
@@ -97,30 +135,17 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     ).daysInMonth();
     if (this.day > totalDaysInMonth) this.day = totalDaysInMonth;
 
+    this.dateSelector.setMonth(this.month - 1);
     this.setDate(this.day, this.month, this.year);
   },
 
   previousMonth(day) {
     this.day = day || this.day;
-    this.month -= 1;
+    this.setMonth(this.month - 1);
 
     if (this.month < 1) {
-      this.month = 12;
-      this.year -= 1;
-      this.mountCalendarSliding();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-      this.calendarSliding.next();
-    } else {
-      this.calendarSliding.previous();
+      this.setMonth(12);
+      this.setYear(this.year - 1);
     }
 
     const totalDaysInMonth = dayjs(
@@ -128,6 +153,7 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     ).daysInMonth();
     if (this.day > totalDaysInMonth) this.day = totalDaysInMonth;
 
+    this.dateSelector.setMonth(this.month - 1);
     this.setDate(this.day, this.month, this.year);
   },
 });

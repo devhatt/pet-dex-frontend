@@ -1,13 +1,20 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 import MonthSelector from './components/MonthSelector';
-import { monthArrayGenerator } from './utils/monthArray';
 import { ModalController } from './utils/ModalController';
+import {
+  yearArrayGenerator,
+  monthArrayGenerator,
+} from './utils/arraysGenerators';
+import YearSelector from './components/YearSelector';
 
-const events = [];
+const events = ['month:change'];
 
 const html = `
-    <div class="date-selector" data-select="date-selector"></div>
+    <div class="date-selector" data-select="date-selector">
+      <div class="date-selector__year" data-select="year-selector"></div>
+      <div class="date-selector__month" data-select="month-selector"></div>
+    </div>
 `;
 
 export default function DateSelectorComposer(month, year) {
@@ -16,14 +23,34 @@ export default function DateSelectorComposer(month, year) {
   this.month = month;
   this.year = year;
   this.$dateSelector = this.selected.get('date-selector');
+  this.$monthSelector = this.selected.get('month-selector');
+  this.$yearSelector = this.selected.get('year-selector');
   this.modalControl = new ModalController(this);
 
-  this.monthArray = monthArrayGenerator(month - 1);
-  this.monthSelector = new MonthSelector(this.monthArray);
-  this.monthSelector.mount(this.$dateSelector);
-  this.monthSelector.listen('selector:click', () =>
-    this.modalControl.Open(this.monthArray),
-  );
+  this.mountYearSelector = () => {
+    if (this.yearSelector) this.yearSelector.unmount();
+
+    this.yearArray = yearArrayGenerator(this.year);
+    this.yearSelector = new YearSelector(this.yearArray);
+    this.yearSelector.mount(this.$yearSelector);
+    this.yearSelector.listen('selector:click', () =>
+      this.modalControl.Open(this.yearArray),
+    );
+  };
+
+  this.mountMonthSelector = () => {
+    if (this.monthSelector) this.monthSelector.unmount();
+
+    this.monthArray = monthArrayGenerator(this.month);
+    this.monthSelector = new MonthSelector(this.monthArray);
+    this.monthSelector.mount(this.$monthSelector);
+    this.monthSelector.listen('selector:click', () =>
+      this.modalControl.Open(this.monthArray),
+    );
+  };
+
+  this.mountYearSelector();
+  this.mountMonthSelector();
 
   window.addEventListener('click', (event) =>
     this.modalControl.CloseOnClickOutside(event),
@@ -33,5 +60,17 @@ export default function DateSelectorComposer(month, year) {
 DateSelectorComposer.prototype = Object.assign(
   DateSelectorComposer.prototype,
   Component.prototype,
-  {},
+  {
+    setMonth(month) {
+      this.month = month;
+      this.mountMonthSelector();
+      this.emit('month:change', month);
+    },
+
+    setYear(year) {
+      this.year = year;
+      this.mountYearSelector();
+      this.emit('year:change', year);
+    },
+  },
 );

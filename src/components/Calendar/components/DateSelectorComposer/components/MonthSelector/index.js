@@ -21,7 +21,7 @@ export default function MonthSelector(monthArray) {
   this.$currentMonth = this.selected.get('current-month');
   this.$nextMonths = this.selected.get('next-months');
 
-  for (let i = 0; i < monthArray.length; i += 1) {
+  for (let i = 0; i < this.monthArray.length; i += 1) {
     if (i < 3) {
       const selectorItem = new SelectorItem(this.monthArray[i]);
       selectorItem.mount(this.$previousMonths);
