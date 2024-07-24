@@ -4,7 +4,27 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .date-selector {
-  width: 300px;
+  width: 100%;
+}
 
-  position: relative;
+@include breakpoints.from667 {
+  .date-selector {
+    width: 10%;
+    min-width: 23.1rem;
+
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+
+    position: relative;
+
+    &::before {
+      width: 1.6rem;
+      height: 2.3rem;
+
+      background-image: url('../../images/arrows.svg');
+
+      content: '';
+    }
+  }
 }

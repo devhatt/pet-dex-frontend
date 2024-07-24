@@ -8,3 +8,11 @@ export function monthArrayGenerator(month) {
   }
   return monthArray;
 }
+
+export function yearArrayGenerator(year) {
+  const yearArray = new Array(7);
+  for (let i = 0; i < yearArray.length; i += 1) {
+    yearArray[i] = year - (3 - i);
+  }
+  return yearArray;
+}
