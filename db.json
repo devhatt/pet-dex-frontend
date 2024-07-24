@@ -1,8 +1,8 @@
 {
   "login": [
     {
-      "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3OTFkZmMwLWY3YzEtNDAyMy05ZDUxLTFlYTQ3OWQ2ZjgyYiIsIm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIiwiZW1haWwiOiJqb2huZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNzIxODI4MDA3fQ.Agk6Yz2E6TpoqI6mVYeClKx1zOxSsp TyIhtJEvFvG-E"
-     }
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3OTFkZmMwLWY3YzEtNDAyMy05ZDUxLTFlYTQ3OWQ2ZjgyYiIsIm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIiwiZW1haWwiOiJqb2huZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNzIxODI4MDA3fQ.Agk6Yz2E6TpoqI6mVYeClKx1zOxSsp TyIhtJEvFvG-E"
+    }
   ],
   "user": [
     {
