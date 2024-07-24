@@ -1,0 +1,30 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.date-selector {
+  width: 100%;
+}
+
+@include breakpoints.from667 {
+  .date-selector {
+    width: 10%;
+    min-width: 23.1rem;
+
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+
+    position: relative;
+
+    &::before {
+      width: 1.6rem;
+      height: 2.3rem;
+
+      background-image: url('../../images/arrows.svg');
+
+      content: '';
+    }
+  }
+}
