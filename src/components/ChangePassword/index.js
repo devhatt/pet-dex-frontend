@@ -6,36 +6,43 @@ import './index.scss';
 const events = ['password:change'];
 
 const html = `
-        <form
-          data-select="change-password"
-          class="change-password"
-          action="submit"
-        >
-          <h3 class="change-password__title">
-            Senha antiga
-          </h3>
-          <div data-select="password" class="change-password__input"></div>
-          <span data-select="password-error" class="change-password__error">Senha inválida</span>          
-
-          <hr class="change-password__separator"/>
-          
-          <h3 class="change-password__title">Nova senha</h3>
-          
-          <div data-select="new-password" class="change-password__input"></div>
-          <span data-select="new-password-error" class="change-password__error">Senha inválida</span>
-          <span data-select="new-password-error-match" class="change-password__error">As senhas não coincidem</span>
-
-          <div data-select="confirm-password" class="change-password__input"></div>
-          <span data-select="confirm-password-error" class="change-password__error">Senha inválida</span>
-          <span data-select="confirm-password-error-match" class="change-password__error">As senhas não coincidem</span>
-          
-          <ul class="change-password__tips">
-            <li>Insira no mínimo 6 caracteres</li>
-            <li>A senha deve conter uma letra maiúscula</li>
-            <li>Deve conter um caractere especial</li>
-          </ul>
-          </form>
+  <form
+    data-select="change-password"
+    class="change-password"
+    action="submit"
+  >
+    <h3 class="change-password__title">
+      Senha antiga
+    </h3>
+    <div data-select="password" class="change-password__input"></div>
+    <span data-select="password-error" class="change-password__error">Senha inválida</span>          
+    <hr class="change-password__separator"/>
+    
+    <h3 class="change-password__title">Nova senha</h3>
+    
+    <div data-select="new-password" class="change-password__input"></div>
+    <span data-select="new-password-error" class="change-password__error">Senha inválida</span>
+    <span data-select="new-password-error-match" class="change-password__error">As senhas não coincidem</span>
+    <div data-select="confirm-password" class="change-password__input"></div>
+    <span data-select="confirm-password-error" class="change-password__error">Senha inválida</span>
+    <span data-select="confirm-password-error-match" class="change-password__error">As senhas não coincidem</span>
+    
+    <ul class="change-password__tips">
+      <li>Insira no mínimo 6 caracteres</li>
+      <li>A senha deve conter uma letra maiúscula</li>
+      <li>Deve conter um caractere especial</li>
+    </ul>
+    </form>
 `;
+
+const validatePassword = (password) => {
+  const hasMinLength = password.length >= 10;
+  const hasUppercase = /[A-Z]/g.test(password);
+  const hasNumber = /[0-9]/g.test(password);
+  const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/g.test(password);
+
+  return hasMinLength && hasUppercase && hasNumber && hasSpecialCharacter;
+};
 
 export default function ChangePassword() {
   Component.call(this, { html, events });
@@ -91,15 +98,7 @@ export default function ChangePassword() {
     }
   };
 
-  const validatePassword = (password) => {
-    const hasMinLength = password.length >= 10;
-    const hasUppercase = /[A-Z]/g.test(password);
-    const hasNumber = /[0-9]/g.test(password);
-    const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/g.test(password);
-
-    return hasMinLength && hasUppercase && hasNumber && hasSpecialCharacter;
-  };
-
+  submitButton.selected.get('button').classList.add('change-password__button');
   currentPasswordInput.selected
     .get('input-text')
     .addEventListener('input', () => {

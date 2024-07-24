@@ -8,7 +8,9 @@
   gap: 2rem;
 
   font-family: fonts.$primaryFont;
-  line-height: fonts.$lg;
+  line-height: 20px;
+
+  padding: 0 5px;
 
   background-color: colors.$secondary100;
 
@@ -34,6 +36,10 @@
 
     list-style-type: disc;
     padding-inline-start: 3rem;
+  }
+
+  &__button {
+    align-self: end;
   }
 
   &__separator {
