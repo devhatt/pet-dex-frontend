@@ -106,7 +106,9 @@ describe('PetRegisterPage', () => {
       const button = screen.getByRole('button');
       await userEvent.click(button);
 
-      expect(callBackEmit).toHaveBeenCalledWith('Mixed Breed');
+      expect(callBackEmit).toHaveBeenCalledWith({
+        breedSelected: 'Mixed Breed',
+      });
     });
 
     it('does not happen when theres no card selected', async () => {
