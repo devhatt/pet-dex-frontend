@@ -30,22 +30,23 @@
   }
 
   &__card {
-    max-width: 12rem;
-
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 0.3rem;
 
     box-sizing: border-box;
 
     background-color: colors.$secondary100;
     box-shadow: 0 0 0.3rem 0.3rem colors.$gray150;
+    outline: 0.3rem solid transparent;
     border-radius: 1.8rem;
 
-    transition: transform 0.2s ease;
+    transition: 0.3s ease;
+
+    cursor: pointer;
     scroll-snap-align: center;
 
     &:focus {
@@ -98,6 +99,8 @@
   }
 
   &__card-size {
+    min-width: 9rem;
+
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -116,20 +119,29 @@
 
     justify-content: center;
 
+    padding: 0.4rem;
+
     background-color: colors.$gray150;
     border-radius: 100%;
+
+    transition: 0.3s ease;
   }
 
   &__container-text {
-    min-width: max-content;
-
     display: flex;
     flex-direction: column;
     gap: 0.3em;
 
     align-items: center;
-
     justify-content: center;
+
+    text-align: center;
+  }
+
+  &__svg path {
+    transition: 0.3s ease;
+
+    fill: rgb(128, 139, 154);
   }
 
   &__title {
@@ -137,6 +149,8 @@
     color: colors.$gray800;
     font-size: fonts.$xs;
     font-weight: fonts.$semiBold;
+
+    transition: 0.3s ease;
   }
 
   &__text {
@@ -144,6 +158,8 @@
     color: colors.$gray600;
     font-size: fonts.$xxs;
     font-weight: fonts.$regular;
+
+    transition: 0.3s ease;
   }
 }
 
@@ -156,7 +172,7 @@
     }
 
     &__card {
-      padding: 4rem 3rem;
+      padding: 4rem 2rem;
 
       &--active {
         .container-size-selector__title {
