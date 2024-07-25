@@ -27,31 +27,29 @@ export default function DateSelectorComposer(month, year) {
   this.$yearSelector = this.selected.get('year-selector');
   this.modalControl = new ModalController(this);
 
+  this.yearArray = yearArrayGenerator(this.year);
+  this.monthArray = monthArrayGenerator(this.month);
+
   this.mountYearSelector = () => {
     if (this.yearSelector) this.yearSelector.unmount();
 
-    this.yearArray = yearArrayGenerator(this.year);
     this.yearSelector = new YearSelector(this.yearArray);
     this.yearSelector.mount(this.$yearSelector);
-    this.yearSelector.listen('selector:click', () =>
-      this.modalControl.Open(this.yearArray),
-    );
   };
 
   this.mountMonthSelector = () => {
     if (this.monthSelector) this.monthSelector.unmount();
 
-    this.monthArray = monthArrayGenerator(this.month);
     this.monthSelector = new MonthSelector(this.monthArray);
     this.monthSelector.mount(this.$monthSelector);
-    this.monthSelector.listen('selector:click', () =>
-      this.modalControl.Open(this.monthArray),
-    );
   };
 
   this.mountYearSelector();
   this.mountMonthSelector();
 
+  this.$dateSelector.addEventListener('click', () =>
+    this.modalControl.Open(this.monthArray, this.yearArray),
+  );
   window.addEventListener('click', (event) =>
     this.modalControl.CloseOnClickOutside(event),
   );

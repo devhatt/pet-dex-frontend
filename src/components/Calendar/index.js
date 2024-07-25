@@ -2,10 +2,10 @@ import { Component } from 'pet-dex-utilities';
 import dayjs from 'dayjs';
 import WeekDayComposer from './components/WeekDayComposer';
 import NavigationButton from './components/NavigationButton';
-import CalendarSliding from './components/CalendarSliding';
 
 import './index.scss';
 import DateSelectorComposer from './components/DateSelectorComposer';
+import DayComposer from './components/DayComposer';
 
 const events = [];
 
@@ -45,29 +45,12 @@ export default function Calendar({ day, month, year }) {
   this.weekDayComposer = new WeekDayComposer();
   this.weekDayComposer.mount(this.$calendarContent);
 
-  this.mountCalendarSliding = () => {
-    if (this.calendarSliding) this.calendarSliding.unmount();
+  this.mountDayComposer = () => {
+    if (this.dayComposer) this.dayComposer.unmount();
 
-    this.calendarSliding = new CalendarSliding(this.getDate());
-    this.calendarSliding.mount(this.$calendarContent);
-    this.calendarSliding.listen('day:change', (newDay) => this.setDay(newDay));
-  };
-
-  this.mountCalendarSliding();
-
-  this.slidingMonths = (monthForSliding) => {
-    if (this.month < monthForSliding) {
-      const monthDifference = monthForSliding - this.month;
-      for (let i = 0; i < monthDifference; i += 1) {
-        this.calendarSliding.next();
-      }
-    }
-    if (this.month > monthForSliding) {
-      const monthDifference = this.month - monthForSliding;
-      for (let i = 0; i < monthDifference; i += 1) {
-        this.calendarSliding.previous();
-      }
-    }
+    this.dayComposer = new DayComposer(this.getDate());
+    this.dayComposer.mount(this.$calendarContent);
+    this.dayComposer.listen('day:change', (newDay) => this.setDay(newDay));
   };
 
   this.setDate(this.day, this.month, this.year);
@@ -79,6 +62,7 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     this.month = month;
     this.year = year;
 
+    this.mountDayComposer();
     this.firstDayInWeek = dayjs(`${this.year}-${this.month}-${this.day}`).day();
     this.weekDayComposer.activeWeekDay(this.firstDayInWeek);
   },
@@ -101,7 +85,6 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
   },
 
   setMonth(month) {
-    this.slidingMonths(month);
     this.month = month;
     this.setDate(this.day, this.month, this.year);
   },
@@ -112,8 +95,6 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
 
   setYear(year) {
     this.year = year;
-    this.mountCalendarSliding();
-    this.dateSelector.setYear(this.year);
     this.setDate(this.day, this.month, this.year);
   },
 
@@ -123,11 +104,12 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
 
   nextMonth(day) {
     this.day = day || this.day;
-    this.setMonth(this.month + 1);
+    this.month += 1;
 
     if (this.month > 12) {
-      this.setMonth(1);
-      this.setYear(this.year + 1);
+      this.month = 1;
+      this.year += 1;
+      this.dateSelector.setYear(this.year);
     }
 
     const totalDaysInMonth = dayjs(
@@ -141,11 +123,12 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
 
   previousMonth(day) {
     this.day = day || this.day;
-    this.setMonth(this.month - 1);
+    this.month -= 1;
 
     if (this.month < 1) {
-      this.setMonth(12);
-      this.setYear(this.year - 1);
+      this.month = 12;
+      this.year -= 1;
+      this.dateSelector.setYear(this.year);
     }
 
     const totalDaysInMonth = dayjs(

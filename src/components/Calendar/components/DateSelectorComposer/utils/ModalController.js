@@ -5,10 +5,10 @@ export class ModalController {
     this.selector = selector;
   }
 
-  Open(dateArray) {
+  Open(monthArray, yearArray) {
     if (this.modal) this.Close();
 
-    this.modal = new SelectorModal(dateArray);
+    this.modal = new SelectorModal(monthArray, yearArray);
     this.modal.mount(this.selector.$dateSelector);
     this.modal.listen('month:change', (month) => this.selector.setMonth(month));
     this.modal.listen('year:change', (year) => this.selector.setYear(year));
