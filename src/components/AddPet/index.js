@@ -37,7 +37,7 @@ const html = `
           <div class="add-pet__steps">
             <p class="add-pet__steps--first" data-select="first-step">1</p>
             <span>/</span>
-            <p class="add-pet__steps--last" data-select="last-step">3<p>
+            <p class="add-pet__steps--last" data-select="last-step">${steps.size}<p>
           </div>
         </div>
       </div>
