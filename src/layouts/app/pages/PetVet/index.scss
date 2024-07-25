@@ -10,6 +10,10 @@
 
   align-items: center;
 
+  &__content {
+    margin-bottom: 2.4rem;
+  }
+
   &__header {
     text-align: center;
 
@@ -95,9 +99,6 @@
 
   &__button {
     width: min(100%, 42rem);
-
-    margin-top: 2.4rem;
-    margin-bottom: 2.4rem;
   }
 }
 

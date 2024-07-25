@@ -16,7 +16,7 @@
     "code-style": "concurrently \"pnpm lint\" \"pnpm stylelint\" \"pnpm prettier\"",
     "commit": "git-cz",
     "lint": "eslint --ext .js .",
-    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "lint:fix": "eslint --ext .js,.ts,.tsx . --report-unused-disable-directives --max-warnings 0 --fix && stylelint '**/*.{css,scss}' --fix",
     "prepare": "husky install",
     "prettier": "prettier . --check --ignore-unknown",
     "prettier:fix": "prettier . --write --ignore-unknown",
