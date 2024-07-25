@@ -10,9 +10,9 @@
   gap: 2rem;
 
   font-family: fonts.$primaryFont;
-  line-height: 20px;
+  line-height: 1.5;
 
-  padding: 0 5px;
+  padding: 0 2rem;
 
   background-color: colors.$secondary100;
 
@@ -42,6 +42,7 @@
 
   &__button {
     margin-top: auto;
+    margin-bottom: 1rem;
   }
 
   &__separator {
