@@ -16,6 +16,11 @@ const cards = [
   },
 ];
 
+const steps = new Map();
+steps.set(1, 'Petraça');
+steps.set(2, 'Nome');
+steps.set(3, 'Peso');
+
 const events = [];
 
 const html = `
@@ -25,11 +30,15 @@ const html = `
         <img src=${arrowLeft} alt="previous step" class="add-pet__previous-step" data-select="previous-step"/>
         <div class="add-pet__text">
           <p class="add-pet__title">Petperfil</p>
-          <p class="add-pet__subtitle">Petraça</p>
+          <p class="add-pet__subtitle" data-select="step-name">Petraça</p>
         </div>
-        <div>
-          <p>Pata</p>
-          <p class="add-pet__steps" data-select="steps">1/3</p>
+        <div class="steps-group">
+          <p class="add-pet__step">Pata</p>
+          <div class="add-pet__steps">
+            <p class="add-pet__steps--first" data-select="first-step">1</p>
+            <span>/</span>
+            <p class="add-pet__steps--last" data-select="last-step">7<p>
+          </div>
         </div>
       </div>
     </div>
@@ -48,7 +57,9 @@ export default function AddPet() {
   const $addPetHeader = this.selected.get('add-pet-header');
   const $addPetContent = this.selected.get('add-pet-content');
   const $previousStep = this.selected.get('previous-step');
-  this.$steps = this.selected.get('steps');
+  this.$stepsName = this.selected.get('step-name');
+  this.$firstStep = this.selected.get('first-step');
+  this.$lastStep = this.selected.get('last-step');
 
   this.progressBar = new ProgressBar(1, pages.length, 1);
   this.progressBar.selected
@@ -80,7 +91,9 @@ export default function AddPet() {
 AddPet.prototype = Object.assign(AddPet.prototype, Component.prototype, {
   updateStep(actualStep, endingStep) {
     this.actualStep = actualStep;
-    this.$steps.textContent = `${actualStep}/${endingStep}`;
+    this.$stepsName = steps.get(actualStep);
+    this.$firstStep.textContent = actualStep;
+    this.$lastStep.textContent = endingStep;
   },
   nextStep(actualStep, endingStep) {
     this.sliding.next();
