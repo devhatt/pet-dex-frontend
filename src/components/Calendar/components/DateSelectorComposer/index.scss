@@ -5,6 +5,8 @@
 
 .date-selector {
   width: 100%;
+
+  cursor: pointer;
 }
 
 @include breakpoints.from667 {

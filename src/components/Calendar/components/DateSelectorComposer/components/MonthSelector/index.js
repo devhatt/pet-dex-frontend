@@ -34,10 +34,6 @@ export default function MonthSelector(monthArray) {
       selectorItem.mount(this.$nextMonths);
     }
   }
-
-  this.$currentMonth.addEventListener('click', () =>
-    this.emit('selector:click'),
-  );
 }
 
 MonthSelector.prototype = Object.assign(
