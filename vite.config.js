@@ -40,6 +40,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '~styles': resolve(__dirname, 'src/styles'),
+      '~src': resolve(__dirname, 'src'),
     },
   },
   plugins: [

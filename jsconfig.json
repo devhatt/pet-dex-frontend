@@ -3,7 +3,8 @@
     "types": ["vitest/globals"],
     "baseUrl": ".",
     "paths": {
-      "@testing-library/vanilla": ["src/__tests__/index.js"]
+      "@testing-library/vanilla": ["src/__tests__/index.js"],
+      "~src/*": ["src/*"]
     }
   }
 }

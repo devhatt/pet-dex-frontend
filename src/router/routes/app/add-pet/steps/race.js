@@ -1,11 +1,11 @@
-import NoPetRegirestedPage from '../../../../layouts/app/pages/NoPetRegirested';
+import NoPetRegirestedPage from '~src/layouts/app/pages/NoPetRegirested';
 
 export default {
-  pathname: '/app/pet-profile',
+  pathname: '/pet-race',
   element: () => {
     const $content = document.createElement('div');
     $content.classList.add('home__content-page');
-    $content.style.backgroundColor = 'blue';
+    $content.style.backgroundColor = 'black';
     const noPetRegirestedPage = new NoPetRegirestedPage();
     noPetRegirestedPage.mount($content);
     return $content;
