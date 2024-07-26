@@ -8,7 +8,7 @@ const propsMock = {
 
 const makeComponent = (params) => render(new PetWeightPage(params));
 
-describe.only('Pet Weight page', () => {
+describe('Pet Weight page', () => {
   it('renders image', async () => {
     const page = makeComponent(propsMock.petPhoto);
 
