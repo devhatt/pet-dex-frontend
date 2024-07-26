@@ -19,7 +19,7 @@
 
   &__title {
     font-family: fonts.$sixthFont;
-    font-size: 1.6rem;
+    font-size: fonts.$sm;
     font-weight: fonts.$semiBold;
   }
 
@@ -39,7 +39,7 @@
 
     font-family: fonts.$fourthFont;
     color: colors.$gray800;
-    font-size: 1.6rem;
+    font-size: fonts.$sm;
     font-weight: fonts.$regular;
     line-height: 1.6;
 
@@ -78,7 +78,7 @@
     }
 
     &__subtitle {
-      font-size: 1.6rem;
+      font-size: fonts.$sm;
       font-weight: fonts.$regular;
     }
   }

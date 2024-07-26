@@ -1,20 +1,17 @@
 import { Component } from 'pet-dex-utilities';
-import './index.scss';
-import PetVetPage from '../../layouts/app/pages/PetVet';
-import PetWeight from '../../layouts/app/pages/PetWeight';
-import PetRegister from '../../layouts/app/pages/PetRegister';
-import arrowLeft from './assets/arrow-left.svg';
-import akita from './assets/akita.svg';
+
 import Sliding from '../Sliding';
 import ProgressBar from '../ProgressBar';
 
-const cards = [
-  {
-    title: 'Akita',
-    imgSrc: akita,
-    imgAlt: 'akita',
-  },
-];
+import PetVetPage from '../../layouts/app/pages/PetVet';
+import PetWeight from '../../layouts/app/pages/PetWeight';
+import PetRegister from '../../layouts/app/pages/PetRegister';
+
+import arrowLeft from './assets/arrow-left.svg';
+
+import './index.scss';
+
+const cards = [];
 
 const steps = new Map();
 steps.set(1, 'Petraça');
@@ -59,7 +56,6 @@ export default function AddPet() {
   const $previousStep = this.selected.get('previous-step');
   this.$stepsName = this.selected.get('step-name');
   this.$firstStep = this.selected.get('first-step');
-  this.$lastStep = this.selected.get('last-step');
 
   this.progressBar = new ProgressBar(1, pages.length, 1);
   this.progressBar.selected
@@ -89,22 +85,21 @@ export default function AddPet() {
 }
 
 AddPet.prototype = Object.assign(AddPet.prototype, Component.prototype, {
-  updateStep(actualStep, endingStep) {
+  updateStep(actualStep) {
     this.actualStep = actualStep;
     this.$stepsName = steps.get(actualStep);
     this.$firstStep.textContent = actualStep;
-    this.$lastStep.textContent = endingStep;
   },
-  nextStep(actualStep, endingStep) {
+  nextStep(actualStep) {
     this.sliding.next();
     this.progressBar.next();
-    this.updateStep(actualStep + 1, endingStep);
+    this.updateStep(actualStep + 1);
   },
-  backStep(actualStep, endingStep) {
+  backStep(actualStep) {
     if (this.sliding.slideIndex >= 1) {
       this.sliding.previous();
       this.progressBar.prev();
-      this.updateStep(actualStep - 1, endingStep);
+      this.updateStep(actualStep - 1);
     }
   },
 });
