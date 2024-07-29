@@ -64,6 +64,11 @@
       border: 0;
 
       background-color: colors.$secondary100;
+
+      &:hover {
+        color: colors.$primary200;
+        font-weight: fonts.$semiBold;
+      }
     }
   }
 }

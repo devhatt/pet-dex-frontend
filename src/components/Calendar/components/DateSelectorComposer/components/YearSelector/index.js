@@ -34,6 +34,10 @@ export default function YearSelector(yearArray) {
       selectorItem.mount(this.$nextYears);
     }
   }
+
+  this.$currentYear.addEventListener('click', () =>
+    this.emit('selector:click'),
+  );
 }
 
 YearSelector.prototype = Object.assign(
