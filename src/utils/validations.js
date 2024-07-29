@@ -4,16 +4,10 @@ export function isNameValid(name) {
   return nameRegex.test(name);
 }
 
-export function isSurnameValid(surname) {
-  const surnameRegex = /[a-zA-Z]$/;
+export function isBirthValid(birth) {
+  const birthRegex = /(\d{2})\/?(\d{2})\/?(\d{4})$/;
 
-  return surnameRegex.test(surname);
-}
-
-export function isBirthValid(birthday) {
-  const birthdayRegex = /(\d{2})\/?(\d{2})\/?(\d{4})$/;
-
-  return birthdayRegex.test(birthday);
+  return birthRegex.test(birth);
 }
 
 export function isEmailValid(email) {
@@ -23,25 +17,26 @@ export function isEmailValid(email) {
 }
 
 export function isPhoneValid(phone) {
-  const phoneRegex = /\(?(\d{2})\)? \d{5}-?\d{4}/;
+  const phoneRegex = /(\d{2})\d{5}\d{4}/;
 
   return phoneRegex.test(phone);
 }
 
 export function isPasswordValid(password) {
-  const minLength = password.length >= 10;
-  const uppercase = /[A-Z]/g;
-  const number = /[0-9]/g;
-  const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g;
+  const hasMinLength = password.length >= 10;
+  const hasUppercase = /[A-Z]/g.test(password);
+  const hasNumber = /[0-9]/g.test(password);
+  const hasSpecialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g.test(password);
 
-  return minLength && uppercase && number && specialCharacter;
+  return hasMinLength && hasUppercase && hasNumber && hasSpecialCharacter;
 }
 
-export function isRepeatPasswordValid(password) {
-  const minLength = password.length >= 10;
-  const uppercase = /[A-Z]/g;
-  const number = /[0-9]/g;
-  const specialCharacter = /[!@#$%^&*{}<>;'(),.?":|]/g;
+export function isLocalValid(local) {
+  let isFilled = true;
 
-  return minLength && uppercase && number && specialCharacter;
+  if (local === '' || local === undefined) {
+    isFilled = false;
+  }
+
+  return isFilled;
 }

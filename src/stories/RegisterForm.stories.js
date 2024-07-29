@@ -1,4 +1,4 @@
-import RegisterForm from '../components/RegisterForm/index';
+import RegisterForm from '../components/RegisterForm';
 
 export default {
   title: 'Components/RegisterForm',

@@ -1,0 +1,31 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.field {
+  flex-grow: 1;
+
+  &__label {
+    display: block;
+
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+
+    color: colors.$gray800;
+
+    padding: 0 0 0.5rem 0.5rem;
+  }
+
+  &__error {
+    display: none;
+
+    color: colors.$error100;
+
+    text-align: justify;
+
+    margin: 0.8rem 0 0 0.5rem;
+
+    &.show-error {
+      display: block;
+    }
+  }
+}

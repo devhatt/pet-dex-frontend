@@ -11,6 +11,7 @@ const events = [
   'enabled',
   'value:change',
   'type:change',
+  'id:changed',
 ];
 
 const html = `
@@ -23,6 +24,7 @@ const html = `
 `;
 
 export default function TextInput({
+  id = '',
   placeholder = '',
   assetUrl,
   assetPosition,
@@ -42,6 +44,7 @@ export default function TextInput({
   input.classList.add(assetPosition);
   this.setValue(value);
   this.setType(type);
+  this.setID(id);
 
   if (type === 'password') {
     iconBtn.classList.remove('input-text-container__button--hidden');
@@ -109,5 +112,14 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
   setType(type) {
     this.selected.get('input-text').type = type;
     this.emit('type:change', type);
+  },
+
+  getID() {
+    return this.selected.get('input-text').id;
+  },
+
+  setID(id = '') {
+    this.selected.get('input-text').id = id;
+    this.emit('id:changed', id);
   },
 });
