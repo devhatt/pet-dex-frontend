@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import { MONTHS } from '../../../../utils/months';
 import ModalItem from './components/ModalItem';
-import { scrollModal } from './utils/scrollModal';
 
 import './index.scss';
 
@@ -14,25 +13,47 @@ const html = `
 export default function SelectorModal(dateArray) {
   Component.call(this, { html, events });
 
-  this.dateArray = dateArray.slice(1, -1);
-  this.selectorModal = this.selected.get('selector-modal');
+  this.dateArray = dateArray;
+  this.$selectorModal = this.selected.get('selector-modal');
   this.isYear = typeof dateArray[0] === 'number';
+  this.itemsPerPage = 25;
+  this.currentPage = 0;
 
-  for (let i = 0; i < this.dateArray.length; i += 1) {
-    const modalItem = new ModalItem(this.dateArray[i]);
-    modalItem.mount(this.selectorModal);
-    if (i === 2) modalItem.active();
-  }
+  this.renderItens();
 
-  this.items = this.selectorModal.children;
+  this.$selectorModal.addEventListener('scroll', this.handleScroll.bind(this));
 
-  scrollModal(this);
+  setTimeout(() => {
+    this.$selectorModal.scrollTop = this.$selectorModal.scrollHeight / 2.1121;
+  }, 0);
 }
 
 SelectorModal.prototype = Object.assign(
   SelectorModal.prototype,
   Component.prototype,
   {
+    renderItens() {
+      const start = this.currentPage * this.itemsPerPage;
+      const end = Math.min(start + this.itemsPerPage, this.dateArray.length);
+
+      for (let i = start; i < end; i += 1) {
+        const modalItem = new ModalItem(this.dateArray[i]);
+        modalItem.mount(this.$selectorModal);
+      }
+
+      this.currentPage += 1;
+      this.items = this.$selectorModal.children;
+    },
+
+    handleScroll() {
+      const { scrollTop, scrollHeight, clientHeight } = this.$selectorModal;
+      if (
+        scrollTop + clientHeight >= scrollHeight &&
+        this.currentPage * this.itemsPerPage < this.dateArray.length
+      )
+        this.renderItens();
+    },
+
     changeMonth(month) {
       for (let i = 0; i < this.dateArray.length; i += 1) {
         const index = (month - (2 - i) + 12) % 12;
