@@ -22,14 +22,14 @@ export default function YearSelector(yearArray) {
   this.$nextYears = this.selected.get('next-years');
 
   for (let i = 0; i < this.yearArray.length; i += 1) {
-    if (i < 3) {
+    if (i < 50) {
       const selectorItem = new SelectorItem(this.yearArray[i]);
       selectorItem.mount(this.$previousYears);
     }
-    if (i === 3) {
+    if (i === 50) {
       this.$currentYear.innerText = this.yearArray[i];
     }
-    if (i > 3) {
+    if (i > 50) {
       const selectorItem = new SelectorItem(this.yearArray[i]);
       selectorItem.mount(this.$nextYears);
     }
