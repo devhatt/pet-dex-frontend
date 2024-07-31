@@ -1,5 +1,4 @@
 import { Component } from 'pet-dex-utilities';
-import { MONTHS } from '../../../../utils/months';
 import ModalItem from './components/ModalItem';
 
 import './index.scss';
@@ -7,7 +6,14 @@ import './index.scss';
 const events = ['month:change', 'year:change'];
 
 const html = `
-    <ul class="selector-modal" data-select="selector-modal"></ul>
+    <div class="selector-modal" data-select="selector-modal">
+      <div>
+        <div data-select="modal-list">
+          <ul data-select="list-content">
+          </ul>
+        </div>
+      </div>
+    </div>
 `;
 
 export default function SelectorModal(dateArray) {
@@ -15,80 +21,70 @@ export default function SelectorModal(dateArray) {
 
   this.dateArray = dateArray;
   this.$selectorModal = this.selected.get('selector-modal');
-  this.isYear = typeof dateArray[0] === 'number';
-  this.itemsPerPage = 25;
-  this.currentPage = 0;
+  this.$modalList = this.selected.get('modal-list');
+  this.$listContent = this.selected.get('list-content');
 
-  this.renderItens();
-
-  this.$selectorModal.addEventListener('scroll', this.handleScroll.bind(this));
+  this.itemCount = this.dateArray.length;
+  this.rowHeight = 33.99;
+  this.nodePadding = 10;
+  this.scrollTop = this.$selectorModal.scrollTop;
 
   setTimeout(() => {
-    this.$selectorModal.scrollTop = this.$selectorModal.scrollHeight / 2.1121;
+    this.viewportHeight = this.$selectorModal.offsetHeight;
+
+    const renderWindow = () => {
+      this.totalContentHeight = this.itemCount * this.rowHeight;
+
+      this.startNode =
+        Math.floor(this.scrollTop / this.rowHeight) - this.nodePadding;
+      this.startNode = Math.max(0, this.startNode);
+
+      this.visibleNodesCount =
+        Math.ceil(this.viewportHeight / this.rowHeight) + 2 * this.nodePadding;
+      this.visibleNodesCount = Math.min(
+        this.itemCount - this.startNode,
+        this.visibleNodesCount,
+      );
+
+      this.offsetY = this.startNode * this.rowHeight;
+
+      this.$modalList.style.height = `${this.totalContentHeight}px`;
+      this.$listContent.style.transform = `translateY(${this.offsetY}px)`;
+
+      this.$listContent.innerHTML = '';
+      this.visibleChildren = new Array(this.visibleNodesCount)
+        .fill(null)
+        .map(
+          (_, index) => new ModalItem(this.dateArray[index + this.startNode]),
+        );
+
+      this.visibleChildren.forEach((modalItem) => {
+        modalItem.mount(this.$listContent);
+      });
+    };
+
+    this.$selectorModal.addEventListener('scroll', (e) => {
+      if (this.animationFrame) {
+        cancelAnimationFrame(this.animationFrame);
+      }
+      this.animationFrame = requestAnimationFrame(() => {
+        this.scrollTop = e.target.scrollTop;
+        renderWindow();
+      });
+    });
+
+    const scrollToMiddle = () => {
+      this.scrollTop = this.totalContentHeight / 2 - this.viewportHeight / 2;
+      this.$selectorModal.scrollTop = this.scrollTop;
+    };
+
+    renderWindow();
+    scrollToMiddle();
   }, 0);
 }
 
 SelectorModal.prototype = Object.assign(
   SelectorModal.prototype,
   Component.prototype,
-  {
-    renderItens() {
-      const start = this.currentPage * this.itemsPerPage;
-      const end = Math.min(start + this.itemsPerPage, this.dateArray.length);
-
-      for (let i = start; i < end; i += 1) {
-        const modalItem = new ModalItem(this.dateArray[i]);
-        modalItem.mount(this.$selectorModal);
-      }
-
-      this.currentPage += 1;
-      this.items = this.$selectorModal.children;
-    },
-
-    handleScroll() {
-      const { scrollTop, scrollHeight, clientHeight } = this.$selectorModal;
-      if (
-        scrollTop + clientHeight >= scrollHeight &&
-        this.currentPage * this.itemsPerPage < this.dateArray.length
-      )
-        this.renderItens();
-    },
-
-    changeMonth(month) {
-      for (let i = 0; i < this.dateArray.length; i += 1) {
-        const index = (month - (2 - i) + 12) % 12;
-        this.dateArray[i] = MONTHS[index];
-      }
-
-      this.dateArray.forEach((item, index) => {
-        this.items[index].innerText = item;
-      });
-
-      this.items[2].scrollIntoView({
-        behavior: 'instant',
-        block: 'center',
-        inline: 'center',
-      });
-
-      this.emit('month:change', month);
-    },
-
-    changeYear(year) {
-      for (let i = 0; i < this.dateArray.length; i += 1) {
-        this.dateArray[i] = year - (2 - i);
-      }
-
-      this.dateArray.forEach((item, index) => {
-        this.items[index].innerText = item;
-      });
-
-      this.items[2].scrollIntoView({
-        behavior: 'instant',
-        block: 'center',
-        inline: 'center',
-      });
-
-      this.emit('year:change', year);
-    },
-  },
+  {},
 );
