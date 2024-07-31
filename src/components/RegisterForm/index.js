@@ -18,7 +18,7 @@ import './index.scss';
 const events = ['register'];
 
 const html = `
-    <div data-select="component" class="register-form">
+    <div class="register-form">
       <h1 class="register-form__title">Crie sua petconta</h1>
       <div class="register-form__socials">
         <button class="register-form__social">
@@ -229,35 +229,35 @@ export default function RegisterForm() {
     }
 
     if (nameValid) {
-      name.resError();
+      name.resolveError();
     }
 
     if (surnameValid) {
-      surname.resError();
+      surname.resolveError();
     }
 
     if (birthValid) {
-      birth.resError();
+      birth.resolveError();
     }
 
     if (localValid) {
-      local.resError();
+      local.resolveError();
     }
 
     if (emailValid) {
-      email.resError();
+      email.resolveError();
     }
 
     if (phoneValid) {
-      phone.resError();
+      phone.resolveError();
     }
 
     if (passwordValid) {
-      password.resError();
+      password.resolveError();
     }
 
     if (repeatPasswordValid) {
-      repeatPassword.resError();
+      repeatPassword.resolveError();
     }
 
     if (

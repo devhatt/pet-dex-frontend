@@ -3,13 +3,12 @@
 
 .dropdown {
   width: 100%;
-  height: 100%;
 
   font-family: fonts.$primaryFont;
-  font-size: 1.4rem;
-  font-weight: fonts.$semiBold;
 
   color: colors.$gray800;
+  font-size: 1.4rem;
+  font-weight: fonts.$semiBold;
 
   position: relative;
 
@@ -59,11 +58,11 @@
 
     padding: 1.8rem 1.6rem;
 
+    border: 1px solid colors.$gray200;
+
     box-sizing: border-box;
 
     background-color: colors.$white;
-
-    border: 1px solid colors.$gray200;
 
     border-radius: 1.4rem;
 

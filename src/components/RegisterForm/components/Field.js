@@ -19,7 +19,6 @@ const html = `
 
 export default function Field({ label = '', error = '', content } = {}) {
   Component.call(this, { html, events });
-  this.content = null;
   this.setLabel(label);
   this.setError(error);
   this.setContent(content);
@@ -45,12 +44,14 @@ Field.prototype = Object.assign(Field.prototype, Component.prototype, {
   },
 
   showError(error) {
-    this.selected.get('field-error').classList.add('show-error');
+    this.selected.get('field-error').classList.add('field__error--show-error');
     this.emit('error:visible', error);
   },
 
-  resError(error) {
-    this.selected.get('field-error').classList.remove('show-error');
+  resolveError(error) {
+    this.selected
+      .get('field-error')
+      .classList.remove('field__error--show-error');
     this.emit('error:resolved', error);
   },
 
@@ -59,9 +60,8 @@ Field.prototype = Object.assign(Field.prototype, Component.prototype, {
   },
 
   setContent(content) {
-    if (content?.mount == null) {
-      return;
-    }
+    if (content?.mount === null)
+      throw new Error('Esse método espera receber um componente');
 
     this.content = content;
     this.content.mount(this.selected.get('field-input'));
