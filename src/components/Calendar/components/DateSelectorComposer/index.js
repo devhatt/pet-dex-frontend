@@ -50,7 +50,7 @@ export default function DateSelectorComposer(month, year) {
   };
 
   this.mountYearSelector();
-  // this.mountMonthSelector();
+  this.mountMonthSelector();
 
   window.addEventListener('click', (event) =>
     this.modalControl.CloseOnClickOutside(event),
