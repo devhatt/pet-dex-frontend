@@ -6,6 +6,8 @@ import TextInput from '../../../../components/TextInput';
 import UploadImage from '../../../../components/UploadImage';
 import './index.scss';
 
+const events = ['submit'];
+
 const html = `
   <div class="pet-weight-page">
     <div class="pet-weight-page__content" data-select="container">
@@ -21,26 +23,28 @@ const html = `
       <div class="pet-weight-page__inputs" data-select="input-container">
       </div>    
     </div>
+    <div class="pet-weight-page__footer" data-select="footer"></div>
   </div>;
 `;
 
 export default function PetWeight({ petPhoto }) {
-  Component.call(this, { html });
+  Component.call(this, { html, events });
   this.initializeComponents();
   this.setupEventListeners();
   this.applyCssClasses();
   this.petPhoto = petPhoto;
+  this.weight = 10;
 }
 
 PetWeight.prototype = Object.assign(PetWeight.prototype, Component.prototype, {
   initializeComponents() {
-    const $container = this.selected.get('container');
+    const $footer = this.selected.get('footer');
     const $imageContainer = this.selected.get('image-container');
     const $sliderContainer = this.selected.get('slider-container');
     const $inputsContainer = this.selected.get('input-container');
 
     this.setupComponents(
-      $container,
+      $footer,
       $imageContainer,
       $sliderContainer,
       $inputsContainer,
@@ -48,7 +52,7 @@ PetWeight.prototype = Object.assign(PetWeight.prototype, Component.prototype, {
   },
 
   setupComponents(
-    $container,
+    $footer,
     $imageContainer,
     $sliderContainer,
     $inputsContainer,
@@ -83,7 +87,7 @@ PetWeight.prototype = Object.assign(PetWeight.prototype, Component.prototype, {
     this.input.mount($inputsContainer);
     this.radioKG.mount($inputsContainer);
     this.radioLB.mount($inputsContainer);
-    this.button.mount($container);
+    this.button.mount($footer);
   },
 
   applyCssClasses() {
@@ -128,7 +132,7 @@ PetWeight.prototype = Object.assign(PetWeight.prototype, Component.prototype, {
     this.button.listen('click', () => {
       const finalWeightUnit = this.weightUnit();
       const finalWeight = this.weight;
-      this.emit('weight', finalWeight, finalWeightUnit);
+      this.emit('submit', { weight: finalWeight, weightUnit: finalWeightUnit });
     });
   },
 

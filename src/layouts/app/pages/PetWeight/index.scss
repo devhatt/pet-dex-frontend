@@ -69,10 +69,18 @@
     }
   }
 
-  &__button {
-    width: 90%;
+  &__footer {
+    width: 100%;
 
-    margin-top: 1rem;
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: auto;
+  }
+
+  &__button {
+    width: min(100%, 42rem);
   }
 }
 
@@ -114,10 +122,6 @@
     &__radio {
       margin-right: 1rem;
     }
-
-    &__button {
-      width: 40%;
-    }
   }
 }
 
@@ -141,10 +145,6 @@
       width: 20%;
 
       margin-right: 2rem;
-    }
-
-    &__button {
-      width: 45%;
     }
   }
 }
