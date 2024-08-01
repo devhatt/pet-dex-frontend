@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  
   justify-content: center;
 
   font-family: fonts.$primaryFont;
@@ -28,35 +29,40 @@
   }
 
   &__socials {
+    width: 100%;
+    
     display: flex;
     flex-direction: row;
     gap: 2rem;
 
-    width: 100%;
   }
 
   &__social {
+    max-width: 21.7rem;
+    
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+
     flex-grow: 1;
+    
+    justify-content: center;
+    
     gap: 1rem;
-
-    max-width: 21.7rem;
-
-    padding: 1.8rem 0;
-
-    margin-bottom: 3.2rem;
 
     font-family: fonts.$fifthFont;
     font-size: fonts.$sm;
     font-weight: fonts.$medium;
 
-    border: 0;
-    border-radius: 10px;
+    margin-bottom: 3.2rem;
+
+    padding: 1.8rem 0;
 
     background-color: colors.$secondary100;
+
+    border: 0;
+    
+    border-radius: 10px;
 
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 8%);
 
@@ -75,12 +81,13 @@
   }
 
   &__divisor {
+    width: 100%;
+    
     display: flex;
     flex-direction: row;
     align-items: center;
+    
     justify-content: center;
-
-    width: 100%;
 
     margin-bottom: 3rem;
   }
