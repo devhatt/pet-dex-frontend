@@ -60,8 +60,7 @@ Field.prototype = Object.assign(Field.prototype, Component.prototype, {
   },
 
   setContent(content) {
-    if (content?.mount === null)
-      throw new Error('This method expects to receive a component');
+    if (content?.mount == null) return;
 
     this.content = content;
     this.content.mount(this.selected.get('field-input'));
