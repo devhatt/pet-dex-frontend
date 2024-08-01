@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  
+
   justify-content: center;
 
   font-family: fonts.$primaryFont;
@@ -30,24 +30,23 @@
 
   &__socials {
     width: 100%;
-    
+
     display: flex;
     flex-direction: row;
     gap: 2rem;
-
   }
 
   &__social {
     max-width: 21.7rem;
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
 
     flex-grow: 1;
-    
+
     justify-content: center;
-    
+
     gap: 1rem;
 
     font-family: fonts.$fifthFont;
@@ -61,7 +60,7 @@
     background-color: colors.$secondary100;
 
     border: 0;
-    
+
     border-radius: 10px;
 
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 8%);
@@ -82,11 +81,11 @@
 
   &__divisor {
     width: 100%;
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
     justify-content: center;
 
     margin-bottom: 3rem;
