@@ -1,0 +1,143 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+
+  align-items: start;
+
+  justify-content: center;
+
+  font-family: fonts.$primaryFont;
+
+  margin: 0 auto;
+
+  &__title {
+    color: colors.$gray800;
+    font-size: fonts.$lg;
+    font-weight: fonts.$bold;
+
+    margin-bottom: 3.2rem;
+  }
+
+  &__socials,
+  &__divisor {
+    max-width: 45rem;
+  }
+
+  &__socials {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  &__social {
+    max-width: 21.7rem;
+
+    display: flex;
+    flex-direction: row;
+
+    flex-grow: 1;
+
+    gap: 1rem;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: fonts.$fifthFont;
+    font-size: fonts.$sm;
+    font-weight: fonts.$medium;
+
+    margin-bottom: 3.2rem;
+
+    padding: 1.8rem 0;
+
+    border: 0;
+
+    background-color: colors.$secondary100;
+
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 8%);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.02);
+
+      transition: all 0.4s ease-in-out;
+    }
+  }
+
+  &__social-img {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &__divisor {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 3rem;
+  }
+
+  &__divisor-line {
+    width: 100%;
+    height: 1px;
+
+    border: 0;
+
+    background-color: colors.$gray200;
+  }
+
+  &__divisor-text {
+    font-size: fonts.$sm;
+
+    margin: 0 2.9rem;
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__form-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    margin-bottom: 3rem;
+  }
+
+  &__form-button {
+    max-width: 45rem;
+  }
+}
+
+@include breakpoints.from667 {
+  .register-form {
+    max-width: 72.5rem;
+
+    &__title {
+      font-size: fonts.$xl2;
+    }
+
+    &__form-fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+
+      margin-bottom: 6rem;
+    }
+  }
+}
