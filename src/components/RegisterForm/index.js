@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import Field from './components/Field';
+import Field from './components/Field/index';
 import TextInput from '../TextInput';
 import Dropdown from '../Dropdown';
 import Button from '../Button/index';
