@@ -3,7 +3,7 @@ import { url } from './api';
 export const UserService = {
   getPets: async (userId) => {
     try {
-      const response = await fetch(`${url}/${userId}`);
+      const response = await fetch(`${url}/api/user/${userId}/my-pets`);
 
       if (!response.ok) {
         throw new Error('Ocorreu um erro na requisição');
