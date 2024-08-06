@@ -23,7 +23,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "stylelint": "stylelint \"**/*.scss\"",
-    "mock-api": "json-server dbSimulatorAPI.json --routes routes.json"
+    "mock-api": "json-server db.json --routes routes.json"
   },
   "dependencies": {
     "concurrently": "8.2.2",
