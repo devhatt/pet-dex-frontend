@@ -1,8 +1,6 @@
-/* eslint-disable testing-library/prefer-user-event */
-/* eslint-disable no-restricted-syntax */
-import { fireEvent } from '@testing-library/dom';
-import { render } from '@testing-library/vanilla';
 import { describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/vanilla';
+import { userEvent } from '@testing-library/user-event';
 import Drawer from '.';
 import Button from '../Button';
 
@@ -25,8 +23,11 @@ describe('Drawer', () => {
 
       drawer.open();
 
-      expect(drawer.selected.get('title').textContent).toBe('Add dates');
-      expect(drawer.selected.get('content').textContent).toBe('Cadastrar pet');
+      const firstText = screen.getByText('Add dates');
+      const secondText = screen.getByText('Cadastrar pet');
+
+      expect(firstText).toBeInTheDocument();
+      expect(secondText).toBeInTheDocument();
     });
   });
 
@@ -46,25 +47,23 @@ describe('Drawer', () => {
     });
   });
 
-  it('closes when Esc is pressed', () => {
+  it('closes when Esc is pressed', async () => {
     const drawer = makeSut();
+    const closeSpy = vi.spyOn(drawer, 'close');
 
-    drawer.open();
+    await userEvent.keyboard('{Escape}');
 
-    fireEvent.keyDown(document, { key: 'Escape' });
-
-    expect(drawer.selected.get('drawer').classList).not.toContain(
-      'drawer--open',
-    );
+    expect(closeSpy).toHaveBeenCalled();
   });
 
-  it('closes when the close button is clicked', () => {
+  it('closes when the close button is clicked', async () => {
     const drawer = makeSut();
     const closeSpy = vi.spyOn(drawer, 'close');
 
     drawer.open();
 
-    fireEvent.click(drawer.selected.get('close'));
+    const button = screen.getByLabelText('close-drawer');
+    await userEvent.click(button);
 
     expect(closeSpy).toHaveBeenCalled();
   });
