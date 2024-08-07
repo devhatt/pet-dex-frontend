@@ -11,37 +11,39 @@ import './index.scss';
 
 const html = `
   <div data-select="container" class="petvet-page">
-    <div class="petvet-page__header">
-      <p class="petvet-page__header--text">Conte-nos um pouco mais do seu animal</p>
-      <p class="petvet-page__header--subtext">Seu pet já foi vacinado? Conta pra gente que mês ou ano que você costuma comemorar o aniversário dele!</p>
-    </div>
-    <div class="petvet-page__card-group" data-select="card-group">
-      <div class="petvet-page__card">
-        <div class="petvet-page__card-header">
-          <div>
-            <a href="#"><img class="petvet-page__img" src="${estetoscopio}" alt="estetoscopio" /></a>
-          </div>
-          <div class="petvet-page__card-content">
-            <p>O seu pet amigo foi castrado?</p>
-             <form>
-            <fieldset data-select="neutered-radio"></fieldset>
-            </form>
-          </div>
-        </div>
+    <div class="petvet-page__content">
+      <div class="petvet-page__header">
+        <p class="petvet-page__header--text">Conte-nos um pouco mais do seu animal</p>
+        <p class="petvet-page__header--subtext">Seu pet já foi vacinado? Conta pra gente que mês ou ano que você costuma comemorar o aniversário dele!</p>
       </div>
-      <div class="petvet-page__card" data-select="special-care">
-        <div class="petvet-page__card-header">
-          <div class="petvet-page__icon-text">
-            <a href="#"><img class="petvet-page__img" src="${cuidadosEspeciais}" alt="cuidados especiais" /></a>
-          </div>
-          <div class="petvet-page__card-content">
-            <p>Cuidados especiais</p>
-            <form>
-              <fieldset data-select="special-care-radio"></fieldset>
-            </form>
+      <div class="petvet-page__card-group" data-select="card-group">
+        <div class="petvet-page__card">
+          <div class="petvet-page__card-header">
+            <div>
+              <a href="#"><img class="petvet-page__img" src="${estetoscopio}" alt="estetoscopio" /></a>
+            </div>
+            <div class="petvet-page__card-content">
+              <p>O seu pet amigo foi castrado?</p>
+              <form>
+              <fieldset data-select="neutered-radio"></fieldset>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="petvet-page__card-text" data-select="special-care-text"></div>
+        <div class="petvet-page__card" data-select="special-care">
+          <div class="petvet-page__card-header">
+            <div class="petvet-page__icon-text">
+              <a href="#"><img class="petvet-page__img" src="${cuidadosEspeciais}" alt="cuidados especiais" /></a>
+            </div>
+            <div class="petvet-page__card-content">
+              <p>Cuidados especiais</p>
+              <form>
+                <fieldset data-select="special-care-radio"></fieldset>
+              </form>
+            </div>
+          </div>
+          <div class="petvet-page__card-text" data-select="special-care-text"></div>
+        </div>
       </div>
     </div>
     <div class="petvet-page__footer" data-select="footer"></div>

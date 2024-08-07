@@ -14,6 +14,8 @@ const events = [
   'unselect',
   'value:change',
   'value:clear',
+  'id:changed',
+  'error',
 ];
 
 const html = `
@@ -33,12 +35,14 @@ const html = `
 export default function Dropdown({
   items = [],
   placeholder = 'Select an option',
+  id = '',
 } = {}) {
   Component.call(this, { html, events });
 
   this.placeholder = placeholder;
   this.items = new Map();
   this.selectedItem = null;
+  this.setID(id);
 
   this.onSelect = (item) => {
     const existsAndIsDifferent =
@@ -190,5 +194,14 @@ Dropdown.prototype = Object.assign(Dropdown.prototype, Component.prototype, {
       items: this.items.map((item) => item.toJSON()),
       placeholder: this.getPlaceholder(),
     };
+  },
+
+  getID() {
+    return this.selected.get('dropdown-toggle').id;
+  },
+
+  setID(id = '') {
+    this.selected.get('dropdown-toggle').id = id;
+    this.emit('id:changed', id);
   },
 });

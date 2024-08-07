@@ -6,6 +6,8 @@
 
   border: 1px solid colors.$gray200;
 
+  background-color: colors.$white;
+
   border-radius: 14px;
 
   transition: border-color 0.3s ease-in-out;
@@ -17,7 +19,6 @@
   &:has(> &__input.standard.input-error) {
     border-color: colors.$error100;
 
-    background-color: colors.$error100;
     outline-color: colors.$error100;
   }
 
@@ -50,6 +51,7 @@
 
     box-sizing: border-box;
 
+    background-color: transparent;
     background-repeat: no-repeat;
     background-size: auto 60%;
     filter: opacity(0.85);
@@ -83,8 +85,7 @@
       }
 
       &.input-error {
-        background-color: colors.$error100;
-        filter: opacity(0.75);
+        color: colors.$secondary100;
       }
     }
 

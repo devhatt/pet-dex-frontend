@@ -17,23 +17,27 @@
     align-items: start;
     justify-content: center;
 
+    padding: 1rem;
+
     .pet-card {
       aspect-ratio: auto;
 
       cursor: pointer;
     }
   }
-}
 
-.breed-page__footer {
-  display: flex;
+  &__footer {
+    width: 100%;
 
-  margin: 2rem;
+    display: flex;
 
-  .breed-page__button {
+    justify-content: center;
+
+    margin-top: auto;
+  }
+
+  &__button {
     width: min(100%, 42rem);
-
-    margin: 0 auto;
   }
 }
 
@@ -43,18 +47,6 @@
       display: flex;
 
       align-items: center;
-    }
-  }
-
-  .breed-page__footer {
-    margin: 1.2rem;
-  }
-}
-
-@include breakpoints.from1280 {
-  .breed-page__footer {
-    &__button {
-      margin: 0 auto;
     }
   }
 }

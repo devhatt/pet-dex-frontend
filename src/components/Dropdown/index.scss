@@ -2,9 +2,10 @@
 @use '~styles/fonts.scss' as fonts;
 
 .dropdown {
-  width: fit-content;
+  width: 100%;
 
   font-family: fonts.$primaryFont;
+
   color: colors.$gray800;
   font-size: 1.4rem;
   font-weight: fonts.$semiBold;
@@ -41,7 +42,7 @@
 
     list-style: none;
 
-    background-color: rgb(255, 255, 255);
+    background-color: colors.$white;
 
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     border-radius: 1.4rem;
@@ -50,20 +51,19 @@
   }
 
   &__toggle {
-    width: 100%;
-
     display: flex;
     gap: 2rem;
 
     justify-content: space-between;
 
-    padding: 1rem;
+    padding: 1.8rem 1.6rem;
+
+    border: 1px solid colors.$gray200;
 
     box-sizing: border-box;
 
-    background-color: rgb(255, 255, 255);
+    background-color: colors.$white;
 
-    box-shadow: 0 0 5px 0 rgb(216, 216, 216);
     border-radius: 1.4rem;
 
     .dropdown__icon {
