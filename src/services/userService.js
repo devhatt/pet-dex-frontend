@@ -17,7 +17,7 @@ export const UserService = {
   },
   login: async (email, password) => {
     try {
-      const response = await fetch(`${url}/login`, {
+      const response = await fetch(`${url}/api/user/login`, {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
