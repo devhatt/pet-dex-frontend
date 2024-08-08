@@ -6,13 +6,14 @@ export const UserService = {
       const response = await fetch(`${url}/api/user/${userId}/my-pets`);
 
       if (!response.ok) {
-        throw new Error('Ocorreu um erro na requisição');
+        throw new Error('Failed request');
       }
 
       const { pets } = await response.json();
       return pets;
     } catch (error) {
-      return `Ocorreu o seguinte erro: ${error}`;
+      console.error(`An error occurred: ${error}`);
+      return `An error occurred: ${error}`;
     }
   },
   login: async (email, password) => {
