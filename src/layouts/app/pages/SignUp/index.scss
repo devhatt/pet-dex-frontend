@@ -1,0 +1,151 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.signup-page {
+  &__title {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    font-size: fonts.$xl2;
+    font-weight: 700;
+    line-height: 1.6;
+
+    margin-bottom: 3.2rem;
+  }
+
+  &__provider {
+    max-width: 45rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+
+    margin-bottom: 3.2rem;
+  }
+
+  &__provider-button {
+    width: 100%;
+
+    display: flex;
+    gap: 1.6rem;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: fonts.$fifthFont;
+
+    font-size: 1.6rem;
+    font-weight: fonts.$medium;
+
+    padding: 1.6rem;
+
+    border: unset;
+
+    background-color: colors.$secondary100;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.084);
+    border-radius: 1.4rem;
+
+    transition: 0.3s ease-in-out;
+
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background-color: colors.$gray200;
+    }
+  }
+
+  &__provider-icon {
+    max-width: 2.4rem;
+  }
+
+  &__separator {
+    max-width: 45rem;
+
+    display: flex;
+
+    margin-bottom: 2.4rem;
+  }
+
+  &__divisor {
+    width: 100%;
+
+    border: unset;
+    border-top: 0.1rem solid colors.$gray200;
+  }
+
+  &__separator-text {
+    font-family: fonts.$fifthFont;
+
+    margin: 0 2.8rem;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.8rem;
+  }
+
+  &__form-input {
+    position: relative;
+
+    &--error {
+      display: none;
+
+      font-family: fonts.$fifthFont;
+      color: colors.$error100;
+      font-size: 1.4rem;
+
+      margin-top: 0.8rem;
+    }
+
+    &--show-error {
+      display: block;
+    }
+
+    :has(&--error) .input-text-container,
+    :has(&--error) .input-text-container__input.standard.input-error {
+      background-color: transparent !important;
+    }
+
+    .input-text-container__input {
+      font-family: fonts.$fifthFont;
+    }
+  }
+
+  &__form-label {
+    width: max-content;
+
+    font-family: fonts.$primaryFont;
+    font-size: 1.4rem;
+
+    padding: 0 0.8rem;
+
+    position: absolute;
+    bottom: 4.8rem;
+    left: 3rem;
+    z-index: 1;
+
+    background-color: colors.$shade50;
+  }
+
+  &__submit-button {
+    max-width: 45rem;
+  }
+}
+
+@include breakpoints.from667 {
+  .signup-page {
+    &__provider {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__submit-button {
+      grid-column: span 2;
+    }
+  }
+}
