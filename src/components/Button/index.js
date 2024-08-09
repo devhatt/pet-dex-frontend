@@ -1,13 +1,14 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['click', 'text:change', 'enable', 'disable'];
+const events = ['click', 'text:change', 'enable', 'disable', 'id:changed'];
 
 const html = `
     <button data-select="button" class="button" type="button"></button>
 `;
 
 export default function Button({
+  id = '',
   text = '',
   isFullWidth = false,
   isDisabled = false,
@@ -17,6 +18,7 @@ export default function Button({
   this.setText(text);
   this.setIsFullWidth(isFullWidth);
   this.setIsDisabled(isDisabled);
+  this.setID(id);
 
   const $button = this.selected.get('button');
 
@@ -54,12 +56,12 @@ Button.prototype = Object.assign(Button.prototype, Component.prototype, {
   },
 
   disable() {
-    this.selected.get('button').disabled = true;
+    this.selected.get('button').setAttribute('disabled', true);
     this.emit('disable');
   },
 
   enable() {
-    this.selected.get('button').disabled = false;
+    this.selected.get('button').removeAttribute('disabled');
     this.emit('enable');
   },
 
@@ -69,11 +71,20 @@ Button.prototype = Object.assign(Button.prototype, Component.prototype, {
   },
 
   isDisabled() {
-    return this.selected.get('button').disabled;
+    return this.selected.get('button').hasAttribute('disabled');
   },
 
   click() {
     if (this.isDisabled()) return;
     this.emit('click');
+  },
+
+  getID() {
+    return this.selected.get('button').id;
+  },
+
+  setID(id = '') {
+    this.selected.get('button').id = id;
+    this.emit('id:changed', id);
   },
 });

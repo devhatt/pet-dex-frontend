@@ -12,6 +12,9 @@
       }
     }
   },
+  "parserOptions": {
+    "ecmaVersion": 2024
+  },
   "rules": {
     "no-console": [
       "warn",
@@ -47,6 +50,12 @@
       },
       "globals": {
         "vi": true
+      }
+    },
+    {
+      "files": ["src/services/*.js"],
+      "rules": {
+        "no-console": "off"
       }
     }
   ]

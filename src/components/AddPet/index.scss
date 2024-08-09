@@ -1,0 +1,85 @@
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts' as fonts;
+
+.add-pet {
+  &__header {
+    padding: 2.4rem 2.4rem 0;
+  }
+
+  &__content {
+    display: flex;
+
+    justify-content: space-between;
+  }
+
+  &__text {
+    text-align: center;
+  }
+
+  &__title {
+    font-family: fonts.$sixthFont;
+    font-size: fonts.$sm;
+    font-weight: fonts.$semiBold;
+  }
+
+  &__subtitle {
+    font-family: fonts.$fourthFont;
+    color: colors.$gray600;
+    font-size: 1.4rem;
+    font-weight: fonts.$regular;
+    line-height: 2;
+  }
+
+  &__steps {
+    display: flex;
+    gap: 0.2rem;
+
+    justify-content: center;
+
+    font-family: fonts.$fourthFont;
+    color: colors.$gray800;
+    font-size: fonts.$sm;
+    font-weight: fonts.$regular;
+    line-height: 1.6;
+
+    &--first {
+      font-family: fonts.$primaryFont;
+      color: colors.$gray800;
+      font-weight: fonts.$semiBold;
+    }
+
+    &--last {
+      color: colors.$gray400;
+    }
+  }
+
+  &__progress-bar {
+    margin-top: 1.8rem;
+    margin-bottom: 3rem;
+  }
+
+  &__previous-step {
+    cursor: pointer;
+  }
+}
+
+@include breakpoints.from1024 {
+  .add-pet {
+    &__header {
+      font-family: fonts.$fourthFont;
+
+      padding: 3rem 4rem 0;
+    }
+
+    &__title {
+      font-size: 2rem;
+      font-weight: fonts.$bold;
+    }
+
+    &__subtitle {
+      font-size: fonts.$sm;
+      font-weight: fonts.$regular;
+    }
+  }
+}

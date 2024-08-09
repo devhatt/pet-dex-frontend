@@ -1,0 +1,20 @@
+.sliding {
+  width: 100%;
+  overflow: hidden;
+
+  margin: auto;
+
+  position: relative;
+
+  &__content {
+    display: flex;
+
+    transform: translateX(0);
+
+    transition: transform 0.6s ease-in-out;
+  }
+
+  &__slide {
+    flex: 0 0 100%;
+  }
+}

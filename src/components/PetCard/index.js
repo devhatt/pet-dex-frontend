@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = ['active', 'deactive'];
+const events = ['active', 'deactive', 'title:change'];
 
 const html = `
   <div class="pet-container" data-select="pet-container">
@@ -16,6 +16,8 @@ export default function PetCard({ title, imgSrc, imgAlt }) {
   const petContainer = this.selected.get('pet-container');
   const petTitle = this.selected.get('pet-title');
   const petImage = this.selected.get('pet-image');
+
+  petContainer.setAttribute('aria-label', title.toLowerCase());
 
   petContainer.addEventListener('click', () => {
     this.toggle();
@@ -48,6 +50,9 @@ export default function PetCard({ title, imgSrc, imgAlt }) {
 }
 
 PetCard.prototype = Object.assign(PetCard.prototype, Component.prototype, {
+  getTitle() {
+    return this.selected.get('pet-title').textContent;
+  },
   setTitle(text) {
     this.selected.get('pet-title').textContent = text;
   },

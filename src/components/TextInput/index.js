@@ -1,4 +1,6 @@
 import { Component } from 'pet-dex-utilities';
+import eyeIconDisable from './img/eye-icon-disable.svg';
+import eyeIcon from './img/eye-icon.svg';
 import './index.scss';
 
 const events = [
@@ -8,39 +10,59 @@ const events = [
   'disabled',
   'enabled',
   'value:change',
+  'type:change',
+  'id:changed',
 ];
 
 const html = `
-    <div class="input-text-container" data-select="input-text-container">
-      <input class="input-text-container__input" type="text" data-select="input-text" placeholder="">
-    </div>
+  <div class="input-text-container" data-select="input-text-container">
+    <input class="input-text-container__input"  data-select="input-text" type="text" placeholder="">
+    <button type="button" class="input-text-container__button input-text-container__button--hidden" data-select="show-text">
+      <img class="input-text-container__image" data-select="show-text-img" src=${eyeIconDisable} alt="Toggle">
+    </button>
+  </div>
 `;
 
 export default function TextInput({
+  id = '',
   placeholder = '',
   assetUrl,
   assetPosition,
   variation = 'standard',
   value = '',
+  type = '',
 } = {}) {
   Component.call(this, { html, events });
   const input = this.selected.get('input-text');
+  const iconBtn = this.selected.get('show-text');
+  const iconImg = this.selected.get('show-text-img');
   input.disabled = false;
 
   this.setPlaceholder(placeholder);
   input.classList.add(variation);
   input.style.backgroundImage = `url(${assetUrl})`;
   input.classList.add(assetPosition);
-  // eslint-disable-next-line no-undef
   this.setValue(value);
+  this.setType(type);
+  this.setID(id);
+
+  if (type === 'password') {
+    iconBtn.classList.remove('input-text-container__button--hidden');
+  }
 
   input.addEventListener('focus', () => {
     if (input.disabled) return;
     input.classList.remove('input-error');
   });
 
-  input.addEventListener('input', () => {
-    this.emit('value:change', input.value);
+  input.addEventListener('input', (e) => {
+    const newValue = e.target.value;
+    this.setValue(newValue);
+  });
+
+  iconBtn.addEventListener('click', () => {
+    input.type = input.type === 'password' ? 'text' : 'password';
+    iconImg.src = iconImg.src.includes('disable') ? eyeIcon : eyeIconDisable;
   });
 }
 
@@ -77,11 +99,27 @@ TextInput.prototype = Object.assign(TextInput.prototype, Component.prototype, {
     this.selected.get('input-text').disabled = false;
     this.emit('enabled');
   },
+  getValue() {
+    return this.selected.get('input-text').value;
+  },
   toggle() {
     if (this.selected.get('input-text').disabled) {
       this.enable();
     } else {
       this.disable();
     }
+  },
+  setType(type) {
+    this.selected.get('input-text').type = type;
+    this.emit('type:change', type);
+  },
+
+  getID() {
+    return this.selected.get('input-text').id;
+  },
+
+  setID(id = '') {
+    this.selected.get('input-text').id = id;
+    this.emit('id:changed', id);
   },
 });

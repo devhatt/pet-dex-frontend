@@ -1,6 +1,6 @@
 import PetCard from '../components/PetCard';
 
-import akita from '../home/components/PetRegisterPage/images/akita.svg';
+import akita from './assets/petRegisterPage/akita.svg';
 
 export default {
   title: 'Components/PetCard',
