@@ -14,7 +14,7 @@ const html = `
         <img class="drawer__close--line" src="${line}">
         <div class="drawer__nav">
           <span class="drawer__title" data-select="title"></span>
-          <button class="drawer__close" data-select="close">
+          <button class="drawer__close" data-select="close" aria-label="close-drawer">
             <img class="drawer__close--icon" src="${close}">
           </button>
         </div>
