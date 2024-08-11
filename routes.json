@@ -1,0 +1,3 @@
+{
+  "/api/:resource/:id/my-pets": "/:resource/:id"
+}

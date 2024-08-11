@@ -1,4 +1,5 @@
 import { Component } from 'pet-dex-utilities';
+import { UserService } from '../../../../services/userService';
 import petUrl from '../../../../images/pet-dex.svg';
 import configuracoes from './images/configuracoes.svg';
 import conta from './images/conta.svg';
@@ -50,47 +51,13 @@ export default function SideMenu() {
 
   const $container = this.selected.get('avatar-container');
 
-  const pets = [
-    {
-      id: '1',
-      title: 'Bolinha',
-      imgSrc:
-        'https://images.unsplash.com/photo-1598628599796-2a454fa7d9c5?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      imgAlt: 'Bolinha',
-    },
-    {
-      id: '2',
-      title: 'Jake',
-      imgSrc:
-        'https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      imgAlt: 'Jake',
-    },
-    {
-      id: '3',
-      title: 'Tobias',
-      imgSrc:
-        'https://images.unsplash.com/photo-1632165258904-21ca36a01ee0?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      imgAlt: 'Tobias',
-    },
-    {
-      id: '4',
-      title: 'Francis',
-      imgSrc:
-        'https://images.unsplash.com/photo-1596921825946-d738194fac80?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      imgAlt: 'Francis',
-    },
-    {
-      id: '5',
-      title: 'Toyota',
-      imgSrc:
-        'https://images.unsplash.com/photo-1694185643879-536f8d785fa6?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      imgAlt: 'Toyota',
-    },
-  ];
-
-  pets.forEach((pet) => {
-    const avatar = new PetAvatar(pet);
-    avatar.mount($container);
+  const inputIdUser = 1; // ID simulando input usuário em componente futuro
+  // Para renderização do componente pets avatar, json-server deve está em execução.
+  UserService.getPets(inputIdUser).then((response) => {
+    response.forEach((pet) => {
+      const avatar = new PetAvatar(pet);
+      avatar.mount($container);
+    });
   });
 }
 
