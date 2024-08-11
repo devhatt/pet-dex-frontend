@@ -85,8 +85,9 @@ describe('Pet Weight page', () => {
 
     await userEvent.click(continueButton);
 
-    await waitFor(() => {
-      expect(mockEmit).toHaveBeenCalledWith('weight', 5.0, 'kg');
+    expect(mockEmit).toHaveBeenCalledWith('submit', {
+      weight: 5.0,
+      weightUnit: 'kg',
     });
   });
 });
