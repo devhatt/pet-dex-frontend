@@ -8,11 +8,40 @@ const events = [
   'slide:previous',
   'slide:remove',
   'slides:clear',
+  'slides:mode',
+  'padding',
 ];
 
 const activeSlide = (slides, slide) => {
   Array.from(slides).forEach((item) => {
     item.classList.toggle('sliding__slide--active', item === slide);
+  });
+};
+
+const activeSlideShuffle = (slides, activeIndex) => {
+  const totalSlides = slides.length;
+  const hasMoreThanTwoSlides = totalSlides > 2;
+  const prevIndex = activeIndex === 0 ? totalSlides - 1 : activeIndex - 1;
+  const nextIndex = activeIndex === totalSlides - 1 ? 0 : activeIndex + 1;
+
+  slides.forEach((slide, index) => {
+    slide.classList.remove(
+      'sliding__slide--active',
+      'sliding__slide--unfocused',
+      'sliding__slide--prev',
+      'sliding__slide--next',
+    );
+
+    if (index === activeIndex) slide.classList.add('sliding__slide--active');
+
+    if (index !== activeIndex && !hasMoreThanTwoSlides)
+      slide.classList.add('sliding__slide--unfocused');
+
+    if (index === prevIndex && hasMoreThanTwoSlides)
+      slide.classList.add('sliding__slide--prev');
+
+    if (index === nextIndex && hasMoreThanTwoSlides)
+      slide.classList.add('sliding__slide--next');
   });
 };
 
@@ -22,12 +51,18 @@ const html = `
     </div>
   </div>`;
 
-export default function Sliding({ slides = [] }) {
+export default function Sliding({
+  slides = [],
+  shuffleMode = false,
+  sidePadding = 0,
+}) {
   Component.call(this, { html, events });
-
   this.slideIndex = 0;
 
   slides.forEach((item) => this.add(item));
+
+  this.setShuffleMode(shuffleMode);
+  if (slides.length > 1 && shuffleMode) this.setSidePadding(sidePadding);
 
   const $sliding = this.selected.get('sliding');
 
@@ -42,10 +77,15 @@ export default function Sliding({ slides = [] }) {
   };
 
   this.listen('mount', () => {
+    const slidingContent = Array.from(
+      this.selected.get('sliding-content').children,
+    );
+
     activeSlide(
-      Array.from(this.selected.get('sliding-content').children),
+      slidingContent,
       this.selected.get('sliding-content').children[0],
     );
+    activeSlideShuffle(slidingContent, this.slideIndex);
     $sliding.addEventListener('swipe-left', this.swipeLeft());
     $sliding.addEventListener('swipe-right', this.swipeRight());
   });
@@ -70,32 +110,57 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
   },
 
   next() {
-    this.slideIndex += 1;
     const slides = this.selected.get('sliding-content').children;
 
-    if (this.slideIndex > slides.length - 1) this.slideIndex = 0;
+    if (this.shuffleMode) {
+      const slideElements = Array.from(slides);
 
-    const slide = slides[this.slideIndex];
-    const container = this.selected.get('sliding').clientWidth;
-    this.selected.get('sliding-content').style.transform =
-      `translateX(${-this.slideIndex * container}px)`;
-    activeSlide(slides, slide);
-    this.emit('slide:next', slide);
+      this.slideIndex =
+        this.slideIndex === slideElements.length - 1 ? 0 : this.slideIndex + 1;
+
+      activeSlideShuffle(slideElements, this.slideIndex);
+      this.emit('slide:next', slides[this.slideIndex]);
+    } else {
+      this.slideIndex += 1;
+
+      if (this.slideIndex > slides.length - 1) this.slideIndex = 0;
+
+      const slide = slides[this.slideIndex];
+
+      const container = this.selected.get('sliding').clientWidth;
+      this.selected.get('sliding-content').style.transform =
+        `translateX(${-this.slideIndex * container}px)`;
+
+      activeSlide(slides, slide);
+      this.emit('slide:next', slide);
+    }
   },
 
   previous() {
-    this.slideIndex -= 1;
     const slides = this.selected.get('sliding-content').children;
 
-    if (this.slideIndex < 0) this.slideIndex = slides.length - 1;
+    if (this.shuffleMode) {
+      const slideElements = Array.from(slides);
 
-    const slide = slides[this.slideIndex];
-    const container = this.selected.get('sliding').clientWidth;
+      this.slideIndex =
+        this.slideIndex === 0 ? slideElements.length - 1 : this.slideIndex - 1;
 
-    this.selected.get('sliding-content').style.transform =
-      `translateX(${-this.slideIndex * container}px)`;
-    activeSlide(slides, slide);
-    this.emit('slide:previous', slide);
+      activeSlideShuffle(slideElements, this.slideIndex);
+      this.emit('slide:previous', slides[this.slideIndex]);
+    } else {
+      this.slideIndex -= 1;
+
+      if (this.slideIndex < 0) this.slideIndex = slides.length - 1;
+
+      const slide = slides[this.slideIndex];
+
+      const container = this.selected.get('sliding').clientWidth;
+      this.selected.get('sliding-content').style.transform =
+        `translateX(${-this.slideIndex * container}px)`;
+
+      activeSlide(slides, slide);
+      this.emit('slide:previous', slide);
+    }
   },
 
   clear() {
@@ -104,5 +169,21 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
     );
 
     this.emit('slides:clear');
+  },
+
+  setSidePadding(sidePadding = 0) {
+    this.selected.get('sliding-content').style.padding = `0 ${sidePadding}px`;
+
+    this.emit('padding', sidePadding);
+  },
+
+  setShuffleMode(shuffleMode = false) {
+    const $sliding = this.selected.get('sliding');
+
+    this.shuffleMode = shuffleMode;
+
+    $sliding.classList.toggle('sliding--shuffle', shuffleMode);
+
+    this.emit('slides:mode', shuffleMode);
   },
 });
