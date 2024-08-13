@@ -12,7 +12,6 @@ const events = [
   'slide:remove',
   'slides:clear',
   'slides:mode',
-  'padding:change',
 ];
 
 const html = `
@@ -143,8 +142,6 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
 
   setSidePadding(sidePadding = 0) {
     this.selected.get('sliding-content').style.padding = `0 ${sidePadding}px`;
-
-    this.emit('padding:change', sidePadding);
   },
 
   setShuffleMode(shuffleMode = false) {
