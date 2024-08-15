@@ -23,7 +23,7 @@ const html = `
 export default function Sliding({
   slides = [],
   shuffleMode = false,
-  sidePadding = 0,
+  slideSideSpacing = 0,
 }) {
   Component.call(this, { html, events });
   this.slideIndex = 0;
@@ -31,7 +31,8 @@ export default function Sliding({
   slides.forEach((item) => this.add(item));
 
   this.setShuffleMode(shuffleMode);
-  if (slides.length > 1 && shuffleMode) this.setSidePadding(sidePadding);
+  if (slides.length > 1 && shuffleMode)
+    this.setSlideSideSpacing(slideSideSpacing);
 
   const $sliding = this.selected.get('sliding');
 
@@ -140,8 +141,9 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
     this.emit('slides:clear');
   },
 
-  setSidePadding(sidePadding = 0) {
-    this.selected.get('sliding-content').style.padding = `0 ${sidePadding}px`;
+  setSlideSideSpacing(slideSideSpacing = 0) {
+    this.selected.get('sliding-content').style.padding =
+      `0 ${slideSideSpacing}px`;
   },
 
   setShuffleMode(shuffleMode = false) {
