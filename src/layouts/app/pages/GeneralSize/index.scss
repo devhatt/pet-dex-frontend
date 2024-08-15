@@ -1,0 +1,69 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
+
+.general-size-page {
+  width: 100%;
+  min-height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  &__content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    align-items: center;
+
+    justify-content: center;
+  }
+
+  &__image-container {
+    width: max-content;
+
+    display: inline-block;
+  }
+
+  &__description {
+    font-family: fonts.$primaryFont;
+  }
+
+  &__title {
+    color: colors.$gray800;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+  }
+
+  &__hint {
+    color: colors.$gray800;
+    font-size: 1.1rem;
+    font-weight: fonts.$regular;
+
+    margin-top: 1.6rem;
+  }
+
+  &__size-selector {
+    min-height: 28rem;
+    will-change: transform;
+  }
+
+  &__button-container {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+  }
+
+  &__button {
+    width: 100%;
+    max-width: 42rem;
+  }
+}
