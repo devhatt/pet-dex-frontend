@@ -2,15 +2,12 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 @use '~styles/fonts.scss' as fonts;
 
-.general-size-page {
+.pet-size-page {
   width: 100%;
   min-height: 100%;
 
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr auto;
 
   &__content {
     width: 100%;
@@ -21,8 +18,9 @@
     gap: 4rem;
 
     align-items: center;
-
     justify-content: center;
+
+    text-align: center;
   }
 
   &__image-container {
@@ -51,19 +49,36 @@
 
   &__size-selector {
     min-height: 28rem;
-    will-change: transform;
   }
+}
 
-  &__button-container {
-    width: 100%;
+.pet-size-page__button-container {
+  width: 100%;
 
-    display: flex;
+  display: flex;
 
-    justify-content: center;
-  }
+  justify-content: center;
 
-  &__button {
-    width: 100%;
-    max-width: 42rem;
+  margin-top: auto;
+
+  padding: 4rem 0;
+
+  box-shadow: 0 0 0.8rem 0 rgba(73, 77, 90, 0.12);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.pet-size-page__button {
+  width: 100%;
+  max-width: 42rem;
+
+  padding: 0 2rem;
+}
+
+@include breakpoints.from1024 {
+  .pet-size-page {
+    &__button-container {
+      box-shadow: none;
+      border-radius: none;
+    }
   }
 }
