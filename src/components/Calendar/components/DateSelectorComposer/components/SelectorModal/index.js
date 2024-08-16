@@ -25,8 +25,8 @@ export default function SelectorModal(dateArray) {
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.rowHeight = 33.99;
-  this.nodePadding = 10;
+  this.rowHeight = 42.8;
+  this.nodePadding = 5;
   this.scrollTop = this.$selectorModal.scrollTop;
 
   setTimeout(() => {
@@ -58,8 +58,10 @@ export default function SelectorModal(dateArray) {
           (_, index) => new ModalItem(this.dateArray[index + this.startNode]),
         );
 
-      this.visibleChildren.forEach((modalItem) => {
+      this.visibleChildren.forEach((modalItem, index) => {
         modalItem.mount(this.$listContent);
+
+        if (index === 8) modalItem.active();
       });
     };
 
@@ -68,6 +70,8 @@ export default function SelectorModal(dateArray) {
         cancelAnimationFrame(this.animationFrame);
       }
       this.animationFrame = requestAnimationFrame(() => {
+        const nearestIndex = Math.round(this.scrollTop / this.rowHeight);
+        this.scrollTop = nearestIndex * this.rowHeight;
         this.scrollTop = e.target.scrollTop;
         renderWindow();
       });
