@@ -14,7 +14,7 @@ import {
 import googleIcon from './images/google-icon.svg';
 import facebookIcon from './images/facebook-icon.svg';
 import './index.scss';
-import { registerUser } from '../../services/registerService';
+import { UserService } from '../../services/userService';
 
 const events = ['register'];
 
@@ -271,7 +271,7 @@ export default function RegisterForm() {
       passwordValid &&
       repeatPasswordValid
     ) {
-      await registerUser({
+      await UserService.registerUser({
         name: nameValue,
         surname: surnameValue,
         birth: birthValue,
