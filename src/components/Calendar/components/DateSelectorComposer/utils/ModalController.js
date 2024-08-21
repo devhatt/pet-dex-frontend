@@ -10,8 +10,8 @@ export class ModalController {
 
     this.modal = new SelectorModal(dateArray);
     this.modal.mount(this.selector.$dateSelector);
-    this.modal.listen('month:change', (month) => this.selector.setMonth(month));
-    this.modal.listen('year:change', (year) => this.selector.setYear(year));
+    // this.modal.listen('month:change', (month) => this.selector.setMonth(month));
+    this.modal.listen('date:change', (item) => this.selector.setYear(item));
   }
 
   CloseOnClickOutside(event) {
