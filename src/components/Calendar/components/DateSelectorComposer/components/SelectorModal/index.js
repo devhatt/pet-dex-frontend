@@ -3,7 +3,7 @@ import ModalItem from './components/ModalItem';
 
 import './index.scss';
 
-const events = ['month:change', 'year:change'];
+const events = ['date:change'];
 
 const html = `
     <div class="selector-modal" data-select="selector-modal">
@@ -25,7 +25,7 @@ export default function SelectorModal(dateArray) {
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.rowHeight = 42.8;
+  this.rowHeight = 40;
   this.nodePadding = 5;
   this.scrollTop = this.$selectorModal.scrollTop;
 
@@ -60,25 +60,30 @@ export default function SelectorModal(dateArray) {
 
       this.visibleChildren.forEach((modalItem, index) => {
         modalItem.mount(this.$listContent);
+        modalItem.listen('item:change', (item) =>
+          this.emit('date:change', item),
+        );
 
-        if (index === 8) modalItem.active();
+        if (index === 8) {
+          modalItem.active();
+        }
       });
     };
-
     this.$selectorModal.addEventListener('scroll', (e) => {
       if (this.animationFrame) {
         cancelAnimationFrame(this.animationFrame);
       }
       this.animationFrame = requestAnimationFrame(() => {
-        const nearestIndex = Math.round(this.scrollTop / this.rowHeight);
-        this.scrollTop = nearestIndex * this.rowHeight;
         this.scrollTop = e.target.scrollTop;
         renderWindow();
       });
     });
 
+    this.$listContent.scrollIntoView(true);
+
     const scrollToMiddle = () => {
-      this.scrollTop = this.totalContentHeight / 2 - this.viewportHeight / 2;
+      this.scrollTop =
+        this.totalContentHeight / 2 - this.viewportHeight / 2 - 48;
       this.$selectorModal.scrollTop = this.scrollTop;
     };
 

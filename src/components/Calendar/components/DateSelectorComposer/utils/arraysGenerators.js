@@ -10,7 +10,7 @@ export function monthArrayGenerator(month) {
 }
 
 export function yearArrayGenerator(year) {
-  const yearArray = new Array(103);
+  const yearArray = new Array(101);
   for (let i = 0; i < yearArray.length; i += 1) {
     yearArray[i] = year - (50 - i);
   }
