@@ -1,4 +1,5 @@
 import { Component } from 'pet-dex-utilities';
+import { isPasswordValid } from '../../utils/validations';
 import TextInput from '../TextInput';
 import Button from '../Button';
 import Toggle from '../Toggle';
@@ -112,7 +113,7 @@ export default function LoginForm() {
       emailInput.inputError();
     }
 
-    if (!this.validatePassword(password)) {
+    if (!this.isPasswordValid(password)) {
       validPassword = false;
       $passwordErrorMessage.classList.add('show-error');
       $passwordErrorMessage.innerText =
@@ -138,12 +139,5 @@ LoginForm.prototype = Object.assign(LoginForm.prototype, Component.prototype, {
 
     return emailRegex.test(email);
   },
-  validatePassword(password) {
-    const hasMinLength = password.length >= 10;
-    const hasUppercase = /[A-Z]/g.test(password);
-    const hasNumber = /[0-9]/g.test(password);
-    const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/g.test(password);
-
-    return hasMinLength && hasUppercase && hasNumber && hasSpecialCharacter;
-  },
+  isPasswordValid,
 });
