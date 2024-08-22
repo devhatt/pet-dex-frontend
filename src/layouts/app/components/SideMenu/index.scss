@@ -85,11 +85,28 @@
   }
 
   &__avatars-yourpet {
+    max-height: calc(8.5rem * 2 + 2rem);
+    overflow-y: auto;
+
     display: grid;
     grid-template-columns: repeat(3, 6rem);
-    grid-gap: 2rem;
+    gap: 2rem;
 
     margin-top: 2rem;
+    padding: 0.4rem 0.2rem;
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: colors.$primary600;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: colors.$primary700;
+      border-radius: 1rem;
+    }
   }
 
   &__itens {
@@ -142,7 +159,7 @@
   }
 
   .side-menu-content {
-    width: 70%;
+    width: 80%;
 
     &__menuitens {
       transition: 0.3s;
