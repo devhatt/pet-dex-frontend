@@ -1,4 +1,4 @@
-name: Base Actions
+name: Base workflows
 
 on:
   issue_comment:
