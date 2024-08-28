@@ -1,4 +1,5 @@
 import { Component } from 'pet-dex-utilities';
+import { Router } from 'vanilla-routing';
 import Button from '../../../../components/Button';
 import petUrl from './images/no-pet-regirested-page.png';
 import './index.scss';
@@ -30,6 +31,11 @@ export default function NoPetRegirested() {
     .get('button')
     .classList.add('no-pet-regirested-page__button');
   this.button.mount($container);
+
+  const $buttonElement = this.button.selected.get('button');
+  $buttonElement.addEventListener('click', () => {
+    Router.go('/app/addpets');
+  });
 }
 
 NoPetRegirested.prototype = Object.assign(
