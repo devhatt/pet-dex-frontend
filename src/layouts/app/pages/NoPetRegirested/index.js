@@ -32,9 +32,8 @@ export default function NoPetRegirested() {
     .classList.add('no-pet-regirested-page__button');
   this.button.mount($container);
 
-  const $buttonElement = this.button.selected.get('button');
-  $buttonElement.addEventListener('click', () => {
-    Router.go('/app/addpets');
+  this.button.listen('click', () => {
+    Router.go('/add/addpets');
   });
 }
 
