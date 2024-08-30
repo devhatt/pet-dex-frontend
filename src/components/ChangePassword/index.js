@@ -1,4 +1,5 @@
 import { Component } from 'pet-dex-utilities';
+import { isPasswordValid } from '../../utils/validations';
 import TextInput from '../TextInput';
 import Button from '../Button';
 import './index.scss';
@@ -28,21 +29,12 @@ const html = `
     <span data-select="confirm-password-error-match" class="change-password__error">As senhas não coincidem</span>
     
     <ul class="change-password__tips">
-      <li>Insira no mínimo 6 caracteres</li>
+      <li>Insira no mínimo 10 caracteres</li>
       <li>A senha deve conter uma letra maiúscula</li>
       <li>Deve conter um caractere especial</li>
     </ul>
     </form>
 `;
-
-const validatePassword = (password) => {
-  const hasMinLength = password.length >= 10;
-  const hasUppercase = /[A-Z]/g.test(password);
-  const hasNumber = /[0-9]/g.test(password);
-  const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/g.test(password);
-
-  return hasMinLength && hasUppercase && hasNumber && hasSpecialCharacter;
-};
 
 export default function ChangePassword() {
   Component.call(this, { html, events });
@@ -123,8 +115,8 @@ export default function ChangePassword() {
       confirmPasswordInput.selected.get('input-text').value;
 
     const showErrorMessage = (field, error) => {
-      const fieldValue = field.selected.get('input-text').value;
-      if (!validatePassword(fieldValue)) {
+      const password = field.selected.get('input-text').value;
+      if (!isPasswordValid(password)) {
         validPasswords = false;
         error.classList.add('show-error');
         field.inputError();

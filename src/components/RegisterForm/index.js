@@ -14,6 +14,7 @@ import {
 import googleIcon from './images/google-icon.svg';
 import facebookIcon from './images/facebook-icon.svg';
 import './index.scss';
+import { UserService } from '../../services/userService';
 
 const events = ['register'];
 
@@ -151,7 +152,7 @@ export default function RegisterForm() {
   repeatPassword.mount($fields);
   registerButton.mount($formButton);
 
-  registerButton.listen('click', () => {
+  registerButton.listen('click', async () => {
     const nameValue = name.getContent().getValue();
     const surnameValue = surname.getContent().getValue();
     const birthValue = birth.getContent().getValue();
@@ -270,6 +271,16 @@ export default function RegisterForm() {
       passwordValid &&
       repeatPasswordValid
     ) {
+      await UserService.registerUser({
+        name: nameValue,
+        surname: surnameValue,
+        birth: birthValue,
+        local: localValue,
+        email: emailValue,
+        phone: phoneValue,
+        password: passwordValue,
+      });
+
       this.register();
     }
   });
