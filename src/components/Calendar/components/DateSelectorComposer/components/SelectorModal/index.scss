@@ -7,6 +7,7 @@
   width: 100%;
   height: 18rem;
   overflow: auto;
+  scroll-snap-type: y proximity;
 
   display: none;
   flex-direction: column;
@@ -26,6 +27,10 @@
   border-radius: 1rem;
 
   animation: openModal 0.3s ease-out;
+
+  [data-select='list-content'] > * {
+    scroll-snap-align: center;
+  }
 }
 
 @include breakpoints.from667 {

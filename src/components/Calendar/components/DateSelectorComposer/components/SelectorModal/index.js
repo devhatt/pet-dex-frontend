@@ -76,10 +76,18 @@ export default function SelectorModal(dateArray) {
       this.animationFrame = requestAnimationFrame(() => {
         this.scrollTop = e.target.scrollTop;
         renderWindow();
+
+        const activeItem = this.$listContent.querySelector(
+          'selector-item--active',
+        );
+        if (activeItem) {
+          activeItem.scrollIntoView({
+            block: 'center',
+            behavior: 'smooth',
+          });
+        }
       });
     });
-
-    this.$listContent.scrollIntoView(true);
 
     const scrollToMiddle = () => {
       this.scrollTop =
