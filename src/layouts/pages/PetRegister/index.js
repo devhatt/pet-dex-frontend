@@ -1,6 +1,6 @@
 import { Component } from 'pet-dex-utilities';
-import Button from '../../../../components/Button';
-import PetCard from '../../../../components/PetCard';
+import Button from '~src/components/Button';
+import PetCard from '~src/components/PetCard';
 import './index.scss';
 
 const events = ['select:card', 'submit'];

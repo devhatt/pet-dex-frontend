@@ -6,7 +6,7 @@ import jsconfigPaths from 'vite-jsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  root: resolve(__dirname, 'src/layouts/app'),
+  root: resolve(__dirname, 'src/layouts/'),
   define: {
     __isBrowser__: true,
   },
@@ -33,14 +33,16 @@ export default defineConfig({
     outDir: resolve(__dirname, 'dist'),
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'src/layouts/app/index.html'),
+        index: resolve(__dirname, 'src/layouts/index.html'),
+        teste: resolve(__dirname, 'src/layouts/sample-page/index.html'),
       },
     },
   },
   resolve: {
     alias: {
-      '~styles': resolve(__dirname, 'src/styles'),
       '~src': resolve(__dirname, 'src'),
+      '~styles': resolve(__dirname, 'src/styles'),
+      '~stories': resolve(__dirname, 'src/stories'),
     },
   },
   plugins: [

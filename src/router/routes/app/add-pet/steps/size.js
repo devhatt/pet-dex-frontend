@@ -1,4 +1,4 @@
-import NoPetRegirestedPage from '~src/layouts/app/pages/NoPetRegirested';
+import NoPetRegirestedPage from '~src/layouts/pages/NoPetRegirested';
 
 export default {
   pathname: '/pet-size',

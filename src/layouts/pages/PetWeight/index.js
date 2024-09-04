@@ -1,9 +1,9 @@
 import { Component } from 'pet-dex-utilities';
-import Button from '../../../../components/Button';
-import RadioButton from '../../../../components/RadioButton';
-import RangeSlider from '../../../../components/RangeSlider';
-import TextInput from '../../../../components/TextInput';
-import UploadImage from '../../../../components/UploadImage';
+import Button from '~src/components/Button';
+import RadioButton from '~src/components/RadioButton';
+import RangeSlider from '~src/components/RangeSlider';
+import TextInput from '~src/components/TextInput';
+import UploadImage from '~src/components/UploadImage';
 import './index.scss';
 
 const events = ['submit'];

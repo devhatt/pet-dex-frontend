@@ -1,6 +1,7 @@
 import { Component } from 'pet-dex-utilities';
-import { UserService } from '../../../../services/userService';
-import petUrl from '../../../../images/pet-dex.svg';
+import PetAvatar from '../../../components/PetAvatar';
+import petUrl from '../../../images/pet-dex.svg';
+import { UserService } from '../../../services/userService';
 import configuracoes from './images/configuracoes.svg';
 import conta from './images/conta.svg';
 import doacoes from './images/doacoes.svg';
@@ -10,7 +11,6 @@ import meusPets from './images/meuspets.svg';
 import notificacoes from './images/notifications.svg';
 import perfil from './images/perfil.svg';
 import petdex from './images/petdex.svg';
-import PetAvatar from '../../../../components/PetAvatar';
 import './index.scss';
 
 const html = `

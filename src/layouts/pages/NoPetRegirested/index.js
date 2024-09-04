@@ -1,6 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import { Router } from 'vanilla-routing';
-import Button from '../../../../components/Button';
+import Button from '~src/components/Button';
 import petUrl from './images/no-pet-regirested-page.png';
 import './index.scss';
 

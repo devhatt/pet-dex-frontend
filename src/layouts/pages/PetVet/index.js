@@ -1,11 +1,11 @@
 import { Component } from 'pet-dex-utilities';
-import TextArea from '../../../../components/TextArea';
-import Button from '../../../../components/Button';
-import Radio from '../../../../components/RadioButton';
-import Vaccine from '../../../../components/Vaccine';
+import Button from '~src/components/Button';
+import Radio from '~src/components/RadioButton';
+import TextArea from '~src/components/TextArea';
+import Vaccine from '~src/components/Vaccine';
 
-import estetoscopio from './images/estetoscopio.svg';
 import cuidadosEspeciais from './images/cuidadosEspeciais.svg';
+import estetoscopio from './images/estetoscopio.svg';
 
 import './index.scss';
 

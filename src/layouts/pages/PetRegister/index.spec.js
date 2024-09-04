@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest';
-import { render, screen } from '@testing-library/vanilla';
 import { userEvent } from '@testing-library/user-event';
+import { render, screen } from '@testing-library/vanilla';
+import { describe, expect, it } from 'vitest';
 
-import afghanHound from '../../../../stories/assets/petRegisterPage/afghanHound.svg';
-import akita from '../../../../stories/assets/petRegisterPage/akita.svg';
-import beagle from '../../../../stories/assets/petRegisterPage/beagle.svg';
-import mixedBreed from '../../../../stories/assets/petRegisterPage/mixedBreed.svg';
+import afghanHound from '~stories/assets/petRegisterPage/afghanHound.svg';
+import akita from '~stories/assets/petRegisterPage/akita.svg';
+import beagle from '~stories/assets/petRegisterPage/beagle.svg';
+import mixedBreed from '~stories/assets/petRegisterPage/mixedBreed.svg';
 
 import PetRegisterPage from './index';
 

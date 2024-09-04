@@ -4,7 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@testing-library/vanilla": ["src/__tests__/index.js"],
-      "~src/*": ["src/*"]
+      "~src/*": ["src/*"],
+      "~styles/*": ["src/styles/*"],
+      "~stories/*": ["src/stories/*"]
     }
   }
 }
