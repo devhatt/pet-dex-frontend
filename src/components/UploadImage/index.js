@@ -20,7 +20,7 @@ const html = `
       <div class='container-upload-image__button'>
         <img data-select="button-icon" src="${plusIcon}">
       </div>
-      <input class="container-upload-image__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input">
+      <input class="container-upload-image__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input" data-testid="upload-input">
     </label>
   </div>
 `;
