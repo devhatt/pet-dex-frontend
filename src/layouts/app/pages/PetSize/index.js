@@ -13,7 +13,7 @@ const html = `
 
       <div class="pet-size-page__description">
         <h1 class="pet-size-page__title">Qual é o tamanho do seu animal de estimação?</h1>
-        <p class="pet-size-page__hint">Ajuste de acordo com a realidade</p>
+        <label class="pet-size-page__hint">Ajuste de acordo com a realidade</label>
       </div>
 
       <div class="pet-size-page__size-selector" data-select="size-selector"></div>  

@@ -5,9 +5,6 @@ export default {
   render: () => {
     const petSizePage = new PetSize();
     const $container = document.createElement('div');
-    $container.style.display = 'flex';
-    $container.style.height = '100vh';
-    $container.style.justifyContent = 'center';
     petSizePage.mount($container);
 
     return $container;

@@ -10,9 +10,6 @@
   grid-template-rows: 1fr auto;
 
   &__content {
-    width: 100%;
-    height: 100%;
-
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -23,13 +20,11 @@
     text-align: center;
   }
 
-  &__image-container {
-    width: max-content;
-
-    display: inline-block;
-  }
-
   &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
     font-family: fonts.$primaryFont;
   }
 
@@ -59,8 +54,6 @@
 
   justify-content: center;
 
-  margin-top: auto;
-
   padding: 4rem 0;
 
   box-shadow: 0 0 0.8rem 0 rgba(73, 77, 90, 0.12);
@@ -78,7 +71,6 @@
   .pet-size-page {
     &__button-container {
       box-shadow: none;
-      border-radius: none;
     }
   }
 }
