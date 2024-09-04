@@ -43,6 +43,7 @@ export default defineConfig({
       '~src': resolve(__dirname, 'src'),
       '~styles': resolve(__dirname, 'src/styles'),
       '~stories': resolve(__dirname, 'src/stories'),
+      '~layouts': resolve(__dirname, 'src/layouts'),
     },
   },
   plugins: [

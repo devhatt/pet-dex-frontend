@@ -6,7 +6,8 @@
       "@testing-library/vanilla": ["src/__tests__/index.js"],
       "~src/*": ["src/*"],
       "~styles/*": ["src/styles/*"],
-      "~stories/*": ["src/stories/*"]
+      "~stories/*": ["src/stories/*"],
+      "~layouts/*": ["src/layouts/*"]
     }
   }
 }
