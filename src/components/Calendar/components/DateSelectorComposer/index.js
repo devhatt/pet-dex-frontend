@@ -11,10 +11,10 @@ import YearSelector from './components/YearSelector';
 const events = ['month:change', 'year:change'];
 
 const html = `
-    <div class="date-selector" data-select="date-selector">
-      <div class="date-selector__year" data-select="year-selector"></div>
-      <div class="date-selector__month" data-select="month-selector"></div>
-    </div>
+      <div class="date-selector" data-select="date-selector">
+        <div class="date-selector__year" data-select="year-selector"></div>
+        <div class="date-selector__month" data-select="month-selector"></div>
+      </div>
 `;
 
 export default function DateSelectorComposer(month, year) {
@@ -30,7 +30,6 @@ export default function DateSelectorComposer(month, year) {
   this.mountYearSelector = () => {
     if (this.yearSelector) this.yearSelector.unmount();
 
-    this.yearArray = yearArrayGenerator(this.year);
     this.yearSelector = new YearSelector(this.yearArray);
     this.yearSelector.mount(this.$yearSelector);
     this.yearSelector.listen('selector:click', () =>
@@ -48,6 +47,9 @@ export default function DateSelectorComposer(month, year) {
       this.modalControl.Open(this.monthArray),
     );
   };
+
+  this.yearArray = yearArrayGenerator(this.year);
+  this.modalControl.Open(this.yearArray);
 
   this.mountYearSelector();
   this.mountMonthSelector();

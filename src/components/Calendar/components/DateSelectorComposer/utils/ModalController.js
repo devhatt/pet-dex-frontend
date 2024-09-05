@@ -1,3 +1,4 @@
+import { MONTHS } from '../../../utils/months';
 import SelectorModal from '../components/SelectorModal';
 
 export class ModalController {
@@ -10,8 +11,14 @@ export class ModalController {
 
     this.modal = new SelectorModal(dateArray);
     this.modal.mount(this.selector.$dateSelector);
-    // this.modal.listen('month:change', (month) => this.selector.setMonth(month));
-    this.modal.listen('date:change', (item) => this.selector.setYear(item));
+    this.modal.listen('date:change', (item) => this.changeDate(item));
+  }
+
+  changeDate(date) {
+    if (typeof date === 'string') {
+      this.selector.setMonth(MONTHS.indexOf(date));
+    }
+    if (typeof date === 'number') this.selector.setYear(date);
   }
 
   CloseOnClickOutside(event) {

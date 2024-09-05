@@ -4,71 +4,31 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .year-selector {
-  width: 100%;
+  overflow: auto;
 
   display: flex;
-  gap: 2.4rem;
+  flex-direction: row;
 
-  align-items: center;
-  justify-content: center;
+  box-sizing: border-box;
 
-  margin-bottom: 2.4rem;
+  box-sizing: border-box;
+  scroll-snap-type: x mandatory;
 
-  padding-bottom: 2.4rem;
+  [data-select='list-selector'] {
+    width: fit-content;
 
-  border-bottom: 0.1rem solid colors.$gray150;
-
-  &__previous-years,
-  &__next-years {
     display: flex;
-    gap: 1.6rem;
 
     align-items: center;
-    justify-content: center;
-  }
 
-  &__current-year {
-    align-self: center;
-
-    font-family: fonts.$primaryFont;
-    color: colors.$primary200;
-    font-size: fonts.$lg;
-    font-weight: fonts.$semiBold;
-
-    padding: 0.6rem 1.2rem;
-    border: 0.1rem solid colors.$blue100;
-
-    background-color: colors.$blue150;
-    border-radius: 1.4rem;
+    [data-select='list-selector'] > * {
+      scroll-snap-align: center;
+    }
   }
 }
 
 @include breakpoints.from667 {
-  .year-selector {
-    width: max-content;
-
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0;
-
-    &__previous-years,
-    &__next-years {
-      display: none;
-    }
-
-    &__current-year {
-      color: colors.$gray800;
-      font-weight: fonts.$regular;
-
-      padding: 0;
-      border: 0;
-
-      background-color: colors.$secondary100;
-
-      &:hover {
-        color: colors.$primary200;
-        font-weight: fonts.$semiBold;
-      }
-    }
+  .selector-modal {
+    display: flex;
   }
 }

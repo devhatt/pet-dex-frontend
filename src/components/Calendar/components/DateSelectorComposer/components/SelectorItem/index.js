@@ -4,7 +4,7 @@ import './index.scss';
 const events = [];
 
 const html = `
-	<li class="selector-item" data-select="selector-item"></li>
+	<li class="selector-item" data-select="selector-item" tabindex=""></li>
 `;
 
 export default function SelectorItem(item) {

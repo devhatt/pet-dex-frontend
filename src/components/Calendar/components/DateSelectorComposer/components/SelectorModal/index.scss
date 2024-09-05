@@ -28,6 +28,8 @@
 
   animation: openModal 0.3s ease-out;
 
+  scrollbar-width: none;
+
   [data-select='list-content'] > * {
     scroll-snap-align: center;
   }
