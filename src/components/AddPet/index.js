@@ -1,11 +1,10 @@
 import { Component } from 'pet-dex-utilities';
 
-import Sliding from '../Sliding';
+import PetRegister from '~layouts/pages/PetRegister';
+import PetVetPage from '~layouts/pages/PetVet';
+import PetWeight from '~layouts/pages/PetWeight';
 import ProgressBar from '../ProgressBar';
-
-import PetVetPage from '../../layouts/app/pages/PetVet';
-import PetWeight from '../../layouts/app/pages/PetWeight';
-import PetRegister from '../../layouts/app/pages/PetRegister';
+import Sliding from '../Sliding';
 
 import arrowLeft from './assets/arrow-left.svg';
 
