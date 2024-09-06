@@ -3,20 +3,23 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.date-selector {
+.date-selector-composer {
   width: 100%;
 
   cursor: pointer;
 }
 
 @include breakpoints.from667 {
-  .date-selector {
-    width: 10%;
+  .date-selector-composer {
+    width: max-content;
     min-width: 23.1rem;
 
     display: flex;
     flex-direction: row-reverse;
     gap: 1rem;
+
+    align-items: center;
+    justify-content: center;
 
     position: relative;
 

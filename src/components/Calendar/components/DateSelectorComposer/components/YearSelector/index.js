@@ -1,35 +1,50 @@
 import { Component } from 'pet-dex-utilities';
-import './index.scss';
+import { makeSwipable } from '../../../../../../utils/swiper';
 import SelectorItem from '../SelectorItem';
+import { listenBreakpoint } from '../../../../../../utils/breakpoints/breakpoints';
+import './index.scss';
 
-const events = ['selector:click'];
+const events = ['selector:click', 'year:change'];
 
 const html = `
- <div class="year-selector" data-select="year-selector">
+ <div class="date-selector" data-select="date-selector">
     <div>
-      <div data-select="year-list">
-        <ul data-select="list-selector">
+      <div data-select="date-list">
+        <ul data-select="list-content">
         </ul>
       </div>
     </div>
-    </div>
+  </div>
 `;
 
-export default function YearSelector(yearArray) {
+export default function YearSelector(dateArray) {
   Component.call(this, { html, events });
 
-  this.yearArray = yearArray;
-  this.$yearSelector = this.selected.get('year-selector');
-  this.$yearList = this.selected.get('year-list');
-  this.$yearContent = this.selected.get('list-selector');
+  this.dateArray = dateArray;
+  this.$dateSelector = this.selected.get('date-selector');
+  this.$dateList = this.selected.get('date-list');
+  this.$listContent = this.selected.get('list-content');
 
-  this.itemCount = this.yearArray.length;
+  this.itemCount = this.dateArray.length;
   this.columnWidth = 75;
   this.nodePadding = 5;
-  this.scrollLeft = this.$yearSelector.scrollLeft;
+  this.scrollLeft = this.$dateSelector.scrollLeft;
+
+  const swiper = makeSwipable(this.$dateSelector);
+
+  const handleItemClick = (index) => {
+    const itemScroll =
+      index * this.columnWidth -
+      (this.viewportWidth / 2 - this.columnWidth / 2);
+    this.$dateSelector.scrollLeft = itemScroll;
+  };
+
+  const emitYearChangeEvent = (year) => {
+    this.emit('year:change', year);
+  };
 
   setTimeout(() => {
-    this.viewportWidth = this.$yearSelector.offsetWidth;
+    this.viewportWidth = this.$dateSelector.offsetWidth;
 
     const renderWindow = () => {
       this.totalContentWidth = this.itemCount * this.columnWidth;
@@ -47,30 +62,31 @@ export default function YearSelector(yearArray) {
 
       this.offsetX = this.startNode * this.columnWidth;
 
-      this.$yearList.style.width = `${this.totalContentWidth}px`;
-      this.$yearContent.style.transform = `translateX(${this.offsetX}px)`;
+      this.$dateList.style.width = `${this.totalContentWidth}px`;
+      this.$listContent.style.transform = `translateX(${this.offsetX}px)`;
 
-      this.$yearContent.innerHTML = '';
+      this.$listContent.innerHTML = '';
       this.visibleChildren = new Array(this.visibleNodesCount)
         .fill(null)
         .map(
           (_, index) =>
-            new SelectorItem(this.yearArray[index + this.startNode]),
+            new SelectorItem(this.dateArray[index + this.startNode]),
         );
 
       this.visibleChildren.forEach((selectorItem, index) => {
-        selectorItem.mount(this.$yearContent);
-        selectorItem.listen('item:change', (item) =>
-          this.emit('selector:click', item),
+        selectorItem.mount(this.$listContent);
+        selectorItem.listen('item:click', () =>
+          handleItemClick(index + this.startNode),
         );
+        selectorItem.listen('item:change', (item) => emitYearChangeEvent(item));
 
-        if (index === 7) {
+        if (index === 8) {
           selectorItem.active();
         }
       });
     };
 
-    this.$yearSelector.addEventListener('scroll', (e) => {
+    this.$dateSelector.addEventListener('scroll', (e) => {
       if (this.animationFrame) {
         cancelAnimationFrame(this.animationFrame);
       }
@@ -78,7 +94,7 @@ export default function YearSelector(yearArray) {
         this.scrollLeft = e.target.scrollLeft;
         renderWindow();
 
-        const activeItem = this.$yearList.querySelector(
+        const activeItem = this.$dateList.querySelector(
           'selector-item--active',
         );
         if (activeItem) {
@@ -90,14 +106,33 @@ export default function YearSelector(yearArray) {
       });
     });
 
+    swiper.left(() => {
+      this.scrollLeft = Math.max(this.scrollLeft - this.columnWidth, 0);
+      this.$dateSelector.scrollLeft = this.scrollLeft;
+      renderWindow();
+    });
+
+    swiper.right(() => {
+      this.scrollLeft = Math.min(
+        this.scrollLeft + this.columnWidth,
+        this.totalContentWidth - this.viewportWidth,
+      );
+      this.$dateSelector.scrollLeft = this.scrollLeft;
+      renderWindow();
+    });
+
     const scrollToMiddle = () => {
       this.scrollLeft =
-        this.totalContentWidth / 2 - this.viewportWidth / 2 - 48;
-      this.$yearSelector.scrollLeft = this.scrollLeft;
+        this.totalContentWidth / 2 - this.viewportWidth / 2 + 12;
+      this.$dateSelector.scrollLeft = this.scrollLeft;
     };
 
     renderWindow();
     scrollToMiddle();
+
+    listenBreakpoint('from667', (matches) => {
+      if (matches) scrollToMiddle();
+    });
   }, 0);
 }
 

@@ -4,13 +4,10 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .month-selector {
-  width: 100%;
+  overflow: auto;
 
   display: flex;
-  gap: 2.4rem;
-
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
 
   margin-bottom: 2.4rem;
 
@@ -18,57 +15,16 @@
 
   border-bottom: 0.1rem solid colors.$gray150;
 
-  &__previous-months,
-  &__next-months {
+  box-sizing: border-box;
+
+  box-sizing: border-box;
+  scroll-snap-type: x proximity;
+
+  [data-select='list-content'] {
+    width: fit-content;
+
     display: flex;
-    gap: 1.6rem;
 
     align-items: center;
-    justify-content: center;
-  }
-
-  &__current-month {
-    align-self: center;
-
-    font-family: fonts.$primaryFont;
-    color: colors.$primary200;
-    font-size: fonts.$lg;
-    font-weight: fonts.$semiBold;
-
-    padding: 0.6rem 1.2rem;
-    border: 0.1rem solid colors.$blue100;
-
-    background-color: colors.$blue150;
-    border-radius: 1.4rem;
-  }
-}
-
-@include breakpoints.from667 {
-  .month-selector {
-    width: max-content;
-
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0;
-
-    &__previous-months,
-    &__next-months {
-      display: none;
-    }
-
-    &__current-month {
-      color: colors.$gray800;
-      font-weight: fonts.$regular;
-
-      padding: 0;
-      border: 0;
-
-      background-color: colors.$secondary100;
-
-      &:hover {
-        color: colors.$primary200;
-        font-weight: fonts.$semiBold;
-      }
-    }
   }
 }

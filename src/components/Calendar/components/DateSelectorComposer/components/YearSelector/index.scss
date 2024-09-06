@@ -3,32 +3,30 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.year-selector {
+.date-selector {
   overflow: auto;
 
   display: flex;
   flex-direction: row;
 
+  margin-bottom: 2.4rem;
+
+  padding-bottom: 2.4rem;
+
+  border-bottom: 0.1rem solid colors.$gray150;
+
   box-sizing: border-box;
 
   box-sizing: border-box;
-  scroll-snap-type: x mandatory;
 
-  [data-select='list-selector'] {
+  position: relative;
+  scroll-snap-type: x proximity;
+
+  [data-select='list-content'] {
     width: fit-content;
 
     display: flex;
 
     align-items: center;
-
-    [data-select='list-selector'] > * {
-      scroll-snap-align: center;
-    }
-  }
-}
-
-@include breakpoints.from667 {
-  .selector-modal {
-    display: flex;
   }
 }

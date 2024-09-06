@@ -2,10 +2,10 @@ import { Component } from 'pet-dex-utilities';
 import dayjs from 'dayjs';
 import WeekDayComposer from './components/WeekDayComposer';
 import NavigationButton from './components/NavigationButton';
-
-import './index.scss';
 import DateSelectorComposer from './components/DateSelectorComposer';
 import DayComposer from './components/DayComposer';
+
+import './index.scss';
 
 const events = [];
 
@@ -33,9 +33,9 @@ export default function Calendar({ day, month, year }) {
 
   this.dateSelector = new DateSelectorComposer(this.month - 1, this.year);
   this.dateSelector.mount(this.$calendarControls);
-  this.dateSelector.listen('month:change', (newMonth) =>
-    this.setMonth(newMonth + 1),
-  );
+  this.dateSelector.listen('month:change', (newMonth) => {
+    this.setMonth(newMonth + 1);
+  });
   this.dateSelector.listen('year:change', (newYear) => this.setYear(newYear));
 
   this.nextButton = new NavigationButton('next');

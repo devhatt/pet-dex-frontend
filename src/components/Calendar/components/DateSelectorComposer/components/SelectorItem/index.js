@@ -1,10 +1,10 @@
 import { Component } from 'pet-dex-utilities';
 import './index.scss';
 
-const events = [];
+const events = ['item:change', 'item:click'];
 
 const html = `
-	<li class="selector-item" data-select="selector-item" tabindex=""></li>
+	<li class="selector-item" data-select="selector-item"></li>
 `;
 
 export default function SelectorItem(item) {
@@ -12,6 +12,16 @@ export default function SelectorItem(item) {
   this.item = item;
   this.$selectorItem = this.selected.get('selector-item');
   this.$selectorItem.innerText = this.item;
+
+  if (typeof this.item === 'string') this.$selectorItem.style.width = '150px';
+
+  if (typeof this.item === 'number') this.$selectorItem.style.width = '70px';
+
+  this.emitClickEvent = () => {
+    this.emit('item:click');
+  };
+
+  this.$selectorItem.addEventListener('click', this.emitClickEvent);
 }
 
 SelectorItem.prototype = Object.assign(
@@ -20,6 +30,7 @@ SelectorItem.prototype = Object.assign(
   {
     active() {
       this.$selectorItem.classList.add('selector-item--active');
+      this.emit('item:change', this.item);
     },
   },
 );

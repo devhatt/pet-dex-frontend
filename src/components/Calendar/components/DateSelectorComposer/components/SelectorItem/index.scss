@@ -4,8 +4,6 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .selector-item {
-  width: 75px;
-
   font-family: fonts.$primaryFont;
   color: colors.$gray700;
 
