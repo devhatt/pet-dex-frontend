@@ -23,49 +23,46 @@
 
   &--shuffle {
     .sliding__slide {
-      width: 62%;
-      height: 100%;
+      width: 100%;
 
-      margin: auto;
+      display: none;
+      flex: unset;
 
-      position: absolute;
-      right: 0;
-      left: 0;
+      position: relative;
 
-      opacity: 0;
+      z-index: 0;
 
       transition: all 450ms ease;
 
       &--active {
-        width: 100%;
-
-        position: relative;
+        display: block;
 
         z-index: 2;
-
-        transform: translateX(0) scale(1);
-
-        opacity: 1;
       }
 
-      &--unfocused,
       &--prev,
-      &--next {
+      &--next,
+      &--unfocused {
+        width: 50%;
+
+        display: block;
+
+        position: absolute;
+
+        transform: scale(0.9);
+
         opacity: 0.6;
+        inset: 0;
+      }
+
+      &--next {
+        left: auto;
       }
 
       &--unfocused {
         width: 100%;
 
-        transform: translate(0) scale(0.92);
-      }
-
-      &--prev {
-        transform: translateX(-40%) scale(0.8);
-      }
-
-      &--next {
-        transform: translateX(40%) scale(0.8);
+        transform: scale(0.94);
       }
     }
   }

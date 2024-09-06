@@ -82,55 +82,41 @@ Sliding.prototype = Object.assign(Sliding.prototype, Component.prototype, {
   next() {
     const slides = this.selected.get('sliding-content').children;
 
-    if (this.shuffleMode) {
-      const slideElements = Array.from(slides);
+    this.slideIndex += 1;
 
-      this.slideIndex =
-        this.slideIndex === slideElements.length - 1 ? 0 : this.slideIndex + 1;
+    if (this.slideIndex > slides.length - 1) this.slideIndex = 0;
 
-      activeSlideShuffle(slideElements, this.slideIndex);
-      this.emit('slide:next', slides[this.slideIndex]);
-    } else {
-      this.slideIndex += 1;
+    const slide = slides[this.slideIndex];
 
-      if (this.slideIndex > slides.length - 1) this.slideIndex = 0;
-
-      const slide = slides[this.slideIndex];
-
+    if (!this.shuffleMode) {
       const container = this.selected.get('sliding').clientWidth;
       this.selected.get('sliding-content').style.transform =
         `translateX(${-this.slideIndex * container}px)`;
-
       activeSlide(slides, slide);
-      this.emit('slide:next', slide);
     }
+
+    activeSlideShuffle(slides, this.slideIndex);
+    this.emit('slide:next', slide);
   },
 
   previous() {
     const slides = this.selected.get('sliding-content').children;
 
-    if (this.shuffleMode) {
-      const slideElements = Array.from(slides);
+    this.slideIndex -= 1;
 
-      this.slideIndex =
-        this.slideIndex === 0 ? slideElements.length - 1 : this.slideIndex - 1;
+    if (this.slideIndex < 0) this.slideIndex = slides.length - 1;
 
-      activeSlideShuffle(slideElements, this.slideIndex);
-      this.emit('slide:previous', slides[this.slideIndex]);
-    } else {
-      this.slideIndex -= 1;
+    const slide = slides[this.slideIndex];
 
-      if (this.slideIndex < 0) this.slideIndex = slides.length - 1;
-
-      const slide = slides[this.slideIndex];
-
+    if (!this.shuffleMode) {
       const container = this.selected.get('sliding').clientWidth;
       this.selected.get('sliding-content').style.transform =
         `translateX(${-this.slideIndex * container}px)`;
-
       activeSlide(slides, slide);
-      this.emit('slide:previous', slide);
     }
+
+    activeSlideShuffle(slides, this.slideIndex);
+    this.emit('slide:previous', slide);
   },
 
   clear() {

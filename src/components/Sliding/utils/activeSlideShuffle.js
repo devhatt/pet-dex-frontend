@@ -4,7 +4,7 @@ export const activeSlideShuffle = (slides, activeIndex) => {
   const prevIndex = activeIndex === 0 ? totalSlides - 1 : activeIndex - 1;
   const nextIndex = activeIndex === totalSlides - 1 ? 0 : activeIndex + 1;
 
-  slides.forEach((slide, index) => {
+  Array.from(slides).forEach((slide, index) => {
     slide.classList.remove(
       'sliding__slide--active',
       'sliding__slide--unfocused',
