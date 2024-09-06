@@ -17,8 +17,9 @@
 
   box-sizing: border-box;
 
-  box-sizing: border-box;
   scroll-snap-type: x proximity;
+
+  scrollbar-width: none;
 
   [data-select='list-content'] {
     width: fit-content;
