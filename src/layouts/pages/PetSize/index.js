@@ -1,7 +1,7 @@
 import { Component } from 'pet-dex-utilities';
-import UploadImage from '../../../../components/UploadImage';
-import SizeSelector from '../../../../components/SizeSelector';
-import Button from '../../../../components/Button';
+import Button from '~src/components/Button';
+import UploadImage from '~src/components/UploadImage';
+import SizeSelector from '~src/components/SizeSelector';
 import './index.scss';
 
 const events = ['submit'];
@@ -41,7 +41,14 @@ export default function PetSize() {
   });
 
   this.renderComponents();
-  this.emitSize();
+  this.getSize();
+  this.button.listen('click', () => {
+    this.emit('submit', {
+      sizeTitle: this.sizeTitle,
+      weightRange: this.weightRange,
+      sizeIndex: this.sizeIndex,
+    });
+  });
 }
 
 PetSize.prototype = Object.assign(PetSize.prototype, Component.prototype, {
@@ -63,20 +70,10 @@ PetSize.prototype = Object.assign(PetSize.prototype, Component.prototype, {
       this.sizeTitle = card.querySelector(
         '.container-size-selector__title',
       ).textContent;
-      this.weightRange = this.sizeselector
-        .activeCardInit()
-        .card.querySelector('.container-size-selector__text').textContent;
+      this.weightRange = card.querySelector(
+        '.container-size-selector__text',
+      ).textContent;
       this.sizeIndex = index;
-    });
-  },
-  emitSize() {
-    this.getSize();
-    this.button.listen('click', () => {
-      this.emit('submit', {
-        sizeTitle: this.sizeTitle,
-        weightRange: this.weightRange,
-        sizeIndex: this.sizeIndex,
-      });
     });
   },
 });
