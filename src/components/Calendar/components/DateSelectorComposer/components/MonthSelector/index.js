@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import { makeSwipable } from '../../../../../../utils/swiper';
 import SelectorItem from '../SelectorItem';
-import { listenBreakpoint } from '../../../../../../utils/breakpoints/breakpoints';
 import { MONTHS } from '../../../../utils/months';
 import './index.scss';
 
@@ -28,7 +27,7 @@ export default function MonthSelector(dateArray) {
 
   this.itemCount = this.dateArray.length;
   this.columnWidth = 150;
-  this.nodePadding = 5;
+  this.nodePadding = 6;
   this.scrollLeft = this.$monthSelector.scrollLeft;
 
   const swiper = makeSwipable(this.$monthSelector);
@@ -49,7 +48,7 @@ export default function MonthSelector(dateArray) {
     this.viewportWidth = this.$monthSelector.offsetWidth;
 
     const renderWindow = () => {
-      this.totalContentWidth = this.itemCount * this.columnWidth;
+      this.totalContentWidth = (this.itemCount - 1) * this.columnWidth + 176;
 
       this.startNode =
         Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
@@ -84,7 +83,7 @@ export default function MonthSelector(dateArray) {
           emitMonthChangeEvent(item),
         );
 
-        if (index === 6) {
+        if (index === 7) {
           selectorItem.active();
         }
       });
@@ -132,10 +131,6 @@ export default function MonthSelector(dateArray) {
 
     renderWindow();
     scrollToMiddle();
-
-    listenBreakpoint('from667', (matches) => {
-      if (matches) scrollToMiddle();
-    });
   }, 0);
 }
 

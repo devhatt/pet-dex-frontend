@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import { makeSwipable } from '../../../../../../utils/swiper';
 import SelectorItem from '../SelectorItem';
-import { listenBreakpoint } from '../../../../../../utils/breakpoints/breakpoints';
 import './index.scss';
 
 const events = ['selector:click', 'year:change'];
@@ -26,7 +25,7 @@ export default function YearSelector(dateArray) {
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.columnWidth = 75;
+  this.columnWidth = 70;
   this.nodePadding = 5;
   this.scrollLeft = this.$dateSelector.scrollLeft;
 
@@ -47,7 +46,7 @@ export default function YearSelector(dateArray) {
     this.viewportWidth = this.$dateSelector.offsetWidth;
 
     const renderWindow = () => {
-      this.totalContentWidth = this.itemCount * this.columnWidth;
+      this.totalContentWidth = (this.itemCount - 1) * this.columnWidth + 96;
 
       this.startNode =
         Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
@@ -122,17 +121,12 @@ export default function YearSelector(dateArray) {
     });
 
     const scrollToMiddle = () => {
-      this.scrollLeft =
-        this.totalContentWidth / 2 - this.viewportWidth / 2 + 12;
+      this.scrollLeft = this.totalContentWidth / 2 - this.viewportWidth / 2;
       this.$dateSelector.scrollLeft = this.scrollLeft;
     };
 
     renderWindow();
     scrollToMiddle();
-
-    listenBreakpoint('from667', (matches) => {
-      if (matches) scrollToMiddle();
-    });
   }, 0);
 }
 

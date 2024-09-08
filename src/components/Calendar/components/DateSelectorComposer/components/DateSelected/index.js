@@ -11,7 +11,7 @@ export default function DateSelected(date) {
   Component.call(this, { html, events });
 
   this.$dateSelected = this.selected.get('date-selected');
-  this.$dateSelected.innerText = date;
+  this.setDate(date);
 
   this.emitClickevent = () => {
     this.emit('item:click');
@@ -23,5 +23,9 @@ export default function DateSelected(date) {
 DateSelected.prototype = Object.assign(
   DateSelected.prototype,
   Component.prototype,
-  {},
+  {
+    setDate(date) {
+      this.$dateSelected.innerText = date;
+    },
+  },
 );

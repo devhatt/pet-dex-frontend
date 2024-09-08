@@ -31,53 +31,57 @@ export default function DateSelectorComposer(month, year) {
   this.$yearSelector = this.selected.get('year-selector');
   this.modalControl = new ModalController(this);
 
-  this.mountSelectors = () => {
-    if (this.yearSelector) this.yearSelector.unmount();
-    if (this.yearSelected) this.yearSelected.unmount();
+  const mountMobileSelectors = () => {
     if (this.monthSelector) this.monthSelector.unmount();
-    if (this.monthSelected) this.monthSelected.unmount();
+    if (this.yearSelector) this.yearSelector.unmount();
 
-    this.yearArray = yearArrayGenerator(this.year);
     this.monthArray = monthArrayGenerator(this.month);
+    this.yearArray = yearArrayGenerator(this.year);
 
-    this.yearSelector = new YearSelector(this.yearArray, 75);
-    this.yearSelector.listen('year:change', (newYear) =>
-      this.emit('year:change', newYear),
-    );
-
-    this.yearSelected = new DateSelected(this.year);
-    this.yearSelected.listen('item:click', () =>
-      this.modalControl.Open(this.yearArray),
-    );
-
-    this.monthSelector = new MonthSelector(this.monthArray, 120);
+    this.monthSelector = new MonthSelector(this.monthArray);
+    this.monthSelector.mount(this.$monthSelector);
     this.monthSelector.listen('month:change', (newMonth) =>
-      this.emit('month:change', newMonth),
+      this.setMonth(newMonth),
     );
+
+    this.yearSelector = new YearSelector(this.yearArray);
+    this.yearSelector.mount(this.$yearSelector);
+    this.yearSelector.listen('year:change', (newYear) => this.setYear(newYear));
+  };
+
+  const mountDesktopSelectors = () => {
+    if (this.monthSelected) this.monthSelected.unmount();
+    if (this.yearSelected) this.yearSelected.unmount();
+
+    this.monthArray = monthArrayGenerator(this.month);
+    this.yearArray = yearArrayGenerator(this.year);
 
     this.monthSelected = new DateSelected(MONTHS[this.month]);
+    this.monthSelected.mount(this.$monthSelector);
     this.monthSelected.listen('item:click', () =>
       this.modalControl.Open(this.monthArray),
     );
 
-    listenBreakpoint('from667', (matches) => {
-      if (matches) {
-        this.monthSelector.unmount();
-        this.yearSelector.unmount();
-
-        this.monthSelected.mount(this.$monthSelector);
-        this.yearSelected.mount(this.$yearSelector);
-      } else {
-        this.yearSelected.unmount();
-        this.monthSelected.unmount();
-
-        this.yearSelector.mount(this.$yearSelector);
-        this.monthSelector.mount(this.$monthSelector);
-      }
-    });
+    this.yearSelected = new DateSelected(this.year);
+    this.yearSelected.mount(this.$yearSelector);
+    this.yearSelected.listen('item:click', () =>
+      this.modalControl.Open(this.yearArray),
+    );
   };
 
-  this.mountSelectors();
+  listenBreakpoint('from667', (matches) => {
+    if (matches) {
+      if (this.monthSelector) this.monthSelector.unmount();
+      if (this.yearSelector) this.yearSelector.unmount();
+
+      mountDesktopSelectors();
+    } else {
+      if (this.monthSelected) this.monthSelected.unmount();
+      if (this.yearSelected) this.yearSelected.unmount();
+
+      mountMobileSelectors();
+    }
+  });
 
   window.addEventListener('click', (event) =>
     this.modalControl.CloseOnClickOutside(event),
@@ -89,14 +93,16 @@ DateSelectorComposer.prototype = Object.assign(
   Component.prototype,
   {
     setMonth(month) {
+      if (this.monthSelected) this.monthSelected.setDate(MONTHS[month]);
+
       this.month = month;
-      this.mountSelectors();
       this.emit('month:change', month);
     },
 
     setYear(year) {
+      if (this.yearSelected) this.yearSelected.setDate(year);
+
       this.year = year;
-      this.mountSelectors();
       this.emit('year:change', year);
     },
   },
