@@ -25,7 +25,8 @@ export default function SelectorModal(dateArray) {
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.rowHeight = 40;
+  this.rowHeight = 34;
+  this.activeRowHeight = 42.8;
   this.nodePadding = 5;
   this.scrollTop = this.$selectorModal.scrollTop;
 
@@ -33,7 +34,8 @@ export default function SelectorModal(dateArray) {
     this.viewportHeight = this.$selectorModal.offsetHeight;
 
     const renderWindow = () => {
-      this.totalContentHeight = this.itemCount * this.rowHeight;
+      this.totalContentHeight =
+        (this.itemCount - 1) * this.rowHeight + this.activeRowHeight;
 
       this.startNode =
         Math.floor(this.scrollTop / this.rowHeight) - this.nodePadding;
@@ -90,8 +92,7 @@ export default function SelectorModal(dateArray) {
     });
 
     const scrollToMiddle = () => {
-      this.scrollTop =
-        this.totalContentHeight / 2 - this.viewportHeight / 2 - 48;
+      this.scrollTop = this.totalContentHeight / 2 - this.viewportHeight / 2;
       this.$selectorModal.scrollTop = this.scrollTop;
     };
 

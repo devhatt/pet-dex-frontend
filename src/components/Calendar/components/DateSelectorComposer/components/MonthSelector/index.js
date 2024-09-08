@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import { makeSwipable } from '../../../../../../utils/swiper';
+import { makeSwipable } from '~src/utils/swiper';
 import SelectorItem from '../SelectorItem';
 import { MONTHS } from '../../../../utils/months';
 import './index.scss';
@@ -27,6 +27,7 @@ export default function MonthSelector(dateArray) {
 
   this.itemCount = this.dateArray.length;
   this.columnWidth = 150;
+  this.activeColumnWidth = 176;
   this.nodePadding = 6;
   this.scrollLeft = this.$monthSelector.scrollLeft;
 
@@ -48,7 +49,8 @@ export default function MonthSelector(dateArray) {
     this.viewportWidth = this.$monthSelector.offsetWidth;
 
     const renderWindow = () => {
-      this.totalContentWidth = (this.itemCount - 1) * this.columnWidth + 176;
+      this.totalContentWidth =
+        (this.itemCount - 1) * this.columnWidth + this.activeColumnWidth;
 
       this.startNode =
         Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;

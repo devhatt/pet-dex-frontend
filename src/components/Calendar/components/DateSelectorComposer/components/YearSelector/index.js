@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import { makeSwipable } from '../../../../../../utils/swiper';
+import { makeSwipable } from '~src/utils/swiper';
 import SelectorItem from '../SelectorItem';
 import './index.scss';
 
@@ -26,6 +26,7 @@ export default function YearSelector(dateArray) {
 
   this.itemCount = this.dateArray.length;
   this.columnWidth = 70;
+  this.activeColumnWidth = 96;
   this.nodePadding = 5;
   this.scrollLeft = this.$dateSelector.scrollLeft;
 
@@ -46,7 +47,8 @@ export default function YearSelector(dateArray) {
     this.viewportWidth = this.$dateSelector.offsetWidth;
 
     const renderWindow = () => {
-      this.totalContentWidth = (this.itemCount - 1) * this.columnWidth + 96;
+      this.totalContentWidth =
+        (this.itemCount - 1) * this.columnWidth + this.activeColumnWidth;
 
       this.startNode =
         Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
