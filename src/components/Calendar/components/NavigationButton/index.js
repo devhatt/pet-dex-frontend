@@ -1,5 +1,5 @@
 import { Component } from 'pet-dex-utilities';
-import arrow from '../../images/navButton.svg';
+import arrow from '../../images/nav-button.svg';
 
 import './index.scss';
 

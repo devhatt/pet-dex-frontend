@@ -31,6 +31,6 @@ export const WEEK_DAYS = [
 
   {
     name: 'Sábado',
-    abbreviation: 'Seg',
+    abbreviation: 'Sáb',
   },
 ];
