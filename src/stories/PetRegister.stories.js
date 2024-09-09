@@ -1,4 +1,4 @@
-import PetRegister from '../layouts/app/pages/PetRegister';
+import PetRegister from '~layouts/pages/PetRegister';
 
 export default {
   title: 'Pages/PetProfile',

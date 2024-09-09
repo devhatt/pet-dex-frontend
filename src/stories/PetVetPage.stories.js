@@ -1,4 +1,4 @@
-import PetVetPage from '../layouts/app/pages/PetVet';
+import PetVetPage from '~layouts/pages/PetVet';
 
 export default {
   title: 'Pages/PetVetPage',
