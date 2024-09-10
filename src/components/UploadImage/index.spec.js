@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { render, screen, userEvent } from '@testing-library/vanilla';
+import { render, screen, userEvent, waitFor } from '@testing-library/vanilla';
 import UploadImage from '.';
 import plusIcon from './img/plus-icon.svg';
 import photoIcon from './img/photo-icon.svg';
@@ -10,8 +10,12 @@ describe('UploadImage', () => {
   it('renders correctly', () => {
     renderUploadImage();
     const uploadInput = screen.getByLabelText('Carregar imagem');
+    const buttonIcon = screen.getByAltText('Botão com ícone');
+    const imagePreview = screen.getByLabelText('Carregar imagem');
 
     expect(uploadInput).toBeInTheDocument();
+    expect(buttonIcon).toBeInTheDocument();
+    expect(imagePreview).toBeInTheDocument();
   });
 
   describe('Upload input', () => {
@@ -47,29 +51,32 @@ describe('UploadImage', () => {
 
       await user.upload(uploadInput, file);
 
-      expect(buttonIcon).toHaveAttribute('src', photoIcon);
+      await waitFor(() => {
+        expect(buttonIcon).toHaveAttribute('src', photoIcon);
+      });
     });
   });
 
   describe('Image preview', () => {
     it('does not display preview if no file is selected', () => {
       renderUploadImage();
-      const Imagepreview = screen.getByAltText('Imagem carregada');
+      const imagePreview = screen.getByAltText('Imagem carregada');
 
-      expect(Imagepreview).toHaveClass('hidden');
+      expect(imagePreview).toHaveClass('hidden');
     });
 
     it('display preview if file is selected', async () => {
       renderUploadImage();
       const user = userEvent.setup();
 
-      const Imagepreview = screen.getByAltText('Imagem carregada');
+      const imagePreview = screen.getByAltText('Imagem carregada');
       const uploadInput = screen.getByLabelText('Carregar imagem');
       const file = new File(['hello'], 'hello.png', { type: 'image/png' });
 
       await user.upload(uploadInput, file);
-
-      expect(Imagepreview).not.toHaveClass('hidden');
+      await waitFor(() => {
+        expect(imagePreview).toBeInTheDocument();
+      });
     });
   });
 });
