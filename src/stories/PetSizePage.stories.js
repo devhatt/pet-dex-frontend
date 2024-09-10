@@ -1,4 +1,4 @@
-import PetSize from '../layouts/app/pages/PetSize';
+import PetSize from '~layouts/pages/PetSize';
 
 export default {
   title: 'Pages/PetSizePage',
