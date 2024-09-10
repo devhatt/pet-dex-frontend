@@ -1,0 +1,74 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/fonts.scss' as fonts;
+
+.pet-size-page {
+  width: 100%;
+  min-height: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+
+    font-family: fonts.$primaryFont;
+  }
+
+  &__title {
+    color: colors.$gray800;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+  }
+
+  &__hint {
+    color: colors.$gray800;
+    font-size: 1.1rem;
+    font-weight: fonts.$regular;
+
+    margin-top: 1.6rem;
+  }
+
+  &__size-selector {
+    min-height: 28rem;
+  }
+}
+
+.pet-size-page__button-container {
+  display: flex;
+
+  justify-content: center;
+
+  padding: 4rem 0;
+
+  box-shadow: 0 0 0.8rem 0 rgba(73, 77, 90, 0.12);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.pet-size-page__button {
+  width: 100%;
+  max-width: 42rem;
+
+  padding: 0 2rem;
+}
+
+@include breakpoints.from1024 {
+  .pet-size-page {
+    &__button-container {
+      box-shadow: none;
+    }
+  }
+}
