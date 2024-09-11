@@ -4,8 +4,8 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .day {
-  width: 4rem;
-  height: 4rem;
+  width: 3.2rem;
+  height: 3.2rem;
 
   justify-self: center;
 
@@ -16,7 +16,7 @@
     font-family: fonts.$primaryFont;
     color: colors.$gray500;
     text-align: center;
-    font-size: fonts.$sm;
+    font-size: fonts.$xxs;
     font-weight: fonts.$medium;
 
     border: 0.1rem solid colors.$gray150;

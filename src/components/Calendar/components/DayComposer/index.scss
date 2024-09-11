@@ -1,7 +1,16 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
 .day-composer {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.8rem;
+  gap: 0.2rem;
 
   list-style: none;
+
+  @include breakpoints.from360 {
+    gap: 0.8rem;
+  }
 }
