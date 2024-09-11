@@ -45,92 +45,93 @@ export default function MonthSelector(dateArray) {
     this.emit('month:change', newMonth);
   };
 
-  setTimeout(() => {
+  const calculateViewport = () => {
     this.viewportWidth = this.$monthSelector.offsetWidth;
+  };
 
-    const renderWindow = () => {
-      this.totalContentWidth =
-        (this.itemCount - 1) * this.columnWidth + this.activeColumnWidth;
+  const renderWindow = () => {
+    this.totalContentWidth =
+      (this.itemCount - 1) * this.columnWidth + this.activeColumnWidth;
 
-      this.startNode =
-        Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
-      this.startNode = Math.max(0, this.startNode);
+    this.startNode =
+      Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
+    this.startNode = Math.max(0, this.startNode);
 
-      this.visibleNodesCount =
-        Math.ceil(this.viewportWidth / this.columnWidth) + 2 * this.nodePadding;
-      this.visibleNodesCount = Math.min(
-        this.itemCount - this.startNode,
-        this.visibleNodesCount,
+    this.visibleNodesCount =
+      Math.ceil(this.viewportWidth / this.columnWidth) + 2 * this.nodePadding;
+    this.visibleNodesCount = Math.min(
+      this.itemCount - this.startNode,
+      this.visibleNodesCount,
+    );
+
+    this.offsetX = this.startNode * this.columnWidth;
+
+    this.$dateList.style.width = `${this.totalContentWidth}px`;
+    this.$listContent.style.transform = `translateX(${this.offsetX}px)`;
+
+    this.$listContent.innerHTML = '';
+    this.visibleChildren = new Array(this.visibleNodesCount)
+      .fill(null)
+      .map(
+        (_, index) => new SelectorItem(this.dateArray[index + this.startNode]),
       );
 
-      this.offsetX = this.startNode * this.columnWidth;
-
-      this.$dateList.style.width = `${this.totalContentWidth}px`;
-      this.$listContent.style.transform = `translateX(${this.offsetX}px)`;
-
-      this.$listContent.innerHTML = '';
-      this.visibleChildren = new Array(this.visibleNodesCount)
-        .fill(null)
-        .map(
-          (_, index) =>
-            new SelectorItem(this.dateArray[index + this.startNode]),
-        );
-
-      this.visibleChildren.forEach((selectorItem, index) => {
-        selectorItem.mount(this.$listContent);
-        selectorItem.listen('item:click', () =>
-          handleItemClick(index + this.startNode),
-        );
-        selectorItem.listen('item:change', (item) =>
-          emitMonthChangeEvent(item),
-        );
-
-        if (index === 7) {
-          selectorItem.active();
-        }
-      });
-    };
-
-    this.$monthSelector.addEventListener('scroll', (e) => {
-      if (this.animationFrame) {
-        cancelAnimationFrame(this.animationFrame);
-      }
-      this.animationFrame = requestAnimationFrame(() => {
-        this.scrollLeft = e.target.scrollLeft;
-        renderWindow();
-
-        const activeItem = this.$dateList.querySelector(
-          'selector-item--active',
-        );
-        if (activeItem) {
-          activeItem.scrollIntoView({
-            inline: 'center',
-            behavior: 'smooth',
-          });
-        }
-      });
-    });
-
-    swiper.left(() => {
-      this.scrollLeft = Math.max(this.scrollLeft - this.columnWidth, 0);
-      this.$monthSelector.scrollLeft = this.scrollLeft;
-      renderWindow();
-    });
-
-    swiper.right(() => {
-      this.scrollLeft = Math.min(
-        this.scrollLeft + this.columnWidth,
-        this.totalContentWidth - this.viewportWidth,
+    this.visibleChildren.forEach((selectorItem, index) => {
+      selectorItem.mount(this.$listContent);
+      selectorItem.listen('item:click', () =>
+        handleItemClick(index + this.startNode),
       );
-      this.$monthSelector.scrollLeft = this.scrollLeft;
-      renderWindow();
+      selectorItem.listen('item:change', (item) => emitMonthChangeEvent(item));
     });
 
-    const scrollToMiddle = () => {
-      this.scrollLeft = this.totalContentWidth / 2 - this.viewportWidth / 2;
-      this.$monthSelector.scrollLeft = this.scrollLeft;
-    };
+    const middlePosition = this.scrollLeft + this.viewportWidth / 2;
+    const activeIndex = Math.round(
+      (middlePosition - this.offsetX) / this.columnWidth - 1,
+    );
 
+    if (activeIndex >= 0 && activeIndex < this.visibleChildren.length) {
+      this.visibleChildren[activeIndex].active();
+    }
+  };
+
+  const scrollToMiddle = () => {
+    this.scrollLeft = this.totalContentWidth / 2 - this.viewportWidth / 2;
+    this.$monthSelector.scrollLeft = this.scrollLeft;
+    renderWindow();
+  };
+
+  this.$monthSelector.addEventListener('scroll', (e) => {
+    if (this.animationFrame) {
+      cancelAnimationFrame(this.animationFrame);
+    }
+    this.animationFrame = requestAnimationFrame(() => {
+      this.scrollLeft = e.target.scrollLeft;
+      renderWindow();
+    });
+  });
+
+  swiper.left(() => {
+    this.scrollLeft = Math.max(this.scrollLeft - this.columnWidth, 0);
+    this.$monthSelector.scrollLeft = this.scrollLeft;
+    renderWindow();
+  });
+
+  swiper.right(() => {
+    this.scrollLeft = Math.min(
+      this.scrollLeft + this.columnWidth,
+      this.totalContentWidth - this.viewportWidth,
+    );
+    this.$monthSelector.scrollLeft = this.scrollLeft;
+    renderWindow();
+  });
+
+  window.addEventListener('resize', () => {
+    calculateViewport();
+    scrollToMiddle();
+  });
+
+  setTimeout(() => {
+    calculateViewport();
     renderWindow();
     scrollToMiddle();
   }, 0);

@@ -4,7 +4,7 @@ import DayButton from './components/DayButton';
 
 import './index.scss';
 
-const events = ['day:change'];
+const events = ['day:change', 'day:nextMonth', 'day:previousMonth'];
 
 const html = `
     <div class="day-composer" data-select="day-composer"></div>
@@ -51,15 +51,18 @@ DayComposer.prototype = Object.assign(
   Component.prototype,
   {
     mountDay(day, state) {
-      const dayButton = new DayButton(day);
+      const dayButton = new DayButton(day, state);
 
       if (state === 'active') this.activeDayButton = dayButton;
 
       dayButton.mount(this.$dayComposer);
-      dayButton.setState(state);
       dayButton.listen('day:active', (activeDay) =>
         this.handleDayActive(dayButton, activeDay),
       );
+      dayButton.listen('day:previousMonth', () =>
+        this.emit('day:previousMonth'),
+      );
+      dayButton.listen('day:nextMonth', () => this.emit('day:nextMonth'));
     },
 
     handleDayActive(dayButton, activeDay) {

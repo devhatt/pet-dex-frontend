@@ -10,21 +10,35 @@ const html = `
 
 `;
 
-export default function DayButton(day) {
+export default function DayButton(day, state) {
   Component.call(this, { html, events });
 
   this.day = day;
   this.$day = this.selected.get('day');
   this.$dayButton = this.selected.get('day-button');
+  this.setState(state);
 
   this.$dayButton.innerText = day;
   this.$dayButton.setAttribute('aria-label', `Dia ${this.day}`);
 
-  this.$day.addEventListener('click', () => this.active());
+  const emitClickevent = () => {
+    if (this.state === 'previousMonth') {
+      this.emit('day:previousMonth');
+    }
+
+    if (this.state === 'nextMonth') {
+      this.emit('day:nextMonth');
+    }
+
+    this.active();
+  };
+
+  this.$day.addEventListener('click', () => emitClickevent());
 }
 
 DayButton.prototype = Object.assign(DayButton.prototype, Component.prototype, {
   setState(state) {
+    this.state = state;
     this.$dayButton.classList.add(`day__button--${state}`);
   },
 

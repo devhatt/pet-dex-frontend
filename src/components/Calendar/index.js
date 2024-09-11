@@ -51,6 +51,8 @@ export default function Calendar({ day, month, year }) {
     this.dayComposer = new DayComposer(this.getDate());
     this.dayComposer.mount(this.$calendarContent);
     this.dayComposer.listen('day:change', (newDay) => this.setDay(newDay));
+    this.dayComposer.listen('day:previousMonth', () => this.previousMonth());
+    this.dayComposer.listen('day:nextMonth', () => this.nextMonth());
   };
 
   this.setDate(this.day, this.month, this.year);
