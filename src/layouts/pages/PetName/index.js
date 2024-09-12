@@ -47,7 +47,7 @@ export default function PetRegister() {
   this.input.listen('value:change', updateButtonVisibility);
 
   this.button.listen('click', () => {
-    const image = this.upload.getValue();
+    const image = this.upload.getImage();
     const name = this.input.getValue();
     this.emit('submit', { image, name });
   });
