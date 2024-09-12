@@ -2,12 +2,14 @@
 @use '~styles/colors.scss' as colors;
 @use '~styles/fonts.scss' as fonts;
 
-.pet-register {
+.pet-name {
   display: flex;
   flex-direction: column;
 
   &__container {
     width: 100%;
+
+    margin-bottom: 2.4rem;
   }
 
   &__image {
@@ -32,32 +34,29 @@
     margin: 0 auto;
   }
 
-  &__button {
+  &__footer {
     width: 100%;
 
-    margin-top: 16.8rem;
-    padding: 2rem;
-    box-sizing: border-box;
+    display: flex;
 
-    box-shadow: 0 -3px 8px 0 rgba(73, 77, 90, 0.12156862745098039);
-    border-radius: 1.7rem;
+    justify-content: center;
+
+    margin-top: auto;
+  }
+
+  &__button {
+    width: min(100%, 42rem);
   }
 }
 
 @include breakpoints.from1024 {
-  .pet-register {
+  .pet-name {
     align-items: center;
 
     &__title {
       font-size: fonts.$sm;
 
       margin-top: 15rem;
-    }
-
-    &__input {
-      max-width: 40rem;
-
-      margin: 0 auto;
     }
 
     &__button {

@@ -7,17 +7,19 @@ import './index.scss';
 const events = ['submit'];
 
 const html = `
-  <div class='pet-register'>
-    <div class='pet-register__container'>
-      <div class='pet-register__image' data-select='upload-image-container'></div>
-      <h1 class='pet-register__title'>Qual o nome do seu bichinho?</h1>
-      <div class='pet-register__input' data-select='input-container'></div>
+  <div class='pet-name'>
+    <div class='pet-name__container'>
+      <div class='pet-name__image' data-select='upload-image-container'></div>
+      <h1 class='pet-name__title'>Qual o nome do seu bichinho?</h1>
+      <div class='pet-name__input' data-select='input-container'></div>
     </div>
-    <div class='pet-register__button' data-select='button-container'></div>
+    <div class="pet-name__footer">
+      <div class='pet-name__button' data-select='button-container'></div>
+    </div>
   </div>
 `;
 
-export default function PetRegister() {
+export default function PetName() {
   Component.call(this, { html, events });
 
   const $inputContainer = this.selected.get('input-container');
@@ -57,7 +59,4 @@ export default function PetRegister() {
   this.button.mount($buttonContainer);
 }
 
-PetRegister.prototype = Object.assign(
-  PetRegister.prototype,
-  Component.prototype,
-);
+PetName.prototype = Object.assign(PetName.prototype, Component.prototype);
