@@ -29,7 +29,7 @@
   }
 
   &__input {
-    max-width: 32.7rem;
+    width: min(100%, 42rem);
 
     margin: 0 auto;
   }
@@ -53,6 +53,10 @@
   .pet-name {
     align-items: center;
 
+    &__container {
+      margin-bottom: 0;
+    }
+
     &__title {
       font-size: fonts.$sm;
 
@@ -60,8 +64,6 @@
     }
 
     &__button {
-      width: 43%;
-
       margin-top: 4rem;
       padding: unset;
 
