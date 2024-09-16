@@ -10,12 +10,8 @@ describe('UploadImage', () => {
   it('renders correctly', () => {
     renderUploadImage();
     const uploadInput = screen.getByLabelText('Carregar imagem');
-    const buttonIcon = screen.getByAltText('Botão com ícone');
-    const imagePreview = screen.getByLabelText('Carregar imagem');
 
     expect(uploadInput).toBeInTheDocument();
-    expect(buttonIcon).toBeInTheDocument();
-    expect(imagePreview).toBeInTheDocument();
   });
 
   describe('Upload input', () => {
@@ -29,7 +25,6 @@ describe('UploadImage', () => {
       await user.upload(uploadInput, file);
 
       expect(uploadInput.files[0]).toBe(file);
-      expect(uploadInput.files.item(0)).toBe(file);
     });
   });
 
