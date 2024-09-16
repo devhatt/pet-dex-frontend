@@ -6,10 +6,10 @@ export class ModalController {
     this.selector = selector;
   }
 
-  Open(dateArray) {
+  onOpen(dateArray) {
     if (this.modal) this.Close();
 
-    this.modal = new SelectorModal(dateArray);
+    this.modal = new SelectorModal({ dateArray });
     this.modal.mount(this.selector.$dateSelector);
     this.modal.listen('date:change', (item) => this.changeDate(item));
   }

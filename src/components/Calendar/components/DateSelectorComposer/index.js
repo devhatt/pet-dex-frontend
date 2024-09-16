@@ -1,4 +1,5 @@
 import { Component } from 'pet-dex-utilities';
+import dayjs from 'dayjs';
 import { listenBreakpoint } from '../../../../utils/breakpoints/breakpoints';
 import { ModalController } from './utils/ModalController';
 import {
@@ -9,7 +10,6 @@ import YearSelector from './components/YearSelector';
 import DateSelected from './components/DateSelected';
 import { MONTHS } from '../../utils/months';
 import MonthSelector from './components/MonthSelector';
-
 import './index.scss';
 
 const events = ['month:change', 'year:change'];
@@ -21,7 +21,10 @@ const html = `
       </div>
 `;
 
-export default function DateSelectorComposer(month, year) {
+export default function DateSelectorComposer({
+  month = dayjs().date() + 1,
+  year = dayjs().year(),
+}) {
   Component.call(this, { html, events });
 
   this.month = month;
@@ -44,7 +47,7 @@ export default function DateSelectorComposer(month, year) {
       this.setMonth(newMonth),
     );
 
-    this.yearSelector = new YearSelector(this.yearArray);
+    this.yearSelector = new YearSelector({ dateArray: this.yearArray });
     this.yearSelector.mount(this.$yearSelector);
     this.yearSelector.listen('year:change', (newYear) => this.setYear(newYear));
   };
@@ -56,16 +59,16 @@ export default function DateSelectorComposer(month, year) {
     this.monthArray = monthArrayGenerator(this.month);
     this.yearArray = yearArrayGenerator(this.year);
 
-    this.monthSelected = new DateSelected(MONTHS[this.month]);
+    this.monthSelected = new DateSelected({ date: MONTHS[this.month] });
     this.monthSelected.mount(this.$monthSelector);
     this.monthSelected.listen('item:click', () =>
-      this.modalControl.Open(this.monthArray),
+      this.modalControl.onOpen(this.monthArray),
     );
 
-    this.yearSelected = new DateSelected(this.year);
+    this.yearSelected = new DateSelected({ date: this.year });
     this.yearSelected.mount(this.$yearSelector);
     this.yearSelected.listen('item:click', () =>
-      this.modalControl.Open(this.yearArray),
+      this.modalControl.onOpen(this.yearArray),
     );
   };
 

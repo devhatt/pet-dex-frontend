@@ -21,7 +21,7 @@
 
   scrollbar-width: none;
 
-  [data-select='list-content'] {
+  &__list {
     width: fit-content;
 
     display: flex;

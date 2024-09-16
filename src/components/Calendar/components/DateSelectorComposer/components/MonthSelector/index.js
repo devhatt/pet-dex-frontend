@@ -9,15 +9,15 @@ const events = ['month:change', 'selector:click'];
 const html = `
  <div class="month-selector" data-select="month-selector">
     <div>
-      <div data-select="month-list">
-        <ul data-select="list-content">
+      <div class="month-selector__wrapper" data-select="month-list">
+        <ul class="month-selector__list" data-select="list-content">
         </ul>
       </div>
     </div>
   </div>
 `;
 
-export default function MonthSelector({ dateArray }) {
+export default function MonthSelector({ dateArray, nodePadding = 5 }) {
   Component.call(this, { html, events });
 
   this.dateArray = dateArray;
@@ -26,17 +26,16 @@ export default function MonthSelector({ dateArray }) {
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.columnWidth = 150;
-  this.activeColumnWidth = 176;
-  this.nodePadding = 6;
+  const columnWidth = 150;
+  const activeColumnWidth = 176;
+  this.nodePadding = nodePadding;
   this.scrollLeft = this.$monthSelector.scrollLeft;
 
   const swiper = makeSwipable(this.$monthSelector);
 
   const handleItemClick = (index) => {
     const itemScroll =
-      index * this.columnWidth -
-      (this.viewportWidth / 2 - this.columnWidth / 2);
+      index * columnWidth - (this.viewportWidth / 2 - columnWidth / 2);
     this.$monthSelector.scrollLeft = itemScroll;
   };
 
@@ -51,20 +50,20 @@ export default function MonthSelector({ dateArray }) {
 
   const renderWindow = () => {
     this.totalContentWidth =
-      (this.itemCount - 1) * this.columnWidth + this.activeColumnWidth;
+      (this.itemCount - 1) * columnWidth + activeColumnWidth;
 
     this.startNode =
-      Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
+      Math.floor(this.scrollLeft / columnWidth) - this.nodePadding;
     this.startNode = Math.max(0, this.startNode);
 
     this.visibleNodesCount =
-      Math.ceil(this.viewportWidth / this.columnWidth) + 2 * this.nodePadding;
+      Math.ceil(this.viewportWidth / columnWidth) + 2 * this.nodePadding;
     this.visibleNodesCount = Math.min(
       this.itemCount - this.startNode,
       this.visibleNodesCount,
     );
 
-    this.offsetX = this.startNode * this.columnWidth;
+    this.offsetX = this.startNode * columnWidth;
 
     this.$dateList.style.width = `${this.totalContentWidth}px`;
     this.$listContent.style.transform = `translateX(${this.offsetX}px)`;
@@ -86,7 +85,7 @@ export default function MonthSelector({ dateArray }) {
 
     const middlePosition = this.scrollLeft + this.viewportWidth / 2;
     const activeIndex = Math.round(
-      (middlePosition - this.offsetX) / this.columnWidth - 1,
+      (middlePosition - this.offsetX) / columnWidth - 1,
     );
 
     if (activeIndex >= 0 && activeIndex < this.visibleChildren.length) {
@@ -111,14 +110,14 @@ export default function MonthSelector({ dateArray }) {
   });
 
   swiper.left(() => {
-    this.scrollLeft = Math.max(this.scrollLeft - this.columnWidth, 0);
+    this.scrollLeft = Math.max(this.scrollLeft - columnWidth, 0);
     this.$monthSelector.scrollLeft = this.scrollLeft;
     renderWindow();
   });
 
   swiper.right(() => {
     this.scrollLeft = Math.min(
-      this.scrollLeft + this.columnWidth,
+      this.scrollLeft + columnWidth,
       this.totalContentWidth - this.viewportWidth,
     );
     this.$monthSelector.scrollLeft = this.scrollLeft;
@@ -130,11 +129,11 @@ export default function MonthSelector({ dateArray }) {
     scrollToMiddle();
   });
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     calculateViewport();
     renderWindow();
     scrollToMiddle();
-  }, 0);
+  });
 }
 
 MonthSelector.prototype = Object.assign(

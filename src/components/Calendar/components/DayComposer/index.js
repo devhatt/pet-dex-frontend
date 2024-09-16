@@ -1,7 +1,6 @@
 import { Component } from 'pet-dex-utilities';
 import dayjs from 'dayjs';
 import DayButton from './components/DayButton';
-
 import './index.scss';
 
 const events = ['day:change', 'day:nextMonth', 'day:previousMonth'];

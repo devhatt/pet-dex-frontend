@@ -8,15 +8,15 @@ const events = ['date:change'];
 const html = `
     <div class="selector-modal" data-select="selector-modal">
       <div>
-        <div data-select="modal-list">
-          <ul data-select="list-content">
+        <div class="selector-modal__wrapper" data-select="modal-list">
+          <ul class="selector-modal__list" data-select="list-content">
           </ul>
         </div>
       </div>
     </div>
 `;
 
-export default function SelectorModal(dateArray) {
+export default function SelectorModal({ dateArray, nodePadding = 5 }) {
   Component.call(this, { html, events });
 
   this.dateArray = dateArray;
@@ -25,9 +25,9 @@ export default function SelectorModal(dateArray) {
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.rowHeight = 34;
-  this.activeRowHeight = 42.8;
-  this.nodePadding = 5;
+  const rowHeight = 34;
+  const activeRowHeight = 42.8;
+  this.nodePadding = nodePadding;
   this.scrollTop = this.$selectorModal.scrollTop;
 
   setTimeout(() => {
@@ -35,20 +35,20 @@ export default function SelectorModal(dateArray) {
 
     const renderWindow = () => {
       this.totalContentHeight =
-        (this.itemCount - 1) * this.rowHeight + this.activeRowHeight;
+        (this.itemCount - 1) * rowHeight + activeRowHeight;
 
       this.startNode =
-        Math.floor(this.scrollTop / this.rowHeight) - this.nodePadding;
+        Math.floor(this.scrollTop / rowHeight) - this.nodePadding;
       this.startNode = Math.max(0, this.startNode);
 
       this.visibleNodesCount =
-        Math.ceil(this.viewportHeight / this.rowHeight) + 2 * this.nodePadding;
+        Math.ceil(this.viewportHeight / rowHeight) + 2 * this.nodePadding;
       this.visibleNodesCount = Math.min(
         this.itemCount - this.startNode,
         this.visibleNodesCount,
       );
 
-      this.offsetY = this.startNode * this.rowHeight;
+      this.offsetY = this.startNode * rowHeight;
 
       this.$modalList.style.height = `${this.totalContentHeight}px`;
       this.$listContent.style.transform = `translateY(${this.offsetY}px)`;

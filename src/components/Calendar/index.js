@@ -7,7 +7,14 @@ import DayComposer from './components/DayComposer';
 
 import './index.scss';
 
-const events = [];
+const events = [
+  'date:change',
+  'day:change',
+  'month:change',
+  'year:change',
+  'month:next',
+  'month:previous',
+];
 
 const html = `
   <div class="calendar" data-select="calendar">
@@ -35,7 +42,10 @@ export default function Calendar({
   this.previousButton.mount(this.$calendarControls);
   this.previousButton.listen('button:click', () => this.previousMonth());
 
-  this.dateSelector = new DateSelectorComposer(this.month - 1, this.year);
+  this.dateSelector = new DateSelectorComposer({
+    month: this.month - 1,
+    year: this.year,
+  });
   this.dateSelector.mount(this.$calendarControls);
   this.dateSelector.listen('month:change', (newMonth) => {
     this.setMonth(newMonth + 1);
@@ -71,6 +81,12 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     this.mountDayComposer();
     this.firstDayInWeek = dayjs(`${this.year}-${this.month}-${this.day}`).day();
     this.weekDayComposer.activeWeekDay(this.firstDayInWeek);
+
+    this.emit('date:change', {
+      day: this.day,
+      month: this.month,
+      year: this.year,
+    });
   },
 
   getDate() {
@@ -84,6 +100,8 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
   setDay(day) {
     this.day = day;
     this.setDate(this.day, this.month, this.year);
+
+    this.emit('day:change', this.day);
   },
 
   getDay() {
@@ -93,6 +111,8 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
   setMonth(month) {
     this.month = month;
     this.setDate(this.day, this.month, this.year);
+
+    this.emit('month:change', this.month);
   },
 
   getMonth() {
@@ -102,6 +122,8 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
   setYear(year) {
     this.year = year;
     this.setDate(this.day, this.month, this.year);
+
+    this.emit('year:change', this.year);
   },
 
   getYear() {
@@ -125,6 +147,8 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
 
     this.dateSelector.setMonth(this.month - 1);
     this.setDate(this.day, this.month, this.year);
+
+    this.emit('month:next', this.month);
   },
 
   previousMonth(day) {
@@ -144,5 +168,7 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
 
     this.dateSelector.setMonth(this.month - 1);
     this.setDate(this.day, this.month, this.year);
+
+    this.emit('month:previous', this.year);
   },
 });

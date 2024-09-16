@@ -1,46 +1,41 @@
 import { Component } from 'pet-dex-utilities';
-import './index.scss';
 import { makeSwipable } from '~src/utils/swiper';
 import SelectorItem from '../SelectorItem';
+import './index.scss';
 
 const events = ['selector:click', 'year:change'];
 
 const html = `
- <div class="date-selector" data-select="date-selector">
+ <div class="year-selector" data-select="year-selector">
     <div>
-      <div data-select="date-list">
-        <ul data-select="list-content">
+      <div class="year-selector__wrapper" data-select="date-list">
+        <ul class="year-selector__list" data-select="list-content">
         </ul>
       </div>
     </div>
   </div>
 `;
 
-export default function YearSelector(dateArray) {
+export default function YearSelector({ dateArray, nodePadding = 5 }) {
   Component.call(this, { html, events });
 
   this.dateArray = dateArray;
-  this.$yearSelector = this.selected.get('date-selector');
+  this.$yearSelector = this.selected.get('year-selector');
   this.$dateList = this.selected.get('date-list');
   this.$listContent = this.selected.get('list-content');
 
   this.itemCount = this.dateArray.length;
-  this.columnWidth = 70;
-  this.activeColumnWidth = 96;
-  this.nodePadding = 5;
+  const columnWidth = 70;
+  const activeColumnWidth = 96;
+  this.nodePadding = nodePadding;
   this.scrollLeft = this.$yearSelector.scrollLeft;
 
   const swiper = makeSwipable(this.$yearSelector);
 
   const handleItemClick = (index) => {
     const itemScroll =
-      index * this.columnWidth -
-      (this.viewportWidth / 2 - this.columnWidth / 2);
+      index * columnWidth - (this.viewportWidth / 2 - columnWidth / 2);
     this.$yearSelector.scrollLeft = itemScroll;
-  };
-
-  const emitYearChangeEvent = (year) => {
-    this.emit('year:change', year);
   };
 
   const calculateViewport = () => {
@@ -49,20 +44,20 @@ export default function YearSelector(dateArray) {
 
   const renderWindow = () => {
     this.totalContentWidth =
-      (this.itemCount - 1) * this.columnWidth + this.activeColumnWidth;
+      (this.itemCount - 1) * columnWidth + activeColumnWidth;
 
     this.startNode =
-      Math.floor(this.scrollLeft / this.columnWidth) - this.nodePadding;
+      Math.floor(this.scrollLeft / columnWidth) - this.nodePadding;
     this.startNode = Math.max(0, this.startNode);
 
     this.visibleNodesCount =
-      Math.ceil(this.viewportWidth / this.columnWidth) + 2 * this.nodePadding;
+      Math.ceil(this.viewportWidth / columnWidth) + 2 * this.nodePadding;
     this.visibleNodesCount = Math.min(
       this.itemCount - this.startNode,
       this.visibleNodesCount,
     );
 
-    this.offsetX = this.startNode * this.columnWidth;
+    this.offsetX = this.startNode * columnWidth;
 
     this.$dateList.style.width = `${this.totalContentWidth}px`;
     this.$listContent.style.transform = `translateX(${this.offsetX}px)`;
@@ -79,12 +74,14 @@ export default function YearSelector(dateArray) {
       selectorItem.listen('item:click', () =>
         handleItemClick(index + this.startNode),
       );
-      selectorItem.listen('item:change', (item) => emitYearChangeEvent(item));
+      selectorItem.listen('item:change', (item) =>
+        this.emit('year:change', item),
+      );
     });
 
     const middlePosition = this.scrollLeft + this.viewportWidth / 2;
     const activeIndex = Math.round(
-      (middlePosition - this.offsetX) / this.columnWidth - 1,
+      (middlePosition - this.offsetX) / columnWidth - 1,
     );
 
     if (activeIndex >= 0 && activeIndex < this.visibleChildren.length) {
@@ -109,14 +106,14 @@ export default function YearSelector(dateArray) {
   });
 
   swiper.left(() => {
-    this.scrollLeft = Math.max(this.scrollLeft - this.columnWidth, 0);
+    this.scrollLeft = Math.max(this.scrollLeft - columnWidth, 0);
     this.$yearSelector.scrollLeft = this.scrollLeft;
     renderWindow();
   });
 
   swiper.right(() => {
     this.scrollLeft = Math.min(
-      this.scrollLeft + this.columnWidth,
+      this.scrollLeft + columnWidth,
       this.totalContentWidth - this.viewportWidth,
     );
     this.$yearSelector.scrollLeft = this.scrollLeft;
@@ -128,11 +125,11 @@ export default function YearSelector(dateArray) {
     scrollToMiddle();
   });
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     calculateViewport();
     renderWindow();
     scrollToMiddle();
-  }, 0);
+  });
 }
 
 YearSelector.prototype = Object.assign(

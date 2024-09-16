@@ -3,7 +3,7 @@
 @use '~styles/fonts.scss' as fonts;
 @use '~styles/breakpoints.scss' as breakpoints;
 
-.date-selector {
+.year-selector {
   overflow: auto;
 
   display: flex;
@@ -21,7 +21,7 @@
   position: relative;
   scroll-snap-type: x proximity;
 
-  [data-select='list-content'] {
+  &__list {
     width: max-content;
 
     display: flex;

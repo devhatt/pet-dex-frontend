@@ -30,7 +30,7 @@
 
   scrollbar-width: none;
 
-  [data-select='list-content'] > * {
+  &__wrapper > * {
     scroll-snap-align: center;
   }
 }

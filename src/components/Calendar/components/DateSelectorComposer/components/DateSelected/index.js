@@ -7,7 +7,7 @@ const html = `
   <span class="date-selected" data-select="date-selected"></span>
 `;
 
-export default function DateSelected(date) {
+export default function DateSelected({ date = 1 }) {
   Component.call(this, { html, events });
 
   this.$dateSelected = this.selected.get('date-selected');
