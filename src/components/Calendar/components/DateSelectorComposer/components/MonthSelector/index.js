@@ -17,7 +17,7 @@ const html = `
   </div>
 `;
 
-export default function MonthSelector(dateArray) {
+export default function MonthSelector({ dateArray }) {
   Component.call(this, { html, events });
 
   this.dateArray = dateArray;

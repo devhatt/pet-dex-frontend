@@ -13,11 +13,7 @@ export default function DateSelected(date) {
   this.$dateSelected = this.selected.get('date-selected');
   this.setDate(date);
 
-  this.emitClickevent = () => {
-    this.emit('item:click');
-  };
-
-  this.$dateSelected.addEventListener('click', this.emitClickevent);
+  this.$dateSelected.addEventListener('click', () => this.emit('item:click'));
 }
 
 DateSelected.prototype = Object.assign(

@@ -10,7 +10,11 @@ const html = `
     <div class="day-composer" data-select="day-composer"></div>
 `;
 
-export default function DayComposer({ day, month, year }) {
+export default function DayComposer({
+  day = dayjs().date(),
+  month = dayjs().month() + 1,
+  year = dayjs().year(),
+}) {
   Component.call(this, { html, events });
 
   this.day = day;
@@ -19,7 +23,7 @@ export default function DayComposer({ day, month, year }) {
   this.$dayComposer = this.selected.get('day-composer');
   this.activeDayButton = null;
 
-  this.totalDaysInCalendar = 42;
+  const totalDaysInCalendar = 42;
   this.totalDaysInMonth = dayjs(`${this.year}-${this.month}-1`).daysInMonth();
   this.firstDayInWeek = dayjs(`${this.year}-${this.month}-1`).day();
   this.totalDaysInPreviousMonth = dayjs(
@@ -28,7 +32,7 @@ export default function DayComposer({ day, month, year }) {
   this.nextMonthDay = 1;
   this.actualMonthDay = 1;
 
-  for (let i = 1; i <= this.totalDaysInCalendar; i += 1) {
+  for (let i = 1; i <= totalDaysInCalendar; i += 1) {
     if (i <= this.firstDayInWeek) {
       const previousMonthDay =
         this.totalDaysInPreviousMonth - this.firstDayInWeek + i;

@@ -14,11 +14,9 @@ export default function ModalItem(item) {
   this.$modalItem = this.selected.get('modal-item');
   this.$modalItem.innerText = this.item;
 
-  const emitEventClick = () => {
-    this.emit('item:click', this.item);
-  };
-
-  this.$modalItem.addEventListener('click', () => emitEventClick());
+  this.$modalItem.addEventListener('click', () =>
+    this.emit('item:click', this.item),
+  );
 }
 
 ModalItem.prototype = Object.assign(ModalItem.prototype, Component.prototype, {

@@ -38,7 +38,7 @@ export default function DateSelectorComposer(month, year) {
     this.monthArray = monthArrayGenerator(this.month);
     this.yearArray = yearArrayGenerator(this.year);
 
-    this.monthSelector = new MonthSelector(this.monthArray);
+    this.monthSelector = new MonthSelector({ dateArray: this.monthArray });
     this.monthSelector.mount(this.$monthSelector);
     this.monthSelector.listen('month:change', (newMonth) =>
       this.setMonth(newMonth),

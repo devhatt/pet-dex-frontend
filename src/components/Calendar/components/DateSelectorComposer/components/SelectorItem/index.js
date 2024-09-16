@@ -17,11 +17,7 @@ export default function SelectorItem(item) {
 
   if (typeof this.item === 'number') this.$selectorItem.style.width = '70px';
 
-  this.emitClickEvent = () => {
-    this.emit('item:click');
-  };
-
-  this.$selectorItem.addEventListener('click', this.emitClickEvent);
+  this.$selectorItem.addEventListener('click', () => this.emit('item:click'));
 }
 
 SelectorItem.prototype = Object.assign(

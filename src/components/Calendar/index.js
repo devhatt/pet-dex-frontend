@@ -16,12 +16,16 @@ const html = `
   </div>
 `;
 
-export default function Calendar({ day, month, year }) {
+export default function Calendar({
+  day = dayjs().date(),
+  month = dayjs().month() + 1,
+  year = dayjs().year(),
+}) {
   Component.call(this, { html, events });
 
-  this.day = day || dayjs().date();
-  this.month = month || dayjs().month() + 1;
-  this.year = year || dayjs().year();
+  this.day = day;
+  this.month = month;
+  this.year = year;
 
   this.$calendar = this.selected.get('calendar');
   this.$calendarControls = this.selected.get('calendar-controls');
