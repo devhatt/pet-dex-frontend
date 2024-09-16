@@ -17,7 +17,7 @@ const renderTextInput = (parameters) => render(new TextInput(parameters));
 describe('TextInput', () => {
   it('renders with props', () => {
     renderTextInput(propsMock);
-    const textInput = screen.getByPlaceholderText('Write something');
+    const textInput = screen.getByPlaceholderText(propsMock.placeholder);
 
     expect(textInput).toBeInTheDocument();
   });
@@ -76,6 +76,6 @@ describe('TextInput', () => {
     expect(element).toBeDisabled();
 
     textInput.enable();
-    expect(element).toBeEnabled(false);
+    expect(element).toBeEnabled();
   });
 });
