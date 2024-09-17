@@ -1,0 +1,70 @@
+@use '~styles/breakpoints.scss' as breakpoints;
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.pet-name {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    width: 100%;
+
+    margin-bottom: 2.4rem;
+  }
+
+  &__image {
+    max-width: 18.6rem;
+
+    margin: 5rem auto;
+  }
+
+  &__title {
+    font-family: fonts.$primaryFont;
+    color: colors.$gray800;
+    text-align: center;
+    font-size: fonts.$xs;
+    font-weight: fonts.$medium;
+
+    margin: 7rem auto 3rem;
+  }
+
+  &__input {
+    width: min(100%, 42rem);
+
+    margin: 0 auto;
+  }
+
+  &__footer {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: auto;
+  }
+
+  &__button {
+    width: min(100%, 42rem);
+  }
+}
+
+@include breakpoints.from1024 {
+  .pet-name {
+    align-items: center;
+
+    &__container {
+      margin-bottom: 0;
+    }
+
+    &__title {
+      font-size: fonts.$sm;
+
+      margin-top: 15rem;
+    }
+
+    &__button {
+      margin-top: 4rem;
+    }
+  }
+}
