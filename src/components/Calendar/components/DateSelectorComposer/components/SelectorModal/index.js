@@ -57,7 +57,8 @@ export default function SelectorModal({ dateArray, nodePadding = 5 }) {
       this.visibleChildren = new Array(this.visibleNodesCount)
         .fill(null)
         .map(
-          (_, index) => new ModalItem(this.dateArray[index + this.startNode]),
+          (_, index) =>
+            new ModalItem({ item: this.dateArray[index + this.startNode] }),
         );
 
       this.visibleChildren.forEach((modalItem, index) => {

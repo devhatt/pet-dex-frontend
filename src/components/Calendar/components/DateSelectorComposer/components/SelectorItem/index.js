@@ -7,7 +7,7 @@ const html = `
 	<li class="selector-item" data-select="selector-item"></li>
 `;
 
-export default function SelectorItem(item) {
+export default function SelectorItem({ item }) {
   Component.call(this, { html, events });
   this.item = item;
   this.$selectorItem = this.selected.get('selector-item');

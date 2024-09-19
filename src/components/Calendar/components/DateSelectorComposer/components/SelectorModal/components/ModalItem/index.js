@@ -7,7 +7,7 @@ const html = `
     <li class="selector-modal__item" data-select="modal-item"></li>
 `;
 
-export default function ModalItem(item) {
+export default function ModalItem({ item }) {
   Component.call(this, { html, events });
 
   this.item = item;

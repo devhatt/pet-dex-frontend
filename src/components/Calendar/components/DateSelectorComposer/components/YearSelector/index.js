@@ -66,7 +66,8 @@ export default function YearSelector({ dateArray, nodePadding = 5 }) {
     this.visibleChildren = new Array(this.visibleNodesCount)
       .fill(null)
       .map(
-        (_, index) => new SelectorItem(this.dateArray[index + this.startNode]),
+        (_, index) =>
+          new SelectorItem({ item: this.dateArray[index + this.startNode] }),
       );
 
     this.visibleChildren.forEach((selectorItem, index) => {

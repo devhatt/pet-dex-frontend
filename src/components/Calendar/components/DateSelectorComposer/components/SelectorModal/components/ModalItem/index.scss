@@ -4,8 +4,6 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .selector-modal__item {
-  width: 100%;
-
   font-family: fonts.$primaryFont;
   color: colors.$gray500;
   text-align: center;

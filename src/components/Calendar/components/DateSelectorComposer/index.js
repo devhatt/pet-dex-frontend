@@ -82,6 +82,7 @@ export default function DateSelectorComposer({
     } else {
       if (this.monthSelected) this.monthSelected.unmount();
       if (this.yearSelected) this.yearSelected.unmount();
+      this.modalControl.onClose();
 
       mountMobileSelectors();
     }

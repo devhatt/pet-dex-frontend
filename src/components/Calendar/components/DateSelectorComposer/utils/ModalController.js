@@ -7,7 +7,7 @@ export class ModalController {
   }
 
   onOpen(dateArray) {
-    if (this.modal) this.Close();
+    if (this.modal) this.onClose();
 
     this.modal = new SelectorModal({ dateArray });
     this.modal.mount(this.selector.$dateSelector);
@@ -28,10 +28,10 @@ export class ModalController {
 
     if (!isOutside) return;
 
-    this.Close();
+    this.onClose();
   }
 
-  Close() {
+  onClose() {
     if (this.modal) {
       this.modal.unmount();
     }
