@@ -22,6 +22,10 @@ export default function DayComposer({
   this.$dayComposer = this.selected.get('day-composer');
   this.activeDayButton = null;
 
+  const actualDay = dayjs().date();
+  const actualMonth = dayjs().month() + 1;
+  const actualYear = dayjs().year();
+
   const totalDaysInCalendar = 42;
   this.totalDaysInMonth = dayjs(`${this.year}-${this.month}-1`).daysInMonth();
   this.firstDayInWeek = dayjs(`${this.year}-${this.month}-1`).day();
@@ -44,6 +48,14 @@ export default function DayComposer({
         this.actualMonthDay,
         this.actualMonthDay === this.day && 'active',
       );
+
+      if (
+        this.actualMonthDay === actualDay &&
+        this.month === actualMonth &&
+        this.year === actualYear
+      )
+        this.dayButton.actualDay();
+
       this.actualMonthDay += 1;
     }
   }
@@ -54,18 +66,18 @@ DayComposer.prototype = Object.assign(
   Component.prototype,
   {
     mountDay(day, state) {
-      const dayButton = new DayButton(day, state);
+      this.dayButton = new DayButton(day, state);
 
-      if (state === 'active') this.activeDayButton = dayButton;
+      if (state === 'active') this.activeDayButton = this.dayButton;
 
-      dayButton.mount(this.$dayComposer);
-      dayButton.listen('day:active', (activeDay) =>
-        this.handleDayActive(dayButton, activeDay),
+      this.dayButton.mount(this.$dayComposer);
+      this.dayButton.listen('day:active', (activeDay) =>
+        this.handleDayActive(this.dayButton, activeDay),
       );
-      dayButton.listen('day:previousMonth', () =>
+      this.dayButton.listen('day:previousMonth', () =>
         this.emit('day:previousMonth'),
       );
-      dayButton.listen('day:nextMonth', () => this.emit('day:nextMonth'));
+      this.dayButton.listen('day:nextMonth', () => this.emit('day:nextMonth'));
     },
 
     handleDayActive(dayButton, activeDay) {

@@ -37,6 +37,11 @@
       background-color: colors.$blue150;
     }
 
+    &--actual {
+      color: colors.$primary200;
+      font-weight: fonts.$semiBold;
+    }
+
     &--previousMonth,
     &--nextMonth {
       color: rgba(160, 174, 192, 1);

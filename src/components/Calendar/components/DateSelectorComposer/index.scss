@@ -4,6 +4,8 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .date-selector-composer {
+  width: 100%;
+
   cursor: pointer;
 }
 
