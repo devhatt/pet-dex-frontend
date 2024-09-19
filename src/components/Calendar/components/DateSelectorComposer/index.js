@@ -56,20 +56,21 @@ export default function DateSelectorComposer({
     if (this.monthSelected) this.monthSelected.unmount();
     if (this.yearSelected) this.yearSelected.unmount();
 
-    this.monthArray = monthArrayGenerator(this.month);
-    this.yearArray = yearArrayGenerator(this.year);
-
     this.monthSelected = new DateSelected({ date: MONTHS[this.month] });
     this.monthSelected.mount(this.$monthSelector);
-    this.monthSelected.listen('item:click', () =>
-      this.modalControl.onOpen(this.monthArray),
-    );
+    this.monthSelected.listen('item:click', () => {
+      this.month = this.monthSelected.getDate();
+      this.monthArray = monthArrayGenerator(MONTHS.indexOf(this.month));
+      this.modalControl.onOpen(this.monthArray);
+    });
 
     this.yearSelected = new DateSelected({ date: this.year });
     this.yearSelected.mount(this.$yearSelector);
-    this.yearSelected.listen('item:click', () =>
-      this.modalControl.onOpen(this.yearArray),
-    );
+    this.yearSelected.listen('item:click', () => {
+      this.year = this.yearSelected.getDate();
+      this.yearArray = yearArrayGenerator(this.year);
+      this.modalControl.onOpen(this.yearArray);
+    });
   };
 
   listenBreakpoint('from667', (matches) => {

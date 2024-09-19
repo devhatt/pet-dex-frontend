@@ -21,7 +21,12 @@ DateSelected.prototype = Object.assign(
   Component.prototype,
   {
     setDate(date) {
+      this.date = date;
       this.$dateSelected.innerText = date;
+    },
+
+    getDate() {
+      return this.date;
     },
   },
 );

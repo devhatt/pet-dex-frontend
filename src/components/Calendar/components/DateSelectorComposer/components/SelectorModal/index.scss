@@ -30,7 +30,7 @@
 
   scrollbar-width: none;
 
-  &__wrapper > * {
+  &__list > * {
     scroll-snap-align: center;
   }
 }

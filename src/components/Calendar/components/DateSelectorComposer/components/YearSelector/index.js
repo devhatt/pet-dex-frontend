@@ -120,9 +120,11 @@ export default function YearSelector({ dateArray, nodePadding = 5 }) {
     renderWindow();
   });
 
-  window.addEventListener('resize', () => {
-    calculateViewport();
-    scrollToMiddle();
+  this.listen('mount', () => {
+    window.addEventListener('resize', () => {
+      calculateViewport();
+      scrollToMiddle();
+    });
   });
 
   requestAnimationFrame(() => {
