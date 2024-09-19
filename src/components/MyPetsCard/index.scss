@@ -1,0 +1,41 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+
+.my-pets-card {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 1.6rem 2rem;
+  border: 1px solid colors.$gray100;
+
+  background-color: colors.$primary200;
+  border-radius: 14px;
+
+  &__text {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+  }
+
+  &__pet-name {
+    font-family: fonts.$primaryFont;
+
+    color: colors.$white;
+    font-size: fonts.$md;
+    font-weight: fonts.$semiBold;
+    line-height: 30px;
+  }
+
+  &__pet-info {
+    font-family: fonts.$fourthFont;
+
+    color: colors.$white;
+    font-size: fonts.$xs;
+    font-weight: fonts.$regular;
+    line-height: 20px;
+  }
+}

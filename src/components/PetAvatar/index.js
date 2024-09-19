@@ -11,7 +11,7 @@ const html = `
   </a>
 `;
 
-export default function PetAvatar({ id, title, imgSrc, imgAlt } = {}) {
+export default function PetAvatar({ id = '', title, imgSrc, imgAlt } = {}) {
   Component.call(this, { html, events });
 
   if (id) this.setHref(id);
