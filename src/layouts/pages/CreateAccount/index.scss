@@ -1,0 +1,51 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.breed-page {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  &__breed-grid {
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+
+    align-items: start;
+
+    padding: 1rem;
+  }
+
+  &__content {
+    padding: 2rem;
+    border: 1px solid rgb(104, 8, 8);
+  }
+
+  &__footer {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: auto;
+  }
+
+  &__button {
+    width: min(100%, 42rem);
+  }
+}
+
+@include breakpoints.from1024 {
+  .breed-page {
+    &__breed-grid {
+      display: flex;
+
+      align-items: center;
+    }
+  }
+}
