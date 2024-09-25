@@ -1,5 +1,7 @@
 import { Component } from 'pet-dex-utilities';
 import Button from '~src/components/Button';
+import TextInput from '~src/components/TextInput';
+import Field from '~src/components/RegisterForm/components/Field';
 import UploadImage from '../../../components/UploadImage';
 
 import './index.scss';
@@ -15,11 +17,8 @@ const html = `
       </div>
       <div data-select="content-container" class="breed-page__content">
         <div data-select="image-container" class="breed-page__image"></div>
-        <form>
-          <input type='text'/>
-          <input type='text'/>
-          <input type='text'/>
-          <input type='text'/>
+        <form class="breed-page__content_form">
+          <div data-select="input-container"></div>
         </form>
       </div>
     </div>
@@ -31,9 +30,64 @@ export default function CreateAccount() {
   Component.call(this, { html, events });
 
   // const $container = this.selected.get('container');
-  const $footerContainer = this.selected.get('footer-container');
   const $uploadImage = this.selected.get('image-container');
+  const $field = this.selected.get('input-container');
+
+  const $footerContainer = this.selected.get('footer-container');
   this.activeCard = null;
+
+  const name = new Field({
+    label: 'Nome e Sobrenome',
+    error: 'Informe seu nome',
+    content: new TextInput({
+      id: 'name',
+      placeholder: 'Informe seu nomes',
+    }),
+  });
+
+  const phone = new Field({
+    label: 'Celular',
+    error: 'Devhat',
+    content: new TextInput({
+      id: 'name',
+      placeholder: '(11) 12345-6789',
+    }),
+  });
+
+  const dataNascimento = new Field({
+    label: 'Data de nascimento',
+    error: 'Informe seu nome',
+    content: new TextInput({
+      id: 'name',
+      placeholder: '13/12/1995',
+    }),
+  });
+
+  const local = new Field({
+    label: 'Local',
+    error: 'Informe seu celualr',
+    content: new TextInput({
+      id: 'name',
+      placeholder: 'Sao Paulo, SP',
+    }),
+  });
+
+  const mail = new Field({
+    label: 'E-mail',
+    error: 'Informe seu nome',
+    content: new TextInput({
+      id: 'name',
+      placeholder: 'dev@devhat.com.br',
+    }),
+  });
+  const password = new Field({
+    label: 'Senha',
+    error: 'Informe seu nome',
+    content: new TextInput({
+      id: 'name',
+      placeholder: '*******',
+    }),
+  });
 
   const $button = new Button({
     text: 'Salvar',
@@ -41,12 +95,20 @@ export default function CreateAccount() {
     isDisabled: true,
   });
 
-  const $image = new UploadImage();
-  $image.mount($uploadImage);
+  const $image = new UploadImage({});
 
   $button.listen('click', () => {
     this.emit('submit', { breedSelected: this.breedSelected });
   });
+
+  $image.mount($uploadImage);
+
+  name.mount($field);
+  phone.mount($field);
+  dataNascimento.mount($field);
+  local.mount($field);
+  mail.mount($field);
+  password.mount($field);
 
   $button.selected.get('button').classList.add('breed-page__button');
   $button.mount($footerContainer);

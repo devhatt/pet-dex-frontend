@@ -11,7 +11,7 @@
     overflow: auto;
 
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     flex-wrap: wrap;
     gap: 1.6rem;
 
@@ -21,8 +21,31 @@
   }
 
   &__content {
+    width: 100%;
+
+    display: flex;
+
     padding: 2rem;
-    border: 1px solid rgb(104, 8, 8);
+
+    &_form {
+      width: min(100%, 70rem);
+
+      height: 16rem;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 2rem;
+
+      border: 2px dashed rgb(228, 4, 4);
+    }
+  }
+
+  &__image {
+    width: min(100%, 18.6rem);
+
+    margin: 4rem;
   }
 
   &__footer {
