@@ -80,6 +80,33 @@
     gap: 2rem;
   }
 
+  &__neutered-radio,
+  &__special-care-radio {
+    display: flex;
+    gap: 2.9rem;
+
+    .radio-container {
+      &__input {
+        border-radius: 0.3rem;
+
+        &:checked {
+          border-color: colors.$primary200;
+
+          background-color: colors.$primary200;
+
+          background-image: url('./images/check.svg');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 70% 70%;
+        }
+
+        &:checked + .radio-container__dot {
+          color: colors.$gray800;
+        }
+      }
+    }
+  }
+
   &__img {
     max-width: 5.4rem;
     max-height: 5.4rem;
