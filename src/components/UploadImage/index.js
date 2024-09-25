@@ -18,9 +18,9 @@ const html = `
         <img class="container-upload-image__preview-image hidden" data-select="image-preview" alt="Imagem carregada">
       </div>
       <div class='container-upload-image__button'>
-        <img data-select="button-icon" src="${plusIcon}">
+        <img data-select="button-icon" src="${plusIcon}" alt="Botão com ícone">
       </div>
-      <input class="container-upload-image__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input">
+      <input class="container-upload-image__input" id="input-file" name="input-file" type="file" accept="image/*" data-select="upload-input" aria-label="Carregar imagem">
     </label>
   </div>
 `;
@@ -28,7 +28,7 @@ const html = `
 export default function UploadImage() {
   Component.call(this, { html, events });
 
-  const previewImage = this.selected.get('image-preview');
+  const imagePreview = this.selected.get('image-preview');
   const buttonIcon = this.selected.get('button-icon');
   const uploadInput = this.selected.get('upload-input');
 
@@ -37,8 +37,8 @@ export default function UploadImage() {
   const readAndDisplayImage = (file) => {
     this.reader.addEventListener('load', (e) => {
       const readerTarget = e.target;
-      previewImage.src = readerTarget.result;
-      previewImage.classList.remove('hidden');
+      imagePreview.src = readerTarget.result;
+      imagePreview.classList.remove('hidden');
       buttonIcon.src = photoIcon;
       this.emit('value:change', readerTarget.result);
     });
