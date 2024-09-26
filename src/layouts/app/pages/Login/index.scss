@@ -1,0 +1,38 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.login-page {
+  width: 100%;
+
+  display: flex;
+  gap: 5rem;
+
+  justify-content: center;
+
+  padding: 15rem;
+
+  background-color: colors.$primary600;
+}
+
+.login-page__img-box {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.login-page__img-box img {
+  display: block;
+
+  padding-right: 2rem;
+}
+
+.login-page__img-logopetdex {
+  width: 15.5rem;
+}
+
+.login-page__img-top {
+  width: 100%;
+
+  margin-bottom: 10rem;
+}
