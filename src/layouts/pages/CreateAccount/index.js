@@ -18,7 +18,11 @@ const html = `
       <div data-select="content-container" class="breed-page__content">
         <div data-select="image-container" class="breed-page__image"></div>
         <form class="breed-page__content_form">
-          <div data-select="input-container"></div>
+          <div class="input-container" data-select="input-container">
+            <div class="link-password" data-select="link-password">
+              <a href="#">alterar senha</a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
@@ -34,6 +38,9 @@ export default function CreateAccount() {
   const $field = this.selected.get('input-container');
 
   const $footerContainer = this.selected.get('footer-container');
+
+  const $password = this.selected.get('link-password');
+
   this.activeCard = null;
 
   const name = new Field({
@@ -78,6 +85,7 @@ export default function CreateAccount() {
     content: new TextInput({
       id: 'name',
       placeholder: 'dev@devhat.com.br',
+      type: 'mail',
     }),
   });
   const password = new Field({
@@ -86,6 +94,7 @@ export default function CreateAccount() {
     content: new TextInput({
       id: 'name',
       placeholder: '*******',
+      type: 'password',
     }),
   });
 
@@ -108,7 +117,7 @@ export default function CreateAccount() {
   dataNascimento.mount($field);
   local.mount($field);
   mail.mount($field);
-  password.mount($field);
+  password.mount($password);
 
   $button.selected.get('button').classList.add('breed-page__button');
   $button.mount($footerContainer);
