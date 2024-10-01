@@ -22,7 +22,7 @@ export default function DayComposer({
   this.$dayComposer = this.selected.get('day-composer');
   this.activeDayButton = null;
 
-  const actualDay = dayjs().date();
+  const currentDay = dayjs().date();
   const actualMonth = dayjs().month() + 1;
   const actualYear = dayjs().year();
 
@@ -50,11 +50,11 @@ export default function DayComposer({
       );
 
       if (
-        this.actualMonthDay === actualDay &&
+        this.actualMonthDay === currentDay &&
         this.month === actualMonth &&
         this.year === actualYear
       )
-        this.dayButton.actualDay();
+        this.dayButton.currentDay();
 
       this.actualMonthDay += 1;
     }

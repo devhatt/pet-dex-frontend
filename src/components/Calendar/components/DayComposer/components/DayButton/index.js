@@ -51,7 +51,7 @@ DayButton.prototype = Object.assign(DayButton.prototype, Component.prototype, {
     this.$dayButton.classList.remove('day__button--active');
   },
 
-  actualDay() {
+  currentDay() {
     this.$dayButton.classList.add('day__button--actual');
   },
 });

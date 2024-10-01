@@ -89,23 +89,11 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     });
   },
 
-  getDate() {
-    return {
-      day: this.day,
-      month: this.month,
-      year: this.year,
-    };
-  },
-
   setDay(day) {
     this.day = day;
     this.setDate(this.day, this.month, this.year);
 
     this.emit('day:change', this.day);
-  },
-
-  getDay() {
-    return this.day;
   },
 
   setMonth(month) {
@@ -115,15 +103,27 @@ Calendar.prototype = Object.assign(Calendar.prototype, Component.prototype, {
     this.emit('month:change', this.month);
   },
 
-  getMonth() {
-    return this.month;
-  },
-
   setYear(year) {
     this.year = year;
     this.setDate(this.day, this.month, this.year);
 
     this.emit('year:change', this.year);
+  },
+
+  getDate() {
+    return {
+      day: this.day,
+      month: this.month,
+      year: this.year,
+    };
+  },
+
+  getDay() {
+    return this.day;
+  },
+
+  getMonth() {
+    return this.month;
   },
 
   getYear() {
