@@ -1,0 +1,31 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.month-selector {
+  overflow: auto;
+
+  display: flex;
+  flex-direction: row;
+
+  margin-bottom: 2.4rem;
+
+  padding-bottom: 2.4rem;
+
+  border-bottom: 0.1rem solid colors.$gray150;
+
+  box-sizing: border-box;
+
+  scroll-snap-type: x proximity;
+
+  scrollbar-width: none;
+
+  &__list {
+    width: fit-content;
+
+    display: flex;
+
+    align-items: center;
+  }
+}

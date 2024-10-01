@@ -1,0 +1,36 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.navigation-button {
+  width: 4.6rem;
+  height: 4.6rem;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 0.1rem solid rgb(160, 174, 192);
+
+  background-color: colors.$secondary100;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  &__icon {
+    color: rgb(160, 174, 192);
+
+    &--next {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+@include breakpoints.from667 {
+  .navigation-button {
+    display: flex;
+  }
+}

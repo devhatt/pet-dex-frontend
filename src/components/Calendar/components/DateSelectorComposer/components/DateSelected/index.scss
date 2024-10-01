@@ -1,0 +1,16 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.date-selected {
+  font-family: fonts.$primaryFont;
+  color: colors.$gray800;
+  font-size: fonts.$lg;
+  font-weight: fonts.$regular;
+
+  &:hover {
+    color: colors.$primary200;
+    font-weight: fonts.$semiBold;
+  }
+}

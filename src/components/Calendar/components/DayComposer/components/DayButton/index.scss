@@ -1,0 +1,65 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.day {
+  width: 3.2rem;
+  height: 3.2rem;
+
+  justify-self: center;
+
+  &__button {
+    width: 100%;
+    height: 100%;
+
+    font-family: fonts.$primaryFont;
+    color: colors.$gray500;
+    text-align: center;
+    font-size: fonts.$xxs;
+    font-weight: fonts.$medium;
+
+    border: 0.1rem solid colors.$gray150;
+
+    background-color: colors.$secondary100;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    &:hover,
+    &--active {
+      color: colors.$primary200;
+      font-weight: fonts.$semiBold;
+
+      border: 0.1rem solid colors.$blue100;
+
+      background-color: colors.$blue150;
+    }
+
+    &--actual {
+      color: colors.$primary200;
+      font-weight: fonts.$semiBold;
+    }
+
+    &--previousMonth,
+    &--nextMonth {
+      color: rgba(160, 174, 192, 1);
+
+      border: 0.1rem solid colors.$gray150;
+
+      background-color: colors.$gray100;
+    }
+  }
+}
+
+@include breakpoints.from667 {
+  .day {
+    width: 5.4rem;
+    height: 5.4rem;
+
+    &__button {
+      font-size: fonts.$md;
+    }
+  }
+}

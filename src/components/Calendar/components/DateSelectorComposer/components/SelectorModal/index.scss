@@ -1,0 +1,54 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.selector-modal {
+  width: 100%;
+  height: 18rem;
+  overflow: auto;
+  scroll-snap-type: y proximity;
+
+  display: none;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 4.6rem;
+  z-index: 2;
+
+  background-color: colors.$secondary100;
+
+  box-shadow: 0 4px 20px -2px rgba(50, 50, 71, 0.04);
+
+  box-shadow: 0 0 5px 0 rgba(12, 26, 75, 0.08);
+
+  border-radius: 1rem;
+
+  animation: openModal 0.3s ease-out;
+
+  scrollbar-width: none;
+
+  &__list > * {
+    scroll-snap-align: center;
+  }
+}
+
+@include breakpoints.from667 {
+  .selector-modal {
+    display: flex;
+  }
+}
+
+@keyframes openModal {
+  from {
+    transform: translateY(-2.5rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

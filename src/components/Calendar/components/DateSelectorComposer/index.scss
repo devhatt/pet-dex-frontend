@@ -1,0 +1,35 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.date-selector-composer {
+  width: 100%;
+
+  cursor: pointer;
+}
+
+@include breakpoints.from667 {
+  .date-selector-composer {
+    width: max-content;
+    min-width: 23.1rem;
+
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    &::before {
+      width: 1.6rem;
+      height: 2.3rem;
+
+      background-image: url('../../images/arrows.svg');
+
+      content: '';
+    }
+  }
+}

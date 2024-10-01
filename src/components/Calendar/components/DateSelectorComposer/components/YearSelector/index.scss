@@ -1,0 +1,32 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.year-selector {
+  overflow: auto;
+
+  display: flex;
+  flex-direction: row;
+
+  margin-bottom: 2.4rem;
+
+  padding-bottom: 2.4rem;
+
+  border-bottom: 0.1rem solid colors.$gray150;
+
+  box-sizing: border-box;
+  scrollbar-width: none;
+
+  position: relative;
+  scroll-snap-type: x proximity;
+
+  &__list {
+    width: max-content;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+}

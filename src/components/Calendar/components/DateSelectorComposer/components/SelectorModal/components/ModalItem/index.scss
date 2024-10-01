@@ -1,0 +1,41 @@
+@use '~styles/base.scss';
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.selector-modal__item {
+  font-family: fonts.$primaryFont;
+  color: colors.$gray500;
+  text-align: center;
+  font-size: fonts.$md;
+  font-weight: fonts.$medium;
+  line-height: 1.7;
+
+  cursor: pointer;
+
+  &--active {
+    color: colors.$gray800;
+    font-size: fonts.$lg;
+    font-weight: fonts.$bold;
+
+    border-top: 1px solid colors.$gray150;
+    border-bottom: 1px solid colors.$gray150;
+
+    position: relative;
+
+    &::after {
+      width: 1.6rem;
+      height: 2.3rem;
+
+      margin-left: 1rem;
+
+      position: absolute;
+
+      top: 0.9rem;
+
+      background-image: url('../../../../../../images/arrows.svg');
+
+      content: '';
+    }
+  }
+}
