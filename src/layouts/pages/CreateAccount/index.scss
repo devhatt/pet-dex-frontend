@@ -38,6 +38,11 @@
 
       font-size: fonts.$xl;
     }
+
+    > p {
+      color: colors.$gray600;
+      font-size: fonts.$sm;
+    }
   }
 
   &__content {

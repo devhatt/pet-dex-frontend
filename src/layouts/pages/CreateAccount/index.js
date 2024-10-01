@@ -33,22 +33,20 @@ const html = `
 export default function CreateAccount() {
   Component.call(this, { html, events });
 
-  // const $container = this.selected.get('container');
   const $uploadImage = this.selected.get('image-container');
   const $field = this.selected.get('input-container');
-
   const $footerContainer = this.selected.get('footer-container');
-
   const $password = this.selected.get('link-password');
 
-  this.activeCard = null;
+  this.activeForm = null;
 
   const name = new Field({
     label: 'Nome e Sobrenome',
     error: 'Informe seu nome',
     content: new TextInput({
       id: 'name',
-      placeholder: 'Informe seu nomes',
+      placeholder: 'Informe seu nome completo',
+      type: 'text',
     }),
   });
 
@@ -56,8 +54,9 @@ export default function CreateAccount() {
     label: 'Celular',
     error: 'Devhat',
     content: new TextInput({
-      id: 'name',
+      id: 'phone',
       placeholder: '(11) 12345-6789',
+      type: 'number',
     }),
   });
 
@@ -65,34 +64,37 @@ export default function CreateAccount() {
     label: 'Data de nascimento',
     error: 'Informe seu nome',
     content: new TextInput({
-      id: 'name',
+      id: 'nasc',
       placeholder: '13/12/1995',
+      type: 'date',
     }),
   });
 
   const local = new Field({
     label: 'Local',
-    error: 'Informe seu celualr',
+    error: 'Informe seu celular',
     content: new TextInput({
-      id: 'name',
+      id: 'local',
       placeholder: 'Sao Paulo, SP',
+      type: 'text',
     }),
   });
 
   const mail = new Field({
     label: 'E-mail',
-    error: 'Informe seu nome',
+    error: 'Informe seu e-mail',
     content: new TextInput({
-      id: 'name',
+      id: 'mail',
       placeholder: 'dev@devhat.com.br',
       type: 'mail',
     }),
   });
+
   const password = new Field({
     label: 'Senha',
-    error: 'Informe seu nome',
+    error: 'Informe sua senha',
     content: new TextInput({
-      id: 'name',
+      id: 'password',
       placeholder: '*******',
       type: 'password',
     }),
@@ -106,8 +108,17 @@ export default function CreateAccount() {
 
   const $image = new UploadImage({});
 
+  name.content.listen('value:change', () => {
+    if (this.activeForm) this.activeCard.deactivate();
+
+    this.emit('select:card', name);
+    $button.enable();
+  });
+
   $button.listen('click', () => {
-    this.emit('submit', { breedSelected: this.breedSelected });
+    // console.log('submitado', { name, phone, dataNascimento, local, mail, password })
+
+    this.emit('submit', { name, phone, dataNascimento, local, mail, password });
   });
 
   $image.mount($uploadImage);
@@ -127,3 +138,30 @@ CreateAccount.prototype = Object.assign(
   CreateAccount.prototype,
   Component.prototype,
 );
+
+// o submit do botao vai ser nesse estilo
+
+// const form = {
+//   isNeutered: undefined,
+//   isSpecialCare: undefined,
+//   specialCareText: '',
+//   vaccines: undefined,
+// };
+
+// const emitForm = () => {
+//   const neuteredValue = document.forms[0].elements.neutered.value;
+//   const specialCareValue = document.forms[1].elements.specialCare.value;
+//   const specialCareText = this.specialCareText.selected.get('textarea').value;
+
+//   if (!neuteredValue || !specialCareValue) return;
+//   if (getBooleanValue(specialCareValue) && !specialCareText) return;
+
+//   form.isNeutered = getBooleanValue(neuteredValue);
+//   form.isSpecialCare = getBooleanValue(specialCareValue);
+//   form.specialCareText = specialCareText;
+
+//   form.vaccines = this.vaccine.listVaccines();
+//   this.emit('submit', form);
+// };
+
+// this.button.listen('click', emitForm);
