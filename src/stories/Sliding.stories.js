@@ -42,11 +42,15 @@ export default {
   },
   argsTypes: {
     slides: { control: 'object', defaultValue: [] },
+    slideSideSpacing: { control: 'number', defaultValue: 0 },
+    shuffleMode: { control: 'boolean', defaultValue: false },
   },
 };
 
 export const Default = {
   args: {
     slides: [$slide1, $slide2, $slide3],
+    slideSideSpacing: 60,
+    shuffleMode: true,
   },
 };

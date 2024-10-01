@@ -1,5 +1,6 @@
 .sliding {
   width: 100%;
+
   overflow: hidden;
 
   margin: auto;
@@ -9,6 +10,8 @@
   &__content {
     display: flex;
 
+    align-items: center;
+
     transform: translateX(0);
 
     transition: transform 0.6s ease-in-out;
@@ -16,5 +19,51 @@
 
   &__slide {
     flex: 0 0 100%;
+  }
+
+  &--shuffle {
+    .sliding__slide {
+      width: 100%;
+
+      display: none;
+      flex: unset;
+
+      position: relative;
+
+      z-index: 0;
+
+      transition: all 450ms ease;
+
+      &--active {
+        display: block;
+
+        z-index: 2;
+      }
+
+      &--prev,
+      &--next,
+      &--unfocused {
+        width: 50%;
+
+        display: block;
+
+        position: absolute;
+
+        transform: scale(0.9);
+
+        opacity: 0.6;
+        inset: 0;
+      }
+
+      &--next {
+        left: auto;
+      }
+
+      &--unfocused {
+        width: 100%;
+
+        transform: scale(0.94);
+      }
+    }
   }
 }

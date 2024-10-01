@@ -25,7 +25,7 @@ const html = `
             <div class="petvet-page__card-content">
               <p>O seu pet amigo foi castrado?</p>
               <form>
-              <fieldset data-select="neutered-radio"></fieldset>
+              <fieldset data-select="neutered-radio" class="petvet-page__neutered-radio"></fieldset>
               </form>
             </div>
           </div>
@@ -38,7 +38,7 @@ const html = `
             <div class="petvet-page__card-content">
               <p>Cuidados especiais</p>
               <form>
-                <fieldset data-select="special-care-radio"></fieldset>
+                <fieldset data-select="special-care-radio" class="petvet-page__special-care-radio"></fieldset>
               </form>
             </div>
           </div>
@@ -68,8 +68,8 @@ function getBooleanValue(value) {
   return value in radiosValue ? radiosValue[value] : false;
 }
 
-function createAndMount({ name, text, mountTo, value }) {
-  const radio = new Radio({ name, text, value });
+function createAndMount({ name, text, mountTo, value, borderless }) {
+  const radio = new Radio({ name, text, value, borderless });
   radio.selected
     .get('radio-button')
     .setAttribute('aria-label', `${getAriaLabel(name)}-${text.toLowerCase()}`);
@@ -94,24 +94,28 @@ export default function PetVetPage({ vaccines = [] } = {}) {
     text: 'Não',
     mountTo: $specialCareRadio,
     value: 'notSpecialCare',
+    borderless: true,
   });
   const specialCare = createAndMount({
     name: 'specialCare',
     text: 'Sim',
     mountTo: $specialCareRadio,
     value: 'specialCare',
+    borderless: true,
   });
   createAndMount({
     name: 'neutered',
     text: 'Não',
     mountTo: $neuteredRadio,
     value: 'notNeutered',
+    borderless: true,
   });
   createAndMount({
     name: 'neutered',
     text: 'Sim',
     mountTo: $neuteredRadio,
     value: 'neutered',
+    borderless: true,
   });
 
   this.specialCareText = new TextArea({
