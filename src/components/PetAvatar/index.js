@@ -19,6 +19,9 @@ export default function PetAvatar({ id = '', title, imgSrc, imgAlt } = {}) {
   if (imgSrc) this.setImgSrc(imgSrc);
   if (imgAlt) this.setImgAlt(imgAlt);
 
+  const $title = this.selected.get('pet-title');
+  if (!title) $title.classList.add('hidden');
+
   if (routeLocation().pathname === `/petperfil/${id}`) {
     this.activate();
   }
