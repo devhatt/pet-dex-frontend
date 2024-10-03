@@ -1,0 +1,118 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.breed-page {
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  font-family: fonts.$sixthFont;
+
+  &__breed-grid {
+    overflow: auto;
+
+    display: flex;
+
+    flex-wrap: wrap;
+    gap: 1.6rem;
+
+    align-items: start;
+
+    padding: 1rem;
+  }
+
+  &__header {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    padding: 2rem 5rem;
+
+    > h1 {
+      color: colors.$primary700;
+
+      font-size: fonts.$xl;
+    }
+
+    > p {
+      color: colors.$gray600;
+      font-size: fonts.$sm;
+    }
+  }
+
+  &__content {
+    width: 100%;
+
+    display: flex;
+
+    gap: 4.2rem;
+
+    padding: 5rem;
+
+    &_form {
+      width: 100%;
+
+      > div {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 2rem;
+      }
+
+      .link-password {
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        order: 1;
+
+        > a {
+          order: 1;
+        }
+      }
+    }
+  }
+
+  &__image {
+    width: min(100%, 18.6rem);
+
+    margin: 4rem;
+  }
+
+  &__footer {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: auto;
+    padding: 8rem 0;
+  }
+
+  &__button {
+    width: min(100%, 42rem);
+  }
+}
+
+@include breakpoints.from1024 {
+  .breed-page {
+    &__breed-grid {
+      display: flex;
+
+      align-items: center;
+    }
+  }
+}
