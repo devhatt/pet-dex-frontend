@@ -11,13 +11,16 @@ const html = `
   </a>
 `;
 
-export default function PetAvatar({ id, title, imgSrc, imgAlt } = {}) {
+export default function PetAvatar({ id = '', title, imgSrc, imgAlt } = {}) {
   Component.call(this, { html, events });
 
   if (id) this.setHref(id);
   if (title) this.setTitle(title);
   if (imgSrc) this.setImgSrc(imgSrc);
   if (imgAlt) this.setImgAlt(imgAlt);
+
+  const $title = this.selected.get('pet-title');
+  if (!title) $title.classList.add('hidden');
 
   if (routeLocation().pathname === `/petperfil/${id}`) {
     this.activate();

@@ -1,0 +1,25 @@
+.my-pets {
+  display: flex;
+
+  gap: 4rem;
+
+  align-items: center;
+
+  &__button {
+    font: inherit;
+    color: inherit;
+
+    padding: 0;
+
+    padding: 1.7rem;
+    border: 0;
+
+    background: none;
+
+    box-shadow: 0 1px 4px 0 rgba(139, 158, 184, 0.2);
+    outline: inherit;
+    border-radius: 14px;
+
+    cursor: pointer;
+  }
+}

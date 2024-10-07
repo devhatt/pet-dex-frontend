@@ -45,6 +45,10 @@
       color: colors.$primary200;
       font-weight: fonts.$semiBold;
     }
+
+    &--hidden {
+      display: none;
+    }
   }
 
   &:hover {

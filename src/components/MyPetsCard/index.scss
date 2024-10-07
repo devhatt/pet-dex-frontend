@@ -1,0 +1,149 @@
+@use '~styles/colors.scss' as colors;
+@use '~styles/fonts.scss' as fonts;
+@use '~styles/breakpoints.scss' as breakpoints;
+
+.my-pets-card {
+  max-height: 13.7rem;
+  overflow: hidden;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 1.5rem 2rem;
+
+  border: 1px solid colors.$gray100;
+
+  background-color: colors.$primary200;
+  border-radius: 14px;
+
+  &__text {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    color: colors.$white;
+
+    margin: auto 0;
+  }
+
+  &__pet-name {
+    font-family: fonts.$primaryFont;
+
+    font-size: fonts.$md;
+    font-weight: fonts.$semiBold;
+    line-height: 2;
+  }
+
+  &__pet-info {
+    font-family: fonts.$fourthFont;
+
+    font-size: fonts.$xs;
+    font-weight: fonts.$regular;
+    line-height: 20px;
+  }
+
+  &__pet-desc {
+    display: none;
+  }
+
+  &__gradient {
+    height: 100%;
+
+    padding: 2rem;
+
+    background: rgba(255, 255, 255, 0.0392156862745098);
+
+    border-radius: 50%;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 10px;
+
+    align-self: stretch;
+
+    border: 0;
+
+    background: rgb(116, 180, 255);
+    margin-inline: 0.7rem;
+  }
+
+  &__avatar {
+    max-width: 50%;
+    max-height: 50%;
+
+    padding: 2rem;
+
+    background: rgb(62, 152, 244);
+
+    box-shadow:
+      0 0 0 2rem rgb(45, 143, 243),
+      0 0 0 4rem rgb(36, 138, 243);
+
+    border-radius: 50%;
+  }
+
+  &__pet-avatar-image {
+    max-width: 100px;
+    max-height: 100px;
+
+    background: colors.$white !important;
+  }
+
+  &__pet-gender {
+    display: none;
+  }
+}
+
+@include breakpoints.from667 {
+  .my-pets-card {
+    max-height: none;
+
+    padding: 4rem;
+
+    &__pet-name {
+      font-family: fonts.$primaryFont;
+
+      font-size: fonts.$lg;
+      font-weight: fonts.$semiBold;
+      line-height: 34px;
+
+      margin-top: 0.4rem;
+    }
+
+    &__pet-info {
+      font-family: fonts.$fourthFont;
+
+      font-size: fonts.$md;
+      font-weight: fonts.$regular;
+      line-height: 2;
+
+      margin-top: 0.2rem;
+    }
+
+    &__pet-desc {
+      display: block;
+
+      font-family: fonts.$fourthFont;
+      font-size: 1.6rem;
+      font-weight: fonts.$regular;
+      line-height: 24px;
+
+      margin-top: 3.6rem;
+    }
+
+    &__pet-avatar-image {
+      max-width: none;
+      max-height: none;
+
+      background: colors.$white;
+    }
+
+    &__divider {
+      height: auto;
+    }
+  }
+}
