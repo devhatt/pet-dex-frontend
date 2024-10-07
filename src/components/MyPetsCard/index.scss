@@ -3,9 +3,8 @@
 @use '~styles/breakpoints.scss' as breakpoints;
 
 .my-pets-card {
-  max-width: 63.8rem;
-  height: 100%;
   max-height: 13.7rem;
+  overflow: hidden;
 
   display: flex;
 
@@ -58,6 +57,18 @@
     background: rgba(255, 255, 255, 0.0392156862745098);
 
     border-radius: 50%;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 10px;
+
+    align-self: stretch;
+
+    border: 0;
+
+    background: rgb(116, 180, 255);
+    margin-inline: 0.7rem;
   }
 
   &__avatar {
@@ -129,6 +140,10 @@
       max-height: none;
 
       background: colors.$white;
+    }
+
+    &__divider {
+      height: auto;
     }
   }
 }

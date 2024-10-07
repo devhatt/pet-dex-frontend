@@ -1,34 +1,62 @@
 import { Component } from 'pet-dex-utilities';
 import MyPetsCard from '../MyPetsCard';
 import Sliding from '../Sliding';
+
+import arrowLeft from './images/arrowLeft.svg';
+import arrowRight from './images/arrowRight.svg';
+
 import './index.scss';
 
-const events = [''];
-
 const html = `
-  <div class="my-pets" data-select="my-pets">
+  <div class="my-pets">
+   <button class="my-pets__button" data-select="button-previous">
+    <img src=${arrowLeft}></img>
+   </button>
+   <div class="my-pets__cards-container" data-select="my-pets-cards-container"></div>
+    <button class="my-pets__button" data-select="button-next">
+      <img src=${arrowRight}></img>
+   </button>
   </div>
 `;
 
-export default function MyPets() {
-  Component.call(this, { html, events });
+export default function MyPets({
+  pets = [
+    {
+      name: '',
+      gender: '',
+      race: '',
+      type: '',
+      desc: '',
+    },
+  ],
+}) {
+  Component.call(this, { html });
 
-  const $myPetsContainer = this.selected.get('my-pets');
+  const $myPetsContainer = this.selected.get('my-pets-cards-container');
+  const $previousButton = this.selected.get('button-previous');
+  const $nextButton = this.selected.get('button-next');
 
-  const myPetsCard = new MyPetsCard({
-    name: 'Kelvo',
-    gender: 'male',
-    race: 'Cachorro',
-    type: 'Humano',
-    desc: 'Mistura marrom-escura-branca, com sobrancelhas claras e uma mancha em forma de coração na pata esquerda.',
+  const cards = [];
+  pets.forEach((pet) => {
+    const petCard = new MyPetsCard(pet);
+    const div = document.createElement('div');
+    petCard.mount(div);
+    cards.push(div);
+  });
+  const sliding = new Sliding({
+    slides: cards,
+    shuffleMode: true,
+    slideSideSpacing: 80,
   });
 
-  const div = document.createElement('div');
-  myPetsCard.mount(div);
-
-  const sliding = new Sliding({ slides: [div] });
-
   sliding.mount($myPetsContainer);
+
+  $previousButton.onclick = () => {
+    sliding.previous();
+  };
+  $nextButton.onclick = () => {
+    sliding.next();
+  };
 }
 
 MyPets.prototype = Object.assign(MyPets.prototype, Component.prototype, {});

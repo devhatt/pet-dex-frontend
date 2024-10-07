@@ -16,7 +16,7 @@ const html = `
         <span class="my-pets-card__pet-name" data-select="name"></span>
         <div class="my-pets-card__pet-info"/>
           <span data-select="race"></span>
-          |
+          <hr class="my-pets-card__divider"/>
           <span data-select="type"></span>
         </div>
       </div>
@@ -33,7 +33,7 @@ export default function MyPetsCard({
   race = '',
   desc = '',
   gender = 'male',
-  avatar,
+  avatar = akita,
 }) {
   Component.call(this, { html, events });
 
@@ -53,7 +53,7 @@ MyPetsCard.prototype = Object.assign(
   MyPetsCard.prototype,
   Component.prototype,
   {
-    insertText({ name, type, race, desc }) {
+    insertText({ name, type, race, desc, avatar }) {
       const $name = this.selected.get('name');
       const $type = this.selected.get('type');
       const $race = this.selected.get('race');
@@ -62,7 +62,7 @@ MyPetsCard.prototype = Object.assign(
 
       const petAvatar = new PetAvatar({
         imgAlt: 'breed alt description',
-        imgSrc: akita,
+        imgSrc: avatar,
       });
       petAvatar.mount($avatar);
 
